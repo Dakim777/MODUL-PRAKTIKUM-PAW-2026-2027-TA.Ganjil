@@ -19,7 +19,7 @@ interface SubmissionBoxProps {
 export const SUBMISSION_LINKS: Record<number, ClassSubmissionLinks> = {
   1: {
     ra: "https://forms.gle/placeholder-pertemuan-1-kelas-ra",
-    rb: "https://forms.gle/placeholder-pertemuan-1-kelas-rb",
+    rb: "https://forms.gle/vHRXZQZJuExcxoiNA",
   },
   2: {
     ra: "https://forms.gle/placeholder-pertemuan-2-kelas-ra",
