@@ -1457,6 +1457,74 @@ pre code {
   gap: 0.45rem;
   font-size: 0.72rem;
   color: #64748b;
+  margin-top: 0.85rem;
+}
+
+/* ─── Multi-Class Submission (Kelas RA & RB) ─── */
+.submission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-top: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.submission-box-card.kelas-ra {
+  margin-top: 0;
+  border-color: #bfdbfe;
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
+}
+
+.submission-box-card.kelas-rb {
+  margin-top: 0;
+  border-color: #ddd6fe;
+  background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 100%);
+  box-shadow: 0 4px 16px rgba(109, 40, 217, 0.06);
+}
+
+.submission-class-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.submission-class-badge.ra {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.submission-class-badge.rb {
+  background: #ede9fe;
+  color: #5b21b6;
+  border: 1px solid #ddd6fe;
+}
+
+.submission-box-card.kelas-rb .submission-badge-icon {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.submission-box-card.kelas-rb .submission-box-title {
+  color: #4338ca;
+}
+
+.submission-box-card.kelas-rb .submission-action-btn.primary {
+  background: #4f46e5;
+  border-color: #4338ca;
+}
+
+.submission-box-card.kelas-rb .submission-action-btn.primary:hover {
+  background: #4338ca;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
 }
 
 /* ─── Callout / Note boxes ─── */
