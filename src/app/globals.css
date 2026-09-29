@@ -1324,25 +1324,57 @@ pre code {
   line-height: 1.4;
 }
 
-/* ─── Submission Box Styles ─── */
+/* ─── Submission Box Styles (Minimalist) ─── */
 .submission-section {
   margin-top: 2.25rem;
   margin-bottom: 2.5rem;
 }
 
+.submission-lead-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.85rem;
+  line-height: 1.5;
+}
+
+.submission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
 .submission-box-card {
-  margin-top: 0.75rem;
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.35rem;
   border-radius: var(--radius-lg);
-  border: 1.5px solid #bfdbfe;
+  border: 1.5px solid var(--color-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submission-box-card:hover {
+  transform: translateY(-2px);
+}
+
+.submission-box-card.kelas-ra {
+  border-color: #bfdbfe;
   background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
+}
+
+.submission-box-card.kelas-rb {
+  border-color: #ddd6fe;
+  background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 100%);
+  box-shadow: 0 4px 16px rgba(109, 40, 217, 0.06);
 }
 
 .submission-box-header {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0.85rem;
   margin-bottom: 1.25rem;
 }
 
@@ -1350,137 +1382,21 @@ pre code {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 10px;
   background: #dbeafe;
   color: #1d4ed8;
   flex-shrink: 0;
 }
 
-.submission-box-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 0.25rem;
+.submission-box-card.kelas-rb .submission-badge-icon {
+  background: #ede9fe;
+  color: #6d28d9;
 }
 
-.submission-box-desc {
-  font-size: 0.85rem;
-  color: #475569;
-  line-height: 1.5;
-  margin: 0 !important;
-}
-
-.submission-url-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.65rem 0.85rem;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  margin-bottom: 0.85rem;
-}
-
-.submission-url-input {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.submission-box-info {
   flex: 1;
-  min-width: 200px;
-  overflow: hidden;
-}
-
-.submission-url-text {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: #0f172a;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.submission-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-}
-
-.submission-action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.85rem;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.submission-action-btn.copy {
-  background: #f1f5f9;
-  color: #334155;
-  border: 1px solid #cbd5e1;
-}
-
-.submission-action-btn.copy:hover {
-  background: #e2e8f0;
-  color: #0f172a;
-}
-
-.submission-action-btn.copy.copied {
-  background: #dcfce7;
-  color: #15803d;
-  border-color: #86efac;
-}
-
-.submission-action-btn.primary {
-  background: var(--color-navy-800);
-  color: #ffffff;
-  border: 1px solid var(--color-navy-900);
-}
-
-.submission-action-btn.primary:hover {
-  background: var(--color-navy-900);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(10, 37, 64, 0.15);
-}
-
-.submission-box-footer {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.72rem;
-  color: #64748b;
-  margin-top: 0.85rem;
-}
-
-/* ─── Multi-Class Submission (Kelas RA & RB) ─── */
-.submission-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.25rem;
-  margin-top: 0.85rem;
-  margin-bottom: 0.5rem;
-}
-
-.submission-box-card.kelas-ra {
-  margin-top: 0;
-  border-color: #bfdbfe;
-  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
-}
-
-.submission-box-card.kelas-rb {
-  margin-top: 0;
-  border-color: #ddd6fe;
-  background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 100%);
-  box-shadow: 0 4px 16px rgba(109, 40, 217, 0.06);
 }
 
 .submission-class-badge {
@@ -1508,23 +1424,67 @@ pre code {
   border: 1px solid #ddd6fe;
 }
 
-.submission-box-card.kelas-rb .submission-badge-icon {
-  background: #ede9fe;
-  color: #6d28d9;
+.submission-box-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 0.25rem;
 }
 
 .submission-box-card.kelas-rb .submission-box-title {
   color: #4338ca;
 }
 
-.submission-box-card.kelas-rb .submission-action-btn.primary {
-  background: #4f46e5;
-  border-color: #4338ca;
+.submission-box-desc {
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0 !important;
 }
 
-.submission-box-card.kelas-rb .submission-action-btn.primary:hover {
+.submission-card-action {
+  margin-top: auto;
+}
+
+.submission-direct-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 1.15rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.submission-direct-btn.ra {
+  background: var(--color-navy-800);
+  color: #ffffff;
+  border: 1px solid var(--color-navy-900);
+  box-shadow: 0 2px 6px rgba(10, 37, 64, 0.12);
+}
+
+.submission-direct-btn.ra:hover {
+  background: var(--color-navy-900);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(10, 37, 64, 0.22);
+}
+
+.submission-direct-btn.rb {
+  background: #4f46e5;
+  color: #ffffff;
+  border: 1px solid #4338ca;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.15);
+}
+
+.submission-direct-btn.rb:hover {
   background: #4338ca;
-  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
 }
 
 /* ─── Callout / Note boxes ─── */

@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 
 export interface ClassSubmissionLinks {
   ra: string;
@@ -53,9 +51,6 @@ export default function SubmissionBox({
   customUrlRB,
   catatan,
 }: SubmissionBoxProps) {
-  const [copiedRA, setCopiedRA] = useState(false);
-  const [copiedRB, setCopiedRB] = useState(false);
-
   const links = SUBMISSION_LINKS[pertemuan] || {
     ra: "https://forms.gle/placeholder-kelas-ra",
     rb: "https://forms.gle/placeholder-kelas-rb",
@@ -64,18 +59,6 @@ export default function SubmissionBox({
   const targetUrlRA = customUrlRA || links.ra;
   const targetUrlRB = customUrlRB || links.rb;
 
-  const handleCopyRA = () => {
-    navigator.clipboard.writeText(targetUrlRA);
-    setCopiedRA(true);
-    setTimeout(() => setCopiedRA(false), 2000);
-  };
-
-  const handleCopyRB = () => {
-    navigator.clipboard.writeText(targetUrlRB);
-    setCopiedRB(true);
-    setTimeout(() => setCopiedRB(false), 2000);
-  };
-
   return (
     <section
       id="link-submission"
@@ -83,9 +66,9 @@ export default function SubmissionBox({
       aria-labelledby="submission-heading"
     >
       <h2 id="submission-heading">Pengumpulan Tugas</h2>
-      <p style={{ fontSize: "0.9rem", color: "var(--color-text-secondary)", marginBottom: "0.75rem" }}>
+      <p className="submission-lead-desc">
         {catatan ||
-          "Silakan pilih dan submit tugas melalui tautan formulir sesuai dengan kelas praktikum Anda (Kelas RA atau Kelas RB)."}
+          "Silakan submit tugas dan laporan praktikum melalui tombol tautan formulir sesuai dengan kelas praktikum Anda:"}
       </p>
 
       <div className="submission-grid">
@@ -110,72 +93,37 @@ export default function SubmissionBox({
                 <line x1="15" y1="15" x2="12" y2="12" />
               </svg>
             </div>
-            <div>
+            <div className="submission-box-info">
               <span className="submission-class-badge ra">Kelas RA</span>
               <h3 className="submission-box-title">Submission Kelas RA</h3>
               <p className="submission-box-desc">
-                Khusus mahasiswa praktikum <strong>Kelas RA</strong> Pertemuan {pertemuan}.
+                Pengumpulan tugas & laporan praktikum Pertemuan {pertemuan} untuk mahasiswa <strong>Kelas RA</strong>.
               </p>
             </div>
           </div>
 
-          <div className="submission-url-wrapper">
-            <div className="submission-url-input" title={targetUrlRA}>
+          <div className="submission-card-action">
+            <a
+              href={targetUrlRA}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="submission-direct-btn ra"
+            >
+              <span>Submit Tugas RA</span>
               <svg
-                width="15"
-                height="15"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                style={{ flexShrink: 0, opacity: 0.6 }}
               >
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
               </svg>
-              <span className="submission-url-text">{targetUrlRA}</span>
-            </div>
-
-            <div className="submission-actions">
-              <button
-                type="button"
-                onClick={handleCopyRA}
-                className={`submission-action-btn copy ${copiedRA ? "copied" : ""}`}
-                title="Salin tautan formulir Kelas RA"
-              >
-                {copiedRA ? (
-                  <>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span>Tersalin!</span>
-                  </>
-                ) : (
-                  <>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                    </svg>
-                    <span>Salin</span>
-                  </>
-                )}
-              </button>
-
-              <a
-                href={targetUrlRA}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="submission-action-btn primary"
-              >
-                <span>Submit RA</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7" />
-                  <polyline points="7 7 17 7 17 17" />
-                </svg>
-              </a>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -200,94 +148,39 @@ export default function SubmissionBox({
                 <line x1="15" y1="15" x2="12" y2="12" />
               </svg>
             </div>
-            <div>
+            <div className="submission-box-info">
               <span className="submission-class-badge rb">Kelas RB</span>
               <h3 className="submission-box-title">Submission Kelas RB</h3>
               <p className="submission-box-desc">
-                Khusus mahasiswa praktikum <strong>Kelas RB</strong> Pertemuan {pertemuan}.
+                Pengumpulan tugas & laporan praktikum Pertemuan {pertemuan} untuk mahasiswa <strong>Kelas RB</strong>.
               </p>
             </div>
           </div>
 
-          <div className="submission-url-wrapper">
-            <div className="submission-url-input" title={targetUrlRB}>
+          <div className="submission-card-action">
+            <a
+              href={targetUrlRB}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="submission-direct-btn rb"
+            >
+              <span>Submit Tugas RB</span>
               <svg
-                width="15"
-                height="15"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                style={{ flexShrink: 0, opacity: 0.6 }}
               >
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
               </svg>
-              <span className="submission-url-text">{targetUrlRB}</span>
-            </div>
-
-            <div className="submission-actions">
-              <button
-                type="button"
-                onClick={handleCopyRB}
-                className={`submission-action-btn copy ${copiedRB ? "copied" : ""}`}
-                title="Salin tautan formulir Kelas RB"
-              >
-                {copiedRB ? (
-                  <>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span>Tersalin!</span>
-                  </>
-                ) : (
-                  <>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                    </svg>
-                    <span>Salin</span>
-                  </>
-                )}
-              </button>
-
-              <a
-                href={targetUrlRB}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="submission-action-btn primary"
-              >
-                <span>Submit RB</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7" />
-                  <polyline points="7 7 17 7 17 17" />
-                </svg>
-              </a>
-            </div>
+            </a>
           </div>
         </div>
-      </div>
-
-      <div className="submission-box-footer">
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="10" />
-          <line x1="12" y1="8" x2="12" y2="12" />
-          <line x1="12" y1="16" x2="12.01" y2="16" />
-        </svg>
-        <span>
-          Tautan formulir Kelas RA dan Kelas RB di atas dapat disesuaikan langsung di objek <code>SUBMISSION_LINKS</code> pada <code>SubmissionBox.tsx</code>.
-        </span>
       </div>
     </section>
   );
