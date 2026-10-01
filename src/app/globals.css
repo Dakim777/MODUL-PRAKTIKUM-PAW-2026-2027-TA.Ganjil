@@ -1487,6 +1487,100 @@ pre code {
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
 }
 
+/* ─── Submission: Locked State ─── */
+.submission-box-card.locked {
+  opacity: 0.82;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: none !important;
+}
+
+.submission-box-card.locked:hover {
+  transform: none;
+}
+
+.submission-box-card.locked .submission-badge-icon {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+.submission-box-card.locked .submission-box-title {
+  color: #475569 !important;
+}
+
+.submission-box-card.locked .submission-class-badge {
+  background: #e2e8f0;
+  color: #64748b;
+  border-color: #cbd5e1;
+}
+
+.submission-locked-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 1.15rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: #e2e8f0;
+  color: #64748b;
+  border: 1.5px dashed #94a3b8;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+.submission-expired-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 1.15rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1.5px solid #fca5a5;
+  cursor: not-allowed;
+}
+
+/* ─── Submission: Deadline Row ─── */
+.submission-deadline-row {
+  display: flex;
+  align-items: center;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  margin-bottom: 0.85rem;
+  line-height: 1.5;
+}
+
+.submission-deadline-row.active {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+.submission-deadline-row.upcoming {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.submission-deadline-row.expired {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+}
+
+.submission-deadline-row strong {
+  font-weight: 700;
+}
+
+
 /* ─── Callout / Note boxes ─── */
 .callout {
   display: flex;
