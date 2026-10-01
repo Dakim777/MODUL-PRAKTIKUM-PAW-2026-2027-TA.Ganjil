@@ -170,7 +170,7 @@ function SubmissionCard({ kelas, pertemuan, cfg }: SubmissionCardProps) {
         {!open ? (
           <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", flexWrap: "wrap" }}>
             {clockSvg}
-            Dibuka: <strong>{formatDeadline(cfg.openDate)}</strong>
+            Info: <strong>Hubungi asprak bersangkutan</strong>
           </span>
         ) : expired ? (
           <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", flexWrap: "wrap" }}>
