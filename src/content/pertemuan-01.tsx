@@ -630,7 +630,13 @@ document.getElementById("btn-hapus-item").addEventListener("click", function() {
         <li>
           <strong>Batas Waktu Pengumpulan (Deadline):</strong>
           <ul>
-            <li>Batas akhir pengumpulan: <strong>Rabu, 07 Oktober 2026, pukul 23:59 WIB</strong>.</li>
+            <li>
+              Setiap kelas memiliki deadline pengumpulan yang berbeda sesuai jadwal praktikum masing-masing:
+              <ul>
+                <li><strong>Kelas RB:</strong> <strong>Rabu, 07 Oktober 2026, pukul 23:59 WIB</strong></li>
+                <li><strong>Kelas RA:</strong> <strong>Sabtu, 10 Oktober 2026, pukul 23:59 WIB</strong></li>
+              </ul>
+            </li>
             <li>Keterlambatan pengumpulan dikenakan pengurangan nilai sebesar <strong>10% per hari keterlambatan</strong>.</li>
           </ul>
         </li>
