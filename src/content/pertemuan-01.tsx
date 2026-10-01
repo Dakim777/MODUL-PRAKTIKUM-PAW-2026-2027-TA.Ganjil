@@ -124,6 +124,21 @@ export default function Pertemuan1() {
   <script src="script.js"></script>
 </body>
 </html>`}</CodeBlock>
+
+      {/* ── Penjelasan Langkah 1 ── */}
+      <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 1</p>
+        <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
+          <li><code>{"<!DOCTYPE html>"}</code> — Memberitahu browser bahwa ini adalah dokumen HTML versi 5 (paling modern). Wajib ada di baris pertama setiap file HTML.</li>
+          <li><code>{"<html lang=\"en\">"}</code> — Tag pembuka yang membungkus seluruh halaman. Atribut <code>lang="en"</code> memberitahu browser bahwa bahasa halaman ini adalah Inggris.</li>
+          <li><code>{"<meta charset=\"UTF-8\">"}</code> — Mengatur sistem pengkodean karakter agar teks (termasuk huruf khusus seperti é, ñ, atau karakter Asia) tampil dengan benar di browser.</li>
+          <li><code>{"<meta name=\"viewport\" ...>"}</code> — Membuat tampilan halaman menyesuaikan ukuran layar perangkat secara otomatis (responsif), sehingga tampil bagus baik di laptop maupun ponsel.</li>
+          <li><code>{"<script src=\"https://cdn...\">..."}</code> — Memuat pustaka Tailwind CSS dari internet (CDN). Baris ini <em>opsional</em> karena fokus pertemuan ini adalah JavaScript, bukan styling.</li>
+          <li><code>{"<div id=\"result\">"}</code> — Sebuah kotak kosong di halaman yang nantinya akan <em>diisi konten secara dinamis</em> oleh JavaScript. Atribut <code>id</code> digunakan agar JavaScript bisa menemukan elemen ini dengan mudah.</li>
+          <li><code>{"<script src=\"script.js\">"}</code> — Menghubungkan file JavaScript eksternal ke halaman HTML. Diletakkan <em>sebelum penutup {"</body>"}</em> supaya semua elemen HTML sudah terbaca oleh browser sebelum JavaScript dieksekusi.</li>
+        </ul>
+      </div>
+
       <div className="callout callout-info">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
           <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" />
@@ -151,6 +166,21 @@ document.getElementById("result").innerHTML = \`
   <p>Usia: <strong>\${usia}</strong></p>
   <p>Tahun Lahir: <strong>\${TAHUN_LAHIR}</strong></p>
 \`;`}</CodeBlock>
+
+      {/* ── Penjelasan Langkah 2 ── */}
+      <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 2</p>
+        <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
+          <li><code>var nama = "Budi"</code> — Membuat variabel bernama <code>nama</code> dan mengisinya dengan nilai teks (string) <code>"Budi"</code>. <code>var</code> adalah cara lama; sebaiknya gunakan <code>let</code> atau <code>const</code> untuk kode modern.</li>
+          <li><code>let usia = 20</code> — Membuat variabel <code>usia</code> berisi angka <code>20</code>. Gunakan <code>let</code> untuk variabel yang nilainya <em>bisa berubah</em> di kemudian hari.</li>
+          <li><code>const TAHUN_LAHIR = 2004</code> — Membuat konstanta (nilai tetap). Nilai konstanta <em>tidak bisa diubah</em> setelah ditetapkan. Konvensi: huruf kapital semua untuk konstanta.</li>
+          <li><code>console.log(...)</code> — Menampilkan informasi ke <em>Console</em> di DevTools browser (buka dengan <kbd>F12</kbd> → tab <em>Console</em>). Ini adalah alat paling dasar untuk mengecek nilai variabel saat belajar.</li>
+          <li><code>document.getElementById("result")</code> — Perintah untuk mencari elemen HTML yang memiliki <code>id="result"</code>. Hasilnya adalah objek elemen yang bisa kita manipulasi.</li>
+          <li><code>.innerHTML = ...</code> — Mengisi (atau mengganti) konten di dalam elemen tersebut dengan kode HTML baru.</li>
+          <li>Backtick <code>{"`...`"}</code> dan <code>{"${variabel}"}</code> — Disebut <em>Template Literal</em>. Cara modern menulis string yang bisa menyisipkan nilai variabel langsung di dalam teks tanpa repot sambung-menyambung dengan <code>+</code>.</li>
+        </ul>
+      </div>
+
       <div className="callout callout-info">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
           <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" />
@@ -207,6 +237,21 @@ switch (hari) {
   default: namaHari = "Hari tidak valid";
 }
 console.log("Hari ini adalah: " + namaHari);`}</CodeBlock>
+
+      {/* ── Penjelasan Langkah 3 ── */}
+      <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 3</p>
+        <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
+          <li><strong>If-else if-else</strong> — Struktur pengambilan keputusan. Program memeriksa kondisi dari atas ke bawah; blok yang kondisinya terpenuhi (<code>true</code>) yang dijalankan, sisanya dilewati. Bayangkan seperti: <em>"Kalau nilai ≥ 90 → A, kalau tidak tapi ≥ 80 → B..."</em></li>
+          <li><code>{"nilai >= 90"}</code> — Operator perbandingan. <code>{">"}</code> berarti lebih besar, <code>=</code> berarti sama dengan, jadi <code>{">="}</code> berarti <em>lebih besar atau sama dengan</em>. Hasilnya selalu <code>true</code> atau <code>false</code>.</li>
+          <li><strong>Ternary operator</strong> <code>{"kondisi ? nilaiJikaTrue : nilaiJikaFalse"}</code> — Cara singkat menulis if-else dalam satu baris. Contoh: <code>{"nilai >= 60 ? \"Lulus\" : \"Tidak Lulus\""}</code> artinya <em>"jika nilai ≥ 60 hasilnya 'Lulus', jika tidak hasilnya 'Tidak Lulus'"</em>.</li>
+          <li><code>new Date().getDay()</code> — Mengambil hari saat ini dari jam komputer sebagai angka: <code>0</code> = Minggu, <code>1</code> = Senin, ..., <code>6</code> = Sabtu. <code>new Date()</code> membuat objek tanggal/waktu saat ini.</li>
+          <li><strong>Switch-case</strong> — Alternatif if-else ketika kita ingin mencocokkan satu variabel dengan banyak kemungkinan nilai. Lebih rapi dibanding if-else bertingkat yang panjang.</li>
+          <li><code>break</code> — Wajib ada di akhir setiap <code>case</code>. Tanpa <code>break</code>, program akan terus mengeksekusi case berikutnya secara berurutan (<em>fall-through</em>), yang biasanya tidak diinginkan.</li>
+          <li><code>default</code> — Blok yang dijalankan jika tidak ada satu pun <code>case</code> yang cocok. Mirip dengan blok <code>else</code> pada if-else.</li>
+        </ul>
+      </div>
+
       <div className="callout callout-info">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
           <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" />
@@ -249,6 +294,20 @@ for (let nilai of nilaiSiswa) {
   let statusNilai = nilai >= 80 ? "Lulus" : "Tidak Lulus";
   console.log(\`Nilai: \${nilai} (\${statusNilai})\`);
 }`}</CodeBlock>
+
+      {/* ── Penjelasan Langkah 4 ── */}
+      <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 4</p>
+        <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
+          <li><code>[85, 92, 78, 90, 88]</code> — Ini adalah <em>Array</em>, yaitu daftar/kumpulan nilai yang disimpan dalam satu variabel. Setiap item punya posisi (indeks) mulai dari <code>0</code>. Jadi <code>nilaiSiswa[0]</code> bernilai <code>85</code>.</li>
+          <li><strong>For loop</strong> <code>{"for (let i = 0; i < nilaiSiswa.length; i++)"}</code> — Tiga bagian dipisah titik koma: (1) <code>i = 0</code> mulai dari indeks 0, (2) <code>{"i < nilaiSiswa.length"}</code> terus berjalan selama belum melewati panjang array, (3) <code>i++</code> naikkan <code>i</code> setiap putaran. Loop ini berjalan 5 kali untuk 5 nilai.</li>
+          <li><code>total += nilaiSiswa[i]</code> — Singkatan dari <code>{"total = total + nilaiSiswa[i]"}</code>. Mengambil nilai pada indeks ke-<code>i</code> lalu menambahkannya ke <code>total</code>.</li>
+          <li><code>.toFixed(2)</code> — Memformat angka desimal agar hanya tampil 2 angka di belakang koma. Misal <code>86.6</code> menjadi <code>"86.60"</code>.</li>
+          <li><strong>While loop</strong> — Terus berulang <em>selama kondisinya masih true</em>. Perhatikan <code>hitungMundur--</code> yang menurunkan nilai setiap putaran agar kondisi akhirnya menjadi <code>false</code> dan loop berhenti. Tanpa ini loop akan jalan selamanya (<em>infinite loop</em>).</li>
+          <li><strong>For...of loop</strong> — Cara modern (ES6) mengulang setiap <em>item</em> dalam array satu per satu, tanpa perlu mengurus nomor indeks secara manual. Lebih ringkas dan mudah dibaca.</li>
+        </ul>
+      </div>
+
       <div className="callout callout-info">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
           <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" />
@@ -297,6 +356,22 @@ function hitungKalkulator(angka1, angka2, operasi) {
   }
 }`}</CodeBlock>
 
+
+      {/* ── Penjelasan Langkah 5 ── */}
+      <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 5</p>
+        <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
+          <li><code>{"function sapaNama(nama) { ... }"}</code> — Mendefinisikan fungsi bernama <code>sapaNama</code> yang menerima satu <em>parameter</em> (<code>nama</code>). Fungsi adalah blok kode yang bisa dipanggil berulang kali tanpa menulis ulang logikanya.</li>
+          <li><code>return ...</code> — Membuat fungsi mengembalikan sebuah nilai ke pemanggil. Nilai ini bisa disimpan ke variabel atau langsung digunakan di tempat pemanggilan.</li>
+          <li><code>{"addEventListener(\"click\", function() { ... })"}</code> — Memasang <em>event listener</em> pada tombol. Artinya: <em>"setiap kali tombol ini diklik, jalankan fungsi di dalamnya"</em>. Inilah cara JavaScript merespons interaksi pengguna.</li>
+          <li><code>.value</code> — Mengambil teks yang sedang diketik pengguna di dalam elemen <code>{"<input>"}</code>.</li>
+          <li><code>.trim()</code> — Membuang spasi di awal dan akhir string. Berguna agar input yang hanya berisi spasi tidak dianggap sebagai teks valid.</li>
+          <li><code>=== ""</code> — Operator perbandingan ketat (<em>strict equality</em>). Mengecek apakah nilai sama persis termasuk tipe datanya. Berbeda dengan <code>==</code> yang lebih longgar.</li>
+          <li><code>hitungKalkulator(angka1, angka2, operasi)</code> — Fungsi dengan tiga parameter, menggunakan <code>switch</code> untuk menentukan operasi yang dijalankan sesuai nilai <code>operasi</code> yang dikirim saat pemanggilan.</li>
+          <li><code>angka2 === 0</code> — Pengecekan penting untuk mencegah <em>pembagian dengan nol</em>. Dalam JavaScript, pembagian dengan nol menghasilkan <code>Infinity</code>, sehingga kita perlu menanganinya secara manual.</li>
+        </ul>
+      </div>
+
       <h3 id="array-objek">6. Struktur Data Array & Objek</h3>
       <CodeBlock language="javascript">{`// Array dan metode array
 const buah = ["Apel", "Jeruk", "Mangga", "Pisang", "Anggur"];
@@ -323,6 +398,22 @@ const mahasiswa = {
     return (arr.reduce((s, n) => s + n, 0) / arr.length).toFixed(2);
   }
 };`}</CodeBlock>
+
+      {/* ── Penjelasan Langkah 6 ── */}
+      <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 6</p>
+        <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
+          <li><code>buah.push("Durian")</code> — Menambahkan item baru ke <em>akhir</em> array. Array <code>buah</code> kini berisi 6 item.</li>
+          <li><code>buah.pop()</code> — Menghapus dan mengembalikan item <em>terakhir</em> dari array. Hasil penghapusan disimpan ke variabel <code>itemDihapus</code>.</li>
+          <li><code>buah.sort()</code> — Mengurutkan isi array secara alfabetis (A–Z) secara langsung (<em>in-place</em>) pada array yang sama.</li>
+          <li><code>.map((item, i) ={">"} ...)</code> — Membuat array <em>baru</em> dengan mentransformasi setiap elemen. Hasilnya selalu sama panjang dengan array asli. Di sini setiap nama buah digabung dengan harganya.</li>
+          <li><code>.filter((_, i) ={">"} ...)</code> — Menyaring array, menghasilkan array <em>baru</em> yang hanya berisi elemen yang lolos kondisi. Tanda <code>_</code> adalah konvensi untuk parameter yang tidak dipakai.</li>
+          <li><strong>Objek</strong> <code>{"{ key: value }"}</code> — Struktur data untuk menyimpan banyak properti yang berkaitan dalam satu variabel. Bayangkan seperti formulir: satu objek bisa berisi nama, NIM, jurusan, nilai, dll.</li>
+          <li><code>this</code> — Di dalam method sebuah objek, <code>this</code> merujuk pada objek itu sendiri. Jadi <code>this.nama</code> artinya mengambil properti <code>nama</code> dari objek <code>mahasiswa</code>.</li>
+          <li><code>Object.values(this.nilai)</code> — Mengambil semua <em>nilai</em> properti dari objek <code>nilai</code> menjadi sebuah array: <code>[85, 90, 88]</code>.</li>
+          <li><code>.reduce((s, n) ={">"} s + n, 0)</code> — Menjumlahkan semua elemen array menjadi satu angka. <code>s</code> adalah akumulator (nilai terkumpul), <code>n</code> adalah elemen saat ini, <code>0</code> adalah nilai awal akumulator.</li>
+        </ul>
+      </div>
       <div className="callout callout-warning">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-amber-500)" }}>
           <path d="M10 3L18 17H2L10 3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
@@ -352,6 +443,21 @@ document.getElementById("btn-hapus-item").addEventListener("click", function() {
     itemCount--;
   }
 });`}</CodeBlock>
+
+      {/* ── Penjelasan Langkah 7 ── */}
+      <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 7</p>
+        <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
+          <li><strong>DOM (Document Object Model)</strong> — Representasi halaman HTML sebagai pohon objek di memori browser. JavaScript dapat membaca dan mengubah pohon ini secara langsung, sehingga halaman bisa berubah tanpa perlu di-refresh.</li>
+          <li><code>document.createElement("div")</code> — Membuat elemen HTML <code>{"<div>"}</code> baru <em>di memori</em>. Elemen ini belum terlihat di halaman sampai kita menempelkannya.</li>
+          <li><code>newItem.className = "..."</code> — Menambahkan class CSS ke elemen yang baru dibuat, sama seperti menulis atribut <code>class="..."</code> langsung di HTML.</li>
+          <li><code>newItem.innerText = ...</code> — Mengisi konten teks di dalam elemen. Berbeda dengan <code>innerHTML</code>, <code>innerText</code> memperlakukan konten sebagai teks biasa (bukan HTML), sehingga lebih aman dari serangan injeksi.</li>
+          <li><code>domOutput.appendChild(newItem)</code> — <em>Menempelkan</em> elemen baru sebagai anak (child) terakhir dari <code>domOutput</code>. Setelah baris ini, elemen langsung tampil di halaman.</li>
+          <li><code>domOutput.lastChild</code> — Mengakses elemen anak terakhir dari <code>domOutput</code>. Digunakan untuk memastikan ada elemen yang bisa dihapus sebelum memanggil <code>removeChild</code>.</li>
+          <li><code>domOutput.removeChild(domOutput.lastChild)</code> — Menghapus elemen anak terakhir dari <code>domOutput</code>, sehingga item yang terakhir ditambahkan itulah yang pertama dihapus.</li>
+          <li><code>itemCount++</code> dan <code>itemCount--</code> — Menaikkan atau menurunkan nilai <code>itemCount</code> sebesar 1. Digunakan sebagai penomoran item otomatis yang selalu sinkron dengan isi daftar.</li>
+        </ul>
+      </div>
       <div className="callout callout-info">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
           <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" />
@@ -381,6 +487,20 @@ document.getElementById("btn-hapus-item").addEventListener("click", function() {
       \`<p style="color:red">Gagal mengambil data: \${error.message}</p>\`;
   }
 });`}</CodeBlock>
+
+      {/* ── Penjelasan Langkah 8 ── */}
+      <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 8</p>
+        <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
+          <li><code>async function</code> — Mendeklarasikan fungsi <em>asinkron</em>. Fungsi ini bisa menggunakan kata kunci <code>await</code> di dalamnya untuk menunggu operasi lambat (seperti mengambil data dari internet) tanpa membekukan halaman.</li>
+          <li><code>await fetch("https://...")</code> — Mengirim permintaan HTTP ke URL tersebut dan <em>menunggu</em> jawabannya. <code>fetch</code> adalah cara bawaan browser untuk berkomunikasi dengan server/API. Kata <code>await</code> membuat kode di bawahnya baru berjalan setelah respons tiba.</li>
+          <li><code>await response.json()</code> — Data yang diterima awalnya berbentuk teks mentah (JSON string). Baris ini mengubahnya menjadi objek/array JavaScript yang siap digunakan.</li>
+          <li><code>data.slice(0, 5)</code> — Mengambil hanya 5 elemen pertama dari array <code>data</code>. Karena API mengembalikan 100 post, kita batasi agar halaman tidak terlalu panjang.</li>
+          <li><code>.forEach(post ={">"} {"{ ... }"})</code> — Mengulang setiap item dalam array dan menjalankan fungsi untuk tiap item. Di sini setiap post dikonversi menjadi HTML dan ditambahkan ke halaman.</li>
+          <li><strong>try-catch</strong> — Blok pengaman. Kode di dalam <code>try</code> dieksekusi lebih dulu. Jika terjadi kesalahan (misal internet mati atau URL salah), JavaScript langsung melompat ke blok <code>catch</code> untuk menjalankan penanganan error — sehingga halaman tidak <em>crash</em>.</li>
+          <li><code>error.message</code> — Properti bawaan objek error yang berisi pesan kesalahan dalam bentuk teks, sehingga bisa ditampilkan kepada pengguna secara informatif.</li>
+        </ul>
+      </div>
       <div className="callout callout-info">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
           <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" />
