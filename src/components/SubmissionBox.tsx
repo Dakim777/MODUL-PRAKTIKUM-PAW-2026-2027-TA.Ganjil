@@ -40,7 +40,7 @@ export const SUBMISSION_CONFIG: Record<number, PertemuanConfig> = {
     },
     ra: {
       url: "https://forms.gle/J1dJrxXPGy1dtSs58",
-      openDate: "2026-10-08T00:00:00+07:00",
+      openDate: "2026-10-01T00:00:00+07:00",
       deadline: "2026-10-17T23:59:00+07:00",
     },
   },
