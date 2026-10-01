@@ -338,6 +338,46 @@ for (let nilai of nilaiSiswa) {
         </div>
       </div>
 
+      {/* ── Pembaruan HTML untuk Fase 2 ── */}
+      <div className="callout callout-info" style={{ marginTop: "2rem" }}>
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
+          <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M10 9v5M10 6.5v.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+        <div className="callout-body">
+          <p><strong>Penting: Persiapan HTML untuk Langkah Selanjutnya</strong><br />
+          Mulai dari <strong>Langkah 5 hingga 8</strong>, kita akan membangun fitur yang lebih interaktif (studi kasus sesungguhnya). Oleh karena itu, kita butuh elemen antarmuka (UI) baru. Silakan tambahkan kode HTML berikut ke dalam <code>index.html</code> Anda, letakkan di bawah <code>{"<div id=\"result\"></div>"}</code>.</p>
+        </div>
+      </div>
+
+      <CodeBlock language="html">{`<!-- Tambahkan ini di dalam <body> index.html -->
+<hr style="margin: 20px 0;">
+<h2>Bagian Interaktif (Langkah 5 - 8)</h2>
+
+<!-- Elemen untuk Langkah 5: Fungsi & Event -->
+<div>
+  <input type="text" id="nama-input" placeholder="Masukkan nama Anda" />
+  <button id="sapa-button">Sapa Saya!</button>
+  <div id="sapa-output"></div>
+</div>
+
+<hr style="margin: 20px 0;">
+
+<!-- Elemen untuk Langkah 7: DOM Dinamis -->
+<div>
+  <button id="btn-tambah-item">Tambah Item To-Do</button>
+  <button id="btn-hapus-item">Hapus Item Terakhir</button>
+  <div id="dom-output" style="margin-top: 10px;"></div>
+</div>
+
+<hr style="margin: 20px 0;">
+
+<!-- Elemen untuk Langkah 8: Fetch API -->
+<div>
+  <button id="btn-fetch">Ambil Data dari Internet (API)</button>
+  <div id="api-output" style="margin-top: 10px;"></div>
+</div>`}</CodeBlock>
+
       <h3 id="fungsi-event">5. Deklarasi Fungsi & Event Handler</h3>
       <CodeBlock language="javascript">{`// script.js
 function sapaNama(nama) {
