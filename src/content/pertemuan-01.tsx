@@ -91,6 +91,18 @@ export default function Pertemuan1() {
         </table>
       </div>
 
+      
+      <h3 id="perintah-dasar">Perintah Dasar JavaScript (Keywords)</h3>
+      <p>Sebelum memulai, mari pahami beberapa kata kunci (<i>keywords</i>) dasar yang akan sering kita gunakan:</p>
+      <ul>
+        <li><code>var</code>, <code>let</code>, <code>const</code> digunakan untuk membuat tempat menyimpan data (variabel). Bedanya, <code>const</code> itu nilainya tetap dan tidak bisa diubah lagi, sedangkan <code>let</code> bisa diubah. <code>var</code> adalah cara lama yang sekarang sudah jarang dipakai.</li>
+        <li><code>function</code> adalah cara kita membuat sebuah blok kode yang punya tugas spesifik, mirip seperti resep. Kita bisa memanggil fungsi ini berkali-kali tanpa harus menulis ulang kodenya.</li>
+        <li><code>return</code> digunakan di dalam fungsi untuk mengembalikan atau menghasilkan nilai akhir dari fungsi tersebut setelah selesai bekerja.</li>
+        <li><code>if</code>, <code>else</code>, <code>switch</code> adalah logika untuk membuat keputusan. Ibaratnya, "kalau nilainya A maka lakukan ini, kalau B lakukan itu".</li>
+        <li><code>for</code>, <code>while</code> digunakan untuk melakukan perulangan. Kalau kita mau mencetak angka 1 sampai 100, kita tidak perlu menulisnya manual 100 kali, cukup pakai perulangan.</li>
+        <li><code>async</code> dan <code>await</code> adalah perintah untuk menyuruh JavaScript bersabar menunggu suatu proses yang butuh waktu (misalnya mendownload data dari internet) sebelum lanjut ke baris kode berikutnya.</li>
+      </ul>
+
       <h2 id="prasyarat-alat">Prasyarat, Alat & Bahan</h2>
       <p><strong>Prasyarat:</strong> HTML dan CSS dasar, konsep logika pemrograman, penggunaan browser modern.</p>
       <ul>
@@ -127,15 +139,15 @@ export default function Pertemuan1() {
 
       {/* ── Penjelasan Langkah 1 ── */}
       <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
-        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 1</p>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode Langkah 1</p>
         <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
-          <li><code>{"<!DOCTYPE html>"}</code> — Memberitahu browser bahwa ini adalah dokumen HTML versi 5 (paling modern). Wajib ada di baris pertama setiap file HTML.</li>
-          <li><code>{"<html lang=\"en\">"}</code> — Tag pembuka yang membungkus seluruh halaman. Atribut <code>lang="en"</code> memberitahu browser bahwa bahasa halaman ini adalah Inggris.</li>
-          <li><code>{"<meta charset=\"UTF-8\">"}</code> — Mengatur sistem pengkodean karakter agar teks (termasuk huruf khusus seperti é, ñ, atau karakter Asia) tampil dengan benar di browser.</li>
-          <li><code>{"<meta name=\"viewport\" ...>"}</code> — Membuat tampilan halaman menyesuaikan ukuran layar perangkat secara otomatis (responsif), sehingga tampil bagus baik di laptop maupun ponsel.</li>
-          <li><code>{"<script src=\"https://cdn...\">..."}</code> — Memuat pustaka Tailwind CSS dari internet (CDN). Baris ini <em>opsional</em> karena fokus pertemuan ini adalah JavaScript, bukan styling.</li>
-          <li><code>{"<div id=\"result\">"}</code> — Sebuah kotak kosong di halaman yang nantinya akan <em>diisi konten secara dinamis</em> oleh JavaScript. Atribut <code>id</code> digunakan agar JavaScript bisa menemukan elemen ini dengan mudah.</li>
-          <li><code>{"<script src=\"script.js\">"}</code> — Menghubungkan file JavaScript eksternal ke halaman HTML. Diletakkan <em>sebelum penutup {"</body>"}</em> supaya semua elemen HTML sudah terbaca oleh browser sebelum JavaScript dieksekusi.</li>
+          <li>Deklarasi <code>{"<!DOCTYPE html>"}</code> ini fungsinya buat ngasih tau browser bahwa ini adalah dokumen HTML versi 5 (paling modern). Wajib ada di baris pertama setiap file HTML.</li>
+          <li>Sedangkan <code>{"<html lang=\"en\">"}</code> adalah tag utama yang membungkus semua isi web kita. Atribut <code>lang="en"</code> memberitahu browser bahwa bahasa halaman ini adalah Inggris.</li>
+          <li>Bagian <code>{"<meta charset=\"UTF-8\">"}</code> penting banget supaya tulisan atau karakter khusus di web kita nggak berantakan pas dibuka. karakter agar teks (termasuk huruf khusus seperti é, ñ, atau karakter Asia) tampil dengan benar di browser.</li>
+          <li>Lalu <code>{"<meta name=\"viewport\" ...>"}</code> itu rahasianya biar web kita bisa otomatis menyesuaikan ukuran layar, baik dibuka di HP maupun laptop. ukuran layar perangkat secara otomatis (responsif), sehingga tampil bagus baik di laptop maupun ponsel.</li>
+          <li>Kode <code>{"<script src=\"https://cdn...\">..."}</code> cuma buat manggil library Tailwind dari internet (biar tampilannya rapi tanpa banyak CSS manual). CSS dari internet (CDN). Baris ini <em>opsional</em> karena fokus pertemuan ini adalah JavaScript, bukan styling.</li>
+          <li>Nah, <code>{"<div id=\"result\">"}</code> ini ibarat kotak kosong yang sengaja kita siapin buat diisi macem-macem nanti sama JavaScript. di halaman yang nantinya akan <em>diisi konten secara dinamis</em> oleh JavaScript. Atribut <code>id</code> digunakan agar JavaScript bisa menemukan elemen ini dengan mudah.</li>
+          <li>Terakhir, <code>{"<script src=\"script.js\">"}</code> dipake buat nyambungin file HTML ini sama kode JavaScript kita. eksternal ke halaman HTML. Diletakkan <em>sebelum penutup {"</body>"}</em> supaya semua elemen HTML sudah terbaca oleh browser sebelum JavaScript dieksekusi.</li>
         </ul>
       </div>
 
@@ -169,7 +181,7 @@ document.getElementById("result").innerHTML = \`
 
       {/* ── Penjelasan Langkah 2 ── */}
       <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
-        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 2</p>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode Langkah 2</p>
         <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
           <li><code>var nama = "Budi"</code> — Membuat variabel bernama <code>nama</code> dan mengisinya dengan nilai teks (string) <code>"Budi"</code>. <code>var</code> adalah cara lama; sebaiknya gunakan <code>let</code> atau <code>const</code> untuk kode modern.</li>
           <li><code>let usia = 20</code> — Membuat variabel <code>usia</code> berisi angka <code>20</code>. Gunakan <code>let</code> untuk variabel yang nilainya <em>bisa berubah</em> di kemudian hari.</li>
@@ -240,12 +252,12 @@ console.log("Hari ini adalah: " + namaHari);`}</CodeBlock>
 
       {/* ── Penjelasan Langkah 3 ── */}
       <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
-        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 3</p>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode Langkah 3</p>
         <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
           <li><strong>If-else if-else</strong> — Struktur pengambilan keputusan. Program memeriksa kondisi dari atas ke bawah; blok yang kondisinya terpenuhi (<code>true</code>) yang dijalankan, sisanya dilewati. Bayangkan seperti: <em>"Kalau nilai ≥ 90 → A, kalau tidak tapi ≥ 80 → B..."</em></li>
           <li><code>{"nilai >= 90"}</code> — Operator perbandingan. <code>{">"}</code> berarti lebih besar, <code>=</code> berarti sama dengan, jadi <code>{">="}</code> berarti <em>lebih besar atau sama dengan</em>. Hasilnya selalu <code>true</code> atau <code>false</code>.</li>
           <li><strong>Ternary operator</strong> <code>{"kondisi ? nilaiJikaTrue : nilaiJikaFalse"}</code> — Cara singkat menulis if-else dalam satu baris. Contoh: <code>{"nilai >= 60 ? \"Lulus\" : \"Tidak Lulus\""}</code> artinya <em>"jika nilai ≥ 60 hasilnya 'Lulus', jika tidak hasilnya 'Tidak Lulus'"</em>.</li>
-          <li><code>new Date().getDay()</code> — Mengambil hari saat ini dari jam komputer sebagai angka: <code>0</code> = Minggu, <code>1</code> = Senin, ..., <code>6</code> = Sabtu. <code>new Date()</code> membuat objek tanggal/waktu saat ini.</li>
+          <li>Fungsi <code>new Date().getDay()</code> ini kita panggil buat ngedapetin angka hari ini (0 buat Minggu, 1 buat Senin, dan seterusnya). hari saat ini dari jam komputer sebagai angka: <code>0</code> = Minggu, <code>1</code> = Senin, ..., <code>6</code> = Sabtu. <code>new Date()</code> membuat objek tanggal/waktu saat ini.</li>
           <li><strong>Switch-case</strong> — Alternatif if-else ketika kita ingin mencocokkan satu variabel dengan banyak kemungkinan nilai. Lebih rapi dibanding if-else bertingkat yang panjang.</li>
           <li><code>break</code> — Wajib ada di akhir setiap <code>case</code>. Tanpa <code>break</code>, program akan terus mengeksekusi case berikutnya secara berurutan (<em>fall-through</em>), yang biasanya tidak diinginkan.</li>
           <li><code>default</code> — Blok yang dijalankan jika tidak ada satu pun <code>case</code> yang cocok. Mirip dengan blok <code>else</code> pada if-else.</li>
@@ -297,14 +309,14 @@ for (let nilai of nilaiSiswa) {
 
       {/* ── Penjelasan Langkah 4 ── */}
       <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
-        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 4</p>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode Langkah 4</p>
         <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
           <li><code>[85, 92, 78, 90, 88]</code> — Ini adalah <em>Array</em>, yaitu daftar/kumpulan nilai yang disimpan dalam satu variabel. Setiap item punya posisi (indeks) mulai dari <code>0</code>. Jadi <code>nilaiSiswa[0]</code> bernilai <code>85</code>.</li>
           <li><strong>For loop</strong> <code>{"for (let i = 0; i < nilaiSiswa.length; i++)"}</code> — Tiga bagian dipisah titik koma: (1) <code>i = 0</code> mulai dari indeks 0, (2) <code>{"i < nilaiSiswa.length"}</code> terus berjalan selama belum melewati panjang array, (3) <code>i++</code> naikkan <code>i</code> setiap putaran. Loop ini berjalan 5 kali untuk 5 nilai.</li>
           <li><code>total += nilaiSiswa[i]</code> — Singkatan dari <code>{"total = total + nilaiSiswa[i]"}</code>. Mengambil nilai pada indeks ke-<code>i</code> lalu menambahkannya ke <code>total</code>.</li>
           <li><code>.toFixed(2)</code> — Memformat angka desimal agar hanya tampil 2 angka di belakang koma. Misal <code>86.6</code> menjadi <code>"86.60"</code>.</li>
           <li><strong>While loop</strong> — Terus berulang <em>selama kondisinya masih true</em>. Perhatikan <code>hitungMundur--</code> yang menurunkan nilai setiap putaran agar kondisi akhirnya menjadi <code>false</code> dan loop berhenti. Tanpa ini loop akan jalan selamanya (<em>infinite loop</em>).</li>
-          <li><strong>For...of loop</strong> — Cara modern (ES6) mengulang setiap <em>item</em> dalam array satu per satu, tanpa perlu mengurus nomor indeks secara manual. Lebih ringkas dan mudah dibaca.</li>
+          <li>Ada juga <strong>For...of loop</strong>, ini cara modern (ES6) yang lebih gampang buat ngulang isi array satu per satu tanpa pusing mikirin nomor urutannya. dalam array satu per satu, tanpa perlu mengurus nomor indeks secara manual. Lebih ringkas dan mudah dibaca.</li>
         </ul>
       </div>
 
@@ -359,16 +371,16 @@ function hitungKalkulator(angka1, angka2, operasi) {
 
       {/* ── Penjelasan Langkah 5 ── */}
       <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
-        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 5</p>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode Langkah 5</p>
         <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
-          <li><code>{"function sapaNama(nama) { ... }"}</code> — Mendefinisikan fungsi bernama <code>sapaNama</code> yang menerima satu <em>parameter</em> (<code>nama</code>). Fungsi adalah blok kode yang bisa dipanggil berulang kali tanpa menulis ulang logikanya.</li>
-          <li><code>return ...</code> — Membuat fungsi mengembalikan sebuah nilai ke pemanggil. Nilai ini bisa disimpan ke variabel atau langsung digunakan di tempat pemanggilan.</li>
-          <li><code>{"addEventListener(\"click\", function() { ... })"}</code> — Memasang <em>event listener</em> pada tombol. Artinya: <em>"setiap kali tombol ini diklik, jalankan fungsi di dalamnya"</em>. Inilah cara JavaScript merespons interaksi pengguna.</li>
-          <li><code>.value</code> — Mengambil teks yang sedang diketik pengguna di dalam elemen <code>{"<input>"}</code>.</li>
-          <li><code>.trim()</code> — Membuang spasi di awal dan akhir string. Berguna agar input yang hanya berisi spasi tidak dianggap sebagai teks valid.</li>
-          <li><code>=== ""</code> — Operator perbandingan ketat (<em>strict equality</em>). Mengecek apakah nilai sama persis termasuk tipe datanya. Berbeda dengan <code>==</code> yang lebih longgar.</li>
-          <li><code>hitungKalkulator(angka1, angka2, operasi)</code> — Fungsi dengan tiga parameter, menggunakan <code>switch</code> untuk menentukan operasi yang dijalankan sesuai nilai <code>operasi</code> yang dikirim saat pemanggilan.</li>
-          <li><code>angka2 === 0</code> — Pengecekan penting untuk mencegah <em>pembagian dengan nol</em>. Dalam JavaScript, pembagian dengan nol menghasilkan <code>Infinity</code>, sehingga kita perlu menanganinya secara manual.</li>
+          <li>Kode <code>{"function sapaNama(nama) { ... }"}</code> itu cara kita ngebuat fungsi. Fungsi ini nerima data (parameter) yang bisa kita olah di dalamnya. bernama <code>sapaNama</code> yang menerima satu <em>parameter</em> (<code>nama</code>). Fungsi adalah blok kode yang bisa dipanggil berulang kali tanpa menulis ulang logikanya.</li>
+          <li>Penggunaan <code>return</code> berfungsi buat ngelempar hasil akhir operasi dari dalam fungsi keluar supaya bisa dipakai lagi. ke pemanggil. Nilai ini bisa disimpan ke variabel atau langsung digunakan di tempat pemanggilan.</li>
+          <li>Perintah <code>{"addEventListener(\"click\", ...)"}</code> kita pasang di tombol biar JavaScript tau harus ngapain pas pengguna nge-klik tombol tersebut. pada tombol. Artinya: <em>"setiap kali tombol ini diklik, jalankan fungsi di dalamnya"</em>. Inilah cara JavaScript merespons interaksi pengguna.</li>
+          <li>Setiap kali butuh nilai dari input text, kita cukup panggil <code>.value</code> dari elemen tersebut. di dalam elemen <code>{"<input>"}</code>.</li>
+          <li>Fungsi <code>.trim()</code> kita panggil buat bersihin spasi kosong di awal sama di akhir teks, biar user gak asal isi spasi doang. Berguna agar input yang hanya berisi spasi tidak dianggap sebagai teks valid.</li>
+          <li>Gunakan <code>=== ""</code> buat ngecek persis apakah isinya bener-bener kosong atau nggak (ini lebih ketat dan aman dibanding cuma pakai dua sama dengan <code>==</code>). (<em>strict equality</em>). Mengecek apakah nilai sama persis termasuk tipe datanya. Berbeda dengan <code>==</code> yang lebih longgar.</li>
+          <li>Kita buat fungsi <code>hitungKalkulator</code> yang nerima 3 nilai sekaligus buat ngitung matematika dasar sesuai operasinya., menggunakan <code>switch</code> untuk menentukan operasi yang dijalankan sesuai nilai <code>operasi</code> yang dikirim saat pemanggilan.</li>
+          <li>Pengecekan <code>angka2 === 0</code> ini penting buat ngehindarin <em>error</em> pembagian dengan nol yang bisa bikin aplikasi kita ngasih hasil aneh seperti Infinity. Dalam JavaScript, pembagian dengan nol menghasilkan <code>Infinity</code>, sehingga kita perlu menanganinya secara manual.</li>
         </ul>
       </div>
 
@@ -401,16 +413,16 @@ const mahasiswa = {
 
       {/* ── Penjelasan Langkah 6 ── */}
       <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
-        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 6</p>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode Langkah 6</p>
         <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
-          <li><code>buah.push("Durian")</code> — Menambahkan item baru ke <em>akhir</em> array. Array <code>buah</code> kini berisi 6 item.</li>
-          <li><code>buah.pop()</code> — Menghapus dan mengembalikan item <em>terakhir</em> dari array. Hasil penghapusan disimpan ke variabel <code>itemDihapus</code>.</li>
-          <li><code>buah.sort()</code> — Mengurutkan isi array secara alfabetis (A–Z) secara langsung (<em>in-place</em>) pada array yang sama.</li>
+          <li>Fungsi <code>buah.push()</code> dipakai kalau kita mau nambahin data baru di urutan paling belakang array. ke <em>akhir</em> array. Array <code>buah</code> kini berisi 6 item.</li>
+          <li>Sebaliknya, <code>buah.pop()</code> bakal ngebuang data urutan terakhir dari array. dari array. Hasil penghapusan disimpan ke variabel <code>itemDihapus</code>.</li>
+          <li>Perintah <code>buah.sort()</code> sangat praktis buat ngurutin isi array sesuai alfabet atau abjad (A–Z). (A–Z) secara langsung (<em>in-place</em>) pada array yang sama.</li>
           <li><code>.map((item, i) ={">"} ...)</code> — Membuat array <em>baru</em> dengan mentransformasi setiap elemen. Hasilnya selalu sama panjang dengan array asli. Di sini setiap nama buah digabung dengan harganya.</li>
           <li><code>.filter((_, i) ={">"} ...)</code> — Menyaring array, menghasilkan array <em>baru</em> yang hanya berisi elemen yang lolos kondisi. Tanda <code>_</code> adalah konvensi untuk parameter yang tidak dipakai.</li>
-          <li><strong>Objek</strong> <code>{"{ key: value }"}</code> — Struktur data untuk menyimpan banyak properti yang berkaitan dalam satu variabel. Bayangkan seperti formulir: satu objek bisa berisi nama, NIM, jurusan, nilai, dll.</li>
-          <li><code>this</code> — Di dalam method sebuah objek, <code>this</code> merujuk pada objek itu sendiri. Jadi <code>this.nama</code> artinya mengambil properti <code>nama</code> dari objek <code>mahasiswa</code>.</li>
-          <li><code>Object.values(this.nilai)</code> — Mengambil semua <em>nilai</em> properti dari objek <code>nilai</code> menjadi sebuah array: <code>[85, 90, 88]</code>.</li>
+          <li><strong>Objek</strong> itu ibarat rapot atau kartu identitas, kita bisa nyimpen data berpasangan seperti nama siapa, umur berapa, semuanya ngumpul dalam satu variabel. yang berkaitan dalam satu variabel. Bayangkan seperti formulir: satu objek bisa berisi nama, NIM, jurusan, nilai, dll.</li>
+          <li>Kata kunci <code>this</code> ini merujuk ke objek itu sendiri, jadi misal kita mau panggil properti nama dari dalam objeknya, cukup tulis <code>this.nama</code>. Jadi <code>this.nama</code> artinya mengambil properti <code>nama</code> dari objek <code>mahasiswa</code>.</li>
+          <li>Buat ngambil angka-angkanya aja dari sebuah objek tanpa ngambil nama key-nya, kita pakai <code>Object.values()</code>. dari objek <code>nilai</code> menjadi sebuah array: <code>[85, 90, 88]</code>.</li>
           <li><code>.reduce((s, n) ={">"} s + n, 0)</code> — Menjumlahkan semua elemen array menjadi satu angka. <code>s</code> adalah akumulator (nilai terkumpul), <code>n</code> adalah elemen saat ini, <code>0</code> adalah nilai awal akumulator.</li>
         </ul>
       </div>
@@ -446,16 +458,16 @@ document.getElementById("btn-hapus-item").addEventListener("click", function() {
 
       {/* ── Penjelasan Langkah 7 ── */}
       <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
-        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 7</p>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode Langkah 7</p>
         <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
-          <li><strong>DOM (Document Object Model)</strong> — Representasi halaman HTML sebagai pohon objek di memori browser. JavaScript dapat membaca dan mengubah pohon ini secara langsung, sehingga halaman bisa berubah tanpa perlu di-refresh.</li>
-          <li><code>document.createElement("div")</code> — Membuat elemen HTML <code>{"<div>"}</code> baru <em>di memori</em>. Elemen ini belum terlihat di halaman sampai kita menempelkannya.</li>
-          <li><code>newItem.className = "..."</code> — Menambahkan class CSS ke elemen yang baru dibuat, sama seperti menulis atribut <code>class="..."</code> langsung di HTML.</li>
-          <li><code>newItem.innerText = ...</code> — Mengisi konten teks di dalam elemen. Berbeda dengan <code>innerHTML</code>, <code>innerText</code> memperlakukan konten sebagai teks biasa (bukan HTML), sehingga lebih aman dari serangan injeksi.</li>
-          <li><code>domOutput.appendChild(newItem)</code> — <em>Menempelkan</em> elemen baru sebagai anak (child) terakhir dari <code>domOutput</code>. Setelah baris ini, elemen langsung tampil di halaman.</li>
-          <li><code>domOutput.lastChild</code> — Mengakses elemen anak terakhir dari <code>domOutput</code>. Digunakan untuk memastikan ada elemen yang bisa dihapus sebelum memanggil <code>removeChild</code>.</li>
-          <li><code>domOutput.removeChild(domOutput.lastChild)</code> — Menghapus elemen anak terakhir dari <code>domOutput</code>, sehingga item yang terakhir ditambahkan itulah yang pertama dihapus.</li>
-          <li><code>itemCount++</code> dan <code>itemCount--</code> — Menaikkan atau menurunkan nilai <code>itemCount</code> sebesar 1. Digunakan sebagai penomoran item otomatis yang selalu sinkron dengan isi daftar.</li>
+          <li>Pahami bahwa <strong>DOM</strong> adalah cara JavaScript ngeliat halaman HTML sebagai susunan pohon. Dari sinilah kita bisa memanipulasi HTML sesuka hati. sebagai pohon objek di memori browser. JavaScript dapat membaca dan mengubah pohon ini secara langsung, sehingga halaman bisa berubah tanpa perlu di-refresh.</li>
+          <li>Kita pakai <code>document.createElement()</code> kalau pengen ngebuat elemen HTML (misalnya nambahin div) langsung dari kode JavaScript. <code>{"<div>"}</code> baru <em>di memori</em>. Elemen ini belum terlihat di halaman sampai kita menempelkannya.</li>
+          <li>Atribut <code>.className</code> dipake buat ngasih class CSS ke elemen yang baru aja kita buat tadi biar langsung ada styling-nya. ke elemen yang baru dibuat, sama seperti menulis atribut <code>class="..."</code> langsung di HTML.</li>
+          <li>Pake <code>.innerText</code> buat nyuntikin tulisan ke dalem elemen HTML dengan aman, tanpa takut tulisannya malah ngerender tag HTML beneran. di dalam elemen. Berbeda dengan <code>innerHTML</code>, <code>innerText</code> memperlakukan konten sebagai teks biasa (bukan HTML), sehingga lebih aman dari serangan injeksi.</li>
+          <li>Setelah elemen berhasil dibuat dan diset isinya, <code>.appendChild()</code> inilah yang akhirnya nempelin elemen tersebut ke halaman web biar kelihatan. sebagai anak (child) terakhir dari <code>domOutput</code>. Setelah baris ini, elemen langsung tampil di halaman.</li>
+          <li>Perintah <code>.lastChild</code> cukup sering dipakai buat ngakses elemen paling buncit atau terakhir dari suatu bagian. dari <code>domOutput</code>. Digunakan untuk memastikan ada elemen yang bisa dihapus sebelum memanggil <code>removeChild</code>.</li>
+          <li>Kalau <code>.appendChild</code> buat nambah, <code>.removeChild()</code> adalah cara kita buat menghapus elemen tersebut dari halaman web. dari <code>domOutput</code>, sehingga item yang terakhir ditambahkan itulah yang pertama dihapus.</li>
+          <li>Penulisan <code>++</code> dan <code>--</code> ini cara kilat programmer buat nambah atau ngurangin nilai sebanyak 1 angka buat fitur penomoran. <code>itemCount</code> sebesar 1. Digunakan sebagai penomoran item otomatis yang selalu sinkron dengan isi daftar.</li>
         </ul>
       </div>
       <div className="callout callout-info">
@@ -490,15 +502,15 @@ document.getElementById("btn-hapus-item").addEventListener("click", function() {
 
       {/* ── Penjelasan Langkah 8 ── */}
       <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border-subtle)", borderRadius: "0.5rem", padding: "1rem 1.25rem", marginBottom: "1rem", fontSize: "0.875rem" }}>
-        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode — Langkah 8</p>
+        <p style={{ fontWeight: 700, marginBottom: "0.5rem", color: "var(--color-text-primary)" }}>🔍 Penjelasan Kode Langkah 8</p>
         <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
-          <li><code>async function</code> — Mendeklarasikan fungsi <em>asinkron</em>. Fungsi ini bisa menggunakan kata kunci <code>await</code> di dalamnya untuk menunggu operasi lambat (seperti mengambil data dari internet) tanpa membekukan halaman.</li>
-          <li><code>await fetch("https://...")</code> — Mengirim permintaan HTTP ke URL tersebut dan <em>menunggu</em> jawabannya. <code>fetch</code> adalah cara bawaan browser untuk berkomunikasi dengan server/API. Kata <code>await</code> membuat kode di bawahnya baru berjalan setelah respons tiba.</li>
-          <li><code>await response.json()</code> — Data yang diterima awalnya berbentuk teks mentah (JSON string). Baris ini mengubahnya menjadi objek/array JavaScript yang siap digunakan.</li>
-          <li><code>data.slice(0, 5)</code> — Mengambil hanya 5 elemen pertama dari array <code>data</code>. Karena API mengembalikan 100 post, kita batasi agar halaman tidak terlalu panjang.</li>
+          <li>Dengan nulis <code>async function</code>, kita ngasih tau JavaScript kalau fungsi ini butuh waktu buat selesai, contohnya kayak nungguin data ke-download dari internet. Fungsi ini bisa menggunakan kata kunci <code>await</code> di dalamnya untuk menunggu operasi lambat (seperti mengambil data dari internet) tanpa membekukan halaman.</li>
+          <li>Kode <code>await fetch()</code> fungsinya buat nge-request data dari server (API), dan berkat tulisan await, prosesnya bakal nunggu sampai datanya bener-bener nyampe tanpa bikin web-nya hang. tersebut dan <em>menunggu</em> jawabannya. <code>fetch</code> adalah cara bawaan browser untuk berkomunikasi dengan server/API. Kata <code>await</code> membuat kode di bawahnya baru berjalan setelah respons tiba.</li>
+          <li>Data dari internet itu awalnya teks mentah, makanya kita butuh nge-konversi dengan <code>.json()</code> biar datanya bisa dibaca sama JavaScript. mentah (JSON string). Baris ini mengubahnya menjadi objek/array JavaScript yang siap digunakan.</li>
+          <li>Fungsi <code>.slice(0, 5)</code> kita panggil biar datanya cuma diambil 5 biji doang dari atas, supaya web kita nggak kepenuhan konten. dari array <code>data</code>. Karena API mengembalikan 100 post, kita batasi agar halaman tidak terlalu panjang.</li>
           <li><code>.forEach(post ={">"} {"{ ... }"})</code> — Mengulang setiap item dalam array dan menjalankan fungsi untuk tiap item. Di sini setiap post dikonversi menjadi HTML dan ditambahkan ke halaman.</li>
-          <li><strong>try-catch</strong> — Blok pengaman. Kode di dalam <code>try</code> dieksekusi lebih dulu. Jika terjadi kesalahan (misal internet mati atau URL salah), JavaScript langsung melompat ke blok <code>catch</code> untuk menjalankan penanganan error — sehingga halaman tidak <em>crash</em>.</li>
-          <li><code>error.message</code> — Properti bawaan objek error yang berisi pesan kesalahan dalam bentuk teks, sehingga bisa ditampilkan kepada pengguna secara informatif.</li>
+          <li>Blok <strong>try-catch</strong> adalah jaring pengaman kita. Kalau server error atau internet mati saat ngambil API, kodenya gak bakal bikin aplikasi kita hancur berantakan. Kode di dalam <code>try</code> dieksekusi lebih dulu. Jika terjadi kesalahan (misal internet mati atau URL salah), JavaScript langsung melompat ke blok <code>catch</code> untuk menjalankan penanganan error — sehingga halaman tidak <em>crash</em>.</li>
+          <li>Terakhir, <code>error.message</code> bakal nangkep pesan aslinya pas error terjadi dan bisa kita sampaikan langsung ke layar pengunjung web biar mereka paham apa yang salah. yang berisi pesan kesalahan dalam bentuk teks, sehingga bisa ditampilkan kepada pengguna secara informatif.</li>
         </ul>
       </div>
       <div className="callout callout-info">
