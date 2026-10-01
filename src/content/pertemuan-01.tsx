@@ -196,7 +196,7 @@ document.getElementById("result").innerHTML = \`
         </svg>
         <div className="callout-body">
           <p><strong>Latihan Mandiri: Biodata Sendiri</strong><br />
-          Buat 3 variabel baru (<code>namaKalian</code>, <code>prodi</code>, <code>angkatan</code>) berisi data kalian sendiri, lalu tampilkan ke halaman menggunakan template literal seperti contoh di atas. Expected output: paragraf baru muncul di halaman berisi biodata kalian.</p>
+            Buat 3 variabel baru (<code>namaKalian</code>, <code>prodi</code>, <code>angkatan</code>) berisi data kalian sendiri, lalu tampilkan ke halaman menggunakan template literal seperti contoh di atas. Expected output: paragraf baru muncul di halaman berisi biodata kalian.</p>
         </div>
       </div>
 
@@ -266,7 +266,7 @@ console.log("Hari ini adalah: " + namaHari);`}</CodeBlock>
         </svg>
         <div className="callout-body">
           <p><strong>Latihan Mandiri: Cek Tahun Kabisat</strong><br />
-          Buat fungsi <code>cekKabisat(tahun)</code> yang mengembalikan <code>true</code>/<code>false</code>. Aturan: tahun kabisat jika habis dibagi 4, kecuali kalau habis dibagi 100 tapi tidak habis dibagi 400. Hint: gunakan operator modulus (<code>%</code>) dan operator logika (<code>&&</code>, <code>||</code>). Expected output: <code>cekKabisat(2024)</code> → <code>true</code>, <code>cekKabisat(1900)</code> → <code>false</code>, <code>cekKabisat(2000)</code> → <code>true</code>.</p>
+            Buat fungsi <code>cekKabisat(tahun)</code> yang mengembalikan <code>true</code>/<code>false</code>. Aturan: tahun kabisat jika habis dibagi 4, kecuali kalau habis dibagi 100 tapi tidak habis dibagi 400. Hint: gunakan operator modulus (<code>%</code>) dan operator logika (<code>&&</code>, <code>||</code>). Expected output: <code>cekKabisat(2024)</code> → <code>true</code>, <code>cekKabisat(1900)</code> → <code>false</code>, <code>cekKabisat(2000)</code> → <code>true</code>.</p>
         </div>
       </div>
 
@@ -322,7 +322,7 @@ for (let nilai of nilaiSiswa) {
         </svg>
         <div className="callout-body">
           <p><strong>Latihan Mandiri: Tabel Perkalian</strong><br />
-          Gunakan nested for loop untuk mencetak tabel perkalian 1–5 ke dalam elemen <code>&lt;div&gt;</code> baru di halaman. Expected output: tampil 5×5 hasil perkalian, misalnya "3 x 4 = 12".</p>
+            Gunakan nested for loop untuk mencetak tabel perkalian 1–5 ke dalam elemen <code>&lt;div&gt;</code> baru di halaman. Expected output: tampil 5×5 hasil perkalian, misalnya "3 x 4 = 12".</p>
         </div>
       </div>
 
@@ -421,7 +421,7 @@ const mahasiswa = {
         </svg>
         <div className="callout-body">
           <p><strong>Latihan Mandiri: Nilai Tertinggi dan Terendah</strong><br />
-          Dari array <code>nilaiSiswa</code> (nomor 4), cari nilai tertinggi/terendah pakai <code>Math.max(...nilaiSiswa)</code> dan <code>Math.min(...nilaiSiswa)</code>. Expected output: "Nilai tertinggi: 92, Nilai terendah: 78".</p>
+            Dari array <code>nilaiSiswa</code> (nomor 4), cari nilai tertinggi/terendah pakai <code>Math.max(...nilaiSiswa)</code> dan <code>Math.min(...nilaiSiswa)</code>. Expected output: "Nilai tertinggi: 92, Nilai terendah: 78".</p>
         </div>
       </div>
 
@@ -515,7 +515,7 @@ document.getElementById("btn-hapus-item").addEventListener("click", function() {
         </svg>
         <div className="callout-body">
           <p><strong>Latihan Mandiri: Ambil Data User</strong><br />
-          Buat tombol baru "Ambil Data User" yang saat diklik memanggil <code>https://jsonplaceholder.typicode.com/users</code>, tampilkan nama dan email dari 3 user pertama saja. Expected output: muncul 3 baris berisi nama dan email user dari API tersebut.</p>
+            Buat tombol baru "Ambil Data User" yang saat diklik memanggil <code>https://jsonplaceholder.typicode.com/users</code>, tampilkan nama dan email dari 3 user pertama saja. Expected output: muncul 3 baris berisi nama dan email user dari API tersebut.</p>
         </div>
       </div>
 
@@ -630,7 +630,7 @@ document.getElementById("btn-hapus-item").addEventListener("click", function() {
         <li>
           <strong>Batas Waktu Pengumpulan (Deadline):</strong>
           <ul>
-            <li>Batas akhir pengumpulan: <strong>Minggu, 23 Maret 2025, pukul 23:59 WIB</strong>.</li>
+            <li>Batas akhir pengumpulan: <strong>Rabu, 07 Oktober 2026, pukul 23:59 WIB</strong>.</li>
             <li>Keterlambatan pengumpulan dikenakan pengurangan nilai sebesar <strong>10% per hari keterlambatan</strong>.</li>
           </ul>
         </li>
