@@ -141,7 +141,9 @@ export default function TableOfContents({ subTopik }: Props) {
   function scrollTo(id: string) {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      const offset = 80;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
       history.pushState(null, "", `#${id}`);
       setActiveId(id);
       window.dispatchEvent(

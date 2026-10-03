@@ -2501,14 +2501,14 @@ Card deck shuffler
   <li>Card deck shuffler</li>
 </ul>
 
-<p>Struktur Data</p>
+      <h2 id="tugas-praktikum">Tugas: Dasar Pemrograman Python</h2>
+      <p>Buat program kalkulator interaktif atau pengolah data sederhana yang mengimplementasikan variabel, struktur kendali (if-else dan loop), fungsi modular, dan struktur data (list &amp; dictionary).</p>
 
-<p>Bekerja dengan List, Dictionary, Tuple, dan Set di Python</p>
-
-<p>Praktikum Python OOP</p>
-
-<p>Pemrograman Berorientasi Objek dengan Python</p>
-
+      <h2 id="format-pengumpulan">Format Pengumpulan</h2>
+      <ul>
+        <li>Folder: <code>[NAMA]_[NIM]_pertemuan4</code></li>
+        <li><strong>Deadline:</strong> Mengikuti instruksi asisten praktikum.</li>
+      </ul>
 
       <SubmissionBox pertemuan={4} />
     </>

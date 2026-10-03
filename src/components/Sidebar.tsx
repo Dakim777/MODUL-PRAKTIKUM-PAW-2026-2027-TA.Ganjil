@@ -9,6 +9,8 @@ export default function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  const [activeHeadingId, setActiveHeadingId] = useState<string>("");
+
   // Listen to toggle event from Header
   useEffect(() => {
     function handler() {
@@ -18,13 +20,93 @@ export default function Sidebar() {
     return () => window.removeEventListener("toggleSidebar", handler);
   }, []);
 
-  // Close on route change
+  // Listen to active heading changes from TableOfContents
+  useEffect(() => {
+    function headingHandler(e: Event) {
+      const customEvent = e as CustomEvent<{ id: string }>;
+      if (customEvent.detail?.id) {
+        setActiveHeadingId(customEvent.detail.id);
+      }
+    }
+    window.addEventListener("activeHeadingChanged", headingHandler);
+    return () =>
+      window.removeEventListener("activeHeadingChanged", headingHandler);
+  }, []);
+
+  // Independent scroll spy for Sidebar (works on all screen sizes)
+  useEffect(() => {
+    const currentPertemuan = daftarPertemuan.find(
+      (p) => `/pertemuan/${p.nomor}` === pathname
+    );
+    if (!currentPertemuan || !currentPertemuan.subTopik.length) return;
+
+    if (!activeHeadingId && currentPertemuan.subTopik[0]) {
+      setActiveHeadingId(currentPertemuan.subTopik[0].id);
+    }
+
+    function onScroll() {
+      const scrollPos = window.scrollY + 120;
+      const subTopik = currentPertemuan?.subTopik || [];
+      const positions: { id: string; top: number }[] = [];
+
+      for (const item of subTopik) {
+        const el = document.getElementById(item.id);
+        if (el) {
+          positions.push({
+            id: item.id,
+            top: el.getBoundingClientRect().top + window.scrollY,
+          });
+        }
+      }
+
+      positions.sort((a, b) => a.top - b.top);
+
+      let found = positions[0]?.id || "";
+      for (const pos of positions) {
+        if (pos.top <= scrollPos) {
+          found = pos.id;
+        } else {
+          break;
+        }
+      }
+
+      if (found) {
+        setActiveHeadingId(found);
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname, activeHeadingId]);
+
+  // Reset active heading on page change
   useEffect(() => {
     setOpen(false);
+    setActiveHeadingId("");
   }, [pathname]);
 
   function closeSidebar() {
     setOpen(false);
+  }
+
+  function handleSubtopicClick(
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string
+  ) {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 80;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+      history.pushState(null, "", `#${id}`);
+      setActiveHeadingId(id);
+    } else {
+      window.location.hash = id;
+    }
+    if (window.innerWidth < 1024) {
+      setOpen(false);
+    }
   }
 
 
@@ -116,7 +198,32 @@ export default function Sidebar() {
                     </span>
                   </Link>
 
-
+                  {/* Subtopik headline utama (terbuka jika pertemuan aktif) */}
+                  {isActive && p.subTopik && p.subTopik.length > 0 && (
+                    <div
+                      className="sidebar-subtopics"
+                      aria-label={`Sub-topik Pertemuan ${p.nomor}`}
+                    >
+                      <div className="sidebar-subtopics-list">
+                        {p.subTopik.map((sub) => {
+                          const isSubActive = activeHeadingId === sub.id;
+                          return (
+                            <a
+                              key={sub.id}
+                              href={`#${sub.id}`}
+                              onClick={(e) => handleSubtopicClick(e, sub.id)}
+                              className={`sidebar-subtopic-link${isSubActive ? " active" : ""}`}
+                              title={sub.judul}
+                            >
+                              <span className="sidebar-subtopic-text">
+                                {sub.judul}
+                              </span>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}

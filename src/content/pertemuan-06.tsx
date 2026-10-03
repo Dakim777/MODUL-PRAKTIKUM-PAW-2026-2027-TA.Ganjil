@@ -1143,14 +1143,14 @@ DELETE http://localhost:6543/api/mahasiswa/3`}</CodeBlock>
   <li>Pastikan tidak ada aplikasi lain yang menggunakan port 6543</li>
 </ul>
 
-<p>Views & Routes</p>
+      <h2 id="tugas-praktikum">Tugas: Manajemen Matakuliah (Pyramid REST API)</h2>
+      <p>Kembangkan REST API untuk entitas Matakuliah dengan Pyramid Framework, SQLAlchemy ORM, dan PostgreSQL yang mendukung operasi CRUD lengkap.</p>
 
-<p>Implementasi CRUD views dan konfigurasi routing untuk API Mahasiswa</p>
-
-<p>Ujian Tengah Semester (UTS)</p>
-
-<p>Informasi lengkap mengenai UTS Pemrograman Web</p>
-
+      <h2 id="format-pengumpulan">Format Pengumpulan</h2>
+      <ul>
+        <li>Folder: <code>[NAMA]_[NIM]_pertemuan6</code></li>
+        <li><strong>Deadline:</strong> Mengikuti instruksi asisten praktikum.</li>
+      </ul>
 
       <SubmissionBox pertemuan={6} />
     </>

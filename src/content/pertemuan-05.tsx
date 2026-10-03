@@ -2863,14 +2863,14 @@ Implementasikan Warrior, Mage, Archer
   <li>Implementasikan Warrior, Mage, Archer</li>
 </ul>
 
-<p>Polymorphism</p>
+      <h2 id="tugas-praktikum">Tugas: Sistem Perpustakaan Berbasis OOP</h2>
+      <p>Bangun sistem manajemen perpustakaan yang mengimplementasikan class, inheritance, encapsulation dengan property getter/setter, polymorphism, dan abstract base class.</p>
 
-<p>Memahami polymorphism, method overriding, dan duck typing</p>
-
-<p>Praktikum Pyramid Framework</p>
-
-<p>Membuat aplikasi CRUD sederhana dengan Pyramid Framework dan PostgreSQL</p>
-
+      <h2 id="format-pengumpulan">Format Pengumpulan</h2>
+      <ul>
+        <li>Folder: <code>[NAMA]_[NIM]_pertemuan5</code></li>
+        <li><strong>Deadline:</strong> Mengikuti instruksi asisten praktikum.</li>
+      </ul>
 
       <SubmissionBox pertemuan={5} />
     </>

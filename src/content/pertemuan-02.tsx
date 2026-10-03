@@ -2251,14 +2251,14 @@ async function fetchUserCached(id) {
   <li>Buat debounced search dengan async API calls</li>
 </ul>
 
-<p>Modern Array Methods</p>
+      <h2 id="tugas-praktikum">Tugas: Personal Dashboard (ES6+)</h2>
+      <p>Buat aplikasi Personal Dashboard interaktif yang memanfaatkan fitur-fitur ES6+ yang telah dipelajari seperti module import/export, modern array methods, destructuring, spread/rest, dan Async/Await.</p>
 
-<p>Menguasai array methods modern dan higher-order functions di JavaScript ES6+</p>
-
-<p>Praktikum React Dasar</p>
-
-<p>Memahami konsep dasar React dan membangun aplikasi interaktif dengan Component-Based Architecture</p>
-
+      <h2 id="format-pengumpulan">Format Pengumpulan</h2>
+      <ul>
+        <li>Folder: <code>[NAMA]_[NIM]_pertemuan2</code></li>
+        <li><strong>Deadline:</strong> Mengikuti instruksi asisten praktikum.</li>
+      </ul>
 
       <SubmissionBox pertemuan={2} />
     </>
