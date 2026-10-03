@@ -105,7 +105,8 @@ export default function TableOfContents({ subTopik }: Props) {
       subTopik.forEach((item) => {
         const el = document.getElementById(item.id);
         if (el) {
-          elements.push({ id: item.id, top: el.offsetTop });
+          const topPos = el.getBoundingClientRect().top + window.scrollY;
+          elements.push({ id: item.id, top: topPos });
         }
       });
 

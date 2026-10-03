@@ -8,7 +8,6 @@ import { daftarPertemuan } from "@/lib/pertemuan";
 export default function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [activeHeadingId, setActiveHeadingId] = useState<string>("");
 
   // Listen to toggle event from Header
   useEffect(() => {
@@ -19,45 +18,16 @@ export default function Sidebar() {
     return () => window.removeEventListener("toggleSidebar", handler);
   }, []);
 
-  // Listen to active heading changes from TableOfContents
-  useEffect(() => {
-    function headingHandler(e: Event) {
-      const customEvent = e as CustomEvent<{ id: string }>;
-      if (customEvent.detail?.id) {
-        setActiveHeadingId(customEvent.detail.id);
-      }
-    }
-    window.addEventListener("activeHeadingChanged", headingHandler);
-    return () =>
-      window.removeEventListener("activeHeadingChanged", headingHandler);
-  }, []);
-
   // Close on route change
   useEffect(() => {
     setOpen(false);
-    setActiveHeadingId("");
   }, [pathname]);
 
   function closeSidebar() {
     setOpen(false);
   }
 
-  function handleSubtopicClick(
-    e: React.MouseEvent<HTMLAnchorElement>,
-    id: string,
-    isCurrentPage: boolean
-  ) {
-    if (isCurrentPage) {
-      e.preventDefault();
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-        history.pushState(null, "", `#${id}`);
-        setActiveHeadingId(id);
-      }
-      setOpen(false);
-    }
-  }
+
 
   return (
     <>
@@ -146,34 +116,7 @@ export default function Sidebar() {
                     </span>
                   </Link>
 
-                  {/* Sub-module topics (terbuka jika pertemuan aktif) */}
-                  {isActive && p.subTopik && p.subTopik.length > 0 && (
-                    <div
-                      className="sidebar-subtopics"
-                      aria-label={`Sub-topik Pertemuan ${p.nomor}`}
-                    >
-                      <div className="sidebar-subtopics-list">
-                        {p.subTopik.map((sub) => {
-                          const isSubActive = activeHeadingId === sub.id;
-                          return (
-                            <a
-                              key={sub.id}
-                              href={`#${sub.id}`}
-                              onClick={(e) =>
-                                handleSubtopicClick(e, sub.id, isActive)
-                              }
-                              className={`sidebar-subtopic-link${isSubActive ? " active" : ""}${sub.level === 3 ? " sub-l3" : ""}`}
-                              title={sub.judul}
-                            >
-                              <span className="sidebar-subtopic-text">
-                                {sub.judul}
-                              </span>
-                            </a>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
+
                 </div>
               );
             })}
