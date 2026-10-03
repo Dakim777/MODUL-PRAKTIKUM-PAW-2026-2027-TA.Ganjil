@@ -24,17 +24,17 @@ export default function Pertemuan2() {
     <>
       <h2 id="dasar-teori">JavaScript Next Gen</h2>
 
-<h3>Setup Project</h3>
+<h3 id="setup-project">Setup Project</h3>
 <p>Membuat struktur project dan file dasar untuk JavaScript Next Gen</p>
 
 
-<h3>Struktur Project</h3>
+<h3 id="struktur-project">Struktur Project</h3>
 <p>Pertama, kita akan membuat struktur direktori yang terorganisir untuk project JavaScript Next Gen.</p>
 
 
-<h3>Langkah-Langkah Setup</h3>
+<h3 id="langkah-langkah-setup">Langkah-Langkah Setup</h3>
 
-<h3>Membuat File HTML Dasar</h3>
+<h3 id="membuat-file-html-dasar">Membuat File HTML Dasar</h3>
 <p>Buat file index.html sebagai halaman utama aplikasi:</p>
 
 <CodeBlock language="">{`<!DOCTYPE html>
@@ -85,7 +85,7 @@ export default function Pertemuan2() {
 <p>Perhatikan atribut type="module" pada tag script. Ini penting untuk menggunakan fitur ES6 modules (import/export).</p>
 
 
-<h3>Langkah Selanjutnya</h3>
+<h3 id="langkah-selanjutnya">Langkah Selanjutnya</h3>
 <p>Setelah setup selesai, kita akan mulai mengimplementasikan fitur-fitur ES6+ pada bagian selanjutnya.</p>
 
 <p>Praktikum JavaScript Next Gen</p>
@@ -97,21 +97,21 @@ export default function Pertemuan2() {
 <p>Memahami deklarasi variabel modern dan arrow functions di JavaScript ES6+</p>
 
 
-<h3>Let, Const, dan Arrow Functions</h3>
+<h3 id="let-const-dan-arrow-functions">Let, Const, dan Arrow Functions</h3>
 <p>Memahami deklarasi variabel modern dan arrow functions di JavaScript ES6+</p>
 
 
-<h3>Let dan Const</h3>
+<h3 id="let-dan-const">Let dan Const</h3>
 <p>ES6 memperkenalkan dua cara baru untuk mendeklarasikan variabel: let dan const, yang mengatasi masalah dengan var.</p>
 
 
-<h3>Perbedaan var, let, dan const</h3>
+<h3 id="perbedaan-var-let-dan-const">Perbedaan var, let, dan const</h3>
 <p>Temporal Dead Zone (TDZ)</p>
 
 <p>TDZ adalah periode antara masuknya scope dan deklarasi variabel, di mana variabel tidak dapat diakses. Ini membantu menangkap error lebih awal.</p>
 
 
-<h3>Implementasi di app.js</h3>
+<h3 id="implementasi-di-appjs">Implementasi di app.js</h3>
 <p>Buat file baru js/app.js dan tambahkan kode berikut:</p>
 
 <CodeBlock language="">{`// JavaScript Next Gen Demo Code
@@ -152,7 +152,7 @@ export function demoVariables() {
 <p>const membuat referensi immutable, bukan nilai. Untuk objek dan array,Kaliantidak bisa me-reassign variabel, tetapiKalianbisa memodifikasi isinya.</p>
 
 
-<h3>Best Practices</h3>
+<h3 id="best-practices">Best Practices</h3>
 <ul>
   <li>Gunakan const secara default - Gunakan const kecualiKaliantahu nilai akan berubah</li>
   <li>Gunakan let untuk nilai yang berubah - Hanya gunakan let jika re-assignment diperlukan</li>
@@ -160,11 +160,11 @@ export function demoVariables() {
 </ul>
 
 
-<h3>Arrow Functions</h3>
+<h3 id="arrow-functions">Arrow Functions</h3>
 <p>Arrow functions menyediakan sintaks yang lebih ringkas untuk menulis fungsi dan menangani this dengan cara yang berbeda.</p>
 
 
-<h3>Sintaks Arrow Functions</h3>
+<h3 id="sintaks-arrow-functions">Sintaks Arrow Functions</h3>
 <CodeBlock language="">{`// Regular function
 function sum(a, b) {
   return a + b;
@@ -190,7 +190,7 @@ const sayHello = () => "Hello World!";
 const getRandom = () => Math.random();`}</CodeBlock>
 
 
-<h3>Implementasi Arrow Functions</h3>
+<h3 id="implementasi-arrow-functions">Implementasi Arrow Functions</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -226,17 +226,17 @@ export function demoArrowFunctions() {
 }`}</CodeBlock>
 
 
-<h3>Perbedaan dengan Regular Functions</h3>
+<h3 id="perbedaan-dengan-regular-functions">Perbedaan dengan Regular Functions</h3>
 <p>Lexical this</p>
 
 <p>Arrow functions tidak memiliki this sendiri. Mereka mewarisi this dari scope di mana mereka didefinisikan. Ini sangat berguna dalam callback dan method chaining.</p>
 
 
-<h3>Template Literals</h3>
+<h3 id="template-literals">Template Literals</h3>
 <p>Template literals menyediakan cara yang lebih baik untuk membuat string dengan interpolasi variabel dan multi-line.</p>
 
 
-<h3>Sintaks Dasar</h3>
+<h3 id="sintaks-dasar">Sintaks Dasar</h3>
 <CodeBlock language="">{`// Old way
 const name = "John";
 const greeting = "Hello, " + name + "!";
@@ -245,7 +245,7 @@ const greeting = "Hello, " + name + "!";
 const greeting = \`Hello, \${name}!\`;`}</CodeBlock>
 
 
-<h3>Implementasi Template Literals</h3>
+<h3 id="implementasi-template-literals">Implementasi Template Literals</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -281,7 +281,7 @@ export function demoTemplateLiterals() {
 }`}</CodeBlock>
 
 
-<h3>Keuntungan Template Literals</h3>
+<h3 id="keuntungan-template-literals">Keuntungan Template Literals</h3>
 <ul>
   <li>Interpolasi variabel dengan $&#123;&#125;</li>
   <li>Multi-line strings tanpa escape character</li>
@@ -290,7 +290,7 @@ export function demoTemplateLiterals() {
 </ul>
 
 
-<h3>Update main.js</h3>
+<h3 id="update-mainjs">Update main.js</h3>
 <p>Update js/main.js untuk mengimpor dan menjalankan demo:</p>
 
 <CodeBlock language="">{`// Import demo functions
@@ -338,7 +338,7 @@ Multi-line: \${templateResults.multiLine}\`
 <p>Buka index.html di browser dan klik tombol "Run Demo".Kalianseharusnya melihat output dari ketiga demo yang menunjukkan perbedaan antara cara lama dan cara baru menulis JavaScript.</p>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Coba ubah nilai const dan lihat error yang muncul</li>
   <li>Bandingkan behavior var di dalam dan luar block</li>
@@ -355,15 +355,15 @@ Multi-line: \${templateResults.multiLine}\`
 <p>Memahami destructuring, spread operator, dan rest parameter di JavaScript ES6+</p>
 
 
-<h3>Destructuring dan Operators</h3>
+<h3 id="destructuring-dan-operators">Destructuring dan Operators</h3>
 <p>Memahami destructuring, spread operator, dan rest parameter di JavaScript ES6+</p>
 
 
-<h3>Destructuring</h3>
+<h3 id="destructuring">Destructuring</h3>
 <p>Destructuring adalah cara untuk mengekstrak nilai dari array atau properti dari objek ke dalam variabel yang terpisah dengan sintaks yang ringkas.</p>
 
 
-<h3>Object Destructuring</h3>
+<h3 id="object-destructuring">Object Destructuring</h3>
 <CodeBlock language="">{`const person = {
   firstName: "John",
   lastName: "Doe",
@@ -407,7 +407,7 @@ console.log(hobby); // "coding"`}</CodeBlock>
 const { address: { city, postalCode } } = person;`}</CodeBlock>
 
 
-<h3>Array Destructuring</h3>
+<h3 id="array-destructuring">Array Destructuring</h3>
 <CodeBlock language="">{`const colors = ["red", "green", "blue"];
 
 // Old way
@@ -437,7 +437,7 @@ let b = 2;
 console.log(a, b); // 2, 1`}</CodeBlock>
 
 
-<h3>Implementasi Destructuring</h3>
+<h3 id="implementasi-destructuring">Implementasi Destructuring</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -509,11 +509,11 @@ export function demoDestructuring() {
 </ul>
 
 
-<h3>Spread dan Rest Operators</h3>
+<h3 id="spread-dan-rest-operators">Spread dan Rest Operators</h3>
 <p>Operator ... (tiga titik) dapat berfungsi sebagai spread operator atau rest parameter tergantung konteksnya.</p>
 
 
-<h3>Spread Operator</h3>
+<h3 id="spread-operator">Spread Operator</h3>
 <p>Spread operator digunakan untuk "membuka" atau "menyebar" elemen array atau objek.</p>
 
 <CodeBlock language="">{`const numbers = [1, 2, 3];
@@ -541,7 +541,7 @@ const employee = {
 };`}</CodeBlock>
 
 
-<h3>Rest Parameter</h3>
+<h3 id="rest-parameter">Rest Parameter</h3>
 <p>Rest parameter mengumpulkan argumen yang tersisa ke dalam array.</p>
 
 <CodeBlock language="">{`// Rest parameter dalam function
@@ -561,7 +561,7 @@ function process(first, second, ...rest) {
 process("a", "b", "c", "d", "e");`}</CodeBlock>
 
 
-<h3>Implementasi Spread dan Rest</h3>
+<h3 id="implementasi-spread-dan-rest">Implementasi Spread dan Rest</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -621,13 +621,13 @@ export function demoSpreadRest() {
 }`}</CodeBlock>
 
 
-<h3>Perbedaan Spread vs Rest</h3>
+<h3 id="perbedaan-spread-vs-rest">Perbedaan Spread vs Rest</h3>
 <p>Shallow Copy</p>
 
 <p>Spread operator melakukan shallow copy. Nested objects/arrays masih berbagi referensi. Untuk deep copy, gunakan methods seperti structuredClone() atau library seperti Lodash.</p>
 
 
-<h3>Update main.js</h3>
+<h3 id="update-mainjs">Update main.js</h3>
 <p>Update js/main.js untuk menjalankan demo baru:</p>
 
 <CodeBlock language="">{`// Update import
@@ -673,7 +673,7 @@ Rest with regular params: \${JSON.stringify(spreadRestResults.restProcess)}\`
 }`}</CodeBlock>
 
 
-<h3>Praktik Terbaik</h3>
+<h3 id="praktik-terbaik">Praktik Terbaik</h3>
 <ul>
   <li>Destructuring di Parameter Function</li>
 </ul>
@@ -709,7 +709,7 @@ const newObject = { ...oldObject, newProp: value };`}</CodeBlock>
 <p>Spread operator sangat efisien untuk array/object kecil hingga menengah. Untuk data yang sangat besar, pertimbangkan methods alternatif seperti Object.assign() atau operasi manual.</p>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Destructure object dengan nested properties minimal 3 level</li>
   <li>Buat function yang menerima rest parameters dan mengembalikan statistik (min, max, average)</li>
@@ -726,15 +726,15 @@ const newObject = { ...oldObject, newProp: value };`}</CodeBlock>
 <p>Memahami default parameters, ES6 classes, dan enhanced object literals</p>
 
 
-<h3>Classes dan Object Literals</h3>
+<h3 id="classes-dan-object-literals">Classes dan Object Literals</h3>
 <p>Memahami default parameters, ES6 classes, dan enhanced object literals</p>
 
 
-<h3>Default Parameters</h3>
+<h3 id="default-parameters">Default Parameters</h3>
 <p>Default parameters memungkinkanKalianmenentukan nilai default untuk parameter function yang tidak diberikan atau undefined.</p>
 
 
-<h3>Perbandingan dengan ES5</h3>
+<h3 id="perbandingan-dengan-es5">Perbandingan dengan ES5</h3>
 <CodeBlock language="">{`// Cara lama dengan OR operator
 function greet(name, greeting) {
   name = name || "Guest";
@@ -757,7 +757,7 @@ function greet(name = "Guest", greeting = "Hello") {
 </ul>
 
 
-<h3>Implementasi Default Parameters</h3>
+<h3 id="implementasi-default-parameters">Implementasi Default Parameters</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -797,11 +797,11 @@ export function demoDefaultParams() {
 }`}</CodeBlock>
 
 
-<h3>ES6 Classes</h3>
+<h3 id="es6-classes">ES6 Classes</h3>
 <p>Classes di ES6 menyediakan sintaks yang lebih bersih untuk membuat objek dan menangani inheritance.</p>
 
 
-<h3>Sintaks Dasar Class</h3>
+<h3 id="sintaks-dasar-class">Sintaks Dasar Class</h3>
 <CodeBlock language="">{`class User {
   // Constructor
   constructor(name, email) {
@@ -832,7 +832,7 @@ export function demoDefaultParams() {
 }`}</CodeBlock>
 
 
-<h3>Inheritance dengan extends</h3>
+<h3 id="inheritance-dengan-extends">Inheritance dengan extends</h3>
 <CodeBlock language="">{`class Admin extends User {
   constructor(name, email, role = "admin") {
     super(name, email); // Panggil constructor parent
@@ -851,7 +851,7 @@ export function demoDefaultParams() {
 }`}</CodeBlock>
 
 
-<h3>Implementasi Classes</h3>
+<h3 id="implementasi-classes">Implementasi Classes</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -920,11 +920,11 @@ export function demoClasses() {
 <p>Classes di JavaScript adalah syntactic sugar di atas prototype-based inheritance yang sudah ada. Di bawah hood, mereka tetap menggunakan prototypes, tetapi dengan sintaks yang lebih familiar bagi developer dari bahasa OOP lain.</p>
 
 
-<h3>Enhanced Object Literals</h3>
+<h3 id="enhanced-object-literals">Enhanced Object Literals</h3>
 <p>ES6 memperkenalkan beberapa peningkatan pada object literals yang membuat kode lebih ringkas.</p>
 
 
-<h3>Fitur-fitur Enhanced Object Literals</h3>
+<h3 id="fitur-fitur-enhanced-object-literals">Fitur-fitur Enhanced Object Literals</h3>
 <CodeBlock language="">{`const name = "John";
 const age = 30;
 
@@ -965,7 +965,7 @@ const userData = {
 };`}</CodeBlock>
 
 
-<h3>Implementasi Enhanced Object Literals</h3>
+<h3 id="implementasi-enhanced-object-literals">Implementasi Enhanced Object Literals</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -1022,7 +1022,7 @@ export function demoObjectLiterals() {
 }`}</CodeBlock>
 
 
-<h3>Update main.js</h3>
+<h3 id="update-mainjs">Update main.js</h3>
 <p>Update js/main.js untuk menjalankan demo baru:</p>
 
 <CodeBlock language="">{`// Update import
@@ -1081,9 +1081,9 @@ Dynamic properties: \${JSON.stringify(objectLiteralsResults.dynamicProps)}\`
 }`}</CodeBlock>
 
 
-<h3>Praktik Terbaik</h3>
+<h3 id="praktik-terbaik">Praktik Terbaik</h3>
 
-<h3>1. Gunakan Default Parameters</h3>
+<h3 id="1-gunakan-default-parameters">1. Gunakan Default Parameters</h3>
 <CodeBlock language="">{`// Good
 function createUser(name, role = "user", active = true) {
   return { name, role, active };
@@ -1097,7 +1097,7 @@ function createUser(name, role, active) {
 }`}</CodeBlock>
 
 
-<h3>2. Class untuk Domain Models</h3>
+<h3 id="2-class-untuk-domain-models">2. Class untuk Domain Models</h3>
 <CodeBlock language="">{`class Product {
   constructor(name, price) {
     this.name = name;
@@ -1114,7 +1114,7 @@ function createUser(name, role, active) {
 }`}</CodeBlock>
 
 
-<h3>3. Property Shorthand untuk Clean Code</h3>
+<h3 id="3-property-shorthand-untuk-clean-code">3. Property Shorthand untuk Clean Code</h3>
 <CodeBlock language="">{`// Good - clean and concise
 const user = { name, email, age };
 
@@ -1134,7 +1134,7 @@ const user = { name: name, email: email, age: age };`}</CodeBlock>
 <p>Hindari over-engineering dengan classes untuk simple data structures yang bisa menggunakan plain objects.</p>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat class Product dengan inheritance ke DigitalProduct dan PhysicalProduct</li>
   <li>Implementasi getter dan setter dalam class</li>
@@ -1151,15 +1151,15 @@ const user = { name: name, email: email, age: age };`}</CodeBlock>
 <p>Menguasai array methods modern dan higher-order functions di JavaScript ES6+</p>
 
 
-<h3>Modern Array Methods</h3>
+<h3 id="modern-array-methods">Modern Array Methods</h3>
 <p>Menguasai array methods modern dan higher-order functions di JavaScript ES6+</p>
 
 
-<h3>Higher-Order Functions</h3>
+<h3 id="higher-order-functions">Higher-Order Functions</h3>
 <p>Higher-order functions adalah fungsi yang menerima fungsi sebagai argument atau mengembalikan fungsi. Array methods modern di JavaScript sebagian besar adalah higher-order functions.</p>
 
 
-<h3>Keuntungan Array Methods Modern</h3>
+<h3 id="keuntungan-array-methods-modern">Keuntungan Array Methods Modern</h3>
 <ul>
   <li>Declarative: Menjelaskan apa yang ingin dilakukan, bukan bagaimana</li>
   <li>Immutable: Tidak mengubah array asli</li>
@@ -1168,9 +1168,9 @@ const user = { name: name, email: email, age: age };`}</CodeBlock>
 </ul>
 
 
-<h3>Map, Filter, dan Find</h3>
+<h3 id="map-filter-dan-find">Map, Filter, dan Find</h3>
 
-<h3>map() - Mengubah Elemen</h3>
+<h3 id="map-mengubah-elemen">map() - Mengubah Elemen</h3>
 <p>map() membuat array baru dengan hasil transformasi setiap elemen.</p>
 
 <CodeBlock language="">{`const numbers = [1, 2, 3, 4, 5];
@@ -1189,7 +1189,7 @@ const names = users.map(user => user.name);
 // ["John", "Jane"]`}</CodeBlock>
 
 
-<h3>filter() - Memilih Elemen</h3>
+<h3 id="filter-memilih-elemen">filter() - Memilih Elemen</h3>
 <p>filter() membuat array baru dengan elemen yang memenuhi kondisi.</p>
 
 <CodeBlock language="">{`const numbers = [1, 2, 3, 4, 5, 6];
@@ -1202,7 +1202,7 @@ const evens = numbers.filter(num => num % 2 === 0);
 const activeUsers = users.filter(user => user.active);`}</CodeBlock>
 
 
-<h3>find() - Mencari Elemen Tunggal</h3>
+<h3 id="find-mencari-elemen-tunggal">find() - Mencari Elemen Tunggal</h3>
 <p>find() mengembalikan elemen pertama yang memenuhi kondisi.</p>
 
 <CodeBlock language="">{`const users = [
@@ -1214,7 +1214,7 @@ const user = users.find(u => u.id === 2);
 // { id: 2, name: "Jane" }`}</CodeBlock>
 
 
-<h3>Reduce - Pisau Swiss Army</h3>
+<h3 id="reduce-pisau-swiss-army">Reduce - Pisau Swiss Army</h3>
 <p>reduce() adalah method paling powerful yang dapat digunakan untuk berbagai operasi agregasi.</p>
 
 <CodeBlock language="">{`const numbers = [1, 2, 3, 4, 5];
@@ -1256,9 +1256,9 @@ const flat = nested.reduce((acc, arr) =>
 // [1, 2, 3, 4, 5]`}</CodeBlock>
 
 
-<h3>Some dan Every</h3>
+<h3 id="some-dan-every">Some dan Every</h3>
 
-<h3>some() - Tes Jika Ada yang Lulus</h3>
+<h3 id="some-tes-jika-ada-yang-lulus">some() - Tes Jika Ada yang Lulus</h3>
 <CodeBlock language="">{`const numbers = [1, 2, 3, 4, 5];
 
 const hasEven = numbers.some(num => num % 2 === 0);
@@ -1268,7 +1268,7 @@ const hasNegative = numbers.some(num => num < 0);
 // false`}</CodeBlock>
 
 
-<h3>every() - Tes Jika Semua Lulus</h3>
+<h3 id="every-tes-jika-semua-lulus">every() - Tes Jika Semua Lulus</h3>
 <CodeBlock language="">{`const numbers = [2, 4, 6, 8];
 
 const allEven = numbers.every(num => num % 2 === 0);
@@ -1278,7 +1278,7 @@ const allPositive = numbers.every(num => num > 0);
 // true`}</CodeBlock>
 
 
-<h3>Rantai Method (Method Chaining)</h3>
+<h3 id="rantai-method-method-chaining">Rantai Method (Method Chaining)</h3>
 <p>Gabungkan beberapa array methods untuk operasi kompleks:</p>
 
 <CodeBlock language="">{`const users = [
@@ -1306,7 +1306,7 @@ const totalAge = users
 <p>Method chaining membuat kode readable, tetapi setiap method membuat iterasi baru. Untuk array besar, pertimbangkan menggunakan single reduce() atau loop tradisional untuk performa optimal.</p>
 
 
-<h3>Implementasi Array Methods</h3>
+<h3 id="implementasi-array-methods">Implementasi Array Methods</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -1372,9 +1372,9 @@ export function demoArrayMethods() {
 }`}</CodeBlock>
 
 
-<h3>Fitur Array Lanjutan</h3>
+<h3 id="fitur-array-lanjutan">Fitur Array Lanjutan</h3>
 
-<h3>Array.from()</h3>
+<h3 id="arrayfrom">Array.from()</h3>
 <p>Membuat array dari iterable atau array-like objects:</p>
 
 <CodeBlock language="">{`// Dari string
@@ -1387,14 +1387,14 @@ Array.from([1, 2, 3], x => x * 2); // [2, 4, 6]
 const divs = Array.from(document.querySelectorAll('div'));`}</CodeBlock>
 
 
-<h3>Array.of()</h3>
+<h3 id="arrayof">Array.of()</h3>
 <p>Membuat array dari arguments:</p>
 
 <CodeBlock language="">{`Array.of(1, 2, 3); // [1, 2, 3]
 Array.of("hello"); // ["hello"]`}</CodeBlock>
 
 
-<h3>flat() dan flatMap()</h3>
+<h3 id="flat-dan-flatmap">flat() dan flatMap()</h3>
 <CodeBlock language="">{`// Meratakan array bersarang
 const nested = [1, [2, 3], [[4, 5], 6]];
 nested.flat();    // [1, 2, 3, [4, 5], 6]
@@ -1405,7 +1405,7 @@ const numbers = [1, 2, 3];
 numbers.flatMap(n => [n, n * 2]); // [1, 2, 2, 4, 3, 6]`}</CodeBlock>
 
 
-<h3>includes()</h3>
+<h3 id="includes">includes()</h3>
 <p>Cek apakah array mengandung nilai:</p>
 
 <CodeBlock language="">{`const numbers = [1, 2, 3, 4, 5];
@@ -1414,7 +1414,7 @@ numbers.includes(10);   // false
 numbers.includes(3, 3); // false (mulai dari index 3)`}</CodeBlock>
 
 
-<h3>Implementasi Advanced Arrays</h3>
+<h3 id="implementasi-advanced-arrays">Implementasi Advanced Arrays</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -1466,7 +1466,7 @@ export function demoAdvancedArrays() {
 }`}</CodeBlock>
 
 
-<h3>Update main.js</h3>
+<h3 id="update-mainjs">Update main.js</h3>
 <p>Update js/main.js untuk menjalankan demo baru:</p>
 
 <CodeBlock language="">{`// Update import
@@ -1521,11 +1521,11 @@ includes: \${advArraysResults.includes}\`
 }`}</CodeBlock>
 
 
-<h3>Tabel Perbandingan</h3>
+<h3 id="tabel-perbandingan">Tabel Perbandingan</h3>
 
-<h3>Praktik Terbaik</h3>
+<h3 id="praktik-terbaik">Praktik Terbaik</h3>
 
-<h3>1. Pilih Method yang Tepat</h3>
+<h3 id="1-pilih-method-yang-tepat">1. Pilih Method yang Tepat</h3>
 <CodeBlock language="">{`// Baik - maksud jelas
 const adults = users.filter(user => user.age >= 18);
 
@@ -1536,7 +1536,7 @@ users.forEach(user => {
 });`}</CodeBlock>
 
 
-<h3>2. Gunakan Chaining dengan Bijak</h3>
+<h3 id="2-gunakan-chaining-dengan-bijak">2. Gunakan Chaining dengan Bijak</h3>
 <CodeBlock language="">{`// Baik - rantai yang mudah dibaca
 const result = users
   .filter(user => user.active)
@@ -1549,7 +1549,7 @@ const names = activeUsers.map(user => user.name);
 const sorted = names.sort();`}</CodeBlock>
 
 
-<h3>3. Hindari Efek Samping dalam Methods</h3>
+<h3 id="3-hindari-efek-samping-dalam-methods">3. Hindari Efek Samping dalam Methods</h3>
 <CodeBlock language="">{`// Buruk - efek samping
 let total = 0;
 numbers.map(n => {
@@ -1566,7 +1566,7 @@ const total = numbers.reduce((sum, n) => sum + n, 0);`}</CodeBlock>
 <p>Gunakan forEach() hanya ketika Anda perlu efek samping (manipulasi DOM, logging, dll). Untuk transformasi data, gunakan map(), filter(), atau reduce().</p>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Implementasi fungsi groupBy menggunakan reduce()</li>
   <li>Buat fungsi untuk menghitung rata-rata dari array of objects</li>
@@ -1583,15 +1583,15 @@ const total = numbers.reduce((sum, n) => sum + n, 0);`}</CodeBlock>
 <p>Memahami Promise dan async/await untuk menangani operasi asinkron di JavaScript</p>
 
 
-<h3>Async Programming</h3>
+<h3 id="async-programming">Async Programming</h3>
 <p>Memahami Promise dan async/await untuk menangani operasi asinkron di JavaScript</p>
 
 
-<h3>Pengenalan Asynchronous Programming</h3>
+<h3 id="pengenalan-asynchronous-programming">Pengenalan Asynchronous Programming</h3>
 <p>JavaScript adalah single-threaded, tetapi dapat menangani operasi asinkron menggunakan event loop. Operasi seperti HTTP requests, file operations, dan timers tidak memblokir eksekusi kode lainnya.</p>
 
 
-<h3>Mengapa Perlu Async?</h3>
+<h3 id="mengapa-perlu-async">Mengapa Perlu Async?</h3>
 <ul>
   <li>Permintaan jaringan: Fetch data dari API</li>
   <li>Operasi file: Baca/tulis file</li>
@@ -1605,13 +1605,13 @@ const total = numbers.reduce((sum, n) => sum + n, 0);`}</CodeBlock>
 <p>Sebelum Promises, operasi async menggunakan callbacks yang bisa menjadi nested dan sulit dibaca (callback hell). ES6 Promises dan ES8 async/await mengatasi masalah ini.</p>
 
 
-<h3>Promises</h3>
+<h3 id="promises">Promises</h3>
 <p>Promise adalah objek yang merepresentasikan penyelesaian (atau kegagalan) eventual dari operasi asinkron.</p>
 
 
-<h3>Status Promise</h3>
+<h3 id="status-promise">Status Promise</h3>
 
-<h3>Membuat Promise</h3>
+<h3 id="membuat-promise">Membuat Promise</h3>
 <CodeBlock language="">{`const promise = new Promise((resolve, reject) => {
   // Operasi async
   setTimeout(() => {
@@ -1626,7 +1626,7 @@ const total = numbers.reduce((sum, n) => sum + n, 0);`}</CodeBlock>
 });`}</CodeBlock>
 
 
-<h3>Menggunakan Promises</h3>
+<h3 id="menggunakan-promises">Menggunakan Promises</h3>
 <CodeBlock language="">{`promise
   .then(result => {
     console.log(result); // "Operasi berhasil!"
@@ -1659,9 +1659,9 @@ const total = numbers.reduce((sum, n) => sum + n, 0);`}</CodeBlock>
   });`}</CodeBlock>
 
 
-<h3>Method Promise</h3>
+<h3 id="method-promise">Method Promise</h3>
 
-<h3>Promise.all()</h3>
+<h3 id="promiseall">Promise.all()</h3>
 <p>Menunggu semua promises selesai. Rejected jika salah satu gagal.</p>
 
 <CodeBlock language="">{`const promise1 = fetch('/api/users');
@@ -1679,7 +1679,7 @@ Promise.all([promise1, promise2, promise3])
   });`}</CodeBlock>
 
 
-<h3>Promise.race()</h3>
+<h3 id="promiserace">Promise.race()</h3>
 <p>Resolved/rejected dengan hasil promise pertama yang selesai.</p>
 
 <CodeBlock language="">{`const timeout = new Promise((_, reject) => 
@@ -1693,7 +1693,7 @@ Promise.race([fetchData, timeout])
   .catch(error => console.error(error));`}</CodeBlock>
 
 
-<h3>Promise.allSettled()</h3>
+<h3 id="promiseallsettled">Promise.allSettled()</h3>
 <p>Menunggu semua promises selesai, terlepas dari sukses/gagal.</p>
 
 <CodeBlock language="">{`Promise.allSettled([promise1, promise2, promise3])
@@ -1708,7 +1708,7 @@ Promise.race([fetchData, timeout])
   });`}</CodeBlock>
 
 
-<h3>Promise.any()</h3>
+<h3 id="promiseany">Promise.any()</h3>
 <p>Resolved dengan promise pertama yang berhasil.</p>
 
 <CodeBlock language="">{`Promise.any([promise1, promise2, promise3])
@@ -1720,7 +1720,7 @@ Promise.race([fetchData, timeout])
   });`}</CodeBlock>
 
 
-<h3>Implementasi Promises</h3>
+<h3 id="implementasi-promises">Implementasi Promises</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -1817,11 +1817,11 @@ export function demoPromises() {
 }`}</CodeBlock>
 
 
-<h3>Async/Await</h3>
+<h3 id="asyncawait">Async/Await</h3>
 <p>Async/await adalah syntactic sugar di atas Promises yang membuat kode async terlihat dan berperilaku seperti kode synchronous.</p>
 
 
-<h3>Sintaks Dasar</h3>
+<h3 id="sintaks-dasar">Sintaks Dasar</h3>
 <CodeBlock language="">{`// Fungsi harus ditandai dengan 'async'
 async function fetchUser(id) {
   // 'await' menghentikan eksekusi sampai promise resolved
@@ -1831,7 +1831,7 @@ async function fetchUser(id) {
 }`}</CodeBlock>
 
 
-<h3>Penanganan Error dengan try/catch</h3>
+<h3 id="penanganan-error-dengan-trycatch">Penanganan Error dengan try/catch</h3>
 <CodeBlock language="">{`async function fetchUserSafe(id) {
   try {
     const response = await fetch(\`/api/users/\${id}\`);
@@ -1849,7 +1849,7 @@ async function fetchUser(id) {
 }`}</CodeBlock>
 
 
-<h3>Eksekusi Paralel</h3>
+<h3 id="eksekusi-paralel">Eksekusi Paralel</h3>
 <CodeBlock language="">{`// Berurutan - lambat (total 3 detik)
 async function fetchSequential() {
   const user = await fetchUser(1);      // 1 detik
@@ -1875,7 +1875,7 @@ async function fetchParallel() {
 <p>Gunakan berurutan (await berturut-turut) ketika operasi kedua bergantung pada hasil operasi pertama. Gunakan paralel (Promise.all) ketika operasi independen untuk performa lebih baik.</p>
 
 
-<h3>Implementasi Async/Await</h3>
+<h3 id="implementasi-asyncawait">Implementasi Async/Await</h3>
 <p>Tambahkan ke js/app.js:</p>
 
 <CodeBlock language="">{`// ----------------------------
@@ -1993,7 +1993,7 @@ export function demoAsyncAwait() {
 }`}</CodeBlock>
 
 
-<h3>Update main.js</h3>
+<h3 id="update-mainjs">Update main.js</h3>
 <p>Update js/main.js untuk menjalankan demo async:</p>
 
 <CodeBlock language="">{`// Update import
@@ -2036,7 +2036,7 @@ function runAllDemos() {
 }`}</CodeBlock>
 
 
-<h3>Perbandingan: Callbacks vs Promises vs Async/Await</h3>
+<h3 id="perbandingan-callbacks-vs-promises-vs-asyncawait">Perbandingan: Callbacks vs Promises vs Async/Await</h3>
 <CodeBlock language="">{`// Callback hell
 fetchUser(1, (error, user) => {
   if (error) return console.error(error);
@@ -2071,9 +2071,9 @@ async function getData() {
 }`}</CodeBlock>
 
 
-<h3>Praktik Terbaik</h3>
+<h3 id="praktik-terbaik">Praktik Terbaik</h3>
 
-<h3>1. Selalu Tangani Error</h3>
+<h3 id="1-selalu-tangani-error">1. Selalu Tangani Error</h3>
 <CodeBlock language="">{`// Baik
 async function fetchData() {
   try {
@@ -2092,7 +2092,7 @@ async function fetchData() {
 }`}</CodeBlock>
 
 
-<h3>2. Gunakan Promise.all untuk Operasi Independen</h3>
+<h3 id="2-gunakan-promiseall-untuk-operasi-independen">2. Gunakan Promise.all untuk Operasi Independen</h3>
 <CodeBlock language="">{`// Baik - paralel (cepat)
 const [users, posts] = await Promise.all([
   fetchUsers(),
@@ -2104,7 +2104,7 @@ const users = await fetchUsers();
 const posts = await fetchPosts();`}</CodeBlock>
 
 
-<h3>3. Hindari Mencampur Promises dan Async/Await</h3>
+<h3 id="3-hindari-mencampur-promises-dan-asyncawait">3. Hindari Mencampur Promises dan Async/Await</h3>
 <CodeBlock language="">{`// Baik - konsisten dengan async/await
 async function getData() {
   const user = await fetchUser(1);
@@ -2120,7 +2120,7 @@ async function getData() {
 }`}</CodeBlock>
 
 
-<h3>4. Kembalikan Promises dari Fungsi Async</h3>
+<h3 id="4-kembalikan-promises-dari-fungsi-async">4. Kembalikan Promises dari Fungsi Async</h3>
 <CodeBlock language="">{`// Baik - return eksplisit
 async function processData() {
   const data = await fetchData();
@@ -2134,13 +2134,13 @@ async function processData() {
 }`}</CodeBlock>
 
 
-<h3>Kapan Menggunakan Apa?</h3>
+<h3 id="kapan-menggunakan-apa">Kapan Menggunakan Apa?</h3>
 <p>Standar Modern</p>
 
 <p>Async/await adalah standar modern untuk operasi async di JavaScript. Gunakan ini sebagai pilihan default kecuali ada alasan khusus untuk menggunakan Promises langsung.</p>
 
 
-<h3>Testing Kode Async</h3>
+<h3 id="testing-kode-async">Testing Kode Async</h3>
 <CodeBlock language="">{`// Dengan Jest atau framework testing serupa
 describe('Fungsi async', () => {
   test('fetchUser mengembalikan data user', async () => {
@@ -2164,9 +2164,9 @@ describe('Fungsi async', () => {
 });`}</CodeBlock>
 
 
-<h3>Pertimbangan Performa</h3>
+<h3 id="pertimbangan-performa">Pertimbangan Performa</h3>
 
-<h3>1. Hindari await yang Tidak Perlu</h3>
+<h3 id="1-hindari-await-yang-tidak-perlu">1. Hindari await yang Tidak Perlu</h3>
 <CodeBlock language="">{`// await tidak perlu
 async function getTotal() {
   return await calculateTotal(); // await ekstra
@@ -2178,7 +2178,7 @@ async function getTotal() {
 }`}</CodeBlock>
 
 
-<h3>2. Gunakan Promise.all untuk Operasi Independen</h3>
+<h3 id="2-gunakan-promiseall-untuk-operasi-independen">2. Gunakan Promise.all untuk Operasi Independen</h3>
 <CodeBlock language="">{`// Lambat - total 3 detik
 async function slow() {
   const a = await operation1(); // 1 detik
@@ -2198,7 +2198,7 @@ async function fast() {
 }`}</CodeBlock>
 
 
-<h3>3. Pertimbangkan Caching</h3>
+<h3 id="3-pertimbangkan-caching">3. Pertimbangkan Caching</h3>
 <CodeBlock language="">{`const cache = new Map();
 
 async function fetchUserCached(id) {
@@ -2212,15 +2212,15 @@ async function fetchUserCached(id) {
 }`}</CodeBlock>
 
 
-<h3>Dukungan Browser</h3>
+<h3 id="dukungan-browser">Dukungan Browser</h3>
 <p>Transpilasi</p>
 
 <p>Untuk mendukung browser lama, gunakan transpiler seperti Babel dengan polyfills untuk mengkonversi async/await ke promises atau generator functions.</p>
 
 
-<h3>Ringkasan</h3>
+<h3 id="ringkasan">Ringkasan</h3>
 
-<h3>Poin Penting</h3>
+<h3 id="poin-penting">Poin Penting</h3>
 <ul>
   <li>Promises mengatasi callback hell dengan chaining</li>
   <li>Async/await membuat kode async terlihat synchronous</li>
@@ -2231,7 +2231,7 @@ async function fetchUserCached(id) {
 </ul>
 
 
-<h3>Langkah Selanjutnya</h3>
+<h3 id="langkah-selanjutnya">Langkah Selanjutnya</h3>
 <ul>
   <li>Praktik dengan API nyata (fetch GitHub API, weather API, dll.)</li>
   <li>Implementasi retry logic dan pola timeout</li>
@@ -2241,7 +2241,7 @@ async function fetchUserCached(id) {
 </ul>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat fungsi yang fetch data dari beberapa endpoint dan gabungkan hasilnya</li>
   <li>Implementasi mekanisme retry dengan exponential backoff</li>

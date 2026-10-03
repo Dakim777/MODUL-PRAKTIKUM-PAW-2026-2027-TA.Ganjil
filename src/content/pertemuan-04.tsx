@@ -24,11 +24,11 @@ export default function Pertemuan4() {
     <>
       <h2 id="dasar-teori">Python Dasar</h2>
 
-<h3>Pengenalan Python</h3>
+<h3 id="pengenalan-python">Pengenalan Python</h3>
 <p>Mengenal Python dan cara menjalankan program Python pertama</p>
 
 
-<h3>Apa itu Python?</h3>
+<h3 id="apa-itu-python">Apa itu Python?</h3>
 <p>Python adalah bahasa pemrograman interpretatif multiguna dengan filosofi perancangan yang berfokus pada tingkat keterbacaan kode. Python dikenal dengan sintaksisnya yang bersih dan mudah dibaca, yang membuatnya menjadi bahasa yang ideal untuk pemula maupun profesional.</p>
 
 <p>Sejarah Python</p>
@@ -36,7 +36,7 @@ export default function Pertemuan4() {
 <p>Python diciptakan oleh Guido van Rossum dan pertama kali dirilis pada tahun 1991. Nama "Python" diambil dari acara komedi Inggris "Monty Python's Flying Circus", bukan dari ular python!</p>
 
 
-<h3>Implementasi Python</h3>
+<h3 id="implementasi-python">Implementasi Python</h3>
 <p>Python menggunakan interpreter untuk mengeksekusi kode. Ada beberapa implementasi interpreter Python:</p>
 
 <ul>
@@ -47,9 +47,9 @@ export default function Pertemuan4() {
 </ul>
 
 
-<h3>Instalasi Python</h3>
+<h3 id="instalasi-python">Instalasi Python</h3>
 
-<h3>Cek Instalasi Python</h3>
+<h3 id="cek-instalasi-python">Cek Instalasi Python</h3>
 <p>Sebelum memulai, cek apakah Python sudah terinstall di sistem Kalian:</p>
 
 <CodeBlock language="">{`python --version
@@ -61,7 +61,7 @@ python3 --version`}</CodeBlock>
 <CodeBlock language="">{`Python 3.11.5`}</CodeBlock>
 
 
-<h3>Install Python (jika belum ada)</h3>
+<h3 id="install-python-jika-belum-ada">Install Python (jika belum ada)</h3>
 <p>Jika Python belum terinstall, download dari python.org:</p>
 
 <ul>
@@ -81,11 +81,11 @@ sudo yum install python3      # CentOS/RHEL`}</CodeBlock>
 <p>Pastikan Python ditambahkan ke PATH environment variable saat instalasi. Ini memungkinkan Kalian menjalankan Python dari terminal di mana saja.</p>
 
 
-<h3>Program Python Pertama</h3>
+<h3 id="program-python-pertama">Program Python Pertama</h3>
 <p>Mari membuat program Python pertama Kalian!</p>
 
 
-<h3>Membuat File Python</h3>
+<h3 id="membuat-file-python">Membuat File Python</h3>
 <p>Buat file baru dengan nama hello.py:</p>
 
 <CodeBlock language="">{`# Program Python pertama
@@ -98,7 +98,7 @@ print("Saya sedang belajar Python")`}</CodeBlock>
 <p>File Python menggunakan ekstensi .py. Komentar di Python dimulai dengan tanda #.</p>
 
 
-<h3>Menjalankan Program</h3>
+<h3 id="menjalankan-program">Menjalankan Program</h3>
 <p>Untuk menjalankan program Python, buka terminal/command prompt, navigate ke direktori file, kemudian jalankan:</p>
 
 <CodeBlock language="">{`python hello.py
@@ -112,7 +112,7 @@ Selamat datang di praktikum Python
 Saya sedang belajar Python`}</CodeBlock>
 
 
-<h3>Python Interactive Mode</h3>
+<h3 id="python-interactive-mode">Python Interactive Mode</h3>
 <p>Python juga bisa dijalankan dalam mode interaktif (REPL - Read-Eval-Print Loop):</p>
 
 <CodeBlock language="">{`python
@@ -140,7 +140,7 @@ I love Python
 <p>Interactive mode sangat berguna untuk testing cepat, eksperimen, dan belajar Python. Setiap statement langsung di-eksekusi dan hasilnya ditampilkan.</p>
 
 
-<h3>Indentasi di Python</h3>
+<h3 id="indentasi-di-python">Indentasi di Python</h3>
 <p>Salah satu karakteristik unik Python adalah penggunaan indentasi untuk mendefinisikan blok kode:</p>
 
 <CodeBlock language="">{`# Blok kode dengan indentasi
@@ -170,7 +170,7 @@ if True:
     print("Konsisten!")`}</CodeBlock>
 
 
-<h3>Print Function</h3>
+<h3 id="print-function">Print Function</h3>
 <p>print() adalah fungsi paling dasar di Python untuk menampilkan output:</p>
 
 <CodeBlock language="">{`# Print sederhana
@@ -194,7 +194,7 @@ print("Nama:\tBudi")
 print("Usia:\t20")`}</CodeBlock>
 
 
-<h3>Komentar di Python</h3>
+<h3 id="komentar-di-python">Komentar di Python</h3>
 <p>Komentar sangat penting untuk dokumentasi kode:</p>
 
 <CodeBlock language="">{`# Ini adalah single-line comment
@@ -230,7 +230,7 @@ def my_function():
 </ul>
 
 
-<h3>Python Zen</h3>
+<h3 id="python-zen">Python Zen</h3>
 <p>Python memiliki filosofi desain yang disebut "The Zen of Python". Kalian bisa melihatnya dengan:</p>
 
 <CodeBlock language="">{`>>> import this`}</CodeBlock>
@@ -250,11 +250,11 @@ def my_function():
 <p>Python menekankan pada kode yang readable dan simple. Code should be written for humans first, machines second!</p>
 
 
-<h3>Setup IDE/Editor</h3>
+<h3 id="setup-ideeditor">Setup IDE/Editor</h3>
 <p>Untuk pengalaman coding yang lebih baik, setup IDE atau editor Kalian:</p>
 
 
-<h3>Visual Studio Code</h3>
+<h3 id="visual-studio-code">Visual Studio Code</h3>
 <ul>
   <li>Install VS Code dari code.visualstudio.com</li>
   <li>Install Python extension dari Microsoft</li>
@@ -262,7 +262,7 @@ def my_function():
 </ul>
 
 
-<h3>PyCharm</h3>
+<h3 id="pycharm">PyCharm</h3>
 <ul>
   <li>Download dari jetbrains.com/pycharm</li>
   <li>Versi Community gratis dan sudah cukup untuk belajar</li>
@@ -279,7 +279,7 @@ def my_function():
 </ul>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Install Python di komputer Kalian (jika belum)</li>
   <li>Buat program yang print nama, NIM, dan jurusan Kalian</li>
@@ -301,11 +301,11 @@ def my_function():
 <p>Memahami variabel, tipe data, operator, dan input/output dalam Python</p>
 
 
-<h3>Variabel & Tipe Data</h3>
+<h3 id="variabel-tipe-data">Variabel & Tipe Data</h3>
 <p>Memahami variabel, tipe data, operator, dan input/output dalam Python</p>
 
 
-<h3>Variabel di Python</h3>
+<h3 id="variabel-di-python">Variabel di Python</h3>
 <p>Variabel adalah container untuk menyimpan nilai data. Di Python, Kalian tidak perlu mendeklarasikan tipe variabel secara eksplisit.</p>
 
 <CodeBlock language="">{`# Python adalah dynamically typed
@@ -329,7 +329,7 @@ x = "Python"   # sekarang x adalah string
 x = 3.14       # sekarang x adalah float`}</CodeBlock>
 
 
-<h3>Tipe Data Dasar</h3>
+<h3 id="tipe-data-dasar">Tipe Data Dasar</h3>
 <p>Python memiliki beberapa tipe data built-in:</p>
 
 <CodeBlock language="">{`# Integer - bilangan bulat
@@ -385,7 +385,7 @@ def fungsi(param=None):
         param = "default"`}</CodeBlock>
 
 
-<h3>Memeriksa Tipe Data</h3>
+<h3 id="memeriksa-tipe-data">Memeriksa Tipe Data</h3>
 <CodeBlock language="">{`nama = "Budi"
 usia = 20
 tinggi = 175.5
@@ -397,7 +397,7 @@ print("Tipe data tinggi:", type(tinggi))      # <class 'float'>
 print("Tipe data aktif:", type(aktif))        # <class 'bool'>`}</CodeBlock>
 
 
-<h3>Konversi Tipe Data (Type Casting)</h3>
+<h3 id="konversi-tipe-data-type-casting">Konversi Tipe Data (Type Casting)</h3>
 <CodeBlock language="">{`# String ke Number
 angka_str = "123"
 angka_int = int(angka_str)      # 123
@@ -425,9 +425,9 @@ float("12.5")   # OK: 12.5
 int("12.5")     # ValueError! (gunakan float() dulu)`}</CodeBlock>
 
 
-<h3>Operator</h3>
+<h3 id="operator">Operator</h3>
 
-<h3>Operator Aritmatika</h3>
+<h3 id="operator-aritmatika">Operator Aritmatika</h3>
 <CodeBlock language="">{`a = 10
 b = 3
 
@@ -440,7 +440,7 @@ print("a % b =", a % b)    # Modulo (sisa): 1
 print("a ** b =", a ** b)  # Pangkat: 1000`}</CodeBlock>
 
 
-<h3>Operator Perbandingan</h3>
+<h3 id="operator-perbandingan">Operator Perbandingan</h3>
 <CodeBlock language="">{`x = 10
 y = 5
 
@@ -452,7 +452,7 @@ print("x >= y:", x >= y)  # Lebih besar/sama: True
 print("x <= y:", x <= y)  # Lebih kecil/sama: False`}</CodeBlock>
 
 
-<h3>Operator Logika</h3>
+<h3 id="operator-logika">Operator Logika</h3>
 <CodeBlock language="">{`p = True
 q = False
 
@@ -464,7 +464,7 @@ print("not p:", not p)      # NOT: False
 hasil = (5 > 3) and (10 < 20)  # True and True = True`}</CodeBlock>
 
 
-<h3>Operator Assignment</h3>
+<h3 id="operator-assignment">Operator Assignment</h3>
 <CodeBlock language="">{`x = 10
 
 # Assignment operators
@@ -476,7 +476,7 @@ x //= 2  # x = x // 2 → 3.0
 x %= 2   # x = x % 2  → 1.0`}</CodeBlock>
 
 
-<h3>String Formatting</h3>
+<h3 id="string-formatting">String Formatting</h3>
 <p>Python menyediakan beberapa cara untuk format string:</p>
 
 <CodeBlock language="">{`# f-strings - cara paling modern dan recommended
@@ -520,7 +520,7 @@ print(pesan)`}</CodeBlock>
 <p>f-strings adalah cara paling modern, readable, dan performant untuk string formatting di Python. Gunakan f-strings untuk code baru!</p>
 
 
-<h3>Input dan Output</h3>
+<h3 id="input-dan-output">Input dan Output</h3>
 <CodeBlock language="">{`# input() selalu mengembalikan string
 nama = input("Masukkan nama Anda: ")
 print(f"Halo, {nama}!")
@@ -539,7 +539,7 @@ nilai1 = int(nilai1)
 nilai2 = int(nilai2)`}</CodeBlock>
 
 
-<h3>Naming Conventions</h3>
+<h3 id="naming-conventions">Naming Conventions</h3>
 <p>Python memiliki konvensi penamaan yang sebaiknya diikuti:</p>
 
 <CodeBlock language="">{`#  Good - snake_case untuk variables dan functions
@@ -571,7 +571,7 @@ class = "Informatika"  # Error! 'class' adalah keyword
 kelas = "Informatika"`}</CodeBlock>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat variabel untuk menyimpan biodata (nama, NIM, jurusan, IPK)</li>
   <li>Print biodata dengan format yang rapi menggunakan f-strings</li>
@@ -593,22 +593,22 @@ kelas = "Informatika"`}</CodeBlock>
 <p>Percabangan (if-else) dan perulangan (for, while) dalam Python</p>
 
 
-<h3>Struktur Kendali</h3>
+<h3 id="struktur-kendali">Struktur Kendali</h3>
 <p>Percabangan (if-else) dan perulangan (for, while) dalam Python</p>
 
 
-<h3>Percabangan (If-Else)</h3>
+<h3 id="percabangan-if-else">Percabangan (If-Else)</h3>
 <p>Struktur percabangan digunakan untuk mengeksekusi kode berdasarkan kondisi tertentu.</p>
 
 
-<h3>If Statement</h3>
+<h3 id="if-statement">If Statement</h3>
 <CodeBlock language="">{`nilai = 85
 
 if nilai >= 60:
     print("LULUS")`}</CodeBlock>
 
 
-<h3>If-Else</h3>
+<h3 id="if-else">If-Else</h3>
 <CodeBlock language="">{`nilai = 55
 
 if nilai >= 60:
@@ -617,7 +617,7 @@ else:
     print("TIDAK LULUS")`}</CodeBlock>
 
 
-<h3>If-Elif-Else</h3>
+<h3 id="if-elif-else">If-Elif-Else</h3>
 <CodeBlock language="">{`nilai = int(input("Masukkan nilai (0-100): "))
 
 if nilai >= 90:
@@ -652,7 +652,7 @@ if nilai > 60:
     print("Ini 4 spasi")  # IndentationError!`}</CodeBlock>
 
 
-<h3>Nested If</h3>
+<h3 id="nested-if">Nested If</h3>
 <CodeBlock language="">{`nilai = 85
 
 if nilai >= 60:
@@ -671,7 +671,7 @@ else:
         print("Need serious attention")`}</CodeBlock>
 
 
-<h3>Ternary Operator</h3>
+<h3 id="ternary-operator">Ternary Operator</h3>
 <CodeBlock language="">{`# Format: value_if_true if condition else value_if_false
 usia = 20
 status = "Dewasa" if usia >= 18 else "Anak-anak"
@@ -684,7 +684,7 @@ grade = "A" if nilai >= 80 else "B" if nilai >= 70 else "C"
 print("Genap" if 10 % 2 == 0 else "Ganjil")`}</CodeBlock>
 
 
-<h3>Logical Operators dalam Kondisi</h3>
+<h3 id="logical-operators-dalam-kondisi">Logical Operators dalam Kondisi</h3>
 <CodeBlock language="">{`nilai = 85
 kehadiran = 90
 
@@ -705,9 +705,9 @@ if (nilai >= 80 and kehadiran >= 75) or (nilai >= 90):
     print("Memenuhi syarat")`}</CodeBlock>
 
 
-<h3>Perulangan (Loops)</h3>
+<h3 id="perulangan-loops">Perulangan (Loops)</h3>
 
-<h3>For Loop</h3>
+<h3 id="for-loop">For Loop</h3>
 <p>for loop digunakan untuk iterasi melalui sequence (list, tuple, string, dll).</p>
 
 <CodeBlock language="">{`# range(stop) - dari 0 sampai stop-1
@@ -750,7 +750,7 @@ for index, item in enumerate(buah, start=1):
     print(f"{index}. {item}")`}</CodeBlock>
 
 
-<h3>While Loop</h3>
+<h3 id="while-loop">While Loop</h3>
 <p>while loop mengeksekusi blok kode selama kondisi masih True.</p>
 
 <CodeBlock language="">{`# While dasar
@@ -784,7 +784,7 @@ while True:
         break`}</CodeBlock>
 
 
-<h3>Break dan Continue</h3>
+<h3 id="break-dan-continue">Break dan Continue</h3>
 <CodeBlock language="">{`# break - keluar dari loop
 print("Mencari angka 5:")
 for i in range(10):
@@ -828,7 +828,7 @@ def fungsi_nanti():
     pass  # Implementasi nanti`}</CodeBlock>
 
 
-<h3>Nested Loops</h3>
+<h3 id="nested-loops">Nested Loops</h3>
 <CodeBlock language="">{`# Multiplication table
 print("Tabel Perkalian 1-5:")
 for i in range(1, 6):
@@ -844,7 +844,7 @@ for i in range(1, 6):
     print()`}</CodeBlock>
 
 
-<h3>Loop dengan Else</h3>
+<h3 id="loop-dengan-else">Loop dengan Else</h3>
 <p>Python memiliki fitur unik: else clause pada loop!</p>
 
 <CodeBlock language="">{`# else dieksekusi jika loop selesai normal (tanpa break)
@@ -867,7 +867,7 @@ else:
     print(f"{num} adalah prima")`}</CodeBlock>
 
 
-<h3>List Comprehension</h3>
+<h3 id="list-comprehension">List Comprehension</h3>
 <p>List comprehension adalah cara singkat dan pythonic untuk membuat list.</p>
 
 <CodeBlock language="">{`# Cara tradisional
@@ -904,7 +904,7 @@ print("Matrix:", matrix)`}</CodeBlock>
 </ul>
 
 
-<h3>Contoh Program Lengkap</h3>
+<h3 id="contoh-program-lengkap">Contoh Program Lengkap</h3>
 <CodeBlock language="">{`# Data mahasiswa
 mahasiswa = []
 
@@ -948,7 +948,7 @@ print(f"Rata-rata kelas: {rata_rata:.2f}")
 print(f"Jumlah lulus: {lulus}/{len(mahasiswa)}")`}</CodeBlock>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat program FizzBuzz (print 1-100, "Fizz" untuk kelipatan 3, "Buzz" untuk 5, "FizzBuzz" untuk 15)</li>
   <li>Buat program untuk cek bilangan prima</li>
@@ -970,15 +970,15 @@ print(f"Jumlah lulus: {lulus}/{len(mahasiswa)}")`}</CodeBlock>
 <p>Membuat dan menggunakan fungsi dalam Python untuk kode yang reusable</p>
 
 
-<h3>Fungsi</h3>
+<h3 id="fungsi">Fungsi</h3>
 <p>Membuat dan menggunakan fungsi dalam Python untuk kode yang reusable</p>
 
 
-<h3>Apa itu Fungsi?</h3>
+<h3 id="apa-itu-fungsi">Apa itu Fungsi?</h3>
 <p>Fungsi adalah blok kode yang dapat digunakan kembali dan hanya dijalankan ketika dipanggil. Fungsi membantu membuat kode lebih modular, readable, dan maintainable.</p>
 
 
-<h3>Membuat Fungsi Dasar</h3>
+<h3 id="membuat-fungsi-dasar">Membuat Fungsi Dasar</h3>
 <CodeBlock language="">{`# Fungsi tanpa parameter
 def sapa():
     print("Halo, selamat datang!")
@@ -997,7 +997,7 @@ sapa()  # Bisa dipanggil berkali-kali`}</CodeBlock>
     return value  # opsional`}</CodeBlock>
 
 
-<h3>Fungsi dengan Parameter</h3>
+<h3 id="fungsi-dengan-parameter">Fungsi dengan Parameter</h3>
 <CodeBlock language="">{`# Satu parameter
 def sapa_nama(nama):
     print(f"Halo, {nama}! Selamat datang!")
@@ -1012,7 +1012,7 @@ def perkenalan(nama, usia, kota):
 perkenalan("Budi", 20, "Jakarta")`}</CodeBlock>
 
 
-<h3>Parameter Default</h3>
+<h3 id="parameter-default">Parameter Default</h3>
 <CodeBlock language="">{`def sapa_lengkap(nama, pesan="Selamat datang!"):
     print(f"Halo, {nama}! {pesan}")
 
@@ -1037,7 +1037,7 @@ def fungsi(a, b=10, c, d=20):  # SyntaxError!
     pass`}</CodeBlock>
 
 
-<h3>Return Statement</h3>
+<h3 id="return-statement">Return Statement</h3>
 <CodeBlock language="">{`# Return single value
 def jumlah(a, b):
     return a + b
@@ -1061,7 +1061,7 @@ print(f"Kali: {hasil_kali}")
 print(f"Bagi: {hasil_bagi}")`}</CodeBlock>
 
 
-<h3>Keyword Arguments</h3>
+<h3 id="keyword-arguments">Keyword Arguments</h3>
 <CodeBlock language="">{`def info_mahasiswa(nama, nim, jurusan):
     print(f"Nama: {nama}")
     print(f"NIM: {nim}")
@@ -1077,7 +1077,7 @@ info_mahasiswa(nim="12345", jurusan="Informatika", nama="Budi")
 info_mahasiswa("Budi", nim="12345", jurusan="Informatika")`}</CodeBlock>
 
 
-<h3>Variable-Length Arguments</h3>
+<h3 id="variable-length-arguments">Variable-Length Arguments</h3>
 <CodeBlock language="">{`# *args untuk variable number of positional arguments
 def jumlahkan(*angka):
     total = sum(angka)
@@ -1129,7 +1129,7 @@ fungsi_lengkap(1, 2, 3, 4, 5, x=10, y=20)
 # 4. **kwargs`}</CodeBlock>
 
 
-<h3>Lambda Functions</h3>
+<h3 id="lambda-functions">Lambda Functions</h3>
 <p>Lambda adalah anonymous function (fungsi tanpa nama) yang singkat.</p>
 
 <CodeBlock language="">{`# Regular function
@@ -1184,7 +1184,7 @@ print(genap)  # [2, 4]`}</CodeBlock>
 </ul>
 
 
-<h3>Scope Variabel</h3>
+<h3 id="scope-variabel">Scope Variabel</h3>
 <CodeBlock language="">{`# Global variable
 x = 10
 
@@ -1222,7 +1222,7 @@ outer()`}</CodeBlock>
 <p>Hindari menggunakan global jika memungkinkan. Lebih baik gunakan parameter dan return value untuk komunikasi antar fungsi.</p>
 
 
-<h3>Docstrings</h3>
+<h3 id="docstrings">Docstrings</h3>
 <CodeBlock language="">{`def hitung_bmi(berat, tinggi):
     """
     Menghitung Body Mass Index (BMI).
@@ -1259,7 +1259,7 @@ print(hitung_bmi.__doc__)
 help(hitung_bmi)`}</CodeBlock>
 
 
-<h3>Higher-Order Functions</h3>
+<h3 id="higher-order-functions">Higher-Order Functions</h3>
 <p>Functions sebagai first-class objects - bisa dijadikan parameter atau return value.</p>
 
 <CodeBlock language="">{`# Function sebagai parameter
@@ -1285,7 +1285,7 @@ print(times_two(5))    # 10
 print(times_three(5))  # 15`}</CodeBlock>
 
 
-<h3>Recursion</h3>
+<h3 id="recursion">Recursion</h3>
 <p>Fungsi yang memanggil dirinya sendiri.</p>
 
 <CodeBlock language="">{`# Factorial
@@ -1310,7 +1310,7 @@ print([fibonacci(i) for i in range(10)])
 <p>Python memiliki recursion limit (default 1000). Untuk data besar, gunakan iterative approach atau sys.setrecursionlimit().</p>
 
 
-<h3>Best Practices</h3>
+<h3 id="best-practices">Best Practices</h3>
 <CodeBlock language="">{`#  Good practices
 def calculate_total_price(items, tax_rate=0.1):
     """
@@ -1335,7 +1335,7 @@ def process_data(data):
     return result`}</CodeBlock>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat fungsi untuk convert suhu (Celsius ↔ Fahrenheit ↔ Kelvin)</li>
   <li>Buat fungsi untuk cek bilangan prima</li>
@@ -1357,19 +1357,19 @@ def process_data(data):
 <p>Bekerja dengan List, Dictionary, Tuple, dan Set di Python</p>
 
 
-<h3>Struktur Data</h3>
+<h3 id="struktur-data">Struktur Data</h3>
 <p>Bekerja dengan List, Dictionary, Tuple, dan Set di Python</p>
 
 
-<h3>Struktur Data di Python</h3>
+<h3 id="struktur-data-di-python">Struktur Data di Python</h3>
 <p>Python memiliki beberapa struktur data bawaan yang sangat berguna untuk menyimpan dan memanipulasi koleksi data. Mari kita pelajari empat struktur data utama: List, Dictionary, Tuple, dan Set.</p>
 
 
-<h3>List</h3>
+<h3 id="list">List</h3>
 <p>List adalah koleksi data yang terurut dan bisa diubah (mutable). List dapat berisi berbagai tipe data dan menggunakan index untuk mengakses elemen.</p>
 
 
-<h3>Membuat dan Mengakses List</h3>
+<h3 id="membuat-dan-mengakses-list">Membuat dan Mengakses List</h3>
 <CodeBlock language="">{`# Membuat list
 buah = ["Apel", "Jeruk", "Mangga", "Pisang"]
 print("List buah:", buah)
@@ -1392,7 +1392,7 @@ print("Buah kedua dari belakang:", buah[-2])  # Mangga`}</CodeBlock>
 </ul>
 
 
-<h3>Slicing List</h3>
+<h3 id="slicing-list">Slicing List</h3>
 <CodeBlock language="">{`buah = ["Apel", "Jeruk", "Mangga", "Pisang", "Anggur"]
 
 # Slicing format: list[start:stop:step]
@@ -1405,7 +1405,7 @@ print(buah[::2])      # ["Apel", "Mangga", "Anggur"] - setiap 2 elemen
 print(buah[::-1])     # Reverse list`}</CodeBlock>
 
 
-<h3>Memodifikasi List</h3>
+<h3 id="memodifikasi-list">Memodifikasi List</h3>
 <CodeBlock language="">{`buah = ["Apel", "Jeruk", "Mangga"]
 
 # Mengubah elemen
@@ -1436,7 +1436,7 @@ buah.clear()
 print(buah)  # []`}</CodeBlock>
 
 
-<h3>Metode List</h3>
+<h3 id="metode-list">Metode List</h3>
 <CodeBlock language="">{`buah = ["Apel", "Jeruk", "Mangga", "Pisang", "Apel"]
 
 # Mencari elemen
@@ -1490,7 +1490,7 @@ copy = original.copy()
 copy = original[:]`}</CodeBlock>
 
 
-<h3>List Comprehension</h3>
+<h3 id="list-comprehension">List Comprehension</h3>
 <p>List comprehension adalah cara singkat dan efisien untuk membuat list baru.</p>
 
 <CodeBlock language="">{`# Basic list comprehension
@@ -1529,7 +1529,7 @@ print(huruf)  # ['P', 'Y', 'T', 'H', 'O', 'N']`}</CodeBlock>
 </ul>
 
 
-<h3>Nested Lists</h3>
+<h3 id="nested-lists">Nested Lists</h3>
 <CodeBlock language="">{`# Matrix 2D
 matrix = [
     [1, 2, 3],
@@ -1558,11 +1558,11 @@ for mhs in mahasiswa:
     print(f"{mhs['nama']}: {mhs['nilai']}")`}</CodeBlock>
 
 
-<h3>Dictionary</h3>
+<h3 id="dictionary">Dictionary</h3>
 <p>Dictionary adalah koleksi data yang tidak berurutan dan menyimpan data dalam pasangan key-value. Dictionary sangat efisien untuk lookup data.</p>
 
 
-<h3>Membuat dan Mengakses Dictionary</h3>
+<h3 id="membuat-dan-mengakses-dictionary">Membuat dan Mengakses Dictionary</h3>
 <CodeBlock language="">{`# Membuat dictionary
 mahasiswa = {
     "nama": "Budi Santoso",
@@ -1586,7 +1586,7 @@ print("IPK:", mahasiswa.get("ipk", "Data tidak tersedia"))  # Default jika key t
 <p>Mengakses key yang tidak ada dengan dict[key] akan menyebabkan KeyError. Gunakan dict.get(key) atau cek dengan if key in dict untuk menghindari error.</p>
 
 
-<h3>Memodifikasi Dictionary</h3>
+<h3 id="memodifikasi-dictionary">Memodifikasi Dictionary</h3>
 <CodeBlock language="">{`mahasiswa = {
     "nama": "Budi",
     "nim": "20210001",
@@ -1614,7 +1614,7 @@ removed = mahasiswa.pop("nim")  # Hapus dan return value
 mahasiswa.clear()`}</CodeBlock>
 
 
-<h3>Metode Dictionary</h3>
+<h3 id="metode-dictionary">Metode Dictionary</h3>
 <CodeBlock language="">{`mahasiswa = {
     "nama": "Budi",
     "nim": "20210001",
@@ -1643,7 +1643,7 @@ print(mahasiswa)
 copy_mhs = mahasiswa.copy()`}</CodeBlock>
 
 
-<h3>Iterasi Dictionary</h3>
+<h3 id="iterasi-dictionary">Iterasi Dictionary</h3>
 <CodeBlock language="">{`mahasiswa = {
     "nama": "Budi",
     "nim": "20210001",
@@ -1667,7 +1667,7 @@ for key, value in mahasiswa.items():
     print(f"{key}: {value}")`}</CodeBlock>
 
 
-<h3>Dictionary Comprehension</h3>
+<h3 id="dictionary-comprehension">Dictionary Comprehension</h3>
 <CodeBlock language="">{`# Basic dictionary comprehension
 squares = {x: x**2 for x in range(1, 6)}
 print(squares)  # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
@@ -1688,7 +1688,7 @@ swapped = {v: k for k, v in original.items()}
 print(swapped)  # {1: 'a', 2: 'b', 3: 'c'}`}</CodeBlock>
 
 
-<h3>Nested Dictionaries</h3>
+<h3 id="nested-dictionaries">Nested Dictionaries</h3>
 <CodeBlock language="">{`# Nested dictionary
 kampus = {
     "nama": "ITERA",
@@ -1717,7 +1717,7 @@ for fak, info in kampus["fakultas"].items():
     print(f"  Dekan: {info['dekan']}")`}</CodeBlock>
 
 
-<h3>Tuple</h3>
+<h3 id="tuple">Tuple</h3>
 <p>Tuple adalah koleksi data yang terurut dan tidak bisa diubah (immutable). Tuple lebih cepat daripada list dan digunakan untuk data yang tidak boleh berubah.</p>
 
 <CodeBlock language="">{`# Membuat tuple
@@ -1773,7 +1773,7 @@ print("Index of 3:", angka.index(3))  # 3`}</CodeBlock>
 </ul>
 
 
-<h3>Set</h3>
+<h3 id="set">Set</h3>
 <p>Set adalah koleksi data yang tidak berurutan, tidak memiliki duplikat, dan bisa diubah. Set sangat efisien untuk membership testing dan operasi matematika set.</p>
 
 <CodeBlock language="">{`# Membuat set
@@ -1804,7 +1804,7 @@ removed = buah.pop()    # Hapus random element
 buah.clear()            # Hapus semua`}</CodeBlock>
 
 
-<h3>Set Operations (Matematika)</h3>
+<h3 id="set-operations-matematika">Set Operations (Matematika)</h3>
 <CodeBlock language="">{`a = {1, 2, 3, 4, 5}
 b = {4, 5, 6, 7, 8}
 
@@ -1840,7 +1840,7 @@ print("y superset of x:", y.issuperset(x))  # True
 print("Disjoint:", x.isdisjoint({6, 7}))    # True`}</CodeBlock>
 
 
-<h3>Konversi Antar Struktur Data</h3>
+<h3 id="konversi-antar-struktur-data">Konversi Antar Struktur Data</h3>
 <CodeBlock language="">{`# List ke Set (hapus duplikat)
 numbers = [1, 2, 2, 3, 3, 3]
 unique = set(numbers)  # {1, 2, 3}
@@ -1866,7 +1866,7 @@ values = [1, 2, 3]
 d = dict(zip(keys, values))  # {'a': 1, 'b': 2, 'c': 3}`}</CodeBlock>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat program untuk menghitung rata-rata nilai dari list menggunakan berbagai metode</li>
   <li>Buat dictionary untuk menyimpan data mahasiswa dan implementasikan CRUD operations</li>
@@ -1888,11 +1888,11 @@ d = dict(zip(keys, values))  # {'a': 1, 'b': 2, 'c': 3}`}</CodeBlock>
 <p>Mengorganisir kode dengan modul dan menggunakan library Python</p>
 
 
-<h3>Modul Python</h3>
+<h3 id="modul-python">Modul Python</h3>
 <p>Mengorganisir kode dengan modul dan menggunakan library Python</p>
 
 
-<h3>Apa itu Modul?</h3>
+<h3 id="apa-itu-modul">Apa itu Modul?</h3>
 <p>Modul Python adalah file yang berisi definisi dan pernyataan Python. Modul memungkinkan Kalian untuk mengorganisir kode dalam file terpisah yang dapat digunakan kembali di berbagai program.</p>
 
 <p>Why Use Modules?</p>
@@ -1907,11 +1907,11 @@ d = dict(zip(keys, values))  # {'a': 1, 'b': 2, 'c': 3}`}</CodeBlock>
 </ul>
 
 
-<h3>Membuat Modul Sendiri</h3>
+<h3 id="membuat-modul-sendiri">Membuat Modul Sendiri</h3>
 <p>Mari membuat modul Python sederhana untuk operasi matematika.</p>
 
 
-<h3>Buat File Modul</h3>
+<h3 id="buat-file-modul">Buat File Modul</h3>
 <p>Buat file baru dengan nama my_module.py:</p>
 
 <CodeBlock language="">{`"""
@@ -1960,7 +1960,7 @@ def luas_persegi_panjang(panjang, lebar):
 <p>File modul harus berekstensi .py dan nama file akan menjadi nama modul. Hindari spasi dan karakter khusus dalam nama file.</p>
 
 
-<h3>Gunakan Modul</h3>
+<h3 id="gunakan-modul">Gunakan Modul</h3>
 <p>Buat file baru main.py di direktori yang sama:</p>
 
 <CodeBlock language="">{`# Import seluruh modul
@@ -1988,7 +1988,7 @@ print(f"\n{celsius}°C = {fahrenheit:.2f}°F")
 print(f"{celsius}°C = {kelvin:.2f}K")`}</CodeBlock>
 
 
-<h3>Jalankan Program</h3>
+<h3 id="jalankan-program">Jalankan Program</h3>
 <CodeBlock language="">{`python main.py`}</CodeBlock>
 
 <p>Output:</p>
@@ -2004,7 +2004,7 @@ Keliling: 31.42
 25°C = 298.15K`}</CodeBlock>
 
 
-<h3>Cara Import Modul</h3>
+<h3 id="cara-import-modul">Cara Import Modul</h3>
 <p>Python menyediakan beberapa cara untuk mengimport modul:</p>
 
 <CodeBlock language="">{`# Import seluruh modul
@@ -2076,7 +2076,7 @@ import my_module as mm  #  OK dengan alias yang jelas`}</CodeBlock>
 <CodeBlock language="">{`from my_module import *  #  Hindari ini!`}</CodeBlock>
 
 
-<h3>Module Search Path</h3>
+<h3 id="module-search-path">Module Search Path</h3>
 <p>Python mencari modul di beberapa lokasi:</p>
 
 <CodeBlock language="">{`import sys
@@ -2091,11 +2091,11 @@ for path in sys.path:
 # 3. Installation-dependent default paths`}</CodeBlock>
 
 
-<h3>Modul Built-in Python</h3>
+<h3 id="modul-built-in-python">Modul Built-in Python</h3>
 <p>Python memiliki banyak modul bawaan yang sangat berguna:</p>
 
 
-<h3>Module math</h3>
+<h3 id="module-math">Module math</h3>
 <CodeBlock language="">{`import math
 
 # Konstanta
@@ -2120,7 +2120,7 @@ print(f"log10(1000): {math.log10(1000)}")
 print(f"log2(8): {math.log2(8)}")`}</CodeBlock>
 
 
-<h3>Module random</h3>
+<h3 id="module-random">Module random</h3>
 <CodeBlock language="">{`import random
 
 # Random integer
@@ -2149,7 +2149,7 @@ random.seed(42)
 print(random.random())  # Selalu sama dengan seed 42`}</CodeBlock>
 
 
-<h3>Module datetime</h3>
+<h3 id="module-datetime">Module datetime</h3>
 <CodeBlock language="">{`import datetime
 
 # Current date and time
@@ -2185,7 +2185,7 @@ date_obj = datetime.datetime.strptime(date_str, "%Y-%m-%d")
 print(f"Parsed: {date_obj}")`}</CodeBlock>
 
 
-<h3>Module os</h3>
+<h3 id="module-os">Module os</h3>
 <CodeBlock language="">{`import os
 
 # Current working directory
@@ -2214,7 +2214,7 @@ print(f"Joined path: {path}")
 print(f"PATH: {os.environ.get('PATH', 'Not found')[:50]}...")`}</CodeBlock>
 
 
-<h3>Module sys</h3>
+<h3 id="module-sys">Module sys</h3>
 <CodeBlock language="">{`import sys
 
 # Python version
@@ -2234,11 +2234,11 @@ print(f"Arguments: {sys.argv[1:]}")
 print(f"Module paths: {sys.path[:3]}")`}</CodeBlock>
 
 
-<h3>Package (Kumpulan Modul)</h3>
+<h3 id="package-kumpulan-modul">Package (Kumpulan Modul)</h3>
 <p>Package adalah cara untuk mengorganisir banyak modul dalam direktori.</p>
 
 
-<h3>Struktur Package</h3>
+<h3 id="struktur-package">Struktur Package</h3>
 <CodeBlock language="">{`my_package/
     __init__.py
     geometry.py
@@ -2246,7 +2246,7 @@ print(f"Module paths: {sys.path[:3]}")`}</CodeBlock>
     utils.py`}</CodeBlock>
 
 
-<h3>Buat File-file Package</h3>
+<h3 id="buat-file-file-package">Buat File-file Package</h3>
 <CodeBlock language="">{`"""Modul untuk operasi geometri."""
 
 PI = 3.14159
@@ -2286,7 +2286,7 @@ __all__ = ["luas_lingkaran", "luas_persegi", "celsius_to_fahrenheit"]`}</CodeBlo
 <p>File __init__.py membuat direktori menjadi package. File ini bisa kosong atau berisi initialization code untuk package.</p>
 
 
-<h3>Gunakan Package</h3>
+<h3 id="gunakan-package">Gunakan Package</h3>
 <CodeBlock language="">{`# Import dari package
 from my_package import luas_lingkaran, celsius_to_fahrenheit
 
@@ -2301,7 +2301,7 @@ print(luas_segitiga(10, 5))
 print(celsius_to_kelvin(0))`}</CodeBlock>
 
 
-<h3>Module Attributes</h3>
+<h3 id="module-attributes">Module Attributes</h3>
 <p>Setiap modul memiliki beberapa attribute built-in:</p>
 
 <CodeBlock language="">{`import my_module
@@ -2323,7 +2323,7 @@ if __name__ == "__main__":
     print("This is the main program")`}</CodeBlock>
 
 
-<h3>if __name__ == "__main__"</h3>
+<h3 id="if-name-main">if __name__ == "__main__"</h3>
 <p>Pattern penting untuk membuat modul yang bisa diimport atau dijalankan langsung:</p>
 
 <CodeBlock language="">{`"""Modul contoh dengan main block."""
@@ -2352,7 +2352,7 @@ if __name__ == "__main__":
 <p>Ini memungkinkan Kalian menulis test code atau demo di dalam module yang tidak akan dijalankan saat module di-import.</p>
 
 
-<h3>Installing External Packages</h3>
+<h3 id="installing-external-packages">Installing External Packages</h3>
 <p>Python memiliki ribuan external packages yang bisa diinstall dengan pip:</p>
 
 <CodeBlock language="">{`# Install package
@@ -2380,7 +2380,7 @@ pip freeze > requirements.txt
 pip install -r requirements.txt`}</CodeBlock>
 
 
-<h3>Contoh Penggunaan External Package</h3>
+<h3 id="contoh-penggunaan-external-package">Contoh Penggunaan External Package</h3>
 <CodeBlock language="">{`# Install first: pip install requests
 import requests
 
@@ -2399,7 +2399,7 @@ response = requests.post("https://httpbin.org/post", json=payload)
 print(response.json())`}</CodeBlock>
 
 
-<h3>Best Practices</h3>
+<h3 id="best-practices">Best Practices</h3>
 <p>Module Best Practices</p>
 
 <ul>
@@ -2413,7 +2413,7 @@ print(response.json())`}</CodeBlock>
 </ul>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>
 Buat modul math_operations.py dengan fungsi untuk:

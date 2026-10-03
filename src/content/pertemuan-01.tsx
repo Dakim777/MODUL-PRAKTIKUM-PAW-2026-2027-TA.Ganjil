@@ -24,11 +24,11 @@ export default function Pertemuan1() {
     <>
       <h2 id="dasar-teori">JavaScript Dasar</h2>
 
-<h3>Variabel & Kondisional</h3>
+<h3 id="variabel-kondisional">Variabel & Kondisional</h3>
 <p>Mengenal variabel, tipe data, dan struktur kondisional dalam JavaScript</p>
 
 
-<h3>Membuat File JavaScript Pertama</h3>
+<h3 id="membuat-file-javascript-pertama">Membuat File JavaScript Pertama</h3>
 <p>Buat sebuah file HTML baru dengan nama index.html dan file JavaScript dengan nama script.js. Hubungkan file JavaScript dengan file HTML menggunakan tag script.</p>
 
 <CodeBlock language="">{`<!DOCTYPE html>
@@ -53,7 +53,7 @@ export default function Pertemuan1() {
 <p>Tag script dapat diletakkan di dalam head atau sebelum penutup body. Menempatkannya sebelum penutup body memastikan bahwa semua elemen HTML telah dimuat sebelum JavaScript dijalankan.</p>
 
 
-<h3>Mengenal Variabel dan Output</h3>
+<h3 id="mengenal-variabel-dan-output">Mengenal Variabel dan Output</h3>
 <p>Buka file script.js dan tulis kode berikut untuk mendeklarasikan variabel dan menampilkan output:</p>
 
 <CodeBlock language="">{`// Mendeklarasikan variabel dengan var, let, dan const
@@ -78,7 +78,7 @@ document.getElementById("result").innerHTML = \`
 <p>Template literals (menggunakan backticks ``) memungkinkan Kalian untuk menyisipkan variabel langsung ke dalam string dengan menggunakan sintaks $&#123;variabel&#125;.</p>
 
 
-<h3>Implementasi Struktur Kondisional</h3>
+<h3 id="implementasi-struktur-kondisional">Implementasi Struktur Kondisional</h3>
 <p>Tambahkan kode berikut untuk mempelajari struktur kondisional dalam JavaScript:</p>
 
 <CodeBlock language="">{`// Struktur kondisional
@@ -153,7 +153,7 @@ document.getElementById("result").innerHTML += \`
 <p>JavaScript menyediakan beberapa cara untuk membuat keputusan berdasarkan kondisi: if-else, ternary operator (?:), dan switch-case. Pilih yang paling sesuai dengan kebutuhan kode Kalian.</p>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat variabel untuk menyimpan data diri Kalian (nama, umur, kota asal) menggunakan const dan let</li>
   <li>Implementasikan program pengecekan kelulusan dengan syarat nilai &gt;= 70</li>
@@ -173,11 +173,11 @@ document.getElementById("result").innerHTML += \`
 <p>Memahami perulangan dan pembuatan fungsi dalam JavaScript</p>
 
 
-<h3>Loop & Fungsi</h3>
+<h3 id="loop-fungsi">Loop & Fungsi</h3>
 <p>Memahami perulangan dan pembuatan fungsi dalam JavaScript</p>
 
 
-<h3>Menggunakan Loop</h3>
+<h3 id="menggunakan-loop">Menggunakan Loop</h3>
 <p>Tambahkan kode berikut untuk mempelajari loop dalam JavaScript:</p>
 
 <CodeBlock language="">{`// For loop
@@ -186,7 +186,7 @@ let total = 0;
 
 document.getElementById("result").innerHTML += \`
   <hr>
-  <h3>Daftar Nilai Siswa:</h3>
+  <h3 id="daftar-nilai-siswa">Daftar Nilai Siswa:</h3>
   <ul id="daftar-nilai"></ul>
   <p id="rata-rata"></p>
 \`;
@@ -205,7 +205,7 @@ document.getElementById("rata-rata").innerHTML = \`
 
 // While loop
 document.getElementById("result").innerHTML += \`
-  <h3>Countdown:</h3>
+  <h3 id="countdown">Countdown:</h3>
   <div id="countdown"></div>
 \`;
 
@@ -219,7 +219,7 @@ while (hitungMundur > 0) {
 
 // For...of loop (ES6)
 document.getElementById("result").innerHTML += \`
-  <h3>Nilai dengan for...of:</h3>
+  <h3 id="nilai-dengan-forof">Nilai dengan for...of:</h3>
   <div id="nilai-of" class="flex flex-wrap gap-2"></div>
 \`;
 
@@ -233,7 +233,7 @@ for (let nilai of nilaiSiswa) {
 <p>JavaScript menyediakan beberapa jenis loop: for, while, do-while, for...in, dan for...of. for...of (diperkenalkan di ES6) sangat berguna untuk meng-iterasi array dan objek iterable lainnya.</p>
 
 
-<h3>Fungsi dan Event Handler</h3>
+<h3 id="fungsi-dan-event-handler">Fungsi dan Event Handler</h3>
 <p>Pada langkah ini, kita akan belajar membuat fungsi dan menangani event:</p>
 
 <CodeBlock language="">{`<hr>
@@ -359,7 +359,7 @@ document.getElementById("btn-bagi").addEventListener("click", function() {
 });`}</CodeBlock>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat loop untuk mencetak tabel perkalian dari 1 sampai 10 untuk angka pilihan Kalian</li>
   <li>Implementasikan fungsi untuk menghitung faktorial dari sebuah angka</li>
@@ -379,11 +379,11 @@ document.getElementById("btn-bagi").addEventListener("click", function() {
 <p>Bekerja dengan struktur data array dan objek dalam JavaScript</p>
 
 
-<h3>Array & Objek</h3>
+<h3 id="array-objek">Array & Objek</h3>
 <p>Bekerja dengan struktur data array dan objek dalam JavaScript</p>
 
 
-<h3>Array dan Metode Array</h3>
+<h3 id="array-dan-metode-array">Array dan Metode Array</h3>
 <p>Pada langkah ini, kita akan belajar bekerja dengan array dan berbagai metode array:</p>
 
 <CodeBlock language="">{`// Array dan metode array
@@ -391,7 +391,7 @@ const buah = ["Apel", "Jeruk", "Mangga", "Pisang", "Anggur"];
 
 document.getElementById("result").innerHTML += \`
   <hr>
-  <h3>Manipulasi Array:</h3>
+  <h3 id="manipulasi-array">Manipulasi Array:</h3>
   <div id="array-demo"></div>
 \`;
 
@@ -435,7 +435,7 @@ document.getElementById("array-demo").innerHTML += \`
 <p>Metode array seperti push(), pop(), map(), filter(), dan reduce() adalah tools yang sangat berguna untuk memanipulasi data dalam array. Metode-metode ini membuat kode lebih clean dan mudah dibaca.</p>
 
 
-<h3>Bekerja dengan Objek</h3>
+<h3 id="bekerja-dengan-objek">Bekerja dengan Objek</h3>
 <p>Sekarang mari kita pelajari cara bekerja dengan objek dalam JavaScript:</p>
 
 <CodeBlock language="">{`// Objek
@@ -461,7 +461,7 @@ const mahasiswa = {
 
 document.getElementById("result").innerHTML += \`
   <hr>
-  <h3>Manipulasi Objek:</h3>
+  <h3 id="manipulasi-objek">Manipulasi Objek:</h3>
   <div id="objek-demo"></div>
 \`;
 
@@ -493,7 +493,7 @@ document.getElementById("objek-demo").innerHTML += \`
 <p>Objek dalam JavaScript adalah struktur data key-value yang sangat fleksibel. Kalian dapat menambahkan, mengubah, atau menghapus properti objek secara dinamis. Objek juga dapat memiliki method (fungsi) sebagai properti.</p>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat array berisi minimal 5 objek mahasiswa (dengan properti nama, nim, jurusan, nilai) dan tampilkan dalam bentuk tabel HTML</li>
   <li>Implementasikan fungsi untuk mencari mahasiswa dengan nilai tertinggi menggunakan method array</li>
@@ -513,7 +513,7 @@ document.getElementById("objek-demo").innerHTML += \`
 <p>Manipulasi DOM dan penggunaan Fetch API dalam JavaScript</p>
 
 
-<h3>DOM & API</h3>
+<h3 id="dom-api">DOM & API</h3>
 <p>Manipulasi DOM dan penggunaan Fetch API dalam JavaScript</p>
 
 <CodeBlock language="">{`<hr>
@@ -556,7 +556,7 @@ document.getElementById("btn-ubah-warna").addEventListener("click", function() {
 <p>Manipulasi DOM adalah salah satu fitur paling powerful dalam JavaScript. Dengan DOM manipulation, Kalian dapat membuat, mengubah, atau menghapus elemen HTML secara dinamis tanpa harus reload halaman.</p>
 
 
-<h3>Fetch API dan Async/Await</h3>
+<h3 id="fetch-api-dan-asyncawait">Fetch API dan Async/Await</h3>
 <p>Pelajari cara menggunakan Fetch API dan async/await untuk mengambil data dari server:</p>
 
 <CodeBlock language="">{`<hr>
@@ -595,7 +595,7 @@ document.getElementById("btn-fetch").addEventListener("click", async function() 
 <p>Fetch API adalah cara modern untuk melakukan HTTP requests di JavaScript. Kombinasi dengan async/await membuat kode asynchronous menjadi lebih mudah dibaca dan dipahami, mirip seperti kode synchronous.</p>
 
 
-<h3>Hasil Praktikum</h3>
+<h3 id="hasil-praktikum">Hasil Praktikum</h3>
 <p>Setelah menyelesaikan semua langkah praktikum, Kalian seharusnya telah:</p>
 
 <ul>
@@ -609,7 +609,7 @@ document.getElementById("btn-fetch").addEventListener("click", async function() 
 </ul>
 
 
-<h3>Tips dan Best Practices</h3>
+<h3 id="tips-dan-best-practices">Tips dan Best Practices</h3>
 <p>Perhatikan!</p>
 
 <ul>
@@ -621,7 +621,7 @@ document.getElementById("btn-fetch").addEventListener("click", async function() 
 </ul>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat form input untuk menambahkan data mahasiswa baru dengan validasi form</li>
   <li>Implementasikan localStorage untuk menyimpan data mahasiswa secara persisten</li>
@@ -640,6 +640,116 @@ document.getElementById("btn-fetch").addEventListener("click", async function() 
 <p>Mengenal fitur modern JavaScript (ES6+) dan penerapannya dalam pengembangan web</p>
 
 
+      <h2 id="tugas-praktikum">Tugas Praktikum: Aplikasi Kasir &amp; Keranjang Belanja Sederhana (Mini POS)</h2>
+      <p>
+        Buatlah sebuah aplikasi web <strong>Kasir &amp; Keranjang Belanja Sederhana (Mini POS)</strong> untuk kasir kantin atau toko kampus. Studi kasus ini dirancang dengan alur yang sangat jelas dan mudah dipahami untuk menyatukan ketiga kompetensi dasar praktikum (validasi input form, perhitungan kalkulator otomatis, dan manajemen keranjang belanja berbasis <code>localStorage</code>).
+      </p>
+
+      <h3 id="skenario-amp-persyaratan-fitur">Skenario &amp; Persyaratan Fitur</h3>
+
+      <h4>1. Validasi Form Input Barang</h4>
+      <ul>
+        <li><strong>Nama Barang:</strong> Wajib diisi, minimal 3 karakter (contoh: "Buku Tulis", "Air Mineral").</li>
+        <li><strong>Harga Satuan:</strong> Wajib berupa angka positif dan minimal bernilai Rp 500 (tidak boleh 0, negatif, atau teks kosong).</li>
+        <li><strong>Jumlah / Qty:</strong> Wajib berupa angka bulat minimal 1.</li>
+        <li><strong>Feedback Validasi:</strong> Jika data tidak valid, tampilkan pesan peringatan teks berwarna merah di bawah input yang salah dan cegah barang masuk ke keranjang belanja. Jika berhasil, form otomatis di-reset.</li>
+      </ul>
+
+      <h4>2. Modul Kalkulator &amp; Perhitungan Otomatis</h4>
+      <ul>
+        <li><strong>Kalkulasi Subtotal:</strong> Dihitung otomatis per baris barang: <code>Subtotal = Harga Satuan × Qty</code>.</li>
+        <li><strong>Kalkulasi Total Belanja:</strong> Menjumlahkan seluruh subtotal barang yang ada di keranjang secara otomatis.</li>
+        <li><strong>Kalkulator Diskon Sederhana:</strong> Jika total belanja mencapai minimal Rp 50.000, berikan potongan diskon 10% (atau sediakan input kode promo sederhana seperti <code>HEMAT10</code>). Tampilkan nominal diskon dan total akhir yang harus dibayar.</li>
+        <li><strong>Kalkulator Pembayaran &amp; Kembalian:</strong> Sediakan input <em>"Uang Bayar"</em>. Saat kasir menginputkan nominal uang yang diterima, sistem menghitung kembalian secara otomatis: <code>Kembalian = Uang Bayar − Total Akhir</code>. Jika uang kurang, tampilkan keterangan bahwa uang belum mencukupi.</li>
+      </ul>
+
+      <h4>3. Manajemen List Keranjang &amp; LocalStorage</h4>
+      <ul>
+        <li><strong>Tabel Keranjang Belanja:</strong> Setiap barang yang ditambahkan langsung tampil di tabel daftar belanja (Kolom: No, Nama Barang, Harga Satuan, Qty, Subtotal, dan Aksi).</li>
+        <li><strong>Aksi Hapus Item:</strong> Terdapat tombol <em>Hapus</em> di setiap baris barang untuk menghapus item dari keranjang. Setelah dihapus, total belanja dan diskon langsung terhitung ulang secara otomatis.</li>
+        <li><strong>Penyimpanan Persisten (LocalStorage):</strong> Daftar keranjang belanja wajib disimpan ke dalam <code>localStorage</code> menggunakan <code>JSON.stringify()</code> dan dimuat ulang menggunakan <code>JSON.parse()</code>, sehingga isi keranjang tidak hilang saat halaman di-refresh.</li>
+        <li><strong>Tombol Transaksi Baru / Reset:</strong> Tombol untuk mengosongkan seluruh keranjang belanja dan membersihkan <code>localStorage</code> setelah transaksi selesai.</li>
+      </ul>
+
+      <h3 id="kriteria-penilaian">Kriteria Penilaian</h3>
+      <div style={{ overflowX: "auto", margin: "1.25rem 0" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.875rem" }}>
+          <thead>
+            <tr style={{ background: "var(--color-surface)", borderBottom: "2px solid var(--color-border)" }}>
+              <th style={{ padding: "0.625rem 1rem", textAlign: "left", fontWeight: 600, color: "var(--color-text-primary)" }}>Aspek Penilaian</th>
+              <th style={{ padding: "0.625rem 1rem", textAlign: "left", fontWeight: 600, color: "var(--color-text-primary)" }}>Deskripsi Implementasi</th>
+              <th style={{ padding: "0.625rem 1rem", textAlign: "center", fontWeight: 600, color: "var(--color-text-primary)", width: "100px" }}>Bobot</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["Manajemen List & LocalStorage", "Tabel keranjang belanja interaktif, fitur hapus item, tombol reset, dan sinkronisasi persisten dengan localStorage", "30%"],
+              ["Logika Kalkulator & Perhitungan", "Perhitungan subtotal (harga × qty), akumulasi total, diskon otomatis/kupon, serta kalkulator uang kembalian", "30%"],
+              ["Validasi Form & Error Handling", "Validasi nama barang min 3 karakter, harga > 500, qty >= 1, serta pesan error feedback yang jelas", "20%"],
+              ["Desain Antarmuka (UI/UX)", "Kerapian tata letak form dan tabel belanja, keterbacaan angka/format Rupiah, dan responsivitas tampilan", "10%"],
+              ["Struktur Kode & Dokumentasi", "Pemisahan file HTML/CSS/JS yang rapi, penamaan fungsi yang jelas, dan kelengkapan file README.md", "10%"],
+            ].map(([aspek, deskripsi, bobot], i) => (
+              <tr key={i} style={{ borderBottom: "1px solid var(--color-border-subtle)" }}>
+                <td style={{ padding: "0.625rem 1rem", fontWeight: 600, color: "var(--color-navy-800)" }}>{aspek}</td>
+                <td style={{ padding: "0.625rem 1rem", color: "var(--color-text-secondary)" }}>{deskripsi}</td>
+                <td style={{ padding: "0.625rem 1rem", textAlign: "center", fontWeight: 600, color: "var(--color-accent)" }}>{bobot}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="format-pengumpulan">Format Pengumpulan</h2>
+      <ul>
+        <li>
+          <strong>Direktori GitHub:</strong>
+          <ul>
+            <li>Buat repository baru di GitHub dengan format: <code>pemrograman_web_itera_[NIM]</code></li>
+            <li>Contoh: <code>pemrograman_web_itera_123140002</code></li>
+            <li>Pastikan repository disetel dengan visibilitas <strong>Public</strong> agar dapat dinilai oleh asisten praktikum.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Struktur Folder Proyek:</strong>
+          <ul>
+            <li>Buat direktori folder untuk pertemuan ini dengan format: <code>[NAMA]_[NIM]_pertemuan1</code></li>
+            <li>Contoh: <code>muhammaddaffahakim_123140002_pertemuan1</code></li>
+            <li>Pemisahan file wajib dilakukan secara terstruktur:
+              <ul>
+                <li><code>index.html</code> (Struktur HTML aplikasi tugas)</li>
+                <li><code>style.css</code> (Styling CSS antarmuka)</li>
+                <li><code>script.js</code> (Logika pemrograman JavaScript)</li>
+                <li><code>README.md</code> (Dokumentasi lengkap tugas)</li>
+                <li>Folder <code>modul/</code> (Berisi file latihan yang dikerjakan selama mengikuti materi praktikum)</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Kelengkapan Dokumentasi (README.md):</strong>
+          <ul>
+            <li><strong>Identitas:</strong> Nama Lengkap, NIM, dan Kelas Praktikum.</li>
+            <li><strong>Deskripsi Aplikasi:</strong> Gambaran umum aplikasi, tujuan pembuatan, dan studi kasus yang dipilih.</li>
+            <li><strong>Panduan Menjalankan:</strong> Langkah-langkah membuka dan menjalankan aplikasi di browser lokal (misal menggunakan Live Server di VS Code).</li>
+            <li><strong>Daftar Fitur:</strong> Checklist seluruh fitur yang berhasil diimplementasikan (validasi form, kalkulator saldo/anggaran, dan interaksi localStorage).</li>
+            <li><strong>Tangkapan Layar (Screenshot):</strong> Minimal 3 screenshot aplikasi (tampilan form input utama, tampilan saat validasi error muncul, serta tampilan hasil perhitungan kalkulator dan tabel riwayat data).</li>
+            <li><strong>Penjelasan Teknis Singkat:</strong> Penjelasan alur logika JavaScript utama (penanganan validasi input, algoritma kalkulator keuangan, dan mekanisme serialisasi <code>localStorage</code>).</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Batas Waktu Pengumpulan (Deadline):</strong>
+          <ul>
+            <li>
+              Setiap kelas memiliki deadline pengumpulan yang berbeda sesuai jadwal praktikum masing-masing:
+              <ul>
+                <li><strong>Kelas RB:</strong> <strong>Rabu, 07 Oktober 2026, pukul 23:59 WIB</strong></li>
+                <li><strong>Kelas RA:</strong> <strong>Sabtu, 10 Oktober 2026, pukul 23:59 WIB</strong></li>
+              </ul>
+            </li>
+            <li>Keterlambatan pengumpulan dikenakan pengurangan nilai sebesar <strong>10% per hari keterlambatan</strong>.</li>
+          </ul>
+        </li>
+      </ul>
       <SubmissionBox pertemuan={1} />
     </>
   );

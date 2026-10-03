@@ -24,11 +24,11 @@ export default function Pertemuan5() {
     <>
       <h2 id="dasar-teori">Python OOP</h2>
 
-<h3>Pengenalan OOP</h3>
+<h3 id="pengenalan-oop">Pengenalan OOP</h3>
 <p>Memahami konsep dasar dan filosofi Object-Oriented Programming</p>
 
 
-<h3>Apa itu Object-Oriented Programming?</h3>
+<h3 id="apa-itu-object-oriented-programming">Apa itu Object-Oriented Programming?</h3>
 <p>Object-Oriented Programming (OOP) adalah paradigma pemrograman yang didasarkan pada konsep "objek", yang dapat berisi data dalam bentuk field (disebut juga atribut atau properti) dan kode dalam bentuk prosedur (disebut juga metode).</p>
 
 <p>Definisi OOP</p>
@@ -36,9 +36,9 @@ export default function Pertemuan5() {
 <p>OOP adalah cara mengorganisir program dengan menggunakan objek yang merepresentasikan entitas di dunia nyata. Setiap objek memiliki karakteristik (atribut) dan kemampuan (metode).</p>
 
 
-<h3>Empat Pilar OOP</h3>
+<h3 id="empat-pilar-oop">Empat Pilar OOP</h3>
 
-<h3>1. Encapsulation (Enkapsulasi)</h3>
+<h3 id="1-encapsulation-enkapsulasi">1. Encapsulation (Enkapsulasi)</h3>
 <p>Encapsulation adalah prinsip menyembunyikan detail implementasi internal dari pengguna eksternal. Ini memungkinkan kita untuk:</p>
 
 <ul>
@@ -51,7 +51,7 @@ export default function Pertemuan5() {
 Ketika Kalian menggunakan smartphone, Kalian tidak perlu tahu bagaimana prosesor bekerja atau bagaimana data disimpan. Kalian hanya perlu tahu cara menggunakan tombol dan interface yang tersedia.</p>
 
 
-<h3>2. Inheritance (Pewarisan)</h3>
+<h3 id="2-inheritance-pewarisan">2. Inheritance (Pewarisan)</h3>
 <p>Inheritance memungkinkan kita membuat class baru berdasarkan class yang sudah ada. Class baru akan mewarisi atribut dan metode dari class induk.</p>
 
 <p>Manfaat:</p>
@@ -66,7 +66,7 @@ Ketika Kalian menggunakan smartphone, Kalian tidak perlu tahu bagaimana prosesor
 Seperti hubungan orang tua dan anak. Anak mewarisi ciri-ciri dari orang tua (seperti warna mata, tinggi badan), tetapi juga memiliki karakteristik unik mereka sendiri.</p>
 
 
-<h3>3. Polymorphism (Polimorfisme)</h3>
+<h3 id="3-polymorphism-polimorfisme">3. Polymorphism (Polimorfisme)</h3>
 <p>Polymorphism memungkinkan objek dari berbagai class untuk merespons method yang sama dengan cara yang berbeda.</p>
 
 <p>Jenis-jenis Polymorphism:</p>
@@ -80,36 +80,36 @@ Seperti hubungan orang tua dan anak. Anak mewarisi ciri-ciri dari orang tua (sep
 Tombol "Start" bisa berarti berbeda untuk berbagai perangkat. Di mobil, tombol start menghidupkan mesin. Di komputer, tombol start membuka menu. Namanya sama, tapi perilakunya berbeda.</p>
 
 
-<h3>4. Abstraction (Abstraksi)</h3>
+<h3 id="4-abstraction-abstraksi">4. Abstraction (Abstraksi)</h3>
 <p>Abstraction adalah proses menyembunyikan detail kompleks dan hanya menampilkan fitur yang penting. Ini membantu mengurangi kompleksitas program.</p>
 
 <p>Contoh Analogi:
 Ketika Kalian menyetir mobil, Kalian hanya perlu tahu cara menggunakan setir, pedal gas, dan rem. Kalian tidak perlu memahami bagaimana mesin pembakaran internal bekerja atau bagaimana transmisi mengubah gigi.</p>
 
 
-<h3>Keuntungan Menggunakan OOP</h3>
+<h3 id="keuntungan-menggunakan-oop">Keuntungan Menggunakan OOP</h3>
 
-<h3>1. Modular</h3>
+<h3 id="1-modular">1. Modular</h3>
 <p>Program dibagi menjadi objek-objek yang mandiri. Setiap objek memiliki tanggung jawab spesifik, membuat kode lebih terorganisir.</p>
 
 
-<h3>2. Reusability</h3>
+<h3 id="2-reusability">2. Reusability</h3>
 <p>Class yang sudah dibuat dapat digunakan kembali dalam program yang berbeda atau diwariskan untuk membuat class baru.</p>
 
 
-<h3>3. Maintainability</h3>
+<h3 id="3-maintainability">3. Maintainability</h3>
 <p>Lebih mudah untuk memelihara dan mengupdate kode. Perubahan pada satu class tidak akan mempengaruhi class lain (jika dirancang dengan baik).</p>
 
 
-<h3>4. Scalability</h3>
+<h3 id="4-scalability">4. Scalability</h3>
 <p>Mudah untuk menambahkan fitur baru tanpa mengubah kode yang sudah ada.</p>
 
 
-<h3>5. Data Security</h3>
+<h3 id="5-data-security">5. Data Security</h3>
 <p>Dengan encapsulation, data dapat dilindungi dari akses eksternal yang tidak diinginkan.</p>
 
 
-<h3>Kapan Menggunakan OOP?</h3>
+<h3 id="kapan-menggunakan-oop">Kapan Menggunakan OOP?</h3>
 <p>OOP sangat cocok untuk:</p>
 
 <ul>
@@ -128,7 +128,7 @@ Ketika Kalian menyetir mobil, Kalian hanya perlu tahu cara menggunakan setir, pe
 <p>Keduanya memiliki tempat masing-masing. Pilih paradigma yang sesuai dengan kebutuhan proyek Kalian.</p>
 
 
-<h3>Python dan OOP</h3>
+<h3 id="python-dan-oop">Python dan OOP</h3>
 <p>Python adalah bahasa yang mendukung multiple paradigm:</p>
 
 <ul>
@@ -142,7 +142,7 @@ Ketika Kalian menyetir mobil, Kalian hanya perlu tahu cara menggunakan setir, pe
 <p>Di Python, segalanya adalah objek! Integer, string, list, bahkan function adalah objek. Ini membuat Python sangat fleksibel dan powerful untuk OOP.</p>
 
 
-<h3>Contoh Sederhana</h3>
+<h3 id="contoh-sederhana">Contoh Sederhana</h3>
 <p>Bahkan ketika Kalian menulis kode Python sederhana, Kalian sebenarnya sudah menggunakan OOP:</p>
 
 <CodeBlock language="">{`# String adalah objek dari class str
@@ -158,9 +158,9 @@ print(numbers.count(2))  # Memanggil method count() dari class list`}</CodeBlock
 <p>Pada contoh di atas, text dan numbers adalah objek, dan upper(), split(), append(), count() adalah metode yang dimiliki oleh objek tersebut.</p>
 
 
-<h3>Perbandingan: Procedural vs OOP</h3>
+<h3 id="perbandingan-procedural-vs-oop">Perbandingan: Procedural vs OOP</h3>
 
-<h3>Pendekatan Procedural</h3>
+<h3 id="pendekatan-procedural">Pendekatan Procedural</h3>
 <CodeBlock language="">{`# Data terpisah dari fungsi
 mahasiswa_nama = "Budi"
 mahasiswa_nim = "TI12345"
@@ -174,7 +174,7 @@ def display_mahasiswa(nama, nim, jurusan):
 display_mahasiswa(mahasiswa_nama, mahasiswa_nim, mahasiswa_jurusan)`}</CodeBlock>
 
 
-<h3>Pendekatan OOP</h3>
+<h3 id="pendekatan-oop">Pendekatan OOP</h3>
 <CodeBlock language="">{`# Data dan fungsi tergabung dalam class
 class Mahasiswa:
     def __init__(self, nama, nim, jurusan):
@@ -196,7 +196,7 @@ mhs.display_info()`}</CodeBlock>
 <p>Pada pendekatan OOP, data dan fungsi yang berkaitan digabungkan dalam satu unit (class). Ini membuat kode lebih terorganisir, mudah dipahami, dan mudah dipelihara, terutama ketika program menjadi lebih kompleks.</p>
 
 
-<h3>Kesimpulan</h3>
+<h3 id="kesimpulan">Kesimpulan</h3>
 <p>Object-Oriented Programming adalah paradigma yang powerful untuk membangun aplikasi yang kompleks, scalable, dan maintainable. Dengan memahami empat pilar OOP (Encapsulation, Inheritance, Polymorphism, Abstraction), Kalian dapat menulis kode yang lebih terstruktur dan efisien.</p>
 
 <p>Langkah Selanjutnya</p>
@@ -212,11 +212,11 @@ mhs.display_info()`}</CodeBlock>
 <p>Membuat class, object, atribut, dan method dalam Python</p>
 
 
-<h3>Class dan Object</h3>
+<h3 id="class-dan-object">Class dan Object</h3>
 <p>Membuat class, object, atribut, dan method dalam Python</p>
 
 
-<h3>Apa itu Class?</h3>
+<h3 id="apa-itu-class">Apa itu Class?</h3>
 <p>Class adalah blueprint atau template untuk membuat objek. Class mendefinisikan atribut (data) dan metode (fungsi) yang akan dimiliki oleh objek.</p>
 
 <p>Analogi</p>
@@ -224,13 +224,13 @@ mhs.display_info()`}</CodeBlock>
 <p>Class seperti blueprint rumah. Blueprint mendefinisikan struktur rumah: berapa kamar, di mana pintu, dll. Dari satu blueprint, Kalian bisa membangun banyak rumah (objek) dengan struktur yang sama tapi mungkin warna atau furnitur berbeda.</p>
 
 
-<h3>Apa itu Object?</h3>
+<h3 id="apa-itu-object">Apa itu Object?</h3>
 <p>Object adalah instance dari sebuah class. Ketika Kalian membuat objek dari class, Kalian membuat sebuah entitas konkret berdasarkan blueprint yang didefinisikan oleh class.</p>
 
 
-<h3>Membuat Class Sederhana</h3>
+<h3 id="membuat-class-sederhana">Membuat Class Sederhana</h3>
 
-<h3>Sintaks Dasar Class</h3>
+<h3 id="sintaks-dasar-class">Sintaks Dasar Class</h3>
 <p>Class didefinisikan menggunakan keyword class diikuti nama class (biasanya menggunakan PascalCase):</p>
 
 <CodeBlock language="">{`class Mahasiswa:
@@ -241,7 +241,7 @@ mhs.display_info()`}</CodeBlock>
 <p>Nama class menggunakan PascalCase (huruf pertama setiap kata kapital tanpa underscore). Contoh: Mahasiswa, KaryawanTetap, UserProfile.</p>
 
 
-<h3>Menambahkan Atribut Class</h3>
+<h3 id="menambahkan-atribut-class">Menambahkan Atribut Class</h3>
 <p>Atribut class adalah variabel yang dimiliki bersama oleh semua instance dari class:</p>
 
 <CodeBlock language="">{`class Mahasiswa:
@@ -255,7 +255,7 @@ mhs.display_info()`}</CodeBlock>
 print(Mahasiswa.universitas)  # Output: Institut Teknologi Sumatera`}</CodeBlock>
 
 
-<h3>Constructor: Method __init__</h3>
+<h3 id="constructor-method-init">Constructor: Method __init__</h3>
 <p>Constructor adalah method khusus yang dipanggil otomatis ketika objek dibuat. Di Python, constructor didefinisikan dengan method __init__:</p>
 
 <CodeBlock language="">{`class Mahasiswa:
@@ -274,7 +274,7 @@ print(Mahasiswa.universitas)  # Output: Institut Teknologi Sumatera`}</CodeBlock
 <p>self adalah referensi ke instance objek yang sedang dibuat. Ini HARUS menjadi parameter pertama di setiap instance method. Python akan otomatis mengisi parameter ini, jadi Kalian tidak perlu menyediakannya saat memanggil method.</p>
 
 
-<h3>Membuat Object (Instance)</h3>
+<h3 id="membuat-object-instance">Membuat Object (Instance)</h3>
 <p>Untuk membuat object dari class, panggil class seperti memanggil function:</p>
 
 <CodeBlock language="">{`# Membuat object
@@ -295,7 +295,7 @@ print(mhs2.nim)   # Output: TI67890`}</CodeBlock>
 Class attribute (jurusan): Dibagikan oleh semua object dari class yang sama.</p>
 
 
-<h3>Menambahkan Method</h3>
+<h3 id="menambahkan-method">Menambahkan Method</h3>
 <p>Method adalah fungsi yang didefinisikan di dalam class dan dapat dipanggil oleh objek:</p>
 
 <CodeBlock language="">{`class Mahasiswa:
@@ -332,7 +332,7 @@ mhs1.set_ipk(3.5)
 print(f"Status kelulusan: {'Lulus' if mhs1.is_lulus() else 'Tidak Lulus'}")`}</CodeBlock>
 
 
-<h3>Contoh Lengkap</h3>
+<h3 id="contoh-lengkap">Contoh Lengkap</h3>
 <p>Mari kita lihat contoh lengkap implementasi class dan object:</p>
 
 <CodeBlock language="">{`class Mahasiswa:
@@ -409,7 +409,7 @@ mhs1.display_info()
 mhs2.display_info()`}</CodeBlock>
 
 
-<h3>Perbedaan Class Attribute vs Instance Attribute</h3>
+<h3 id="perbedaan-class-attribute-vs-instance-attribute">Perbedaan Class Attribute vs Instance Attribute</h3>
 <CodeBlock language="">{`class Mahasiswa:
     # Class attribute - shared by all instances
     jurusan = "Teknik Informatika"
@@ -451,7 +451,7 @@ print(mhs1.nama)  # Budi Santoso
 print(mhs2.nama)  # Ani (tidak berubah)`}</CodeBlock>
 
 
-<h3>Special Methods (Dunder Methods)</h3>
+<h3 id="special-methods-dunder-methods">Special Methods (Dunder Methods)</h3>
 <p>Python memiliki special methods yang diawali dan diakhiri dengan double underscore (__). Method ini memiliki perilaku khusus:</p>
 
 <CodeBlock language="">{`class Mahasiswa:
@@ -485,9 +485,9 @@ print(mhs1 == mhs2)  # False
 print(mhs1 == mhs3)  # True (NIM sama)`}</CodeBlock>
 
 
-<h3>Praktik Terbaik</h3>
+<h3 id="praktik-terbaik">Praktik Terbaik</h3>
 
-<h3>1. Naming Conventions</h3>
+<h3 id="1-naming-conventions">1. Naming Conventions</h3>
 <CodeBlock language="">{`# Good - PascalCase for class names
 class UserProfile:
     pass
@@ -500,7 +500,7 @@ class user_profile:  # Avoid
     pass`}</CodeBlock>
 
 
-<h3>2. Single Responsibility Principle</h3>
+<h3 id="2-single-responsibility-principle">2. Single Responsibility Principle</h3>
 <p>Setiap class harus memiliki satu tanggung jawab utama:</p>
 
 <CodeBlock language="">{`# Good - Each class has single responsibility
@@ -529,7 +529,7 @@ class Mahasiswa:
         pass`}</CodeBlock>
 
 
-<h3>3. Documentation</h3>
+<h3 id="3-documentation">3. Documentation</h3>
 <p>Gunakan docstring untuk mendokumentasikan class dan method:</p>
 
 <CodeBlock language="">{`class Mahasiswa:
@@ -570,7 +570,7 @@ class Mahasiswa:
             raise ValueError("IPK harus antara 0.0 dan 4.0")`}</CodeBlock>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>Buat class Buku dengan atribut judul, penulis, tahun_terbit, dan harga</li>
   <li>Tambahkan method untuk menampilkan informasi buku</li>
@@ -592,11 +592,11 @@ class Mahasiswa:
 <p>Memahami konsep pewarisan class dan method overriding</p>
 
 
-<h3>Inheritance (Pewarisan)</h3>
+<h3 id="inheritance-pewarisan">Inheritance (Pewarisan)</h3>
 <p>Memahami konsep pewarisan class dan method overriding</p>
 
 
-<h3>Apa itu Inheritance?</h3>
+<h3 id="apa-itu-inheritance">Apa itu Inheritance?</h3>
 <p>Inheritance (pewarisan) adalah mekanisme di mana sebuah class baru dapat mewarisi atribut dan method dari class yang sudah ada. Class yang diwarisi disebut parent class (superclass), dan class yang mewarisi disebut child class (subclass).</p>
 
 <p>Keuntungan Inheritance</p>
@@ -609,9 +609,9 @@ class Mahasiswa:
 </ul>
 
 
-<h3>Konsep Dasar Inheritance</h3>
+<h3 id="konsep-dasar-inheritance">Konsep Dasar Inheritance</h3>
 
-<h3>Terminologi</h3>
+<h3 id="terminologi">Terminologi</h3>
 <ul>
   <li>Parent Class / Superclass / Base Class: Class yang diwarisi</li>
   <li>Child Class / Subclass / Derived Class: Class yang mewarisi</li>
@@ -619,7 +619,7 @@ class Mahasiswa:
 </ul>
 
 
-<h3>Hubungan "is-a"</h3>
+<h3 id="hubungan-is-a">Hubungan "is-a"</h3>
 <p>Inheritance merepresentasikan hubungan "is-a":</p>
 
 <ul>
@@ -630,9 +630,9 @@ class Mahasiswa:
 </ul>
 
 
-<h3>Implementasi Inheritance</h3>
+<h3 id="implementasi-inheritance">Implementasi Inheritance</h3>
 
-<h3>Membuat Parent Class</h3>
+<h3 id="membuat-parent-class">Membuat Parent Class</h3>
 <p>Pertama, buat class dasar yang akan diwarisi:</p>
 
 <CodeBlock language="">{`class Kendaraan:
@@ -657,7 +657,7 @@ class Mahasiswa:
             print("Tidak dapat menurunkan odometer!")`}</CodeBlock>
 
 
-<h3>Membuat Child Class</h3>
+<h3 id="membuat-child-class">Membuat Child Class</h3>
 <p>Buat child class yang mewarisi dari parent class menggunakan sintaks class ChildClass(ParentClass):</p>
 
 <CodeBlock language="">{`class Mobil(Kendaraan):
@@ -680,7 +680,7 @@ class Mahasiswa:
 <p>super() digunakan untuk memanggil method dari parent class. Paling sering digunakan untuk memanggil __init__ parent class agar atribut parent dapat diinisialisasi.</p>
 
 
-<h3>Menggunakan Child Class</h3>
+<h3 id="menggunakan-child-class">Menggunakan Child Class</h3>
 <p>Child class memiliki akses ke semua atribut dan method dari parent class:</p>
 
 <CodeBlock language="">{`# Membuat instance Mobil
@@ -695,7 +695,7 @@ print(mobil1.baca_odometer())  # Kendaraan ini telah berjalan sejauh 1500 kilome
 print(mobil1.isi_bensin(20))  # Bensin diisi 20 liter. Total: 120 liter`}</CodeBlock>
 
 
-<h3>Method Overriding</h3>
+<h3 id="method-overriding">Method Overriding</h3>
 <p>Child class dapat mengganti (override) method dari parent class:</p>
 
 <CodeBlock language="">{`class Mobil(Kendaraan):
@@ -720,7 +720,7 @@ mobil1 = Mobil("Toyota", 2022, "SUV")
 print(mobil1.deskripsi())  # Toyota (2022) - SUV`}</CodeBlock>
 
 
-<h3>Contoh Lengkap</h3>
+<h3 id="contoh-lengkap">Contoh Lengkap</h3>
 <p>Mari lihat contoh lengkap dengan multiple child classes:</p>
 
 <CodeBlock language="">{`# Parent Class
@@ -827,7 +827,7 @@ truk1.muat_barang(2500)
 print(truk1.isi_bensin(50))`}</CodeBlock>
 
 
-<h3>Multiple Inheritance</h3>
+<h3 id="multiple-inheritance">Multiple Inheritance</h3>
 <p>Python mendukung multiple inheritance, di mana sebuah class dapat mewarisi dari beberapa parent class:</p>
 
 <CodeBlock language="">{`class Elektronik:
@@ -865,7 +865,7 @@ print(laptop1.bawa())`}</CodeBlock>
 <p>Ketika menggunakan multiple inheritance, Python menggunakan MRO untuk menentukan urutan pencarian method. Gunakan ClassName.__mro__ atau ClassName.mro() untuk melihat urutan.</p>
 
 
-<h3>Mengecek Inheritance</h3>
+<h3 id="mengecek-inheritance">Mengecek Inheritance</h3>
 <p>Python menyediakan beberapa built-in function untuk mengecek inheritance:</p>
 
 <CodeBlock language="">{`class Kendaraan:
@@ -896,9 +896,9 @@ print(type(mobil1) == Kendaraan)      # False`}</CodeBlock>
 <p>Gunakan isinstance() daripada type() untuk mengecek tipe object karena isinstance() memperhitungkan inheritance, sedangkan type() hanya mengecek tipe exact.</p>
 
 
-<h3>Praktik Terbaik</h3>
+<h3 id="praktik-terbaik">Praktik Terbaik</h3>
 
-<h3>1. Gunakan super()</h3>
+<h3 id="1-gunakan-super">1. Gunakan super()</h3>
 <CodeBlock language="">{`# Good - menggunakan super()
 class Mobil(Kendaraan):
     def __init__(self, merek, tahun, tipe):
@@ -912,7 +912,7 @@ class Mobil(Kendaraan):
         self.tipe = tipe`}</CodeBlock>
 
 
-<h3>2. Liskov Substitution Principle</h3>
+<h3 id="2-liskov-substitution-principle">2. Liskov Substitution Principle</h3>
 <p>Child class harus dapat menggantikan parent class tanpa merusak program:</p>
 
 <CodeBlock language="">{`# Good - child class extends parent
@@ -935,7 +935,7 @@ class Square(Rectangle):
         self.height = width  # Breaks rectangle behavior`}</CodeBlock>
 
 
-<h3>3. Favor Composition Over Inheritance</h3>
+<h3 id="3-favor-composition-over-inheritance">3. Favor Composition Over Inheritance</h3>
 <p>Kadang composition (has-a) lebih baik daripada inheritance (is-a):</p>
 
 <CodeBlock language="">{`# Inheritance (is-a)
@@ -959,9 +959,9 @@ class Car:
         return self.engine.start()`}</CodeBlock>
 
 
-<h3>Design Patterns dengan Inheritance</h3>
+<h3 id="design-patterns-dengan-inheritance">Design Patterns dengan Inheritance</h3>
 
-<h3>Template Method Pattern</h3>
+<h3 id="template-method-pattern">Template Method Pattern</h3>
 <CodeBlock language="">{`from abc import ABC, abstractmethod
 
 class DataProcessor(ABC):
@@ -1013,7 +1013,7 @@ json_proc = JSONProcessor()
 json_proc.process()`}</CodeBlock>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>
 Buat class hierarchy untuk sistem e-commerce:
@@ -1064,11 +1064,11 @@ Gunakan isinstance() untuk memberikan diskon berbeda berdasarkan tipe user
 <p>Melindungi data dengan access modifiers dan property decorators</p>
 
 
-<h3>Encapsulation</h3>
+<h3 id="encapsulation">Encapsulation</h3>
 <p>Melindungi data dengan access modifiers dan property decorators</p>
 
 
-<h3>Apa itu Encapsulation?</h3>
+<h3 id="apa-itu-encapsulation">Apa itu Encapsulation?</h3>
 <p>Encapsulation adalah prinsip OOP yang menyembunyikan detail implementasi internal dari pengguna eksternal. Dengan encapsulation, kita dapat:</p>
 
 <ul>
@@ -1083,7 +1083,7 @@ Gunakan isinstance() untuk memberikan diskon berbeda berdasarkan tipe user
 <p>Encapsulation seperti ATM. Kalian tidak perlu tahu bagaimana ATM bekerja secara internal (koneksi database, mekanisme pengeluaran uang, dll). Kalian hanya berinteraksi melalui interface yang disediakan (tombol dan layar).</p>
 
 
-<h3>Access Modifiers di Python</h3>
+<h3 id="access-modifiers-di-python">Access Modifiers di Python</h3>
 <p>Python tidak memiliki access modifiers strict seperti Java (public, private, protected). Sebaliknya, Python menggunakan naming conventions untuk mengindikasikan tingkat akses:</p>
 
 <p>Python Philosophy</p>
@@ -1091,7 +1091,7 @@ Gunakan isinstance() untuk memberikan diskon berbeda berdasarkan tipe user
 <p>Python mengikuti prinsip "We are all consenting adults here". Access modifiers lebih merupakan konvensi daripada enforcement. Developer dipercaya untuk mengikuti konvensi yang ada.</p>
 
 
-<h3>Public Attributes</h3>
+<h3 id="public-attributes">Public Attributes</h3>
 <p>Atribut public dapat diakses dan dimodifikasi dari mana saja:</p>
 
 <CodeBlock language="">{`class Student:
@@ -1109,7 +1109,7 @@ student.name = "Budi Santoso"
 print(student.name)  # Budi Santoso`}</CodeBlock>
 
 
-<h3>Protected Attributes</h3>
+<h3 id="protected-attributes">Protected Attributes</h3>
 <p>Atribut protected ditandai dengan single underscore _. Ini adalah konvensi yang menandakan atribut untuk internal use, tapi masih bisa diakses:</p>
 
 <CodeBlock language="">{`class Student:
@@ -1133,7 +1133,7 @@ print(student.get_program())  # Teknik`}</CodeBlock>
 <p>Protected attributes dapat diakses, tetapi dengan konvensi single underscore, developer lain tahu bahwa ini untuk internal use dan tidak seharusnya diakses langsung dari luar class.</p>
 
 
-<h3>Private Attributes</h3>
+<h3 id="private-attributes">Private Attributes</h3>
 <p>Atribut private ditandai dengan double underscore __. Python melakukan "name mangling" sehingga atribut ini sulit diakses dari luar class:</p>
 
 <CodeBlock language="">{`class Student:
@@ -1159,11 +1159,11 @@ except AttributeError as e:
 print(student._Student__id)  # 2023-12345`}</CodeBlock>
 
 
-<h3>Property Decorators</h3>
+<h3 id="property-decorators">Property Decorators</h3>
 <p>Property decorators menyediakan cara Pythonic untuk membuat getter dan setter:</p>
 
 
-<h3>Getter dengan @property</h3>
+<h3 id="getter-dengan-property">Getter dengan @property</h3>
 <p>Property decorator mengubah method menjadi attribute yang dapat dibaca:</p>
 
 <CodeBlock language="">{`class Student:
@@ -1188,7 +1188,7 @@ print(student.age)  # 25 (tergantung tahun saat ini)
 print(student.birth_year)  # 2000`}</CodeBlock>
 
 
-<h3>Setter dengan @property.setter</h3>
+<h3 id="setter-dengan-propertysetter">Setter dengan @property.setter</h3>
 <p>Setter memungkinkan kita mengontrol bagaimana attribute dimodifikasi:</p>
 
 <CodeBlock language="">{`class Student:
@@ -1221,7 +1221,7 @@ except ValueError as e:
     print(f"Error: {e}")`}</CodeBlock>
 
 
-<h3>Deleter dengan @property.deleter</h3>
+<h3 id="deleter-dengan-propertydeleter">Deleter dengan @property.deleter</h3>
 <p>Deleter mengontrol perilaku ketika attribute dihapus:</p>
 
 <CodeBlock language="">{`class Student:
@@ -1250,7 +1250,7 @@ del student.name  # Deleting name...
 print(student.name)  # None`}</CodeBlock>
 
 
-<h3>Contoh Lengkap: Bank Account</h3>
+<h3 id="contoh-lengkap-bank-account">Contoh Lengkap: Bank Account</h3>
 <p>Mari lihat contoh lengkap encapsulation pada class BankAccount:</p>
 
 <CodeBlock language="">{`class BankAccount:
@@ -1386,16 +1386,16 @@ except ValueError as e:
     print(f"Error: {e}")`}</CodeBlock>
 
 
-<h3>Kapan Menggunakan Access Modifiers</h3>
+<h3 id="kapan-menggunakan-access-modifiers">Kapan Menggunakan Access Modifiers</h3>
 
-<h3>Gunakan Public</h3>
+<h3 id="gunakan-public">Gunakan Public</h3>
 <CodeBlock language="">{`class Product:
     def __init__(self, name, price):
         self.name = name  # Public - data yang umum diakses
         self.price = price  # Public`}</CodeBlock>
 
 
-<h3>Gunakan Protected</h3>
+<h3 id="gunakan-protected">Gunakan Protected</h3>
 <CodeBlock language="">{`class DatabaseConnection:
     def __init__(self, host):
         self._host = host  # Protected - untuk subclass
@@ -1406,7 +1406,7 @@ except ValueError as e:
         pass`}</CodeBlock>
 
 
-<h3>Gunakan Private</h3>
+<h3 id="gunakan-private">Gunakan Private</h3>
 <CodeBlock language="">{`class PasswordManager:
     def __init__(self, password):
         self.__password = password  # Private - data sensitif
@@ -1415,9 +1415,9 @@ except ValueError as e:
         return input_password == self.__password`}</CodeBlock>
 
 
-<h3>Praktik Terbaik</h3>
+<h3 id="praktik-terbaik">Praktik Terbaik</h3>
 
-<h3>1. Gunakan Properties untuk Validasi</h3>
+<h3 id="1-gunakan-properties-untuk-validasi">1. Gunakan Properties untuk Validasi</h3>
 <CodeBlock language="">{`class Student:
     def __init__(self, name, gpa):
         self.name = name
@@ -1435,7 +1435,7 @@ except ValueError as e:
         self._gpa = value`}</CodeBlock>
 
 
-<h3>2. Encapsulate Complex Logic</h3>
+<h3 id="2-encapsulate-complex-logic">2. Encapsulate Complex Logic</h3>
 <CodeBlock language="">{`class Circle:
     def __init__(self, radius):
         self._radius = radius
@@ -1459,7 +1459,7 @@ except ValueError as e:
         return 2 * math.pi * self._radius`}</CodeBlock>
 
 
-<h3>3. Don't Expose Mutable Collections</h3>
+<h3 id="3-dont-expose-mutable-collections">3. Don't Expose Mutable Collections</h3>
 <CodeBlock language="">{`# Bad - exposes internal list
 class Classroom:
     def __init__(self):
@@ -1477,7 +1477,7 @@ class Classroom:
         return self.__students.copy()  # Return copy`}</CodeBlock>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>
 Buat class Employee dengan:
@@ -1551,11 +1551,11 @@ Property untuk email dengan validasi format
 <p>Memahami polymorphism, method overriding, dan duck typing</p>
 
 
-<h3>Polymorphism</h3>
+<h3 id="polymorphism">Polymorphism</h3>
 <p>Memahami polymorphism, method overriding, dan duck typing</p>
 
 
-<h3>Apa itu Polymorphism?</h3>
+<h3 id="apa-itu-polymorphism">Apa itu Polymorphism?</h3>
 <p>Polymorphism (dari bahasa Yunani: "poly" = banyak, "morph" = bentuk) adalah kemampuan objek dari class yang berbeda untuk merespons method dengan nama yang sama dengan cara yang berbeda.</p>
 
 <p>Analogi</p>
@@ -1563,9 +1563,9 @@ Property untuk email dengan validasi format
 <p>Bayangkan tombol "Play" pada remote control. Untuk TV, tombol play menyalakan acara. Untuk AC, play menyalakan pendingin. Untuk stereo, play memutar musik. Tombol yang sama, tapi perilaku berbeda tergantung perangkat.</p>
 
 
-<h3>Jenis-jenis Polymorphism</h3>
+<h3 id="jenis-jenis-polymorphism">Jenis-jenis Polymorphism</h3>
 
-<h3>1. Method Overriding</h3>
+<h3 id="1-method-overriding">1. Method Overriding</h3>
 <p>Method overriding terjadi ketika subclass memberikan implementasi spesifik untuk method yang sudah didefinisikan di superclass:</p>
 
 <CodeBlock language="">{`class Animal:
@@ -1602,7 +1602,7 @@ for animal in animals:
 # Milly says Moo!`}</CodeBlock>
 
 
-<h3>2. Duck Typing</h3>
+<h3 id="2-duck-typing">2. Duck Typing</h3>
 <p>Python menggunakan "duck typing": "If it walks like a duck and quacks like a duck, it must be a duck."</p>
 
 <p>Python tidak peduli tipe object apa yang diberikan, selama object tersebut memiliki method yang dipanggil:</p>
@@ -1633,9 +1633,9 @@ print(make_sound(Robot()))  # Beep boop!`}</CodeBlock>
 <p>Dalam bahasa dengan static typing (Java, C++), Kalian harus mendefinisikan interface atau parent class yang sama. Python lebih fleksibel dengan duck typing - yang penting memiliki method yang dibutuhkan.</p>
 
 
-<h3>Polymorphism dengan Function</h3>
+<h3 id="polymorphism-dengan-function">Polymorphism dengan Function</h3>
 
-<h3>Function yang Polymorphic</h3>
+<h3 id="function-yang-polymorphic">Function yang Polymorphic</h3>
 <p>Buat function yang dapat bekerja dengan berbagai tipe object:</p>
 
 <CodeBlock language="">{`class Circle:
@@ -1678,7 +1678,7 @@ for shape in shapes:
     print_area(shape)`}</CodeBlock>
 
 
-<h3>Method Chaining dengan Polymorphism</h3>
+<h3 id="method-chaining-dengan-polymorphism">Method Chaining dengan Polymorphism</h3>
 <CodeBlock language="">{`class Shape:
     def __init__(self):
         self.color = "black"
@@ -1714,7 +1714,7 @@ square = Square(10).set_color("blue")
 print(square.draw())  # Drawing blue square with side 10`}</CodeBlock>
 
 
-<h3>Operator Overloading</h3>
+<h3 id="operator-overloading">Operator Overloading</h3>
 <p>Python memungkinkan kita untuk mendefinisikan perilaku operator (+, -, *, ==, dll) untuk class kita sendiri:</p>
 
 <CodeBlock language="">{`class Vector:
@@ -1766,9 +1766,9 @@ print(v1 < v2)      # True
 print(len(v1))      # 3`}</CodeBlock>
 
 
-<h3>Common Operator Overloading Methods</h3>
+<h3 id="common-operator-overloading-methods">Common Operator Overloading Methods</h3>
 
-<h3>Contoh Lengkap: Payment System</h3>
+<h3 id="contoh-lengkap-payment-system">Contoh Lengkap: Payment System</h3>
 <p>Mari lihat contoh lengkap polymorphism pada sistem pembayaran:</p>
 
 <CodeBlock language="">{`from abc import ABC, abstractmethod
@@ -1925,7 +1925,7 @@ for payment in payments:
 processor.print_summary()`}</CodeBlock>
 
 
-<h3>Polymorphism dengan Built-in Functions</h3>
+<h3 id="polymorphism-dengan-built-in-functions">Polymorphism dengan Built-in Functions</h3>
 <p>Python built-in functions menggunakan polymorphism:</p>
 
 <CodeBlock language="">{`# len() works with different types
@@ -1956,9 +1956,9 @@ print(sum((1, 2, 3)))           # 6
 print(sum({1, 2, 3}))           # 6`}</CodeBlock>
 
 
-<h3>Praktik Terbaik</h3>
+<h3 id="praktik-terbaik">Praktik Terbaik</h3>
 
-<h3>1. Design for Polymorphism</h3>
+<h3 id="1-design-for-polymorphism">1. Design for Polymorphism</h3>
 <CodeBlock language="">{`# Good - design dengan interface yang konsisten
 class Shape:
     def area(self):
@@ -1986,7 +1986,7 @@ class Square:
         pass`}</CodeBlock>
 
 
-<h3>2. Use Abstract Base Classes</h3>
+<h3 id="2-use-abstract-base-classes">2. Use Abstract Base Classes</h3>
 <CodeBlock language="">{`from abc import ABC, abstractmethod
 
 class Vehicle(ABC):
@@ -2001,7 +2001,7 @@ class Vehicle(ABC):
         pass`}</CodeBlock>
 
 
-<h3>3. Follow Liskov Substitution Principle</h3>
+<h3 id="3-follow-liskov-substitution-principle">3. Follow Liskov Substitution Principle</h3>
 <CodeBlock language="">{`# Good - subclass can replace parent without breaking
 class Bird:
     def move(self):
@@ -2021,7 +2021,7 @@ class Penguin(Bird):
         raise Exception("Penguins can't fly!")  # Breaks contract`}</CodeBlock>
 
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>
 Buat hierarchy untuk sistem notifikasi:
@@ -2098,11 +2098,11 @@ Transaction logging
 <p>Memahami abstract classes, abstract methods, dan interface di Python</p>
 
 
-<h3>Abstract Class</h3>
+<h3 id="abstract-class">Abstract Class</h3>
 <p>Memahami abstract classes, abstract methods, dan interface di Python</p>
 
 
-<h3>Apa itu Abstract Class?</h3>
+<h3 id="apa-itu-abstract-class">Apa itu Abstract Class?</h3>
 <p>Abstract class adalah class yang tidak dapat diinstansiasi secara langsung dan berfungsi sebagai blueprint atau template untuk class lain. Abstract class dapat berisi abstract methods (method tanpa implementasi) yang harus diimplementasikan oleh subclass.</p>
 
 <p>Analogi</p>
@@ -2110,22 +2110,22 @@ Transaction logging
 <p>Bayangkan blueprint rumah. Kalian tidak bisa tinggal di dalam blueprint, tapi Kalian bisa menggunakan blueprint tersebut untuk membangun rumah yang sebenarnya. Abstract class adalah blueprint, dan concrete class adalah rumah yang dibangun dari blueprint tersebut.</p>
 
 
-<h3>Module ABC (Abstract Base Classes)</h3>
+<h3 id="module-abc-abstract-base-classes">Module ABC (Abstract Base Classes)</h3>
 <p>Python menyediakan module abc (Abstract Base Classes) untuk membuat abstract class:</p>
 
 <CodeBlock language="">{`from abc import ABC, abstractmethod`}</CodeBlock>
 
 
-<h3>Komponen Utama</h3>
+<h3 id="komponen-utama">Komponen Utama</h3>
 <ul>
   <li>ABC: Base class untuk membuat abstract class</li>
   <li>@abstractmethod: Decorator untuk menandai method sebagai abstract</li>
 </ul>
 
 
-<h3>Membuat Abstract Class</h3>
+<h3 id="membuat-abstract-class">Membuat Abstract Class</h3>
 
-<h3>Basic Abstract Class</h3>
+<h3 id="basic-abstract-class">Basic Abstract Class</h3>
 <CodeBlock language="">{`from abc import ABC, abstractmethod
 
 class Shape(ABC):
@@ -2153,7 +2153,7 @@ except TypeError as e:
     # Output: Can't instantiate abstract class Shape with abstract methods area, perimeter`}</CodeBlock>
 
 
-<h3>Concrete Implementation</h3>
+<h3 id="concrete-implementation">Concrete Implementation</h3>
 <p>Subclass harus mengimplementasikan semua abstract methods:</p>
 
 <CodeBlock language="">{`from abc import ABC, abstractmethod
@@ -2203,7 +2203,7 @@ print(f"Circle area: {circle.area():.2f}")         # 28.27
 print(f"Circle perimeter: {circle.perimeter():.2f}") # 18.85`}</CodeBlock>
 
 
-<h3>Partial Implementation</h3>
+<h3 id="partial-implementation">Partial Implementation</h3>
 <p>Jika subclass tidak mengimplementasikan semua abstract methods, subclass tersebut juga harus abstract:</p>
 
 <CodeBlock language="">{`from abc import ABC, abstractmethod
@@ -2240,7 +2240,7 @@ print(dog.speak())  # Some sound
 print(dog.move())   # Walking on four legs`}</CodeBlock>
 
 
-<h3>Abstract Properties</h3>
+<h3 id="abstract-properties">Abstract Properties</h3>
 <p>Kalian juga bisa membuat abstract properties menggunakan @property dan @abstractmethod:</p>
 
 <CodeBlock language="">{`from abc import ABC, abstractmethod
@@ -2306,7 +2306,7 @@ print(f"{car.brand}: Max speed {car.max_speed} km/h, Fuel: {car.fuel_type}")
 print(f"{electric.brand}: Max speed {electric.max_speed} km/h, Fuel: {electric.fuel_type}")`}</CodeBlock>
 
 
-<h3>Interface Pattern</h3>
+<h3 id="interface-pattern">Interface Pattern</h3>
 <p>Python tidak memiliki keyword "interface" seperti Java, tetapi kita bisa membuat interface menggunakan abstract class di mana semua method adalah abstract:</p>
 
 <CodeBlock language="">{`from abc import ABC, abstractmethod
@@ -2377,7 +2377,7 @@ print(image.resize(2.0))`}</CodeBlock>
 <p>Python mendukung multiple inheritance, sehingga sebuah class bisa mengimplementasikan multiple interfaces (abstract classes). Ini sangat berguna untuk membuat sistem yang modular dan fleksibel.</p>
 
 
-<h3>Contoh Lengkap: Database Connection</h3>
+<h3 id="contoh-lengkap-database-connection">Contoh Lengkap: Database Connection</h3>
 <p>Mari lihat contoh lengkap abstract class untuk database connection:</p>
 
 <CodeBlock language="">{`from abc import ABC, abstractmethod
@@ -2643,7 +2643,7 @@ manager.execute_on_all("SELECT * FROM table")
 manager.disconnect_all()`}</CodeBlock>
 
 
-<h3>Abstract Static Methods & Class Methods</h3>
+<h3 id="abstract-static-methods-class-methods">Abstract Static Methods & Class Methods</h3>
 <p>Kalian juga bisa membuat abstract static methods dan class methods:</p>
 
 <CodeBlock language="">{`from abc import ABC, abstractmethod
@@ -2732,9 +2732,9 @@ json_parser = JSONParser()
 print("Parsed JSON:", json_parser.parse(json_data))`}</CodeBlock>
 
 
-<h3>Praktik Terbaik</h3>
+<h3 id="praktik-terbaik">Praktik Terbaik</h3>
 
-<h3>1. Use Abstract Classes untuk Shared Behavior</h3>
+<h3 id="1-use-abstract-classes-untuk-shared-behavior">1. Use Abstract Classes untuk Shared Behavior</h3>
 <CodeBlock language="">{`from abc import ABC, abstractmethod
 
 class Report(ABC):
@@ -2761,7 +2761,7 @@ class Report(ABC):
         return f"Report exported to {filename}"`}</CodeBlock>
 
 
-<h3>2. Keep Abstract Classes Focused</h3>
+<h3 id="2-keep-abstract-classes-focused">2. Keep Abstract Classes Focused</h3>
 <CodeBlock language="">{`# Good - focused interface
 class Sortable(ABC):
     @abstractmethod
@@ -2776,7 +2776,7 @@ class Searchable(ABC):
 # Better than one large abstract class with many methods`}</CodeBlock>
 
 
-<h3>3. Document Abstract Methods</h3>
+<h3 id="3-document-abstract-methods">3. Document Abstract Methods</h3>
 <CodeBlock language="">{`from abc import ABC, abstractmethod
 
 class Plugin(ABC):
@@ -2794,9 +2794,9 @@ class Plugin(ABC):
         pass`}</CodeBlock>
 
 
-<h3>Kapan Menggunakan Abstract Class?</h3>
+<h3 id="kapan-menggunakan-abstract-class">Kapan Menggunakan Abstract Class?</h3>
 
-<h3>Latihan</h3>
+<h3 id="latihan">Latihan</h3>
 <ul>
   <li>
 Buat abstract class FileHandler dengan methods:

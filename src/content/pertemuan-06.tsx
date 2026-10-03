@@ -24,15 +24,15 @@ export default function Pertemuan6() {
     <>
       <h2 id="dasar-teori">Python Pyramid</h2>
 
-<h3>Setup Environment</h3>
+<h3 id="setup-environment">Setup Environment</h3>
 <p>Persiapan lingkungan pengembangan dan membuat proyek Pyramid dengan Cookiecutter</p>
 
 
-<h3>Persiapan Lingkungan Pengembangan</h3>
+<h3 id="persiapan-lingkungan-pengembangan">Persiapan Lingkungan Pengembangan</h3>
 <p>Sebelum mulai membuat aplikasi dengan Pyramid, kita perlu menyiapkan lingkungan pengembangan yang sesuai.</p>
 
 
-<h3>Membuat Virtual Environment</h3>
+<h3 id="membuat-virtual-environment">Membuat Virtual Environment</h3>
 <p>Virtual environment membantu mengisolasi dependensi proyek dari instalasi Python global:</p>
 
 <CodeBlock language="">{`# Buat folder untuk proyek
@@ -55,7 +55,7 @@ source venv/bin/activate`}</CodeBlock>
 <CodeBlock language="">{`(venv) $`}</CodeBlock>
 
 
-<h3>Instalasi Pyramid dan Dependensi</h3>
+<h3 id="instalasi-pyramid-dan-dependensi">Instalasi Pyramid dan Dependensi</h3>
 <p>Setelah virtual environment aktif, install Pyramid dan dependensi yang diperlukan:</p>
 
 <CodeBlock language="">{`# Upgrade pip
@@ -78,11 +78,11 @@ pip install pyramid pyramid_debugtoolbar waitress pyramid_jinja2`}</CodeBlock>
 </ul>
 
 
-<h3>Membuat Proyek Pyramid dengan Cookiecutter</h3>
+<h3 id="membuat-proyek-pyramid-dengan-cookiecutter">Membuat Proyek Pyramid dengan Cookiecutter</h3>
 <p>Cookiecutter adalah tool yang membantu membuat struktur proyek berdasarkan template. Pyramid menyediakan template resmi untuk memulai proyek dengan cepat.</p>
 
 
-<h3>Menjalankan Cookiecutter</h3>
+<h3 id="menjalankan-cookiecutter">Menjalankan Cookiecutter</h3>
 <p>Jalankan cookiecutter dengan template Pyramid resmi:</p>
 
 <CodeBlock language="">{`# Pastikan virtual environment aktif
@@ -104,7 +104,7 @@ Choose from 1, 2, 3 [1]: 1`}</CodeBlock>
 <p>Kita memilih Jinja2 sebagai template engine karena sintaksnya yang familiar dan banyak digunakan di berbagai framework Python seperti Flask dan Django.</p>
 
 
-<h3>Instalasi Dependensi Proyek</h3>
+<h3 id="instalasi-dependensi-proyek">Instalasi Dependensi Proyek</h3>
 <p>Setelah template dibuat, pindah ke direktori proyek dan install dependensi:</p>
 
 <CodeBlock language="">{`# Masuk ke direktori proyek
@@ -118,21 +118,21 @@ pip install -e ".[testing]"`}</CodeBlock>
 <p>Flag -e menginstall package dalam editable mode, yang berarti perubahan kode langsung tercermin tanpa perlu reinstall package.</p>
 
 
-<h3>Struktur Direktori Proyek</h3>
+<h3 id="struktur-direktori-proyek">Struktur Direktori Proyek</h3>
 <p>Setelah setup selesai, struktur direktori proyek akan terlihat seperti ini:</p>
 
 
-<h3>Penjelasan Struktur Proyek</h3>
+<h3 id="penjelasan-struktur-proyek">Penjelasan Struktur Proyek</h3>
 
-<h3>File Konfigurasi Utama</h3>
+<h3 id="file-konfigurasi-utama">File Konfigurasi Utama</h3>
 
-<h3>Direktori Penting</h3>
+<h3 id="direktori-penting">Direktori Penting</h3>
 <p>Tentang Struktur Pyramid</p>
 
 <p>Struktur direktori Pyramid mengikuti konvensi Python package. Folder utama pyramid_mahasiswa/pyramid_mahasiswa adalah package Python yang berisi kode aplikasi. File development.ini dan production.ini berisi konfigurasi untuk mode development dan production.</p>
 
 
-<h3>Verifikasi Setup</h3>
+<h3 id="verifikasi-setup">Verifikasi Setup</h3>
 <p>Untuk memverifikasi bahwa setup berhasil, coba jalankan aplikasi:</p>
 
 <CodeBlock language="">{`# Pastikan berada di direktori root proyek
@@ -158,7 +158,7 @@ Serving on http://localhost:6543`}</CodeBlock>
 </ul>
 
 
-<h3>Langkah Selanjutnya</h3>
+<h3 id="langkah-selanjutnya">Langkah Selanjutnya</h3>
 <p>Setelah environment setup selesai dan proyek Pyramid berhasil dibuat, kita akan melanjutkan ke konfigurasi database PostgreSQL dan membuat model data pada bagian selanjutnya.</p>
 
 <p>Praktikum Pyramid Framework</p>
@@ -170,15 +170,15 @@ Serving on http://localhost:6543`}</CodeBlock>
 <p>Konfigurasi PostgreSQL, membuat model Mahasiswa, dan menjalankan migrasi database</p>
 
 
-<h3>Database & Models</h3>
+<h3 id="database-models">Database & Models</h3>
 <p>Konfigurasi PostgreSQL, membuat model Mahasiswa, dan menjalankan migrasi database</p>
 
 
-<h3>Konfigurasi Database PostgreSQL</h3>
+<h3 id="konfigurasi-database-postgresql">Konfigurasi Database PostgreSQL</h3>
 <p>Secara default, template Pyramid menggunakan SQLite. Kita akan mengubahnya untuk menggunakan PostgreSQL, yang lebih cocok untuk aplikasi production.</p>
 
 
-<h3>Pastikan PostgreSQL Sudah Terpasang</h3>
+<h3 id="pastikan-postgresql-sudah-terpasang">Pastikan PostgreSQL Sudah Terpasang</h3>
 <p>Sebelum melanjutkan, pastikan PostgreSQL sudah terinstal dan berjalan di komputer Kalian:</p>
 
 <CodeBlock language="">{`# Login ke PostgreSQL
@@ -197,7 +197,7 @@ psql -U postgres -c "SELECT version();"
 </ul>
 
 
-<h3>Membuat Database PostgreSQL</h3>
+<h3 id="membuat-database-postgresql">Membuat Database PostgreSQL</h3>
 <p>Buat database baru di PostgreSQL untuk aplikasi kita dengan izin yang lengkap:</p>
 
 <CodeBlock language="">{`# Login ke PostgreSQL sebagai superuser
@@ -245,7 +245,7 @@ GRANT ALL ON SEQUENCES TO pyramid_user;
 <p>Untuk production, gunakan password yang lebih kuat dan simpan dalam environment variables atau secret management system.</p>
 
 
-<h3>Install Dependensi PostgreSQL</h3>
+<h3 id="install-dependensi-postgresql">Install Dependensi PostgreSQL</h3>
 <p>Install psycopg2 untuk menghubungkan Python dengan PostgreSQL:</p>
 
 <CodeBlock language="">{`pip install psycopg2-binary`}</CodeBlock>
@@ -255,7 +255,7 @@ GRANT ALL ON SEQUENCES TO pyramid_user;
 <p>Jika psycopg2-binary gagal diinstal, coba gunakan psycopg2 atau pastikan PostgreSQL development headers sudah terinstal di sistem Kalian.</p>
 
 
-<h3>Update Konfigurasi Pyramid</h3>
+<h3 id="update-konfigurasi-pyramid">Update Konfigurasi Pyramid</h3>
 <p>Ubah file development.ini untuk menggunakan PostgreSQL:</p>
 
 <CodeBlock language="">{`# Cari dan ganti baris sqlalchemy.url
@@ -282,11 +282,11 @@ sqlalchemy.url = postgresql://pyramid_user:pyramid_pass@localhost:5432/pyramid_m
 </ul>
 
 
-<h3>Membuat Model Mahasiswa</h3>
+<h3 id="membuat-model-mahasiswa">Membuat Model Mahasiswa</h3>
 <p>Sekarang kita akan membuat model untuk data Mahasiswa menggunakan SQLAlchemy ORM.</p>
 
 
-<h3>Buat File Model Mahasiswa</h3>
+<h3 id="buat-file-model-mahasiswa">Buat File Model Mahasiswa</h3>
 <p>Buat file baru pyramid_mahasiswa/models/mahasiswa.py:</p>
 
 <CodeBlock language="">{`from sqlalchemy import (
@@ -334,7 +334,7 @@ class Mahasiswa(Base):
 </ul>
 
 
-<h3>Update models/init.py</h3>
+<h3 id="update-modelsinitpy">Update models/init.py</h3>
 <p>Update file pyramid_mahasiswa/models/__init__.py untuk menambahkan model Mahasiswa:</p>
 
 <CodeBlock language="">{`from sqlalchemy import engine_from_config
@@ -375,7 +375,7 @@ def includeme(config):
     )`}</CodeBlock>
 
 
-<h3>Update Script Initialize DB</h3>
+<h3 id="update-script-initialize-db">Update Script Initialize DB</h3>
 <p>Update pyramid_mahasiswa/scripts/initialize_db.py untuk menambahkan data awal:</p>
 
 <CodeBlock language="">{`import argparse
@@ -468,11 +468,11 @@ if __name__ == '__main__':
 <p>SQLAlchemy Object-Relational Mapping (ORM) memungkinkan kita mendefinisikan dan bekerja dengan data seperti objek Python biasa, tanpa perlu menulis query SQL secara langsung. Setiap kelas model memetakan ke satu tabel di database.</p>
 
 
-<h3>Menjalankan Migrasi Database dengan Alembic</h3>
+<h3 id="menjalankan-migrasi-database-dengan-alembic">Menjalankan Migrasi Database dengan Alembic</h3>
 <p>Alembic adalah tool migrasi database untuk SQLAlchemy. Dengan Alembic, kita dapat melacak perubahan skema database dan menerapkannya dengan mudah.</p>
 
 
-<h3>Pastikan Alembic Terpasang</h3>
+<h3 id="pastikan-alembic-terpasang">Pastikan Alembic Terpasang</h3>
 <p>Alembic sudah termasuk dalam dependensi proyek, tapi pastikan sudah terpasang:</p>
 
 <CodeBlock language="">{`# Verifikasi Alembic sudah terpasang
@@ -482,7 +482,7 @@ pip list | grep alembic
 pip install alembic`}</CodeBlock>
 
 
-<h3>Membuat Migrasi Awal</h3>
+<h3 id="membuat-migrasi-awal">Membuat Migrasi Awal</h3>
 <p>Template Pyramid sudah menyertakan konfigurasi Alembic. Kita perlu membuat file migrasi:</p>
 
 <CodeBlock language="">{`# Di root proyek pyramid_mahasiswa
@@ -498,7 +498,7 @@ alembic -c development.ini revision --autogenerate -m "create mahasiswa table"`}
 <p>Flag --autogenerate membuat Alembic membandingkan model dengan database dan menghasilkan kode migrasi secara otomatis. Namun, selalu review file migrasi yang dihasilkan untuk memastikan kode sesuai dengan yang diharapkan.</p>
 
 
-<h3>Menjalankan Migrasi</h3>
+<h3 id="menjalankan-migrasi">Menjalankan Migrasi</h3>
 <p>Setelah file migrasi dibuat, kita dapat menjalankan migrasi untuk membuat tabel di database:</p>
 
 <CodeBlock language="">{`# Jalankan migrasi
@@ -509,7 +509,7 @@ alembic -c development.ini upgrade head`}</CodeBlock>
 <CodeBlock language="">{`INFO  [alembic.runtime.migration] Running upgrade -> 1234567890ab, create mahasiswa table`}</CodeBlock>
 
 
-<h3>Inisialisasi Database dengan Data Awal</h3>
+<h3 id="inisialisasi-database-dengan-data-awal">Inisialisasi Database dengan Data Awal</h3>
 <p>Sekarang kita dapat menjalankan script initialize_db.py untuk menambahkan data awal:</p>
 
 <CodeBlock language="">{`# Jalankan dari direktori root proyek
@@ -518,7 +518,7 @@ python -m pyramid_mahasiswa.scripts.initialize_db development.ini`}</CodeBlock>
 <p>Jika berhasil, data mahasiswa akan ditambahkan ke database.</p>
 
 
-<h3>Perintah Alembic yang Berguna</h3>
+<h3 id="perintah-alembic-yang-berguna">Perintah Alembic yang Berguna</h3>
 <p>Troubleshooting Migrasi</p>
 
 <p>Jika mengalami error saat menjalankan migrasi, periksa:</p>
@@ -532,7 +532,7 @@ python -m pyramid_mahasiswa.scripts.initialize_db development.ini`}</CodeBlock>
 </ul>
 
 
-<h3>Verifikasi Data di Database</h3>
+<h3 id="verifikasi-data-di-database">Verifikasi Data di Database</h3>
 <p>Untuk memverifikasi bahwa tabel dan data berhasil dibuat, Kalian bisa menggunakan psql:</p>
 
 <CodeBlock language="">{`# Login ke database
@@ -550,7 +550,7 @@ SELECT * FROM mahasiswa;
 <p>Kalian seharusnya melihat 2 data mahasiswa yang telah ditambahkan.</p>
 
 
-<h3>Langkah Selanjutnya</h3>
+<h3 id="langkah-selanjutnya">Langkah Selanjutnya</h3>
 <p>Setelah database dikonfigurasi dan model dibuat, kita akan melanjutkan ke pembuatan views dan routes untuk operasi CRUD pada bagian selanjutnya.</p>
 
 <p>Setup Environment</p>
@@ -562,15 +562,15 @@ SELECT * FROM mahasiswa;
 <p>Implementasi CRUD views dan konfigurasi routing untuk API Mahasiswa</p>
 
 
-<h3>Views & Routes</h3>
+<h3 id="views-routes">Views & Routes</h3>
 <p>Implementasi CRUD views dan konfigurasi routing untuk API Mahasiswa</p>
 
 
-<h3>Membuat Views untuk CRUD Mahasiswa</h3>
+<h3 id="membuat-views-untuk-crud-mahasiswa">Membuat Views untuk CRUD Mahasiswa</h3>
 <p>Views adalah fungsi yang menangani request dan mengembalikan response. Kita akan membuat views untuk operasi CRUD (Create, Read, Update, Delete) pada data Mahasiswa.</p>
 
 
-<h3>Buat File Views Mahasiswa</h3>
+<h3 id="buat-file-views-mahasiswa">Buat File Views Mahasiswa</h3>
 <p>Buat file baru pyramid_mahasiswa/views/mahasiswa.py:</p>
 
 <CodeBlock language="">{`import datetime
@@ -724,7 +724,7 @@ def mahasiswa_delete(request):
 <p>Kita menggunakan renderer='json' pada decorator @view_config untuk mengonversi return value dari function view menjadi JSON response secara otomatis. Ini berguna untuk membuat API web yang mengembalikan data dalam format JSON.</p>
 
 
-<h3>Penjelasan View Functions</h3>
+<h3 id="penjelasan-view-functions">Penjelasan View Functions</h3>
 <p>Mari kita pahami setiap view function yang telah dibuat:</p>
 
 <CodeBlock language="">{`@view_config(route_name='mahasiswa_list', renderer='json')
@@ -769,11 +769,11 @@ def mahasiswa_add(request):
 <p>View-view ini mengikuti pola yang sama dengan update dan delete operasi pada database.</p>
 
 
-<h3>Membuat Routes dan Update routes.py</h3>
+<h3 id="membuat-routes-dan-update-routespy">Membuat Routes dan Update routes.py</h3>
 <p>Sekarang kita perlu mendefinisikan routes untuk endpoints CRUD Mahasiswa.</p>
 
 
-<h3>Update File routes.py</h3>
+<h3 id="update-file-routespy">Update File routes.py</h3>
 <p>Edit file pyramid_mahasiswa/routes.py:</p>
 
 <CodeBlock language="">{`def includeme(config):
@@ -795,7 +795,7 @@ def mahasiswa_add(request):
 <p>Perhatikan penambahan parameter request_method pada setiap route. Ini sangat penting untuk membedakan endpoint yang memiliki URL sama tetapi method berbeda. Tanpa parameter ini, Pyramid mungkin akan selalu mengarahkan request ke satu view function saja, yang menyebabkan endpoint POST/PUT/DELETE tidak berfungsi.</p>
 
 
-<h3>RESTful API Pattern</h3>
+<h3 id="restful-api-pattern">RESTful API Pattern</h3>
 <p>API yang kita buat mengikuti pola RESTful dengan mapping sebagai berikut:</p>
 
 <p>RESTful API Best Practices</p>
@@ -810,7 +810,7 @@ def mahasiswa_add(request):
 </ul>
 
 
-<h3>Scan Views Module</h3>
+<h3 id="scan-views-module">Scan Views Module</h3>
 <p>Agar views yang telah kita buat dapat digunakan, kita perlu memastikan Pyramid melakukan scan pada module views.</p>
 
 <p>Edit file pyramid_mahasiswa/__init__.py dan pastikan ada kode berikut:</p>
@@ -831,7 +831,7 @@ def mahasiswa_add(request):
 <p>Pyramid menggunakan config scan untuk menemukan dan mendaftarkan views, routes, dan komponen lainnya secara otomatis. Tanpa config.scan(), decorator @view_config tidak akan berfungsi.</p>
 
 
-<h3>SQLAlchemy Query Patterns</h3>
+<h3 id="sqlalchemy-query-patterns">SQLAlchemy Query Patterns</h3>
 <p>Berikut beberapa pattern query SQLAlchemy yang sering digunakan:</p>
 
 <CodeBlock language="">{`# Mendapatkan semua data
@@ -880,7 +880,7 @@ mahasiswa.nama = 'Budi Updated'
 # No need to call update, SQLAlchemy tracks changes`}</CodeBlock>
 
 
-<h3>Menjalankan Aplikasi</h3>
+<h3 id="menjalankan-aplikasi">Menjalankan Aplikasi</h3>
 <p>Setelah semua komponen diimplementasikan, jalankan aplikasi:</p>
 
 <CodeBlock language="">{`# Pastikan virtual environment aktif
@@ -897,7 +897,7 @@ pserve development.ini --reload`}</CodeBlock>
 Serving on http://localhost:6543`}</CodeBlock>
 
 
-<h3>Langkah Selanjutnya</h3>
+<h3 id="langkah-selanjutnya">Langkah Selanjutnya</h3>
 <p>Setelah views dan routes selesai dibuat, kita akan melanjutkan ke pengujian API dan mengerjakan tugas praktikum pada bagian selanjutnya.</p>
 
 <p>Database & Models</p>
@@ -909,11 +909,11 @@ Serving on http://localhost:6543`}</CodeBlock>
 <p>Pengujian API Pyramid Framework</p>
 
 
-<h3>Testing</h3>
+<h3 id="testing">Testing</h3>
 <p>Pengujian API Pyramid Framework</p>
 
 
-<h3>Pengujian API dengan curl</h3>
+<h3 id="pengujian-api-dengan-curl">Pengujian API dengan curl</h3>
 <p>Sekarang kita akan menguji API yang telah dibuat menggunakan curl. Pastikan server Pyramid sedang berjalan sebelum melakukan pengujian.</p>
 
 <p>Menjalankan Server</p>
@@ -923,9 +923,9 @@ Serving on http://localhost:6543`}</CodeBlock>
 <CodeBlock language="">{`pserve development.ini --reload`}</CodeBlock>
 
 
-<h3>Pengujian dengan curl di Linux/macOS</h3>
+<h3 id="pengujian-dengan-curl-di-linuxmacos">Pengujian dengan curl di Linux/macOS</h3>
 
-<h3>Mendapatkan Daftar Mahasiswa (GET)</h3>
+<h3 id="mendapatkan-daftar-mahasiswa-get">Mendapatkan Daftar Mahasiswa (GET)</h3>
 <CodeBlock language="">{`curl -X GET http://localhost:6543/api/mahasiswa`}</CodeBlock>
 
 <p>Response yang diharapkan:</p>
@@ -952,7 +952,7 @@ Serving on http://localhost:6543`}</CodeBlock>
 }`}</CodeBlock>
 
 
-<h3>Mendapatkan Detail Mahasiswa (GET)</h3>
+<h3 id="mendapatkan-detail-mahasiswa-get">Mendapatkan Detail Mahasiswa (GET)</h3>
 <CodeBlock language="">{`curl -X GET http://localhost:6543/api/mahasiswa/1`}</CodeBlock>
 
 <p>Response yang diharapkan:</p>
@@ -969,7 +969,7 @@ Serving on http://localhost:6543`}</CodeBlock>
 }`}</CodeBlock>
 
 
-<h3>Menambahkan Mahasiswa Baru (POST)</h3>
+<h3 id="menambahkan-mahasiswa-baru-post">Menambahkan Mahasiswa Baru (POST)</h3>
 <CodeBlock language="">{`curl -X POST http://localhost:6543/api/mahasiswa \
 -H "Content-Type: application/json" \
 -d '{
@@ -995,7 +995,7 @@ Serving on http://localhost:6543`}</CodeBlock>
 }`}</CodeBlock>
 
 
-<h3>Mengupdate Data Mahasiswa (PUT)</h3>
+<h3 id="mengupdate-data-mahasiswa-put">Mengupdate Data Mahasiswa (PUT)</h3>
 <CodeBlock language="">{`curl -X PUT http://localhost:6543/api/mahasiswa/1 \
 -H "Content-Type: application/json" \
 -d '{
@@ -1018,7 +1018,7 @@ Serving on http://localhost:6543`}</CodeBlock>
 }`}</CodeBlock>
 
 
-<h3>Menghapus Data Mahasiswa (DELETE)</h3>
+<h3 id="menghapus-data-mahasiswa-delete">Menghapus Data Mahasiswa (DELETE)</h3>
 <CodeBlock language="">{`curl -X DELETE http://localhost:6543/api/mahasiswa/3`}</CodeBlock>
 
 <p>Response yang diharapkan:</p>
@@ -1029,7 +1029,7 @@ Serving on http://localhost:6543`}</CodeBlock>
 }`}</CodeBlock>
 
 
-<h3>Pengujian dengan curl di Windows</h3>
+<h3 id="pengujian-dengan-curl-di-windows">Pengujian dengan curl di Windows</h3>
 <p>Untuk pengguna Windows, gunakan syntax curl berikut dengan escape character yang berbeda:</p>
 
 <CodeBlock language="">{`curl -X GET http://localhost:6543/api/mahasiswa`}</CodeBlock>
@@ -1053,11 +1053,11 @@ Serving on http://localhost:6543`}</CodeBlock>
 <CodeBlock language="">{`curl -X DELETE http://localhost:6543/api/mahasiswa/3`}</CodeBlock>
 
 
-<h3>Alternatif Tools untuk Pengujian API</h3>
+<h3 id="alternatif-tools-untuk-pengujian-api">Alternatif Tools untuk Pengujian API</h3>
 <p>Selain curl, Kalian dapat menggunakan tools lain yang lebih mudah untuk pengujian API:</p>
 
 
-<h3>1. Browser (untuk GET Request)</h3>
+<h3 id="1-browser-untuk-get-request">1. Browser (untuk GET Request)</h3>
 <p>Untuk request GET sederhana, Kalian bisa langsung membuka URL di browser:</p>
 
 <ul>
@@ -1066,7 +1066,7 @@ Serving on http://localhost:6543`}</CodeBlock>
 </ul>
 
 
-<h3>2. Postman</h3>
+<h3 id="2-postman">2. Postman</h3>
 <p>Postman adalah aplikasi desktop dengan antarmuka grafis yang memudahkan pengujian API:</p>
 
 <ul>
@@ -1078,7 +1078,7 @@ Serving on http://localhost:6543`}</CodeBlock>
 </ul>
 
 
-<h3>3. Insomnia</h3>
+<h3 id="3-insomnia">3. Insomnia</h3>
 <p>Alternatif Postman yang lebih ringan:</p>
 
 <ul>
@@ -1088,7 +1088,7 @@ Serving on http://localhost:6543`}</CodeBlock>
 </ul>
 
 
-<h3>4. VS Code REST Client Extension</h3>
+<h3 id="4-vs-code-rest-client-extension">4. VS Code REST Client Extension</h3>
 <p>Jika menggunakan VS Code, install extension "REST Client":</p>
 
 <ul>
