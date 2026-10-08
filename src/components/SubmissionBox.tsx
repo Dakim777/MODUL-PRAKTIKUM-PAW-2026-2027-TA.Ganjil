@@ -46,7 +46,7 @@ export const SUBMISSION_CONFIG: Record<number, PertemuanConfig> = {
   },
   // ─── Pertemuan 2–7 (terkunci) ──────────────────────────────────────────────
   2: {
-    rb: { url: "https://forms.gle/g6hAeBctLfNFCzBg8", openDate: "2026-10-08T00:00:00+07:00", deadline: "2026-10-14T23:59:00+07:00" },
+    rb: { url: "https://forms.gle/vHRXZQZJuExcxoiNA", openDate: "2026-10-08T00:00:00+07:00", deadline: "2026-10-14T23:59:00+07:00" },
     ra: { url: "", openDate: "2099-01-01T00:00:00+07:00", deadline: "2099-01-01T23:59:00+07:00" },
   },
   3: {
