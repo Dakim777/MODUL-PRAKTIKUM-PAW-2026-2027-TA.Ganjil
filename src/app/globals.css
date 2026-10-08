@@ -1822,3 +1822,7 @@ pre code {
     right: -1rem;
   }
 }
+
+.overview-card:hover {
+  border-color: var(--color-accent) !important;
+}

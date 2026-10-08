@@ -87,6 +87,7 @@ export default async function PertemuanPage({ params }: Props) {
                 <Link
                   key={sub.id}
                   href={`/pertemuan/${nomorInt}/${sub.id}`}
+                  className="overview-card"
                   style={{
                     display: 'block',
                     padding: '1.25rem',
@@ -97,8 +98,6 @@ export default async function PertemuanPage({ params }: Props) {
                     color: 'inherit',
                     transition: 'all 0.2s',
                   }}
-                  onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--color-accent)'}
-                  onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--color-border)'}
                 >
                   <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.125rem', color: 'var(--color-text-primary)' }}>{sub.judul}</h3>
                   <span style={{ fontSize: '0.875rem', color: 'var(--color-link)' }}>Mulai belajar &rarr;</span>
