@@ -47,7 +47,7 @@ export default function Pertemuan2() {
 <h3 id="membuat-file-html-dasar">Membuat File HTML Dasar</h3>
 <p>Buat file index.html sebagai halaman utama aplikasi:</p>
 
-<CodeBlock language="">{`<!DOCTYPE html>
+<CodeBlock language="html" filename="index.html">{`<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
