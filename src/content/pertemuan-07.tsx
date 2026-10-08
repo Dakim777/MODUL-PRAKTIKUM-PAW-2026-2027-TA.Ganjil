@@ -28,7 +28,7 @@ export default function Pertemuan7() {
             ["Migration","Perubahan skema database yang dikelola Alembic"],
           ].map(([k,v],i)=>(
             <tr key={i} style={{ borderBottom:"1px solid var(--color-border-subtle)" }}>
-              <td style={{ padding:"0.5rem 1rem", fontWeight:500, color:"var(--color-navy-800)" }}>{k}</td>
+              <td style={{ padding:"0.5rem 1rem", fontWeight:500, color:"var(--color-text-primary)" }}>{k}</td>
               <td style={{ padding:"0.5rem 1rem", color:"var(--color-text-secondary)" }}>{v}</td>
             </tr>
           ))}</tbody>

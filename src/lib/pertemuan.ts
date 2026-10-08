@@ -95,7 +95,7 @@ export const daftarPertemuan: Pertemuan[] = [
       "Memahami lifecycle components melalui useEffect",
       "Mengimplementasikan routing dasar dengan React Router",
     ],
-    tersedia: true,
+    tersedia: false,
     subTopik: [
       { id: "dasar-teori", judul: "Konsep Dasar React" },
       { id: "setup-react", judul: "1. Setup Project React" },
@@ -123,7 +123,7 @@ export const daftarPertemuan: Pertemuan[] = [
       "Membuat dan menggunakan fungsi dalam Python",
       "Bekerja dengan koleksi data seperti list, dictionary, dan set",
     ],
-    tersedia: true,
+    tersedia: false,
     subTopik: [
       { id: "dasar-teori", judul: "Dasar Teori Python" },
       { id: "pengenalan-python", judul: "1. Pengenalan & Eksekusi Python" },
@@ -153,7 +153,7 @@ export const daftarPertemuan: Pertemuan[] = [
       "Memahami Polymorphism dan Method Overriding",
       "Implementasi Abstract Class dan Interface",
     ],
-    tersedia: true,
+    tersedia: false,
     subTopik: [
       { id: "dasar-teori", judul: "Pilar Utama OOP Python" },
       { id: "pengenalan-oop", judul: "1. Pengenalan Konsep OOP" },
@@ -182,7 +182,7 @@ export const daftarPertemuan: Pertemuan[] = [
       "Membuat view dan route untuk operasi CRUD sederhana",
       "Mengembangkan aplikasi web CRUD pengelolaan data Mahasiswa",
     ],
-    tersedia: true,
+    tersedia: false,
     subTopik: [
       { id: "dasar-teori", judul: "Arsitektur Pyramid Framework" },
       { id: "setup-environment", judul: "1. Setup Environment & Cookiecutter" },
@@ -211,7 +211,7 @@ export const daftarPertemuan: Pertemuan[] = [
       "Mengimplementasikan validasi data menggunakan Schema (Marshmallow)",
       "Membangun service layer untuk logika bisnis aplikasi",
     ],
-    tersedia: true,
+    tersedia: false,
     subTopik: [
       { id: "dasar-teori", judul: "Arsitektur Backend & Database" },
       { id: "paket-dibutuhkan", judul: "Paket & Dependensi Proyek" },

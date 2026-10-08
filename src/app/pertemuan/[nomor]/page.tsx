@@ -122,15 +122,27 @@ export default async function PertemuanPage({ params }: Props) {
               </Link>
             ) : null}
             {next ? (
-              <Link
-                href={`/pertemuan/${next.nomor}`}
-                className="pertemuan-nav-btn next"
-              >
-                <span className="pertemuan-nav-label">Modul Selanjutnya →</span>
-                <span className="pertemuan-nav-title">
-                  Pertemuan {next.nomor}: {next.judul}
-                </span>
-              </Link>
+              next.tersedia ? (
+                <Link
+                  href={`/pertemuan/${next.nomor}`}
+                  className="pertemuan-nav-btn next"
+                >
+                  <span className="pertemuan-nav-label">Modul Selanjutnya →</span>
+                  <span className="pertemuan-nav-title">
+                    Pertemuan {next.nomor}: {next.judul}
+                  </span>
+                </Link>
+              ) : (
+                <div
+                  className="pertemuan-nav-btn next coming-soon"
+                  style={{ opacity: 0.5, cursor: "not-allowed" }}
+                >
+                  <span className="pertemuan-nav-label">Modul Selanjutnya (Terkunci)</span>
+                  <span className="pertemuan-nav-title">
+                    Pertemuan {next.nomor}: {next.judul}
+                  </span>
+                </div>
+              )
             ) : null}
           </nav>
         </div>

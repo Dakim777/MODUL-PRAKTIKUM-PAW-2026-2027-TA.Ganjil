@@ -690,7 +690,7 @@ document.getElementById("btn-fetch").addEventListener("click", async function() 
               ["Struktur Kode & Dokumentasi", "Pemisahan file HTML/CSS/JS yang rapi, penamaan fungsi yang jelas, dan kelengkapan file README.md", "10%"],
             ].map(([aspek, deskripsi, bobot], i) => (
               <tr key={i} style={{ borderBottom: "1px solid var(--color-border-subtle)" }}>
-                <td style={{ padding: "0.625rem 1rem", fontWeight: 600, color: "var(--color-navy-800)" }}>{aspek}</td>
+                <td style={{ padding: "0.625rem 1rem", fontWeight: 600, color: "var(--color-text-primary)" }}>{aspek}</td>
                 <td style={{ padding: "0.625rem 1rem", color: "var(--color-text-secondary)" }}>{deskripsi}</td>
                 <td style={{ padding: "0.625rem 1rem", textAlign: "center", fontWeight: 600, color: "var(--color-accent)" }}>{bobot}</td>
               </tr>

@@ -127,7 +127,7 @@ export default function HomePage() {
                       p.tersedia ? "available" : "soon"
                     }`}
                   >
-                    {p.tersedia ? "Tersedia" : "Segera hadir"}
+                    {p.tersedia ? "Tersedia" : "Terkunci"}
                   </span>
                 </div>
               </Link>
@@ -158,11 +158,10 @@ export default function HomePage() {
           </svg>
           <div className="callout-body">
             <p>
-              Semua 7 modul pertemuan sudah tersedia. Klik kartu pertemuan atau
-              gunakan sidebar kiri untuk navigasi. Gunakan search bar di atas
-              untuk mencari topik tertentu. Setiap modul berisi tujuan
-              pembelajaran, materi teori, langkah praktikum lengkap dengan blok
-              kode, dan latihan mandiri.
+              Modul Pertemuan 1 dan 2 sudah tersedia dan siap dipelajari. Modul
+              pertemuan berikutnya (Pertemuan 3–7) saat ini masih dikunci dan
+              akan dibuka bertahap sesuai jadwal praktikum. Klik kartu pertemuan
+              atau gunakan menu sidebar untuk mulai belajar.
             </p>
           </div>
         </div>
