@@ -28,9 +28,19 @@ export default function Pertemuan2() {
 <p>Membuat struktur project dan file dasar untuk JavaScript Next Gen</p>
 
 
-<h3 id="struktur-project">Struktur Project</h3>
-<p>Pertama, kita akan membuat struktur direktori yang terorganisir untuk project JavaScript Next Gen.</p>
+<h3 id="membuat-project-dan-struktur-file">1. Membuat Project dan Struktur File</h3>
+<p>Pertama, buat direktori project baru dengan struktur file berikut:</p>
 
+<CodeBlock language="text" filename="Struktur Direktori">{`project-js-nextgen/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   ├── main.js
+│   ├── modules/
+│   │   ├── utils.js
+│   │   └── data.js
+│   └── app.js`}</CodeBlock>
 
 <h3 id="langkah-langkah-setup">Langkah-Langkah Setup</h3>
 
