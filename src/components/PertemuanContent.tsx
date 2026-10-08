@@ -15,8 +15,8 @@ const contentMap: Record<number, React.ComponentType> = {
   7: Pertemuan7,
 };
 
-export default function PertemuanContent({ nomor }: { nomor: number }) {
-  const Content = contentMap[nomor];
+export default function PertemuanContent({ nomor, subId }: { nomor: number, subId?: string }) {
+  const Content = contentMap[nomor] as any; // Cast to any so we can pass subId without type errors on older components
   if (!Content) return null;
-  return <Content />;
+  return <Content subId={subId} />;
 }

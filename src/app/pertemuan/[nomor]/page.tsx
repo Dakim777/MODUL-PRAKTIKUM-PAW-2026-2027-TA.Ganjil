@@ -81,7 +81,33 @@ export default async function PertemuanPage({ params }: Props) {
           </section>
 
           {/* Konten utama modul */}
-          <PertemuanContent nomor={nomorInt} />
+          {nomorInt === 2 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+              {pertemuan.subTopik.map((sub) => (
+                <Link
+                  key={sub.id}
+                  href={`/pertemuan/${nomorInt}/${sub.id}`}
+                  style={{
+                    display: 'block',
+                    padding: '1.25rem',
+                    borderRadius: '8px',
+                    border: '1px solid var(--color-border)',
+                    backgroundColor: 'var(--color-surface)',
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--color-accent)'}
+                  onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--color-border)'}
+                >
+                  <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.125rem', color: 'var(--color-text-primary)' }}>{sub.judul}</h3>
+                  <span style={{ fontSize: '0.875rem', color: 'var(--color-link)' }}>Mulai belajar &rarr;</span>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <PertemuanContent nomor={nomorInt} />
+          )}
 
           {/* Navigasi prev/next */}
           <nav className="pertemuan-nav" aria-label="Navigasi pertemuan">

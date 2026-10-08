@@ -2,7 +2,7 @@ import CodeBlock from "@/components/CodeBlock";
 import SubmissionBox from "@/components/SubmissionBox";
 
 // Pertemuan 2: JavaScript Next Gen
-export default function Pertemuan2() {
+export default function Pertemuan2({ subId }: { subId?: string }) {
   const calloutInfo = (text: string) => (
     <div className="callout callout-info">
       <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
@@ -22,8 +22,14 @@ export default function Pertemuan2() {
 
   return (
     <>
-      <h2 id="dasar-teori">JavaScript Next Gen</h2>
+      {(!subId || subId === "dasar-teori") && (
+        <>
+<h2 id="dasar-teori">JavaScript Next Gen</h2>
 
+        </>
+      )}
+      {(!subId || subId === "setup-project") && (
+        <>
 <h3 id="setup-project">Setup Project</h3>
 <p>Membuat struktur project dan file dasar untuk JavaScript Next Gen</p>
 
@@ -109,6 +115,10 @@ export default function Pertemuan2() {
 <p>Memahami deklarasi variabel modern dan arrow functions di JavaScript ES6+</p>
 
 
+        </>
+      )}
+      {(!subId || subId === "let-const-dan-arrow-functions") && (
+        <>
 <h3 id="let-const-dan-arrow-functions">Let, Const, dan Arrow Functions</h3>
 <p>Memahami deklarasi variabel modern dan arrow functions di JavaScript ES6+</p>
 
@@ -248,6 +258,10 @@ export function demoArrowFunctions() {
 <p>Arrow functions tidak memiliki this sendiri. Mereka mewarisi this dari scope di mana mereka didefinisikan. Ini sangat berguna dalam callback dan method chaining.</p>
 
 
+        </>
+      )}
+      {(!subId || subId === "template-literals") && (
+        <>
 <h3 id="template-literals">Template Literals</h3>
 <p>Template literals menyediakan cara yang lebih baik untuk membuat string dengan interpolasi variabel dan multi-line.</p>
 
@@ -373,6 +387,10 @@ Multi-line: \${templateResults.multiLine}\`
 <p>Memahami destructuring, spread operator, dan rest parameter di JavaScript ES6+</p>
 
 
+        </>
+      )}
+      {(!subId || subId === "destructuring-dan-operators") && (
+        <>
 <h3 id="destructuring-dan-operators">Destructuring dan Operators</h3>
 <p>Memahami destructuring, spread operator, dan rest parameter di JavaScript ES6+</p>
 
@@ -748,6 +766,10 @@ const newObject = { ...oldObject, newProp: value };`}</CodeBlock>
 <p>Memahami default parameters, ES6 classes, dan enhanced object literals</p>
 
 
+        </>
+      )}
+      {(!subId || subId === "classes-dan-object-literals") && (
+        <>
 <h3 id="classes-dan-object-literals">Classes dan Object Literals</h3>
 <p>Memahami default parameters, ES6 classes, dan enhanced object literals</p>
 
@@ -1173,6 +1195,10 @@ const user = { name: name, email: email, age: age };`}</CodeBlock>
 <p>Menguasai array methods modern dan higher-order functions di JavaScript ES6+</p>
 
 
+        </>
+      )}
+      {(!subId || subId === "modern-array-methods") && (
+        <>
 <h3 id="modern-array-methods">Modern Array Methods</h3>
 <p>Menguasai array methods modern dan higher-order functions di JavaScript ES6+</p>
 
@@ -1605,6 +1631,10 @@ const total = numbers.reduce((sum, n) => sum + n, 0);`}</CodeBlock>
 <p>Memahami Promise dan async/await untuk menangani operasi asinkron di JavaScript</p>
 
 
+        </>
+      )}
+      {(!subId || subId === "async-programming") && (
+        <>
 <h3 id="async-programming">Async Programming</h3>
 <p>Memahami Promise dan async/await untuk menangani operasi asinkron di JavaScript</p>
 
@@ -2273,7 +2303,11 @@ async function fetchUserCached(id) {
   <li>Buat debounced search dengan async API calls</li>
 </ul>
 
-      <h2 id="tugas-praktikum">Tugas Praktikum</h2>
+              </>
+      )}
+      {(!subId || subId === "tugas-praktikum") && (
+        <>
+<h2 id="tugas-praktikum">Tugas Praktikum</h2>
       {calloutInfo(
         "Buatlah aplikasi personal dashboard sederhana yang menampilkan informasi yang Kalian pilih sendiri (misalnya jadwal kuliah, daftar tugas, catatan, atau informasi cuaca/waktu)."
       )}
@@ -2347,7 +2381,11 @@ async function fetchUserCached(id) {
         <li>Daftar fitur ES6+ yang diimplementasikan</li>
       </ul>
 
-      <h2 id="format-pengumpulan">Format Pengumpulan</h2>
+              </>
+      )}
+      {(!subId || subId === "format-pengumpulan") && (
+        <>
+<h2 id="format-pengumpulan">Format Pengumpulan</h2>
       <ul>
         <li>
           <strong>Direktori GitHub:</strong>
@@ -2374,6 +2412,8 @@ async function fetchUserCached(id) {
       </ul>
 
       <SubmissionBox pertemuan={2} />
+            </>
+      )}
     </>
   );
 }

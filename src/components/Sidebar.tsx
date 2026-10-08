@@ -164,7 +164,7 @@ export default function Sidebar() {
           <nav>
             {daftarPertemuan.map((p) => {
               const href = `/pertemuan/${p.nomor}`;
-              const isActive = pathname === href;
+              const isActive = pathname === href || pathname.startsWith(`${href}/`);
 
               return (
                 <div key={p.nomor} className="sidebar-pertemuan-group">
@@ -206,11 +206,28 @@ export default function Sidebar() {
                     >
                       <div className="sidebar-subtopics-list">
                         {p.subTopik.map((sub) => {
-                          const isSubActive = activeHeadingId === sub.id;
+                          const isModuleSubpage = p.nomor === 2; // Pilot testing for Module 2
+                          const subHref = isModuleSubpage ? `/pertemuan/${p.nomor}/${sub.id}` : `#${sub.id}`;
+                          const isSubActive = isModuleSubpage ? pathname === subHref : activeHeadingId === sub.id;
+
+                          if (isModuleSubpage) {
+                            return (
+                              <Link
+                                key={sub.id}
+                                href={subHref}
+                                onClick={() => { if (window.innerWidth < 1024) setOpen(false); }}
+                                className={`sidebar-subtopic-link${isSubActive ? " active" : ""}`}
+                                title={sub.judul}
+                              >
+                                <span className="sidebar-subtopic-text">{sub.judul}</span>
+                              </Link>
+                            );
+                          }
+
                           return (
                             <a
                               key={sub.id}
-                              href={`#${sub.id}`}
+                              href={subHref}
                               onClick={(e) => handleSubtopicClick(e, sub.id)}
                               className={`sidebar-subtopic-link${isSubActive ? " active" : ""}`}
                               title={sub.judul}
