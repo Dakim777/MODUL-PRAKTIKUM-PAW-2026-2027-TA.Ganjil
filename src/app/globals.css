@@ -81,6 +81,21 @@
   --radius-lg: 8px;
 }
 
+/* ─── Dark Mode Overrides ─── */
+.dark {
+  --color-background:    #0d1117;
+  --color-surface:       #161b22;
+  --color-surface-alt:   #21262d;
+  --color-border:        #30363d;
+  --color-border-subtle: #21262d;
+  --color-text-primary:  #e6edf3;
+  --color-text-secondary:#8b949e;
+  --color-text-muted:    #6e7781;
+  --color-code-bg:       #161b22;
+  --color-sidebar-bg:    #0d1117;
+  --color-sidebar-border:#30363d;
+}
+
 /* ─── Global Reset & Base ─── */
 *, *::before, *::after {
   box-sizing: border-box;

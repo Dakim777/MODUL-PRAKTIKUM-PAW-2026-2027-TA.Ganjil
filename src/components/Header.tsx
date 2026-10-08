@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { daftarPertemuan } from "@/lib/pertemuan";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Header() {
   const pathname = usePathname();
@@ -138,6 +139,10 @@ export default function Header() {
             )}
           </div>
         )}
+      </div>
+
+      <div style={{ marginLeft: isHome ? "0" : "auto", display: "flex", alignItems: "center", paddingLeft: "12px" }}>
+        <ThemeToggle />
       </div>
     </header>
   );
