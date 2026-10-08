@@ -2261,13 +2261,104 @@ async function fetchUserCached(id) {
   <li>Buat debounced search dengan async API calls</li>
 </ul>
 
-      <h2 id="tugas-praktikum">Tugas: Personal Dashboard (ES6+)</h2>
-      <p>Buat aplikasi Personal Dashboard interaktif yang memanfaatkan fitur-fitur ES6+ yang telah dipelajari seperti module import/export, modern array methods, destructuring, spread/rest, dan Async/Await.</p>
+      <h2 id="tugas-praktikum">Tugas Praktikum</h2>
+      {calloutInfo(
+        "Buatlah aplikasi personal dashboard sederhana yang menampilkan informasi yang Kalian pilih sendiri (misalnya jadwal kuliah, daftar tugas, catatan, atau informasi cuaca/waktu)."
+      )}
+      <p><strong>Persyaratan:</strong></p>
+      <ul>
+        <li><strong>Interaktif:</strong> Pengguna harus dapat menambah, mengedit, atau menghapus informasi</li>
+        <li><strong>Penyimpanan Lokal:</strong> Gunakan localStorage untuk menyimpan data pengguna</li>
+        <li><strong>Fitur ES6+ Wajib:</strong>
+          <ul>
+            <li>Gunakan <code>let</code> dan <code>const</code> secara tepat untuk deklarasi variabel</li>
+            <li>Implementasikan minimal 3 arrow functions</li>
+            <li>Gunakan template literals untuk rendering dinamis</li>
+            <li>Gunakan Fungsi Asinkron (Pilih salah satu Async Await atau Promises)</li>
+            <li>Ada implementasi Classes</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div className="bg-purple-50 border-l-4 border-purple-500 p-4 my-6 rounded-r-lg">
+        <div className="flex items-start">
+          <svg className="w-5 h-5 text-purple-500 mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <h4 className="text-purple-800 font-bold mb-1 mt-0">Tantangan Kreatif</h4>
+            <p className="text-purple-700 m-0 text-sm">
+              Daripada membuat aplikasi generik, pikirkan kebutuhan spesifik Kalian sebagai mahasiswa. Aplikasi apa yang akan membantu produktivitas atau organisasi Kalian sehari-hari?
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p><strong>Kriteria Penilaian:</strong></p>
+      <div className="overflow-x-auto my-4">
+        <table className="min-w-full border border-gray-200">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">ASPEK</th>
+              <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider border-b">BOBOT</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200 text-sm text-gray-700">
+            <tr>
+              <td className="px-4 py-3">Fungsionalitas dan interaktivitas aplikasi</td>
+              <td className="px-4 py-3 text-right">30%</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3">Implementasi fitur ES6+</td>
+              <td className="px-4 py-3 text-right">25%</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3">Penggunaan localStorage dan pengelolaan data</td>
+              <td className="px-4 py-3 text-right">20%</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3">Desain UI dan UX</td>
+              <td className="px-4 py-3 text-right">15%</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3">Dokumentasi dan kerapian kode</td>
+              <td className="px-4 py-3 text-right">10%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Dokumentasi yang Diperlukan di Readme:</strong></p>
+      <ul>
+        <li>Penjelasan singkat tentang fungsi aplikasi dan fitur-fiturnya</li>
+        <li>Screenshot aplikasi yang sudah jadi</li>
+        <li>Daftar fitur ES6+ yang diimplementasikan</li>
+      </ul>
 
       <h2 id="format-pengumpulan">Format Pengumpulan</h2>
       <ul>
-        <li>Folder: <code>[NAMA]_[NIM]_pertemuan2</code></li>
-        <li><strong>Deadline:</strong> Mengikuti instruksi asisten praktikum.</li>
+        <li>
+          <strong>Direktori GitHub:</strong>
+          <ul>
+            <li>Buat repository dengan format: <code>pemrograman_web_itera_[NIM]</code></li>
+            <li>Contoh: <code>pemrograman_web_itera_119140001</code></li>
+          </ul>
+        </li>
+        <li>
+          <strong>Struktur Folder:</strong>
+          <ul>
+            <li>Buat folder per pertemuan dengan format: <code>[NAMA]_[NIM]_pertemuan[X]</code></li>
+            <li>Contoh: <code>johndoe_119140001_pertemuan3</code></li>
+            <li>Setiap folder berisi semua file praktikum dan tugas untuk pertemuan tersebut</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Deadline Pengumpulan:</strong>
+          <ul>
+            <li><strong>Deadline:</strong> Rabu, 14 Oktober 2026 23.59 WIB</li>
+            <li>Keterlambatan pengumpulan akan dikenakan pengurangan nilai sebesar 10% per hari</li>
+          </ul>
+        </li>
       </ul>
 
       <SubmissionBox pertemuan={2} />
