@@ -90,6 +90,8 @@ export default function Pertemuan2() {
 </body>
 </html>`}</CodeBlock>
 
+{calloutInfo("💡 Arahan Praktikum: Tekankan pada mahasiswa pentingnya atribut type=\"module\" di tag script. Tanpa atribut ini, fitur import/export ES6 tidak akan berfungsi di browser.")}
+
 <p>Module Script</p>
 
 <p>Perhatikan atribut type="module" pada tag script. Ini penting untuk menggunakan fitur ES6 modules (import/export).</p>
@@ -156,6 +158,8 @@ export function demoVariables() {
     user
   };
 }`}</CodeBlock>
+
+{calloutInfo("💡 Arahan Praktikum: Tunjukkan secara langsung di browser bahwa mengubah properti dalam objek 'const' itu diperbolehkan, namun melakukan re-assign ulang variabelnya akan menghasilkan error.")}
 
 <p>Const untuk Objek</p>
 
@@ -235,6 +239,8 @@ export function demoArrowFunctions() {
   };
 }`}</CodeBlock>
 
+{calloutInfo("💡 Arahan Praktikum: Ajak mahasiswa membandingkan sintaks fungsi reguler vs arrow function. Tekankan pada konsep 'implicit return' ketika tanda kurung kurawal dihapus, karena ini sering membingungkan pemula.")}
+
 
 <h3 id="perbedaan-dengan-regular-functions">Perbedaan dengan Regular Functions</h3>
 <p>Lexical this</p>
@@ -289,6 +295,8 @@ export function demoTemplateLiterals() {
     expression
   };
 }`}</CodeBlock>
+
+{calloutInfo("💡 Arahan Praktikum: Berikan contoh nyata perbandingan penggabungan string (concatenation) cara lama vs template literals. Tunjukkan betapa mudahnya membuat string multi-baris untuk merender HTML secara dinamis.")}
 
 
 <h3 id="keuntungan-template-literals">Keuntungan Template Literals</h3>
@@ -507,6 +515,8 @@ export function demoDestructuring() {
   };
 }`}</CodeBlock>
 
+{calloutInfo("💡 Arahan Praktikum: Destructuring sangat penting untuk React.js nantinya. Beri contoh kasus umum seperti mengekstrak properti dari API response (misal data JSON dari backend) atau mengambil isi state.")}
+
 <p>Use Cases</p>
 
 <p>Destructuring sangat berguna untuk:</p>
@@ -629,6 +639,8 @@ export function demoSpreadRest() {
     restProcess: process("a", "b", "c", "d", "e")
   };
 }`}</CodeBlock>
+
+{calloutInfo("💡 Arahan Praktikum: Jelaskan perbedaan fungsi Titik Tiga (...) sebagai Spread (memecah array/objek) vs Rest (menggabungkan argumen fungsi). Poin krusial di sini adalah konsep Shallow Copy pada Spread.")}
 
 
 <h3 id="perbedaan-spread-vs-rest">Perbedaan Spread vs Rest</h3>
