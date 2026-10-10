@@ -24,8 +24,72 @@ export default function Pertemuan2({ subId }: { subId?: string }) {
     <>
       {(!subId || subId === "dasar-teori") && (
         <>
-<h2 id="dasar-teori">JavaScript Next Gen</h2>
+          <h2 id="dasar-teori">Dasar Teori: Mengenal JavaScript Modern (ES6+)</h2>
+          
+          <p>
+            Selamat datang di dunia <strong>JavaScript Next Gen</strong>! Jika pada pertemuan sebelumnya Anda sudah mempelajari dasar-dasar pemrograman JavaScript tradisional, pada pertemuan ini kita akan naik kelas dengan mempelajari fitur-fitur modern yang digunakan oleh software engineer dan developer profesional di industri masa kini.
+          </p>
 
+          {calloutInfo("💡 Mengapa Modul Ini Sangat Penting? Fitur-fitur ES6+ yang kita pelajari hari ini merupakan fondasi wajib sebelum kita melangkah ke Pertemuan 3 (React.js). Di React, hampir seluruh logika komponen ditulis menggunakan standar modern ini.")}
+
+          <h3>1. Apa Itu JavaScript Next Gen (ES6+)?</h3>
+          <p>
+            Secara sederhana, bayangkan JavaScript seperti sistem operasi pada smartphone. Di awal kemunculannya tahun 1995 hingga awal 2010-an, JavaScript sudah bisa menjalankan fungsi dasarnya, namun sintaksnya sering kali panjang, berbelit-belit, dan rawan menimbulkan bug tersembunyi.
+          </p>
+          <p>
+            Pada tahun 2015, badan standarisasi JavaScript internasional (ECMA) meluncurkan pembaruan raksasa yang dikenal dengan <strong>ECMAScript 2015 (ES6)</strong>. Pembaruan ini mengubah cara kita menulis JavaScript menjadi jauh lebih ringkas, elegan, ekspresif, dan aman. Istilah <strong>Next Gen (ES6+)</strong> mengacu pada seluruh standar dan fitur modern yang diperkenalkan mulai dari versi ES6 hingga rilis tahunan terbaru saat ini.
+          </p>
+
+          <h3>2. Masalah di Era Lama vs Solusi Modern</h3>
+          <p>
+            Agar lebih mudah dipahami, mari kita bedah masalah apa saja yang dialami developer di era lama dan bagaimana fitur-fitur baru ES6+ hadir sebagai solusinya:
+          </p>
+
+          <ul>
+            <li>
+              <strong>Variabel Sering Bocor (Masalah <code>var</code>):</strong> Pada JavaScript lama, semua variabel dibuat menggunakan kata kunci <code>var</code>. Sayangnya, <code>var</code> tidak mengenal batasan kurung kurawal (<em>block scope</em>), sehingga variabel di dalam blok <code>if</code> atau perulangan bisa bocor keluar dan menimpa data lain tanpa sengaja. Di era modern, kita menggunakan <strong><code>let</code></strong> (untuk data yang nilainya bisa berubah) dan <strong><code>const</code></strong> (untuk data tetap), yang patuh pada kurung kurawal tempat ia dideklarasikan.
+            </li>
+            <li>
+              <strong>Penulisan Fungsi yang Bertele-tele:</strong> Dulu kita wajib mengetik kata kunci <code>function () &#123; ... &#125;</code> berulang kali. Di ES6+, kita punya <strong>Arrow Functions (<code>=&gt;</code>)</strong>. Selain membuat kode jauh lebih pendek dan enak dibaca, arrow function juga secara alami menyelesaikan masalah rumit seputar penentuan konteks <code>this</code>.
+            </li>
+            <li>
+              <strong>Menyambung Kalimat Teks yang Bikin Pusing:</strong> Dulu ketika ingin menggabungkan teks dengan variabel, kita harus menyusunnya dengan puluhan tanda petik dan tanda tambah (<code>"Halo, " + nama + "! Usia Anda " + usia + " tahun."</code>). Sekarang, kita cukup memakai <strong>Template Literals</strong> dengan tanda backtick (<code>` `</code>) dan menyelipkan variabel langsung lewat <code>$&#123;nama&#125;</code>.
+            </li>
+            <li>
+              <strong>Membongkar Paket Data (Destructuring):</strong> Bayangkan Anda menerima paket belanjaan berupa kardus besar. Daripada mengambil barang satu per satu dengan mengetik <code>barang1 = paket.baju</code> dan <code>barang2 = paket.celana</code>, dengan sintaks <strong>Destructuring</strong> kita bisa langsung membuka dan mengeluarkan properti yang kita inginkan dalam satu baris ringkas: <code>const &#123; baju, celana &#125; = paket;</code>.
+            </li>
+            <li>
+              <strong>Menyalin &amp; Menggabungkan Data (Spread / Rest <code>...</code>):</strong> Simbol tiga titik ini sangat ajaib. Sebagai <em>Spread Operator</em>, ia bisa menghamparkan isi array atau objek ke wadah baru tanpa merusak data aslinya (sangat penting untuk konsep <em>immutability</em>). Sedangkan sebagai <em>Rest Parameter</em>, ia bisa menampung banyak argumen fungsi ke dalam satu array rapi.
+            </li>
+            <li>
+              <strong>Mengolah Kumpulan Data Tanpa Loop Manual:</strong> Dulu untuk menyaring atau mengubah data array, kita harus menulis perulangan <code>for (let i = 0; i &lt; data.length; i++)</code> yang panjang. Di era modern, kita memiliki <strong>Modern Array Methods</strong> seperti <code>.map()</code>, <code>.filter()</code>, dan <code>.find()</code> yang bekerja seperti mesin sortir otomatis yang bersih dan mudah dipahami.
+            </li>
+            <li>
+              <strong>Menunggu Proses Berat Tanpa Bikin Web Macet:</strong> Mengambil data dari server luar membutuhkan waktu jaringan. Dengan <strong>Promise</strong> dan <strong>Async/Await</strong>, kita bisa memerintahkan JavaScript untuk menunggu respons data dengan cara penulisan yang lurus dan runtut dari atas ke bawah, terhindar dari labirin <em>callback hell</em>.
+            </li>
+          </ul>
+
+          <h3>3. Peta Topik Praktikum Hari Ini</h3>
+          <p>
+            Di modul ini, Anda akan mempraktikkan konsep-konsep di atas langkah demi langkah melalui file demo interaktif:
+          </p>
+
+          <ol>
+            <li><strong>Setup Project:</strong> Menyiapkan struktur file modular dengan dukungan <code>type="module"</code>.</li>
+            <li><strong>Let, Const &amp; Arrow Functions:</strong> Belajar mendeklarasikan variabel aman dan fungsi modern.</li>
+            <li><strong>Template Literals:</strong> Mengarang string dinamis dan template kartu HTML secara praktis.</li>
+            <li><strong>Destructuring &amp; Spread/Rest:</strong> Menguasai trik manipulasi struktur objek dan array.</li>
+            <li><strong>Classes &amp; Object Literals:</strong> Memahami dasar paradigma Object-Oriented Programming modern.</li>
+            <li><strong>Modern Array Methods:</strong> Mengolah data inventaris / produk dengan fungsi penyaring otomatis.</li>
+            <li><strong>Async Programming:</strong> Mengambil dan menampilkan data API simulasi secara asinkron.</li>
+          </ol>
+
+          <h3>4. Tips untuk Pemula</h3>
+          <ul>
+            <li><strong>Fokus pada Logika dan Manfaatnya:</strong> Jangan terintimidasi oleh simbol baru seperti panah <code>=&gt;</code> atau titik tiga <code>...</code>. Pahami dulu <em>kenapa</em> simbol itu dipakai dan masalah apa yang ia selesaikan.</li>
+            <li><strong>Manfaatkan Console Browser:</strong> Buka tab <strong>Console</strong> pada Inspect Element (<kbd>F12</kbd> atau <kbd>Ctrl+Shift+I</kbd> / <kbd>Cmd+Option+I</kbd>) setiap kali Anda menjalankan kode untuk melihat hasil log secara langsung.</li>
+            <li><strong>Praktekkan Kode Demo:</strong> Ketikkan sendiri kode yang tersedia di panduan agar tangan dan logika Anda terbiasa dengan sintaks baru ini.</li>
+          </ul>
         </>
       )}
       {(!subId || subId === "setup-project") && (
