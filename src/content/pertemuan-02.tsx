@@ -20,6 +20,21 @@ export default function Pertemuan2({ subId }: { subId?: string }) {
     </div>
   );
 
+  const codeHint = (text: React.ReactNode) => (
+    <div className="callout callout-info" style={{ marginTop: "0.5rem", marginBottom: "1.25rem" }}>
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
+        <path d="M10 2a6 6 0 00-6 6c0 2.2 1.2 4.1 3 5.1V15a1 1 0 001 1h4a1 1 0 001-1v-1.9c1.8-1 3-2.9 3-5.1a6 6 0 00-6-6z" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M8 18h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+      <div className="callout-body">
+        <p style={{ fontWeight: 600, marginBottom: "0.25rem", color: "var(--color-accent)" }}>💡 Penjelasan Kode:</p>
+        <div style={{ fontSize: "0.875rem", color: "var(--color-text-secondary)", lineHeight: 1.6 }}>
+          {text}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <>
       {(!subId || subId === "dasar-teori") && (
@@ -109,8 +124,18 @@ export default function Pertemuan2({ subId }: { subId?: string }) {
 │   ├── main.js
 │   ├── modules/
 │   │   ├── utils.js
-│   │   └── data.js
-│   └── app.js`}</CodeBlock>
+│   └── data.js
+└── app.js`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>index.html</strong>: Halaman utama web tempat kita menampilkan antarmuka dan melihat hasil kode secara visual.</li>
+    <li><strong>css/style.css</strong>: Menyimpan aturan styling kustom untuk mempercantik tampilan halaman.</li>
+    <li><strong>js/main.js</strong>: File pengendali utama (*entry point*) yang menangani event klik tombol dan memperbarui elemen DOM.</li>
+    <li><strong>js/app.js</strong>: Berisi kumpulan fungsi demonstrasi fitur-fitur ES6+ yang akan diekspor (export) ke file lain.</li>
+    <li><strong>js/modules/</strong>: Folder untuk menaruh modul-modul independen (seperti helper <code>utils.js</code> dan sumber data <code>data.js</code>) agar kode terstruktur rapi.</li>
+  </ul>
+)}
 
 <h3 id="langkah-langkah-setup">Langkah-Langkah Setup</h3>
 
@@ -160,11 +185,16 @@ export default function Pertemuan2({ subId }: { subId?: string }) {
 </body>
 </html>`}</CodeBlock>
 
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>CDN Tailwind (baris 142)</strong>: Memuat utility-class Tailwind langsung dari internet untuk mempercantik tombol, card, dan warna dengan cepat.</li>
+    <li><strong>Elemen <code>&lt;div id="output"&gt;</code> (baris 156)</strong>: Wadah penampung teks hasil eksekusi kode demo JavaScript kita.</li>
+    <li><strong>Tombol <code>runBtn</code> &amp; <code>clearBtn</code> (baris 161-169)</strong>: Tombol interaktif untuk memicu eksekusi demo dan membersihkan riwayat output di layar.</li>
+    <li><strong>Atribut <code>type="module"</code> (baris 174)</strong>: <strong>Paling penting!</strong> Memberitahu browser bahwa file <code>main.js</code> adalah ES Module, sehingga fitur <code>import</code> dan <code>export</code> diizinkan berjalan oleh browser.</li>
+  </ul>
+)}
+
 {calloutInfo("💡 Arahan Praktikum: Tekankan pada mahasiswa pentingnya atribut type=\"module\" di tag script. Tanpa atribut ini, fitur import/export ES6 tidak akan berfungsi di browser.")}
-
-<p>Module Script</p>
-
-<p>Perhatikan atribut type="module" pada tag script. Ini penting untuk menggunakan fitur ES6 modules (import/export).</p>
 
 
 <h3 id="langkah-selanjutnya">Langkah Selanjutnya</h3>
@@ -233,6 +263,15 @@ export function demoVariables() {
   };
 }`}</CodeBlock>
 
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong><code>var oldVar</code> (baris 239-243)</strong>: Karena <code>var</code> bersifat <em>function-scoped</em> dan tidak peduli blok kurung kurawal, nilai variabel di luar blok ikut berubah tertimpa.</li>
+    <li><strong><code>let newLet</code> (baris 246-250)</strong>: <code>let</code> bersifat <em>block-scoped</em>. Variabel di dalam blok <code>&#123; &#125;</code> berdiri sendiri dan tidak merusak nilai <code>newLet</code> di luar.</li>
+    <li><strong><code>const PI = 3.14159</code> (baris 253)</strong>: Nilai konstan. Menugaskan ulang nilai baru (<code>PI = 3.15</code>) akan memicu error di browser.</li>
+    <li><strong><code>const user</code> (baris 254-256)</strong>: Referensi objeknya tetap, namun isi properti di dalamnya (<code>user.age = 31</code>) masih dapat dimodifikasi secara bebas.</li>
+  </ul>
+)}
+
 {calloutInfo("💡 Arahan Praktikum: Tunjukkan secara langsung di browser bahwa mengubah properti dalam objek 'const' itu diperbolehkan, namun melakukan re-assign ulang variabelnya akan menghasilkan error.")}
 
 <p>Const untuk Objek</p>
@@ -277,6 +316,15 @@ const double = x => x * 2;`}</CodeBlock>
 const sayHello = () => "Hello World!";
 const getRandom = () => Math.random();`}</CodeBlock>
 
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Regular vs Arrow</strong>: Kata kunci <code>function</code> dipangkas menjadi tanda panah <code>=&gt;</code> setelah daftar parameter.</li>
+    <li><strong>Implicit Return</strong>: Pada fungsi 1 baris, kita bisa menghapus tanda kurung kurawal <code>&#123; &#125;</code> dan kata <code>return</code>. Nilai ekspresi otomatis dikembalikan.</li>
+    <li><strong>Mengembalikan Objek</strong>: Wajib dibungkus tanda kurung <code>(&#123; name, age &#125;)</code> agar JavaScript tidak mengira kurung kurawal adalah blok fungsi.</li>
+    <li><strong>Aturan Tanda Kurung Parameter</strong>: Jika hanya ada 1 parameter (seperti <code>x</code>), tanda kurung <code>()</code> boleh dihilangkan. Jika parameter kosong atau lebih dari satu, tanda kurung wajib ditulis.</li>
+  </ul>
+)}
+
 
 <h3 id="implementasi-arrow-functions">Implementasi Arrow Functions</h3>
 <p>Tambahkan ke js/app.js:</p>
@@ -313,6 +361,12 @@ export function demoArrowFunctions() {
   };
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Fungsi demo di atas membandingkan hasil perhitungan dari fungsi cara lama (<code>regularSum</code>) dengan 4 bentuk variasi arrow function modern. Seluruh hasilnya dikumpulkan dalam satu objek JavaScript agar dapat langsung dicetak ke layar browser.
+  </p>
+)}
+
 {calloutInfo("💡 Arahan Praktikum: Ajak mahasiswa membandingkan sintaks fungsi reguler vs arrow function. Tekankan pada konsep 'implicit return' ketika tanda kurung kurawal dihapus, karena ini sering membingungkan pemula.")}
 
 
@@ -337,6 +391,13 @@ const greeting = "Hello, " + name + "!";
 
 // Template literals
 const greeting = \`Hello, \${name}!\`;`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Cara Lama (Concatenation)</strong>: Menggunakan tanda tambah <code>+</code> di antara potongan teks dan variabel. Sering terjadi kesalahan lupa menambahkan spasi manual (misal <code>"Hello, "</code>).</li>
+    <li><strong>Cara Modern (Template Literals)</strong>: Mengapit string dengan tanda backtick (<code>` `</code>) dan menyisipkan variabel langsung menggunakan <code>$&#123;namaVariabel&#125;</code>. Kode jauh lebih rapi dan bebas typo.</li>
+  </ul>
+)}
 
 
 <h3 id="implementasi-template-literals">Implementasi Template Literals</h3>
@@ -373,6 +434,14 @@ export function demoTemplateLiterals() {
     expression
   };
 }`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong><code>newWay</code> (baris 410)</strong>: Menyisipkan dua variabel <code>$&#123;name&#125;</code> dan <code>$&#123;age&#125;</code> sekaligus ke dalam kalimat.</li>
+    <li><strong><code>multiLine</code> (baris 413-418)</strong>: Anda bisa langsung menekan Enter untuk membuat baris baru di dalam string tanpa perlu menambahkan karakter <code>\n</code> manual. Sangat ideal untuk menyusun template kartu HTML.</li>
+    <li><strong><code>expression</code> (baris 421)</strong>: Di dalam kurung <code>$&#123;...&#125;</code>, kita bisa menjalankan ekspresi matematika atau kode JavaScript dinamis seperti <code>new Date().getFullYear() - age</code> untuk menghitung tahun lahir secara otomatis.</li>
+  </ul>
+)}
 
 {calloutInfo("💡 Arahan Praktikum: Berikan contoh nyata perbandingan penggabungan string (concatenation) cara lama vs template literals. Tunjukkan betapa mudahnya membuat string multi-baris untuk merender HTML secara dinamis.")}
 
@@ -428,6 +497,12 @@ With expression: \${templateResults.expression}
 Multi-line: \${templateResults.multiLine}\`
   );
 }`}</CodeBlock>
+
+{codeHint(
+  <p>
+    File <code>main.js</code> menggunakan sintaks <code>import &#123; ... &#125; from './app.js'</code> untuk mengambil fungsi demo. Saat tombol "Run Demo" diklik, fungsi <code>runAllDemos()</code> mengeksekusi ketiga demo pertama dan menampilkan ringkasan hasilnya ke elemen <code>output</code> di halaman web.
+  </p>
+)}
 
 <p>Testing</p>
 
@@ -506,6 +581,15 @@ console.log(hobby); // "coding"`}</CodeBlock>
 // Nested destructuring
 const { address: { city, postalCode } } = person;`}</CodeBlock>
 
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Dasar (<code>const &#123; firstName, lastName &#125; = person</code>)</strong>: Menarik properti objek berdasarkan kecocokan nama kuncinya langsung menjadi variabel mandiri.</li>
+    <li><strong>Ganti Nama Variabel (<code>firstName: fName</code>)</strong>: Mengambil nilai <code>firstName</code>, tapi disimpan ke nama variabel baru bernama <code>fName</code>.</li>
+    <li><strong>Nilai Bawaan (<code>hobby = "coding"</code>)</strong>: Memberi nilai cadangan jika properti tidak ditemukan (atau bernilai <code>undefined</code>) pada objek.</li>
+    <li><strong>Nested Destructuring (<code>address: &#123; city &#125;</code>)</strong>: Membongkar properti yang berada di dalam objek bertingkat secara langsung dalam satu baris.</li>
+  </ul>
+)}
+
 
 <h3 id="array-destructuring">Array Destructuring</h3>
 <CodeBlock language="">{`const colors = ["red", "green", "blue"];
@@ -535,6 +619,15 @@ let b = 2;
 // Swap variables
 [a, b] = [b, a];
 console.log(a, b); // 2, 1`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Dasar (<code>const [first, second] = colors</code>)</strong>: Menarik elemen array berdasarkan urutan indeks posisi (indeks 0 masuk ke <code>first</code>, indeks 1 masuk ke <code>second</code>).</li>
+    <li><strong>Skip Elemen (<code>[, , thirdColor]</code>)</strong>: Tanda koma kosong melompati indeks tanpa menyimpannya ke variabel.</li>
+    <li><strong>Rest Pattern (<code>...rest</code>)</strong>: Menampung seluruh sisa elemen array ke dalam array baru bernama <code>rest</code>.</li>
+    <li><strong>Swap Nilai (<code>[a, b] = [b, a]</code>)</strong>: Menukar isi dua variabel secara kilat tanpa membutuhkan variabel bantuan penampung (<code>temp</code>).</li>
+  </ul>
+)}
 
 
 <h3 id="implementasi-destructuring">Implementasi Destructuring</h3>
@@ -597,6 +690,12 @@ export function demoDestructuring() {
   };
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Fungsi <code>demoDestructuring</code> mempraktikkan skenario nyata ekstraksi data objek profil bertingkat (seperti data kiriman JSON dari server) dan pengolahan elemen array ke dalam bentuk yang siap digunakan oleh komponen UI.
+  </p>
+)}
+
 {calloutInfo("💡 Arahan Praktikum: Destructuring sangat penting untuk React.js nantinya. Beri contoh kasus umum seperti mengekstrak properti dari API response (misal data JSON dari backend) atau mengambil isi state.")}
 
 <p>Use Cases</p>
@@ -642,6 +741,14 @@ const employee = {
   age: 31  // Override property
 };`}</CodeBlock>
 
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Kloning Array (<code>[...numbers]</code>)</strong>: Membuka elemen array dan memasukkannya ke array baru sehingga array asli tidak terdampak.</li>
+    <li><strong>Penggabungan Array (<code>[...numbers, ...moreNumbers]</code>)</strong>: Menyatukan dua array menjadi satu array panjang tanpa method <code>concat()</code> yang kaku.</li>
+    <li><strong>Kloning &amp; Timpa Objek (<code>&#123; ...person, company: "Tech Co", age: 31 &#125;</code>)</strong>: Menyalin semua properti <code>person</code>, menambahkan properti baru, sekaligus memperbarui nilai <code>age</code> secara aman.</li>
+  </ul>
+)}
+
 
 <h3 id="rest-parameter">Rest Parameter</h3>
 <p>Rest parameter mengumpulkan argumen yang tersisa ke dalam array.</p>
@@ -661,6 +768,13 @@ function process(first, second, ...rest) {
 }
 
 process("a", "b", "c", "d", "e");`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Rest pada Fungsi (<code>...numbers</code>)</strong>: Menghimpun seluruh argumen pemanggilan fungsi menjadi satu array <code>numbers</code>, sehingga fungsi dapat menerima 2, 5, atau 100 angka sekaligus secara fleksibel.</li>
+    <li><strong>Kombinasi Parameter</strong>: Parameter bernama (<code>first, second</code>) akan mengambil 2 nilai pertama, lalu <code>...rest</code> menampung semua sisa argumen yang tersisa.</li>
+  </ul>
+)}
 
 
 <h3 id="implementasi-spread-dan-rest">Implementasi Spread dan Rest</h3>
@@ -722,6 +836,12 @@ export function demoSpreadRest() {
   };
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Fungsi <code>demoSpreadRest</code> menguji bagaimana operator titik tiga (<code>...</code>) bekerja: membuka dan menggandakan array/objek (Spread) vs mengumpulkan banyak argumen fungsi menjadi satu array (Rest).
+  </p>
+)}
+
 {calloutInfo("💡 Arahan Praktikum: Jelaskan perbedaan fungsi Titik Tiga (...) sebagai Spread (memecah array/objek) vs Rest (menggabungkan argumen fungsi). Poin krusial di sini adalah konsep Shallow Copy pada Spread.")}
 
 
@@ -776,6 +896,12 @@ Rest with regular params: \${JSON.stringify(spreadRestResults.restProcess)}\`
   );
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Fungsi <code>main.js</code> diperbarui untuk memuat dan mencetak demo 4 (Destructuring) dan demo 5 (Spread/Rest) ke layar aplikasi.
+  </p>
+)}
+
 
 <h3 id="praktik-terbaik">Praktik Terbaik</h3>
 <ul>
@@ -792,6 +918,12 @@ function displayUser(user) {
   console.log(\`\${user.name}, \${user.age}, \${user.email}\`);
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Daripada menerima parameter <code>user</code> lalu mengetik <code>user.name</code> dan <code>user.age</code>, kita bisa langsung membongkar propertinya di parameter fungsi <code>(&#123; name, age, email &#125;)</code>. Pola ini adalah standar penulisan <em>props</em> di React.js!
+  </p>
+)}
+
 <ul>
   <li>Spread untuk Immutability</li>
 </ul>
@@ -800,6 +932,12 @@ function displayUser(user) {
 const newArray = [...oldArray, newItem];
 const newObject = { ...oldObject, newProp: value };`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Selalu buat data baru menggunakan spread operator daripada memodifikasi data lama secara langsung (seperti <code>oldArray.push(newItem)</code>). Prinsip ini wajib dipegang saat mengelola *state* aplikasi.
+  </p>
+)}
+
 <ul>
   <li>Rest untuk Flexible Functions</li>
 </ul>
@@ -807,6 +945,12 @@ const newObject = { ...oldObject, newProp: value };`}</CodeBlock>
 <CodeBlock language="">{`function createMessage(greeting, ...names) {
   return \`\${greeting} \${names.join(', ')}!\`;
 }`}</CodeBlock>
+
+{codeHint(
+  <p>
+    Parameter <code>...names</code> mengumpulkan seluruh nama yang dimasukkan, lalu method <code>.join(', ')</code> menggabungkannya menjadi satu untaian teks rapi yang dipisahkan koma.
+  </p>
+)}
 
 <p>Performance</p>
 
@@ -839,7 +983,7 @@ const newObject = { ...oldObject, newProp: value };`}</CodeBlock>
 
 
 <h3 id="default-parameters">Default Parameters</h3>
-<p>Default parameters memungkinkanKalianmenentukan nilai default untuk parameter function yang tidak diberikan atau undefined.</p>
+<p>Default parameters memungkinkan Anda menentukan nilai default untuk parameter function yang tidak diberikan atau bernilai undefined.</p>
 
 
 <h3 id="perbandingan-dengan-es5">Perbandingan dengan ES5</h3>
@@ -854,6 +998,13 @@ function greet(name, greeting) {
 function greet(name = "Guest", greeting = "Hello") {
   return \`\${greeting}, \${name}!\`;
 }`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Cara Lama (<code>name = name || "Guest"</code>)</strong>: Menggunakan operator logika OR. Rentan bug jika nilai yang dikirim adalah nilai <em>falsy</em> yang valid (seperti angka <code>0</code>, string kosong <code>""</code>, atau <code>false</code>).</li>
+    <li><strong>Cara Modern (<code>name = "Guest"</code>)</strong>: Nilai bawaan langsung ditentukan di kepala fungsi dan HANYA aktif jika argumennya <code>undefined</code>.</li>
+  </ul>
+)}
 
 <p>Keuntungan Default Parameters</p>
 
@@ -903,6 +1054,12 @@ export function demoDefaultParams() {
     usingPrevious: createOrder("Laptop", 2, 1000000)
   };
 }`}</CodeBlock>
+
+{codeHint(
+  <p>
+    Fungsi ini menunjukkan fleksibilitas parameter default: bisa berupa nilai tetap, hasil ekspresi dinamis (<code>new Date().toISOString()</code>), maupun kalkulasi dari parameter sebelumnya (<code>total = price * quantity</code>).
+  </p>
+)}
 
 
 <h3 id="es6-classes">ES6 Classes</h3>
@@ -957,6 +1114,15 @@ export function demoDefaultParams() {
     return true;
   }
 }`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong><code>constructor(name, email)</code></strong>: Fungsi inisialisasi yang otomatis dipanggil saat instansiasi objek baru (<code>new User(...)</code>).</li>
+    <li><strong><code>get age()</code> &amp; <code>set birthYear(year)</code></strong>: Getter dan Setter untuk membaca dan memodifikasi data properti internal secara terkontrol.</li>
+    <li><strong><code>static create()</code></strong>: Method statis yang menempel langsung pada class <code>User</code>, bukan pada instansiasi objek.</li>
+    <li><strong><code>class Admin extends User</code></strong>: Pewarisan sifat. Kata kunci <code>super(name, email)</code> wajib dipanggil di konstruktor anak untuk menjalankan konstruktor class induk.</li>
+  </ul>
+)}
 
 
 <h3 id="implementasi-classes">Implementasi Classes</h3>
@@ -1023,6 +1189,12 @@ export function demoClasses() {
   };
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Membuktikan konsep pembuatan objek berbasis class dan verifikasi hubungan pewarisan (*inheritance*) menggunakan operator <code>instanceof</code>.
+  </p>
+)}
+
 <p>Class vs Prototype</p>
 
 <p>Classes di JavaScript adalah syntactic sugar di atas prototype-based inheritance yang sudah ada. Di bawah hood, mereka tetap menggunakan prototypes, tetapi dengan sintaks yang lebih familiar bagi developer dari bahasa OOP lain.</p>
@@ -1071,6 +1243,14 @@ const userData = {
   [\`\${prefix}_name\`]: "john_doe",
   [Date.now()]: "timestamp"
 };`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Property Shorthand</strong>: Cukup tulis <code>&#123; name, age &#125;</code> jika nama kunci dan nama variabelnya identik.</li>
+    <li><strong>Method Shorthand</strong>: Cukup tulis <code>sayHello() &#123; ... &#125;</code> tanpa perlu kata kunci <code>function</code>.</li>
+    <li><strong>Computed Property Names</strong>: Gunakan kurung siku <code>[ `user_$&#123;id&#125;` ]: value</code> untuk membuat nama properti dinamis berdasarkan variabel atau runtime.</li>
+  </ul>
+)}
 
 
 <h3 id="implementasi-enhanced-object-literals">Implementasi Enhanced Object Literals</h3>
@@ -1128,6 +1308,12 @@ export function demoObjectLiterals() {
     dynamicProps: userData
   };
 }`}</CodeBlock>
+
+{codeHint(
+  <p>
+    Menunjukkan perbandingan pembuatan objek cara lama vs fitur enhanced object literals modern yang jauh lebih ringkas dan fleksibel.
+  </p>
+)}
 
 
 <h3 id="update-mainjs">Update main.js</h3>
@@ -1188,6 +1374,12 @@ Dynamic properties: \${JSON.stringify(objectLiteralsResults.dynamicProps)}\`
   );
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Mengimpor dan mengeksekusi demo 6 (Default Parameters), demo 7 (Classes), dan demo 8 (Enhanced Object Literals) ke antarmuka web.
+  </p>
+)}
+
 
 <h3 id="praktik-terbaik">Praktik Terbaik</h3>
 
@@ -1203,7 +1395,6 @@ function createUser(name, role, active) {
   active = active !== undefined ? active : true;
   return { name, role, active };
 }`}</CodeBlock>
-
 
 <h3 id="2-class-untuk-domain-models">2. Class untuk Domain Models</h3>
 <CodeBlock language="">{`class Product {
@@ -1221,13 +1412,18 @@ function createUser(name, role, active) {
   }
 }`}</CodeBlock>
 
-
 <h3 id="3-property-shorthand-untuk-clean-code">3. Property Shorthand untuk Clean Code</h3>
 <CodeBlock language="">{`// Good - clean and concise
 const user = { name, email, age };
 
 // Avoid - redundant
 const user = { name: name, email: email, age: age };`}</CodeBlock>
+
+{codeHint(
+  <p>
+    Tips penulisan kode bersih: selalu manfaatkan default parameter pada fungsi, gunakan Class untuk entitas bisnis (*Domain Model*) yang memiliki logika internal, dan gunakan property shorthand untuk menyederhanakan deklarasi objek.
+  </p>
+)}
 
 <p>When to Use Classes</p>
 
@@ -1300,6 +1496,13 @@ const users = [
 const names = users.map(user => user.name);
 // ["John", "Jane"]`}</CodeBlock>
 
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong><code>numbers.map(num =&gt; num * 2)</code></strong>: Mengubah setiap angka menjadi 2x lipat dan menghasilkan array baru berukuran sama <code>[2, 4, 6, 8, 10]</code> tanpa memodifikasi array <code>numbers</code> asli.</li>
+    <li><strong>Dengan Objek (<code>users.map(user =&gt; user.name)</code>)</strong>: Mengekstrak hanya nama-nama user menjadi array string <code>["John", "Jane"]</code>. Ini adalah pola utama merender list data di React!</li>
+  </ul>
+)}
+
 
 <h3 id="filter-memilih-elemen">filter() - Memilih Elemen</h3>
 <p>filter() membuat array baru dengan elemen yang memenuhi kondisi.</p>
@@ -1313,6 +1516,13 @@ const evens = numbers.filter(num => num % 2 === 0);
 // Filter user aktif
 const activeUsers = users.filter(user => user.active);`}</CodeBlock>
 
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong><code>numbers.filter(num =&gt; num % 2 === 0)</code></strong>: Menguji setiap angka, hanya angka genap (kondisi menghasilkan <code>true</code>) yang lolos ke array baru <code>[2, 4, 6]</code>.</li>
+    <li><strong><code>users.filter(user =&gt; user.active)</code></strong>: Menyaring dan hanya menyisakan objek user yang properti <code>active</code>-nya bernilai <code>true</code>.</li>
+  </ul>
+)}
+
 
 <h3 id="find-mencari-elemen-tunggal">find() - Mencari Elemen Tunggal</h3>
 <p>find() mengembalikan elemen pertama yang memenuhi kondisi.</p>
@@ -1324,6 +1534,12 @@ const activeUsers = users.filter(user => user.active);`}</CodeBlock>
 
 const user = users.find(u => u.id === 2);
 // { id: 2, name: "Jane" }`}</CodeBlock>
+
+{codeHint(
+  <p>
+    <code>users.find(u =&gt; u.id === 2)</code>: Mencari dan langsung mengembalikan <strong>satu objek pertama</strong> yang cocok dengan kriteria. Jika tidak ada yang cocok, ia mengembalikan <code>undefined</code> (berbeda dengan <code>filter</code> yang selalu mengembalikan bentuk array).
+  </p>
+)}
 
 
 <h3 id="reduce-pisau-swiss-army">Reduce - Pisau Swiss Army</h3>
@@ -1367,6 +1583,14 @@ const flat = nested.reduce((acc, arr) =>
   acc.concat(arr), []);
 // [1, 2, 3, 4, 5]`}</CodeBlock>
 
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Total Penjumlahan</strong>: <code>reduce((total, num) =&gt; total + num, 0)</code> menggulung seluruh angka menjadi 1 nilai total (15). Angka <code>0</code> adalah nilai awal akumulator <code>total</code>.</li>
+    <li><strong>Mencari Nilai Ekstrem (Max/Min)</strong>: Membandingkan setiap angka dengan nilai tertinggi/terendah sementara untuk menemukan pemenangnya.</li>
+    <li><strong>Pengelompokan Objek</strong>: Mengelompokkan daftar pengguna berdasarkan <code>role</code> menjadi format objek terstruktur <code>&#123; admin: [...], user: [...] &#125;</code>.</li>
+  </ul>
+)}
+
 
 <h3 id="some-dan-every">Some dan Every</h3>
 
@@ -1388,6 +1612,13 @@ const allEven = numbers.every(num => num % 2 === 0);
 
 const allPositive = numbers.every(num => num > 0);
 // true`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong><code>some()</code></strong>: Mengembalikan <code>true</code> jika <strong>minimal ada 1 elemen</strong> yang lolos kriteria (misal: ada angka genap).</li>
+    <li><strong><code>every()</code></strong>: Mengembalikan <code>true</code> HANYA jika <strong>semua elemen tanpa terkecuali</strong> lolos kriteria (misal: semua angka bernilai positif).</li>
+  </ul>
+)}
 
 
 <h3 id="rantai-method-method-chaining">Rantai Method (Method Chaining)</h3>
@@ -1412,6 +1643,12 @@ const totalAge = users
   .filter(user => user.active)
   .reduce((sum, user) => sum + user.age, 0);
 // 75`}</CodeBlock>
+
+{codeHint(
+  <p>
+    Teknik rantai (<em>chaining</em>) mengeksekusi beberapa metode sekaligus secara mulus: menyaring user aktif, menyaring usia di atas 25, lalu mengekstrak namanya (<code>.map</code>) atau menjumlahkan total usianya (<code>.reduce</code>).
+  </p>
+)}
 
 <p>Tips Performa</p>
 
@@ -1483,6 +1720,12 @@ export function demoArrayMethods() {
   };
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Fungsi <code>demoArrayMethods</code> menggabungkan seluruh Higher-Order Functions modern (<code>map</code>, <code>filter</code>, <code>find</code>, <code>some</code>, <code>every</code>, dan <code>reduce</code>) untuk memproses data pengguna dan array angka secara otomatis.
+  </p>
+)}
+
 
 <h3 id="fitur-array-lanjutan">Fitur Array Lanjutan</h3>
 
@@ -1524,6 +1767,14 @@ numbers.flatMap(n => [n, n * 2]); // [1, 2, 2, 4, 3, 6]`}</CodeBlock>
 numbers.includes(3);    // true
 numbers.includes(10);   // false
 numbers.includes(3, 3); // false (mulai dari index 3)`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong><code>Array.from()</code></strong>: Mengonversi objek yang mirip array (seperti string teks atau NodeList elemen HTML) menjadi array JavaScript asli sehingga method seperti <code>.map()</code> bisa digunakan.</li>
+    <li><strong><code>.flat(2)</code></strong>: Meratakan array berlapis hingga 2 level kedalaman.</li>
+    <li><strong><code>.includes(3)</code></strong>: Menjawab secara singkat apakah suatu data ada di dalam array dengan nilai <code>true</code> atau <code>false</code>.</li>
+  </ul>
+)}
 
 
 <h3 id="implementasi-advanced-arrays">Implementasi Advanced Arrays</h3>
@@ -1774,6 +2025,15 @@ const total = numbers.reduce((sum, n) => sum + n, 0);`}</CodeBlock>
     console.error(error);
   });`}</CodeBlock>
 
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Membuat Promise (<code>new Promise((resolve, reject) =&gt; ...)</code>)</strong>: Panggil fungsi <code>resolve(data)</code> jika tugas asinkron sukses, atau panggil <code>reject(error)</code> jika gagal.</li>
+    <li><strong><code>.then()</code> &amp; <code>.catch()</code></strong>: <code>.then()</code> menangkap data kiriman dari <code>resolve()</code>, sedangkan <code>.catch()</code> menangkap error dari <code>reject()</code>.</li>
+    <li><strong><code>.finally()</code></strong>: Selalu dipanggil di akhir proses, baik sukses maupun gagal (cocok untuk mematikan status <em>loading</em>).</li>
+    <li><strong>Promise Chaining</strong>: Menghubungkan proses beruntun (ambil user &rarr; ambil post &rarr; ambil komentar) dengan mengembalikan Promise baru di dalam <code>.then()</code>.</li>
+  </ul>
+)}
+
 
 <h3 id="method-promise">Method Promise</h3>
 
@@ -1834,6 +2094,14 @@ Promise.race([fetchData, timeout])
   .catch(error => {
     console.log('Semua gagal');
   });`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong><code>Promise.all([p1, p2, p3])</code></strong>: Menjalankan semua promise secara paralel. Berhasil jika SEMUA berhasil, gagal seketika jika ada satu saja yang gagal.</li>
+    <li><strong><code>Promise.race([p1, p2])</code></strong>: Menentukan pemenang dari promise mana pun yang paling cepat selesai (sukses atau gagal duluan).</li>
+    <li><strong><code>Promise.allSettled()</code></strong>: Menunggu semuanya tuntas dan memberikan rekap status masing-masing tanpa takut terhenti karena ada yang gagal.</li>
+  </ul>
+)}
 
 
 <h3 id="implementasi-promises">Implementasi Promises</h3>
@@ -1932,6 +2200,12 @@ export function demoPromises() {
   return outputDiv;
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Fungsi <code>demoPromises</code> mendemonstrasikan 4 skenario pemanggilan Promise: penanganan dasar (<code>.then/.catch</code>), rantai bertingkat (<em>chaining</em>), pemrosesan bersamaan (<code>Promise.all</code>), serta balapan kecepatan (<code>Promise.race</code>).
+  </p>
+)}
+
 
 <h3 id="asyncawait">Async/Await</h3>
 <p>Async/await adalah syntactic sugar di atas Promises yang membuat kode async terlihat dan berperilaku seperti kode synchronous.</p>
@@ -1985,6 +2259,14 @@ async function fetchParallel() {
   
   return { user, posts, comments };
 }`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong><code>async</code> &amp; <code>await</code></strong>: Menambahkan kata kunci <code>async</code> sebelum fungsi memungkinkan kita menggunakan <code>await</code>. Perintah <code>await</code> menjeda jalannya baris kode berikutnya hingga data respons selesai diunduh, membuat alur kode terbaca lurus seperti instruksi biasa.</li>
+    <li><strong>Penanganan Error (<code>try ... catch</code>)</strong>: Tidak perlu lagi rantai <code>.catch()</code> panjang. Cukup bungkus kode dengan blok <code>try &#123; ... &#125; catch (error) &#123; ... &#125;</code>.</li>
+    <li><strong>Sekuensial vs Paralel</strong>: Menunggu satu per satu (sekuensial) memakan waktu 3 detik. Dengan <code>Promise.all</code> (paralel), ketiga request berjalan bersamaan di latar belakang dan selesai hanya dalam 1 detik!</li>
+  </ul>
+)}
 
 <p>Berurutan vs Paralel</p>
 
@@ -2108,6 +2390,12 @@ export function demoAsyncAwait() {
   return outputDiv;
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    Fungsi <code>demoAsyncAwait</code> mempraktekkan pemanggilan API simulasi secara asinkron menggunakan pola <code>try/catch</code> dan <code>await</code>, baik untuk pengambilan data satuan maupun multi-pengguna secara paralel.
+  </p>
+)}
+
 
 <h3 id="update-mainjs">Update main.js</h3>
 <p>Update js/main.js untuk menjalankan demo async:</p>
@@ -2151,6 +2439,12 @@ function runAllDemos() {
   document.querySelector('.output-item:last-child .result').appendChild(asyncOutput);
 }`}</CodeBlock>
 
+{codeHint(
+  <p>
+    File <code>main.js</code> sekarang telah mengintegrasikan seluruh 12 demo fitur JavaScript Next Gen, menampilkan perbandingan cara lama vs cara modern di layar browser.
+  </p>
+)}
+
 
 <h3 id="perbandingan-callbacks-vs-promises-vs-asyncawait">Perbandingan: Callbacks vs Promises vs Async/Await</h3>
 <CodeBlock language="">{`// Callback hell
@@ -2185,6 +2479,14 @@ async function getData() {
     console.error(error);
   }
 }`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Callback Hell (Cara Lama)</strong>: Kode menjorok ke kanan menyerupai piramida (<em>pyramid of doom</em>) yang sangat sulit dibaca dan dirawat.</li>
+    <li><strong>Promise Chain (ES6)</strong>: Kode menjadi lebih rapi dengan rantai <code>.then()</code> dan penanganan error terpusat di satu <code>.catch()</code>.</li>
+    <li><strong>Async / Await (Standar Modern)</strong>: Bentuk paling bersih dan mudah dipahami, alur eksekusi terbaca lurus dari atas ke bawah seolah-olah kode biasa.</li>
+  </ul>
+)}
 
 
 <h3 id="praktik-terbaik">Praktik Terbaik</h3>
@@ -2326,6 +2628,15 @@ async function fetchUserCached(id) {
   cache.set(id, user);
   return user;
 }`}</CodeBlock>
+
+{codeHint(
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>Selalu Tangani Error</strong>: Bungkus <code>await</code> dalam <code>try/catch</code> agar aplikasi tidak mengalami <em>unhandled rejection</em> saat server offline.</li>
+    <li><strong>Gunakan <code>Promise.all</code></strong>: Jalankan request secara serentak (paralel) untuk proses yang tidak saling bergantung demi performa loading kilat.</li>
+    <li><strong>Hindari Await Berlebih di Return</strong>: Baris <code>return calculateTotal();</code> tidak butuh kata <code>await</code> karena fungsi <code>async</code> otomatis membungkus nilai balikan ke dalam Promise.</li>
+    <li><strong>Caching Data (<code>Map</code>)</strong>: Simpan data yang sudah pernah diambil ke dalam memory cache agar tidak membuang kuota dan waktu jaringan untuk data yang sama.</li>
+  </ul>
+)}
 
 
 <h3 id="dukungan-browser">Dukungan Browser</h3>
