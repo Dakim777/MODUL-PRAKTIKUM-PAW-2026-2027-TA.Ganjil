@@ -2880,7 +2880,7 @@ async function fetchUserCached(id) {
         <li>
           <strong>Deadline Pengumpulan:</strong>
           <ul>
-            <li><strong>Deadline:</strong> Minggu, 25 Oktober 2026 09.00 WIB</li>
+            <li><strong>Deadline:</strong> Sabtu, 17 Oktober 2026 23.59 WIB</li>
             <li>Keterlambatan pengumpulan akan dikenakan pengurangan nilai sebesar 10% per hari</li>
           </ul>
         </li>
