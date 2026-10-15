@@ -107,7 +107,7 @@ export const daftarPertemuan: Pertemuan[] = [
       { id: "react-routing", judul: "4. Routing dengan React Router" },
       { id: "custom-hook", judul: "5. Pembuatan Custom Hook" },
       { id: "context-api", judul: "6. Global State Context API" },
-      { id: "testing-jest", judul: "7. Testing dengan Jest & RTL" },
+      { id: "testing-jest", judul: "7. Testing (Jest / Vitest & RTL)" },
       { id: "tugas-praktikum", judul: "Tugas: Manajemen Buku" },
       { id: "format-pengumpulan", judul: "Format Pengumpulan" },
     ],

@@ -1473,17 +1473,70 @@ export default Home;`}</CodeBlock>
 
       {(!subId || subId === "testing-jest") && (
         <section id="testing-jest">
-          <h2>7. Testing dengan Jest &amp; RTL</h2>
+          <h2>7. Testing Komponen dengan Jest / Vitest &amp; RTL</h2>
           <p>
-            Pengujian unit memastikan komponen bekerja stabil dan mencegah kemunculan bug regresi saat refactoring.
+            Pengujian unit memastikan komponen bekerja stabil dan mencegah munculnya bug regresi saat refactoring.
             <strong>React Testing Library (RTL)</strong> mengutamakan pengujian berbasis interaksi nyata pengguna.
           </p>
 
-          <h3>Unit Test Komponen TaskItem</h3>
+          <h3>Langkah 1: Persiapan Test Runner Sesuai Setup Project</h3>
+          <p>
+            Karena di awal (Submodul 1) terdapat dua opsi setup project, langkah persiapan testing bergantung pada opsi yang Anda gunakan:
+          </p>
+
+          <p><strong>Bagi Pengguna Opsi 1 (Create React App):</strong></p>
+          <p>
+            Create React App telah menyertakan test runner Jest dan React Testing Library secara bawaan, sehingga Anda dapat langsung menulis file test tanpa instalasi tambahan.
+          </p>
+
+          <p><strong>Bagi Pengguna Opsi 2 (Vite):</strong></p>
+          <p>
+            Vite tidak menyertakan library pengujian secara bawaan. Jalankan 4 langkah persiapan berikut di terminal project Anda:
+          </p>
+
+          <p><strong>A. Pasang Dependency Testing (Vitest, RTL, Jest-DOM, dan JSDOM)</strong></p>
+          <CodeBlock language="bash">{`npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom`}</CodeBlock>
+
+          <p><strong>B. Tambahkan Konfigurasi Testing pada <code>vite.config.js</code></strong></p>
+          <p>Buka file <code>vite.config.js</code>, lalu tambahkan blok <code>test</code> berikut:</p>
+          <CodeBlock language="javascript">{`import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.js',
+  },
+})`}</CodeBlock>
+
+          <p><strong>C. Buat File <code>src/setupTests.js</code></strong></p>
+          <p>Buat file baru bernama <code>setupTests.js</code> di dalam folder <code>src/</code>:</p>
+          <CodeBlock language="javascript">{`import '@testing-library/jest-dom';`}</CodeBlock>
+
+          <p><strong>D. Tambahkan Script <code>"test"</code> di <code>package.json</code></strong></p>
+          <p>Buka <code>package.json</code>, lalu tambahkan baris <code>"test": "vitest run"</code> di dalam bagian <code>"scripts"</code>:</p>
+          <CodeBlock language="json">{`"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "oxlint",
+  "preview": "vite preview",
+  "test": "vitest run"
+}`}</CodeBlock>
+
+          {calloutInfo("Catatan script test: perintah 'vitest run' menjalankan seluruh test sekali hingga selesai. Jika ingin mode interaktif yang memantau perubahan file secara otomatis, gunakan 'vitest' tanpa kata run.")}
+
+          <h3>Langkah 2: Menulis Unit Test Komponen TaskItem</h3>
           <p>Buat file pengujian <code>src/components/TaskItem/TaskItem.test.jsx</code>:</p>
           <CodeBlock language="jsx">{`import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import TaskItem from './TaskItem';
+
+// Deteksi otomatis mock function: vi untuk Vite (Vitest), jest untuk Create React App
+const mockFn = typeof vi !== 'undefined' ? vi.fn : jest.fn;
+const clearMocks = typeof vi !== 'undefined' ? vi.clearAllMocks : jest.clearAllMocks;
 
 describe('Komponen TaskItem', () => {
   const dummyTask = {
@@ -1492,11 +1545,11 @@ describe('Komponen TaskItem', () => {
     completed: false
   };
 
-  const mockDelete = jest.fn();
-  const mockToggle = jest.fn();
+  const mockDelete = mockFn();
+  const mockToggle = mockFn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    clearMocks();
   });
 
   test('merender judul tugas dengan benar', () => {
@@ -1521,26 +1574,50 @@ describe('Komponen TaskItem', () => {
 
           {codeHint(
             <div>
-              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <p><strong>Penjelasan Logika Kode Pengujian:</strong></p>
               <ul style={{ margin: "0.25rem 0 0 1rem" }}>
-                <li><strong>Baris 2:</strong> Mengimpor utilitas RTL: <code>render</code> (memasang komponen di virtual DOM), <code>screen</code> (mencari elemen), dan <code>fireEvent</code> (mensimulasikan aksi pengguna).</li>
-                <li><strong>Baris 5:</strong> Blok <code>describe()</code> mengelompokkan rangkaian uji unit untuk komponen <code>TaskItem</code>.</li>
-                <li><strong>Baris 12-13:</strong> <code>jest.fn()</code> membuat fungsi mata-mata (mock function) untuk memverifikasi apakah callback benar-benar terpanggil.</li>
-                <li><strong>Baris 16-18:</strong> <code>beforeEach()</code> membersihkan rekaman mock function sebelum tiap test case berjalan.</li>
-                <li><strong>Baris 20-23:</strong> Test case 1 memastikan teks judul tugas berhasil dirender di DOM.</li>
-                <li><strong>Baris 25-30:</strong> Test case 2 mensimulasikan klik checkbox dan menegaskan <code>mockToggle</code> dipanggil membawa parameter ID 1.</li>
-                <li><strong>Baris 32-37:</strong> Test case 3 mensimulasikan klik tombol Hapus dan memeriksa apakah <code>mockDelete</code> dipanggil tepat 1 kali.</li>
+                <li><strong>Baris 2:</strong> Mengimpor utilitas RTL: <code>render</code> (memasang komponen di virtual DOM), <code>screen</code> (mencari elemen pada tampilan virtual), dan <code>fireEvent</code> (mensimulasikan aksi interaksi pengguna seperti klik).</li>
+                <li><strong>Baris 5-6:</strong> Menggunakan fungsi mock (spy). Di Vite (Vitest) menggunakan <code>vi.fn()</code>, sedangkan di Create React App (Jest) menggunakan <code>jest.fn()</code>. Baris ini mendeteksi keduanya secara fleksibel.</li>
+                <li><strong>Baris 8:</strong> Blok <code>describe()</code> mengelompokkan rangkaian uji unit untuk komponen <code>TaskItem</code>.</li>
+                <li><strong>Baris 20-22:</strong> <code>beforeEach()</code> membersihkan rekaman riwayat pemanggilan mock function sebelum setiap skenario pengujian dimulai.</li>
+                <li><strong>Baris 24-27:</strong> Test case 1 memastikan elemen yang memuat teks judul tugas berhasil muncul di DOM (<code>toBeInTheDocument()</code>).</li>
+                <li><strong>Baris 29-34:</strong> Test case 2 mensimulasikan klik pada checkbox dan memverifikasi bahwa callback <code>mockToggle</code> terpanggil dengan membawa parameter ID 1.</li>
+                <li><strong>Baris 36-41:</strong> Test case 3 mensimulasikan penekanan tombol 'Hapus' dan memastikan callback <code>mockDelete</code> terpanggil tepat 1 kali membawa ID 1.</li>
               </ul>
             </div>
           )}
 
-          <h3>Menjalankan Unit Test</h3>
-          <p>Jalankan perintah berikut pada terminal VS Code:</p>
+          <h3>Langkah 3: Menjalankan Unit Test</h3>
+          <p>Jalankan perintah pengujian pada terminal VS Code sesuai setup yang Anda gunakan:</p>
+
+          <p><strong>Untuk Pengguna Vite:</strong></p>
+          <CodeBlock language="bash">{`npm test`}</CodeBlock>
+          <p>Atau untuk menguji file tertentu saja:</p>
+          <CodeBlock language="bash">{`npx vitest run TaskItem.test.jsx`}</CodeBlock>
+
+          {codeOutput(
+            <div>
+              <p><strong>Output Terminal (Vite / Vitest):</strong></p>
+              <pre style={{ background: '#1e293b', color: '#10b981', padding: '0.75rem', borderRadius: '6px', fontSize: '0.8rem' }}>
+{` ✓ src/components/TaskItem/TaskItem.test.jsx (3 tests) 28ms
+   ✓ Komponen TaskItem > merender judul tugas dengan benar 12ms
+   ✓ Komponen TaskItem > memanggil fungsi onToggleComplete saat checkbox diklik 8ms
+   ✓ Komponen TaskItem > memanggil fungsi onDelete saat tombol hapus diklik 8ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  15:30:00
+   Duration  350ms (transform 45ms, setup 85ms, collect 22ms, tests 28ms)`}
+              </pre>
+            </div>
+          )}
+
+          <p><strong>Untuk Pengguna Create React App:</strong></p>
           <CodeBlock language="bash">{`npm test TaskItem.test.jsx -- --watchAll=false`}</CodeBlock>
 
           {codeOutput(
             <div>
-              <p><strong>Output Terminal:</strong></p>
+              <p><strong>Output Terminal (Create React App / Jest):</strong></p>
               <pre style={{ background: '#1e293b', color: '#10b981', padding: '0.75rem', borderRadius: '6px', fontSize: '0.8rem' }}>
 {`PASS src/components/TaskItem/TaskItem.test.jsx
   Komponen TaskItem
