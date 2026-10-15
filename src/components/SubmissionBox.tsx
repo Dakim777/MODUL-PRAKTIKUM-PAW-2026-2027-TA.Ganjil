@@ -45,12 +45,12 @@ export const SUBMISSION_CONFIG: Record<number, PertemuanConfig> = {
     },
   },
   2: {
-    rb: { url: "https://forms.gle/vHRXZQZJuExcxoiNA", openDate: "2026-10-08T00:00:00+07:00", deadline: "2026-10-17T23:59:00+07:00" },
-    ra: { url: "https://forms.gle/J1dJrxXPGy1dtSs58", openDate: "2026-10-08T00:00:00+07:00", deadline: "2026-10-17T23:59:00+07:00" },
+    rb: { url: "https://forms.gle/vHRXZQZJuExcxoiNA", openDate: "2026-10-08T00:00:00+07:00", deadline: "2026-10-25T09:00:00+07:00" },
+    ra: { url: "https://forms.gle/J1dJrxXPGy1dtSs58", openDate: "2026-10-08T00:00:00+07:00", deadline: "2026-10-25T09:00:00+07:00" },
   },
   3: {
-    rb: { url: "", openDate: "2099-01-01T00:00:00+07:00", deadline: "2099-01-01T23:59:00+07:00" },
-    ra: { url: "", openDate: "2099-01-01T00:00:00+07:00", deadline: "2099-01-01T23:59:00+07:00" },
+    rb: { url: "https://forms.gle/vHRXZQZJuExcxoiNA", openDate: "2026-10-15T00:00:00+07:00", deadline: "2026-10-25T09:00:00+07:00" },
+    ra: { url: "https://forms.gle/J1dJrxXPGy1dtSs58", openDate: "2026-10-15T00:00:00+07:00", deadline: "2026-10-25T09:00:00+07:00" },
   },
   4: {
     rb: { url: "", openDate: "2099-01-01T00:00:00+07:00", deadline: "2099-01-01T23:59:00+07:00" },
