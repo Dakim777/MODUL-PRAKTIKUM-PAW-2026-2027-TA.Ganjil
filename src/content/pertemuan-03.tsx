@@ -1639,25 +1639,163 @@ Time:        1.245 s`}
         <section id="tugas-praktikum">
           <h2>Tugas: Aplikasi Manajemen Buku Pribadi</h2>
           <p>
-            Bangun sebuah aplikasi web interaktif berbasis React untuk membantu pengguna mengelola katalog buku pribadi mereka (koleksi buku, status baca, dan target buku yang ingin dibeli).
+            Buatlah aplikasi manajemen buku pribadi yang memungkinkan pengguna mencatat buku-buku yang dimiliki, sedang dibaca, atau ingin dibeli.
           </p>
 
-          <h3>Fitur Fungsional Wajib:</h3>
+          <h3>Root &amp; Setup Folder Project Tugas:</h3>
+          <p>
+            Tugas dikerjakan sebagai project React baru terpisah (bukan di dalam folder latihan modul). Buat workspace project tugas dengan ketentuan penamaan folder <code>[NAMA]_[NIM]_pertemuan3</code>:
+          </p>
+
+          <p><strong>1. Buat Project React Baru (Pilih salah satu):</strong></p>
+          <CodeBlock language="bash">{`# Opsi A (Vite - Direkomendasikan):
+npm create vite@latest DAKIM_122140001_pertemuan3 -- --template react
+
+# Atau Opsi B (Create React App):
+npx create-react-app DAKIM_122140001_pertemuan3`}</CodeBlock>
+
+          <p><strong>2. Masuk ke Folder Project &amp; Pasang Dependensi Wajib:</strong></p>
+          <CodeBlock language="bash">{`cd DAKIM_122140001_pertemuan3
+
+# Pasang React Router dan PropTypes
+npm install react-router-dom prop-types`}</CodeBlock>
+
+          <p><strong>3. Jika Menggunakan Vite, Pasang Tool Testing (Vitest &amp; RTL):</strong></p>
+          <CodeBlock language="bash">{`npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom`}</CodeBlock>
+
+          <h3>Persyaratan Wajib:</h3>
           <ul>
-            <li><strong>Manajemen Data Buku:</strong> Formulir penambahan buku (judul, penulis, kategori, dan status baca: <em>Belum Dibaca</em>, <em>Sedang Dibaca</em>, <em>Selesai</em>), pengubahan status baca, serta penghapusan buku.</li>
-            <li><strong>Pencarian &amp; Filter:</strong> Input pencarian berdasarkan judul/penulis dan tombol filter berdasarkan status baca.</li>
-            <li><strong>Statistik Buku:</strong> Panel ringkasan yang menampilkan total buku dan persentase buku yang telah selesai dibaca.</li>
-            <li><strong>Multi-Halaman:</strong> Halaman Beranda (Katalog Buku) dan Halaman Tentang / Statistik Pengguna menggunakan React Router.</li>
+            <li>
+              <strong>Fitur Dasar:</strong>
+              <ul style={{ marginTop: "0.25rem" }}>
+                <li>Menambah buku baru (judul, penulis, status: milik / baca / beli)</li>
+                <li>Mengedit dan menghapus buku</li>
+                <li>Filter buku berdasarkan status</li>
+                <li>Pencarian buku berdasarkan judul atau nama penulis</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Teknologi React:</strong>
+              <ul style={{ marginTop: "0.25rem" }}>
+                <li>Gunakan <code>useState</code> dan <code>useEffect</code></li>
+                <li>Buat minimal 3 komponen reusable</li>
+                <li>Implementasikan Context API untuk state management</li>
+                <li>Gunakan React Router untuk navigasi multi-halaman</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Penyimpanan:</strong> Gunakan <code>localStorage</code> untuk menyimpan data buku secara persisten
+            </li>
           </ul>
 
-          <h3>Spesifikasi Teknis:</h3>
+          <h3>Persyaratan Teknis:</h3>
           <ul>
-            <li>Wajib menggunakan Functional Components dengan Hooks (<code>useState</code>, <code>useEffect</code>).</li>
-            <li>Memecah antarmuka menjadi minimal 4 komponen terpisah dan modular.</li>
-            <li>Menggunakan <strong>Context API</strong> untuk manajemen state buku secara global.</li>
-            <li>Menyimpan seluruh data ke <strong>localStorage</strong> secara otomatis melalui Custom Hook.</li>
-            <li>Menulis minimal 3 unit test menggunakan React Testing Library.</li>
+            <li>Gunakan functional components dengan Hooks</li>
+            <li>Implementasikan minimal 2 custom hooks (misalnya: <code>useLocalStorage.js</code> dan <code>useBookStats.js</code>)</li>
+            <li>Gunakan PropTypes untuk type checking pada seluruh komponen</li>
+            <li>Buat minimal 5 test unit dengan React Testing Library (atau Vitest / Jest)</li>
+            <li>Terapkan error handling untuk form input (validasi kolom wajib isi dan feedback visual jika input kosong)</li>
           </ul>
+
+          <div
+            style={{
+              marginTop: "1.5rem",
+              marginBottom: "1.5rem",
+              padding: "1.25rem",
+              borderRadius: "10px",
+              border: "1px solid rgba(139, 92, 246, 0.25)",
+              backgroundColor: "rgba(139, 92, 246, 0.05)",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem", color: "#8b5cf6", fontWeight: 700 }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <span>Tips Implementasi</span>
+            </div>
+            <p style={{ margin: "0 0 0.5rem 0", fontSize: "0.9rem", color: "var(--color-text-secondary)" }}>
+              <strong>Struktur folder yang disarankan:</strong>
+            </p>
+            <CodeBlock language="bash">{`src/
+├── components/
+│   ├── BookForm/
+│   │   ├── BookForm.jsx
+│   │   └── BookForm.css
+│   ├── BookList/
+│   │   ├── BookList.jsx
+│   │   └── BookList.css
+│   └── BookFilter/
+│       ├── BookFilter.jsx
+│       └── BookFilter.css
+├── pages/
+│   ├── Home/
+│   │   ├── Home.jsx
+│   │   └── Home.css
+│   └── Stats/
+│       ├── Stats.jsx
+│       └── Stats.css
+├── hooks/
+│   ├── useLocalStorage.js
+│   └── useBookStats.js
+├── context/
+│   └── BookContext.jsx
+└── App.jsx`}</CodeBlock>
+          </div>
+
+          <h3>Kriteria Penilaian:</h3>
+          <div className="table-wrapper" style={{ overflowX: "auto", margin: "1rem 0" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem" }}>
+              <thead>
+                <tr style={{ borderBottom: "2px solid var(--color-border)", textAlign: "left", backgroundColor: "var(--color-surface)" }}>
+                  <th style={{ padding: "0.75rem 1rem", color: "var(--color-text-secondary)", fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>ASPEK</th>
+                  <th style={{ padding: "0.75rem 1rem", textAlign: "right", color: "var(--color-text-secondary)", fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>BOBOT</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>Fungsi dasar aplikasi</td>
+                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>30%</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>Penerapan konsep React</td>
+                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>25%</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>Struktur kode dan organisasi</td>
+                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>20%</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>Testing dan error handling</td>
+                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>15%</td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>Dokumentasi</td>
+                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>10%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Dokumentasi yang Diperlukan:</h3>
+          <ul>
+            <li>
+              <strong>README.md berisi:</strong>
+              <ul style={{ marginTop: "0.25rem" }}>
+                <li>Deskripsi aplikasi</li>
+                <li>Instruksi instalasi dan cara menjalankan aplikasi</li>
+                <li>Screenshot antarmuka aplikasi</li>
+                <li>Penjelasan fitur React yang digunakan</li>
+              </ul>
+            </li>
+            <li>Komentar dalam kode untuk bagian-bagian penting</li>
+            <li>Laporan testing (berupa screenshots hasil eksekusi unit test di terminal)</li>
+          </ul>
+
+          <div style={{ marginTop: "2rem" }}>
+            <SubmissionBox pertemuan={3} />
+          </div>
         </section>
       )}
 
@@ -1668,7 +1806,7 @@ Time:        1.245 s`}
           <ul>
             <li>Format Repositori GitHub: <code>pemrograman_web_itera_[NIM]</code></li>
             <li>Format Folder Pertemuan: <code>[NAMA]_[NIM]_pertemuan3</code></li>
-            <li>Sertakan file <code>README.md</code> yang menjelaskan langkah menjalankan project di VS Code (<code>npm install</code> dan <code>npm start</code>).</li>
+            <li>Sertakan file <code>README.md</code> yang menjelaskan langkah menjalankan project di VS Code (<code>npm install</code> dan <code>npm run dev</code> atau <code>npm start</code>).</li>
             <li>Pastikan folder <code>node_modules/</code> tidak diunggah ke repositori Git (terdaftar di file <code>.gitignore</code>).</li>
           </ul>
 
