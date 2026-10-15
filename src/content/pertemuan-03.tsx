@@ -326,6 +326,10 @@ body {
             </div>
           )}
 
+          {calloutInfo(
+            "Alur Pembaruan App.jsx: File App.jsx adalah komponen root (akar) yang dirender ke browser. Pada setiap submodul berikutnya saat Anda membuat komponen atau halaman baru, pastikan untuk selalu memperbarui App.jsx agar komponen tersebut muncul di peramban."
+          )}
+
           <h3>Instalasi Paket Dependensi Praktikum</h3>
           <p>Jalankan perintah ini di terminal VS Code untuk memasang React Router dan PropTypes:</p>
           <CodeBlock language="bash">{`npm install react-router-dom prop-types`}</CodeBlock>
@@ -601,10 +605,76 @@ export default TaskForm;`}</CodeBlock>
             </div>
           )}
 
+          <h3>Menguji Semua Komponen di App.jsx</h3>
+          <p>
+            Komponen yang baru dibuat di folder <code>components/</code> tidak akan otomatis muncul di peramban sebelum diimpor dan dipasang ke dalam <code>App.jsx</code>.
+            Buka file <code>src/App.jsx</code> dan pasang seluruh komponen (Header, TaskForm, dan TaskItem) dengan data dummy untuk menguji interaksinya:
+          </p>
+          <CodeBlock language="jsx">{`import React from 'react';
+import Header from './components/Header/Header';
+import TaskForm from './components/TaskForm/TaskForm';
+import TaskItem from './components/TaskItem/TaskItem';
+import './App.css';
+
+function App() {
+  const dummyTask = {
+    id: 1,
+    title: 'Mempelajari Komponen dan Props React',
+    completed: false,
+  };
+
+  const handleAddTask = (newTask) => {
+    console.log('Tugas baru ditambahkan:', newTask);
+  };
+
+  const handleDeleteTask = (id) => {
+    console.log('Hapus tugas dengan ID:', id);
+  };
+
+  const handleToggleComplete = (id) => {
+    console.log('Toggle status ID:', id);
+  };
+
+  return (
+    <div className="App">
+      <Header
+        title="React Task Manager"
+        description="Kelola daftar tugas Anda secara efisien"
+      />
+      <main style={{ maxWidth: '720px', margin: '2rem auto', padding: '0 1rem' }}>
+        <TaskForm onAddTask={handleAddTask} />
+        <TaskItem
+          task={dummyTask}
+          onDelete={handleDeleteTask}
+          onToggleComplete={handleToggleComplete}
+        />
+      </main>
+    </div>
+  );
+}
+
+export default App;`}</CodeBlock>
+
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Pengujian di App.jsx:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 2-4:</strong> Mengimpor seluruh komponen (<code>Header</code>, <code>TaskForm</code>, dan <code>TaskItem</code>) agar terhubung ke pohon komponen utama.</li>
+                <li><strong>Baris 8-12:</strong> Menyiapkan objek <code>dummyTask</code> untuk menyuplai props yang dibutuhkan oleh <code>TaskItem</code>.</li>
+                <li><strong>Baris 14-24:</strong> Menyiapkan callback dummy <code>console.log</code> untuk menangani event (<code>onAddTask</code>, <code>onDelete</code>, <code>onToggleComplete</code>).</li>
+                <li><strong>Baris 33-40:</strong> Merender form input tugas di atas dan baris item tugas di bawahnya di dalam elemen <code>&lt;main&gt;</code>.</li>
+              </ul>
+            </div>
+          )}
+
+          {calloutInfo(
+            "Mengapa Tampilan Belum Berubah Sebelumnya? React hanya me-render apa yang ada di dalam App.jsx. Menambahkan file komponen di folder src/components/ tidak akan berefek apa pun pada browser sebelum komponen tersebut di-import dan dipanggil di App.jsx."
+          )}
+
           {codeOutput(
             <div>
-              <p><strong>Langkah Eksekusi:</strong> Ketikkan teks tugas ke dalam kotak input, lalu klik tombol <em>\"Tambah\"</em> atau tekan <kbd>Enter</kbd>.</p>
-              <p><strong>Output Tampilan:</strong> Kolom form langsung dikosongkan kembali, dan fungsi callback <code>onAddTask</code> dipicu dengan payload objek tugas baru.</p>
+              <p><strong>Langkah Eksekusi:</strong> Simpan perubahan pada <code>src/App.jsx</code> lalu periksa jendela browser di <code>http://localhost:3000</code> atau port dev Anda.</p>
+              <p><strong>Output Tampilan:</strong> Di layar akan muncul form input teks dan satu baris tugas dummy. Ketikkan judul tugas baru di form input lalu klik tombol <em>\"Tambah\"</em> (buka Console di DevTools: objek tugas baru akan tercetak). Mengklik tombol Hapus atau checkbox juga memicu log pada konsol.</p>
             </div>
           )}
 
@@ -828,9 +898,31 @@ export default Home;`}</CodeBlock>
             </div>
           )}
 
+          <h3>Menampilkan Halaman Home di App.jsx</h3>
+          <p>
+            Setelah seluruh komponen (Header, TaskForm, TaskItem) beserta pengelolaan state interaktif (useState dan useEffect) disatukan di dalam <code>Home.jsx</code>, perbarui file <code>src/App.jsx</code> untuk merender halaman <code>Home</code>:
+          </p>
+          <CodeBlock language="jsx">{`import React from 'react';
+import Home from './pages/Home/Home';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <Home />
+    </div>
+  );
+}
+
+export default App;`}</CodeBlock>
+
+          {calloutInfo(
+            "Peralihan ke State Interaktif: Mengganti isi App.jsx menjadi <Home /> membuat aplikasi beralih dari pengujian dummy sebelumnya ke sistem task manager yang sepenuhnya reaktif dan tersimpan otomatis di localStorage."
+          )}
+
           {codeOutput(
             <div>
-              <p><strong>Langkah Uji Coba:</strong> Buka halaman beranda aplikasi &rarr; Masukkan judul tugas (contoh: <em>\"Mengerjakan Modul 3\"</em>) &rarr; Klik Tambah.</p>
+              <p><strong>Langkah Uji Coba:</strong> Simpan <code>src/App.jsx</code> &rarr; Buka halaman beranda aplikasi di browser &rarr; Masukkan judul tugas (contoh: <em>\"Mengerjakan Modul 3\"</em>) &rarr; Klik Tambah.</p>
               <p><strong>Output Tampilan:</strong> Tugas langsung muncul dalam daftar di bawah form, total tugas menjadi 1, dan statistik diperbarui. Saat checkbox dicentang, judul tugas tercoret dan angka selesai berubah menjadi 1. Refresh browser Anda: data tugas tidak akan hilang karena tersimpan otomatis di localStorage!</p>
             </div>
           )}
@@ -1022,6 +1114,10 @@ export default App;`}</CodeBlock>
             </div>
           )}
 
+          {calloutInfo(
+            "Peran Baru App.jsx sebagai Router: Mulai submodul ini, App.jsx bertransformasi menjadi pengatur navigasi SPA. Komponen Navbar selalu dirender di bagian atas, sedangkan konten di bawahnya berganti antara halaman Home dan About sesuai URL tanpa reload peramban."
+          )}
+
           {codeOutput(
             <div>
               <p><strong>Langkah Uji Coba:</strong> Klik tombol navigasi <em>\"Tentang\"</em> di navbar kanan atas.</p>
@@ -1128,6 +1224,10 @@ export default Home;`}</CodeBlock>
               <p><strong>Langkah Uji Coba:</strong> Buka Inspect Element di browser &rarr; Tab <em>Application</em> &rarr; <em>Local Storage</em>.</p>
               <p><strong>Output Tampilan:</strong> Anda dapat melihat key <code>tasks_data</code> secara otomatis menyimpan JSON string dari array tugas setiap kali aksi tambah atau centang dilakukan.</p>
             </div>
+          )}
+
+          {calloutInfo(
+            "Status App.jsx: File App.jsx tetap sama seperti pada submodul 4 (Router) dan tidak perlu diubah, karena refaktorisasi logika custom hook dilakukan langsung di dalam file Home.jsx."
           )}
 
           <h3>Custom Hook useWindowSize (Mendeteksi Ukuran Layar)</h3>
@@ -1258,6 +1358,10 @@ function App() {
 }
 
 export default App;`}</CodeBlock>
+
+          {calloutInfo(
+            "Pentingnya TaskProvider di App.jsx: Seluruh komponen yang ingin membaca state atau memanggil fungsi context (seperti useTasks()) harus berada di dalam lingkup <TaskProvider>. Jika Provider ini lupa dipasang di App.jsx, aplikasi akan memunculkan pesan error saat komponen memanggil useTasks()."
+          )}
 
           <h3>Mengakses State Global di Halaman Home</h3>
           <CodeBlock language="jsx">{`import React from 'react';
