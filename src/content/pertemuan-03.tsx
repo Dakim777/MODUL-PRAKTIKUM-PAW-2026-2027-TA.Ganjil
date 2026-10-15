@@ -32,8 +32,8 @@ export default function Pertemuan3({ subId }: { subId?: string }) {
         <path d="M8 18h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
       <div className="callout-body">
-        <p style={{ fontWeight: 600, marginBottom: "0.25rem", color: "var(--color-accent)" }}>Penjelasan Logika Kode:</p>
-        <div style={{ fontSize: "0.875rem", color: "var(--color-text-secondary)", lineHeight: 1.6 }}>
+        <p style={{ fontWeight: 600, marginBottom: "0.35rem", color: "var(--color-accent)" }}>Penjelasan Logika Kode (Per Baris):</p>
+        <div style={{ fontSize: "0.875rem", color: "var(--color-text-secondary)", lineHeight: 1.65 }}>
           {text}
         </div>
       </div>
@@ -174,7 +174,18 @@ export default function Pertemuan3({ subId }: { subId?: string }) {
 </html>`}</CodeBlock>
 
           {codeHint(
-            "Babel Standalone membaca tag <script type=\"text/babel\"> dan mengonversi sintaks JSX menjadi panggilan fungsi React.createElement() murni di memori browser."
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 8-9:</strong> Memuat pustaka inti React (manajemen komponen) dan ReactDOM (penyaji DOM web).</li>
+                <li><strong>Baris 10:</strong> Memuat Babel Standalone untuk menerjemahkan sintaks JSX menjadi kode JavaScript standar di peramban.</li>
+                <li><strong>Baris 20:</strong> Wadah <code>&lt;div id=&quot;root&quot;&gt;</code> tempat seluruh pohon komponen React akan ditempatkan.</li>
+                <li><strong>Baris 22:</strong> Tag <code>&lt;script type=&quot;text/babel&quot;&gt;</code> memberitahu Babel agar memproses blok JSX di dalamnya.</li>
+                <li><strong>Baris 24:</strong> Deklarasi state <code>[count, setCount] = React.useState(0)</code> dengan nilai mula-mula 0.</li>
+                <li><strong>Baris 30:</strong> Properti <code>onClick</code> mengeksekusi arrow function untuk menaikkan nilai state <code>count + 1</code>.</li>
+                <li><strong>Baris 35-36:</strong> <code>ReactDOM.createRoot()</code> menginisialisasi mount point React 18 dan menyajikan komponen <code>&lt;CounterApp /&gt;</code>.</li>
+              </ul>
+            </div>
           )}
 
           {codeOutput(
@@ -296,7 +307,17 @@ body {
   font-size: 2rem;
 }`}</CodeBlock>
 
-          {codeHint("File App.jsx bertindak sebagai root component. Semua styling global di-reset agar tata letak konsisten lintas browser.")}
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 1:</strong> Mengimpor library utama React.</li>
+                <li><strong>Baris 2:</strong> Mengimpor file stylesheet lokal <code>App.css</code> agar styling diterapkan pada komponen.</li>
+                <li><strong>Baris 4-12:</strong> Komponen fungsi <code>App()</code> yang mengembalikan elemen JSX header sebagai tampilan utama.</li>
+                <li><strong>Baris 14:</strong> Mengekspor komponen <code>App</code> agar dapat dipanggil di <code>index.jsx</code> saat aplikasi pertama kali dimuat.</li>
+              </ul>
+            </div>
+          )}
 
           {codeOutput(
             <div>
@@ -379,7 +400,16 @@ function App() {
 
 export default App;`}</CodeBlock>
 
-          {codeHint("Dengan destrukturisasi { title, description } pada parameter fungsi Header, kita dapat langsung mengakses nilai string yang dikirim dari App.jsx.")}
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 4:</strong> Destrukturisasi objek props langsung pada parameter fungsi <code>({`{ title, description }`})</code>.</li>
+                <li><strong>Baris 7:</strong> Merender nilai string <code>{`{title}`}</code> ke dalam tag heading <code>&lt;h1&gt;</code>.</li>
+                <li><strong>Baris 8:</strong> Evaluasi short-circuit <code>{`{description && <p>{description}</p>}`}</code>: paragraf hanya dicetak jika nilai description dikirimkan oleh komponen induk.</li>
+              </ul>
+            </div>
+          )}
 
           {codeOutput(
             <div>
@@ -472,6 +502,26 @@ export default TaskItem;`}</CodeBlock>
   background-color: #dc2626;
 }`}</CodeBlock>
 
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 5:</strong> Menerima props data <code>task</code> serta dua fungsi callback: <code>onDelete</code> dan <code>onToggleComplete</code>.</li>
+                <li><strong>Baris 7:</strong> Menyematkan kelas CSS <code>completed</code> secara kondisional jika <code>task.completed</code> bernilai true.</li>
+                <li><strong>Baris 9-13:</strong> Input checkbox terkontrol; saat diklik, memicu <code>onToggleComplete(task.id)</code> ke komponen induk.</li>
+                <li><strong>Baris 16-21:</strong> Tombol hapus; saat diklik, memanggil <code>onDelete(task.id)</code>.</li>
+                <li><strong>Baris 27-37:</strong> Skema validasi <code>PropTypes</code> memastikan tipe data ID, title, status completed, dan fungsi callback valid.</li>
+              </ul>
+            </div>
+          )}
+
+          {codeOutput(
+            <div>
+              <p><strong>Langkah Eksekusi:</strong> Dipanggil di dalam daftar tugas pada <code>Home.jsx</code> dengan passing props data tugas.</p>
+              <p><strong>Output Tampilan:</strong> Baris item tugas berupa kotak putih rapi. Sisi kiri memuat checkbox dan teks judul; sisi kanan memuat tombol merah <em>\"Hapus\"</em>. Saat dicentang, teks berubah warna abu-abu dengan efek coret (strikethrough).</p>
+            </div>
+          )}
+
           <h3>Membuat Komponen TaskForm</h3>
           <p>Komponen input form terkontrol (controlled component) untuk menambah tugas baru.</p>
           <p>Buat file <code>src/components/TaskForm/TaskForm.jsx</code>:</p>
@@ -539,7 +589,24 @@ export default TaskForm;`}</CodeBlock>
   background-color: #059669;
 }`}</CodeBlock>
 
-          {codeHint("Event e.preventDefault() membatalkan perilaku bawaan browser agar form tidak memicu reload halaman saat tombol submit ditekan.")}
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 5:</strong> State <code>title</code> menyimpan teks yang sedang diketik pengguna di kolom input.</li>
+                <li><strong>Baris 7-18:</strong> Fungsi <code>handleSubmit</code> menghentikan refresh default form (<code>e.preventDefault()</code>), memeriksa bahwa teks tidak kosong dengan <code>trim()</code>, merakit objek tugas baru dengan id unik <code>Date.now()</code>, mengirimkannya ke parent melalui <code>onAddTask(newTask)</code>, lalu mengosongkan kolom input <code>setTitle(&apos;&apos;)</code>.</li>
+                <li><strong>Baris 24:</strong> Properti <code>onChange</code> menyinkronkan setiap ketukan keyboard ke state <code>title</code> secara real-time.</li>
+                <li><strong>Baris 26:</strong> Tombol <code>type=&quot;submit&quot;</code> berwarna hijau untuk men-trigger event submit form saat diklik atau saat menekan tombol Enter.</li>
+              </ul>
+            </div>
+          )}
+
+          {codeOutput(
+            <div>
+              <p><strong>Langkah Eksekusi:</strong> Ketikkan teks tugas ke dalam kotak input, lalu klik tombol <em>\"Tambah\"</em> atau tekan <kbd>Enter</kbd>.</p>
+              <p><strong>Output Tampilan:</strong> Kolom form langsung dikosongkan kembali, dan fungsi callback <code>onAddTask</code> dipicu dengan payload objek tugas baru.</p>
+            </div>
+          )}
 
           {calloutExercise(
             "Children Props",
@@ -575,6 +642,25 @@ function Counter() {
   );
 }`}</CodeBlock>
 
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 1:</strong> Mengimpor fungsi hook <code>useState</code> dari React.</li>
+                <li><strong>Baris 4:</strong> Mendeklarasikan variabel state <code>count</code> dengan nilai awal <code>0</code> dan fungsi updater <code>setCount</code>.</li>
+                <li><strong>Baris 7:</strong> Menampilkan nilai dinamis <code>{`{count}`}</code> ke dalam teks paragraf.</li>
+                <li><strong>Baris 8:</strong> Tombol Tambah memicu handler inline <code>setCount(count + 1)</code> untuk menaikkan hitungan.</li>
+                <li><strong>Baris 9:</strong> Tombol Kurang memicu handler inline <code>setCount(count - 1)</code> untuk menurunkan hitungan.</li>
+              </ul>
+            </div>
+          )}
+
+          {codeOutput(
+            <div>
+              <p><strong>Output Tampilan:</strong> Di layar muncul teks <em>\"Total Hitungan: 0\"</em> diapit dua tombol. Setiap klik pada tombol Tambah langsung menaikkan nilai (0 &rarr; 1 &rarr; 2), dan klik pada Kurang menurunkannya.</p>
+            </div>
+          )}
+
           <p><strong>2. Array State (Penambahan &amp; Penghapusan Item):</strong></p>
           <CodeBlock language="jsx">{`import React, { useState } from 'react';
 
@@ -603,6 +689,24 @@ function SimpleList() {
     </div>
   );
 }`}</CodeBlock>
+
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 4:</strong> Inisialisasi state <code>items</code> bertipe array kosong <code>[]</code>.</li>
+                <li><strong>Baris 6-9:</strong> Fungsi <code>addItem</code> menambahkan objek baru ke array menggunakan spread operator <code>[...items, newItem]</code> tanpa memutasi array asli.</li>
+                <li><strong>Baris 11-13:</strong> Fungsi <code>removeItem</code> memfilter array untuk membuang elemen dengan id yang cocok, menghasilkan array baru.</li>
+                <li><strong>Baris 19-23:</strong> Perulangan <code>items.map()</code> merender tiap item ke tag <code>&lt;li&gt;</code> dengan properti wajib <code>key={'{item.id}'}</code>.</li>
+              </ul>
+            </div>
+          )}
+
+          {codeOutput(
+            <div>
+              <p><strong>Output Tampilan:</strong> Daftar berpoin (bullet points). Mengklik tombol <em>\"Tambah Item\"</em> menambahkan baris baru dengan nama tugas, dan tombol Hapus pada tiap baris akan melenyapkan baris tersebut seketika.</p>
+            </div>
+          )}
 
           <h3>Membuat Halaman Home Lengkap</h3>
           <p>Gabungkan komponen Header, TaskForm, dan TaskItem pada file <code>src/pages/Home/Home.jsx</code>:</p>
@@ -709,7 +813,20 @@ export default Home;`}</CodeBlock>
   color: #64748b;
 }`}</CodeBlock>
 
-          {codeHint("Array dependensi [tasks] pada useEffect menjamin penyimpanan ke localStorage hanya dieksekusi saat isi array tasks mengalami penambahan, perubahan status, atau penghapusan.")}
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 7:</strong> State utama <code>tasks</code> menampung daftar seluruh objek tugas yang ada di aplikasi.</li>
+                <li><strong>Baris 10-15:</strong> <code>useEffect</code> pertama dengan array dependensi kosong <code>[]</code> hanya berjalan satu kali saat komponen dipasang untuk memulihkan data tugas dari <code>localStorage</code>.</li>
+                <li><strong>Baris 18-20:</strong> <code>useEffect</code> kedua dengan dependensi <code>[tasks]</code> otomatis menulis ulang data ke <code>localStorage</code> setiap kali array <code>tasks</code> berubah.</li>
+                <li><strong>Baris 22-24:</strong> Fungsi <code>handleAddTask</code> menambahkan tugas baru ke salinan array menggunakan spread operator <code>[...tasks, newTask]</code>.</li>
+                <li><strong>Baris 26-28:</strong> Fungsi <code>handleDeleteTask</code> menghapus item menggunakan metode bawaan array <code>filter()</code>.</li>
+                <li><strong>Baris 30-34:</strong> Fungsi <code>handleToggleComplete</code> membalik status boolean <code>completed</code> menggunakan metode <code>map()</code>.</li>
+                <li><strong>Baris 54-64:</strong> Render daftar dinamis dengan metode <code>tasks.map()</code> yang wajib menyertakan atribut <code>key=&#123;task.id&#125;</code> agar React dapat mengoptimasi rekonsiliasi DOM.</li>
+              </ul>
+            </div>
+          )}
 
           {codeOutput(
             <div>
@@ -818,6 +935,17 @@ function Navbar() {
 
 export default Navbar;`}</CodeBlock>
 
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 2:</strong> Mengimpor komponen <code>Link</code> dari pustaka <code>react-router-dom</code> untuk navigasi SPA cepat.</li>
+                <li><strong>Baris 9:</strong> <code>&lt;Link to=&quot;/&quot;&gt;Task Manager&lt;/Link&gt;</code> membuat logo navigasi kembali ke halaman depan.</li>
+                <li><strong>Baris 12-13:</strong> Tautan navigasi <code>&lt;Link to=&quot;/&quot;&gt;Beranda&lt;/Link&gt;</code> dan <code>&lt;Link to=&quot;/about&quot;&gt;Tentang&lt;/Link&gt;</code> mengubah riwayat peramban tanpa memicu refresh halaman penuh.</li>
+              </ul>
+            </div>
+          )}
+
           <p>File styling <code>src/components/Navbar/Navbar.css</code>:</p>
           <CodeBlock language="css">{`.navbar {
   background-color: #1e293b;
@@ -882,7 +1010,17 @@ function App() {
 
 export default App;`}</CodeBlock>
 
-          {codeHint("Penggunaan komponen <Link to=\"...\"> mencegah browser melakukan full-page refresh, mempertahankan state memori yang sedang berjalan.")}
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 2 (App.jsx):</strong> Mengimpor trio komponen routing utama: <code>BrowserRouter</code> (sebagai alias <code>Router</code>), <code>Routes</code>, dan <code>Route</code>.</li>
+                <li><strong>Baris 10:</strong> Komponen <code>&lt;Router&gt;</code> menyediakan konteks navigasi berbasis riwayat URL browser ke seluruh aplikasi.</li>
+                <li><strong>Baris 13-16:</strong> <code>&lt;Routes&gt;</code> mencocokkan path URL aktif. Jika path adalah <code>/</code>, halaman <code>&lt;Home /&gt;</code> disajikan; jika path adalah <code>/about</code>, halaman <code>&lt;About /&gt;</code> yang disajikan.</li>
+                <li><strong>Baris 14-15 (Navbar.jsx):</strong> Komponen <code>&lt;Link to=&quot;...&quot;&gt;</code> mengintersepsi klik agar perpindahan halaman berlangsung tanpa memuat ulang dokumen HTML.</li>
+              </ul>
+            </div>
+          )}
 
           {codeOutput(
             <div>
@@ -973,7 +1111,17 @@ function Home() {
 
 export default Home;`}</CodeBlock>
 
-          {codeHint("Custom hook useLocalStorage mengembalikan pasangan [storedValue, setStoredValue] persis seperti pola sintaksis standar useState.")}
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 3:</strong> Deklarasi fungsi kustom <code>useLocalStorage</code> yang menerima kunci penyimpanan <code>key</code> dan nilai bawaan <code>initialValue</code>.</li>
+                <li><strong>Baris 4-12:</strong> Fungsi inisialisasi malas (lazy state function) di dalam <code>useState</code> yang membaca dan mem-parse JSON dari <code>localStorage</code> saat komponen pertama kali dimuat.</li>
+                <li><strong>Baris 14-20:</strong> Efek <code>useEffect</code> yang mendengarkan perubahan <code>key</code> atau <code>storedValue</code> untuk memperbarui isi penyimpanan lokal.</li>
+                <li><strong>Baris 22:</strong> Mengembalikan pasangan nilai dan fungsi pengubah <code>[storedValue, setStoredValue]</code> agar kompatibel dengan cara pakai standar <code>useState</code>.</li>
+              </ul>
+            </div>
+          )}
 
           {codeOutput(
             <div>
@@ -1004,6 +1152,25 @@ function useWindowSize() {
 }
 
 export default useWindowSize;`}</CodeBlock>
+
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 1:</strong> Mengimpor <code>useState</code> dan <code>useEffect</code> untuk memelihara state dimensi jendela browser.</li>
+                <li><strong>Baris 4-6:</strong> State <code>windowSize</code> menampung properti lebar layar (<code>width</code>) dengan pengecekan aman SSR (Server-Side Rendering) sebelum membaca objek global <code>window.innerWidth</code>.</li>
+                <li><strong>Baris 8-15:</strong> <code>useEffect</code> mendaftarkan event listener <code>resize</code> ke window saat komponen di-mount, dan fungsi cleanup (return) mencabut listener tersebut saat unmount untuk mencegah memory leak.</li>
+                <li><strong>Baris 17:</strong> Mengembalikan objek <code>windowSize</code> yang otomatis diperbarui setiap kali browser di-resize.</li>
+              </ul>
+            </div>
+          )}
+
+          {codeOutput(
+            <div>
+              <p><strong>Langkah Penggunaan:</strong> Panggil <code>const &#123; width &#125; = useWindowSize();</code> di komponen Anda.</p>
+              <p><strong>Output Tampilan:</strong> Saat jendela browser diperkecil di bawah 768px, nilai width akan langsung terupdate secara real-time tanpa perlu me-reload peramban.</p>
+            </div>
+          )}
 
           {calloutExercise(
             "Terapkan useWindowSize",
@@ -1131,7 +1298,18 @@ function Home() {
 
 export default Home;`}</CodeBlock>
 
-          {codeHint("Fungsi custom hook useTasks() membungkus useContext(TaskContext) dan melempar error deskriptif jika komponen digunakan di luar TaskProvider.")}
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 4 (TaskContext.jsx):</strong> <code>createContext()</code> membuat wadah konteks React.</li>
+                <li><strong>Baris 6-11:</strong> Custom consumer hook <code>useTasks()</code> membungkus <code>useContext(TaskContext)</code> dan melempar error deskriptif jika digunakan di luar cakupan Provider.</li>
+                <li><strong>Baris 13-35:</strong> Komponen <code>TaskProvider</code> merakit seluruh fungsi pemanipulasi state (tambah, hapus, centang) beserta objek statistik menjadi satu objek <code>value</code>.</li>
+                <li><strong>Baris 38:</strong> Komponen <code>&lt;TaskContext.Provider value={'{value}'}&gt;</code> menyebarkan objek state ke seluruh komponen anak yang berada di dalamnya (children).</li>
+                <li><strong>Baris 8 (Home.jsx):</strong> Destrukturisasi langsung <code>const {`{ tasks, addTask, stats }`} = useTasks()</code> tanpa butuh props passing dari parent component.</li>
+              </ul>
+            </div>
+          )}
 
           {codeOutput(
             <div>
@@ -1150,7 +1328,7 @@ export default Home;`}</CodeBlock>
         <section id="testing-jest">
           <h2>7. Testing dengan Jest &amp; RTL</h2>
           <p>
-            Pengujian unit memastikan komponen berperilaku sesuai harapan pengguna dan mencegah kemunculan bug regresi saat refactoring.
+            Pengujian unit memastikan komponen bekerja stabil dan mencegah kemunculan bug regresi saat refactoring.
             <strong>React Testing Library (RTL)</strong> mengutamakan pengujian berbasis interaksi nyata pengguna.
           </p>
 
@@ -1194,7 +1372,20 @@ describe('Komponen TaskItem', () => {
   });
 });`}</CodeBlock>
 
-          {codeHint("Fungsi jest.fn() membuat mock function untuk merekam apakah callback onDelete dan onToggleComplete dipanggil dengan ID tugas yang benar.")}
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Kode Per Baris:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 2:</strong> Mengimpor utilitas RTL: <code>render</code> (memasang komponen di virtual DOM), <code>screen</code> (mencari elemen), dan <code>fireEvent</code> (mensimulasikan aksi pengguna).</li>
+                <li><strong>Baris 5:</strong> Blok <code>describe()</code> mengelompokkan rangkaian uji unit untuk komponen <code>TaskItem</code>.</li>
+                <li><strong>Baris 12-13:</strong> <code>jest.fn()</code> membuat fungsi mata-mata (mock function) untuk memverifikasi apakah callback benar-benar terpanggil.</li>
+                <li><strong>Baris 16-18:</strong> <code>beforeEach()</code> membersihkan rekaman mock function sebelum tiap test case berjalan.</li>
+                <li><strong>Baris 20-23:</strong> Test case 1 memastikan teks judul tugas berhasil dirender di DOM.</li>
+                <li><strong>Baris 25-30:</strong> Test case 2 mensimulasikan klik checkbox dan menegaskan <code>mockToggle</code> dipanggil membawa parameter ID 1.</li>
+                <li><strong>Baris 32-37:</strong> Test case 3 mensimulasikan klik tombol Hapus dan memeriksa apakah <code>mockDelete</code> dipanggil tepat 1 kali.</li>
+              </ul>
+            </div>
+          )}
 
           <h3>Menjalankan Unit Test</h3>
           <p>Jalankan perintah berikut pada terminal VS Code:</p>

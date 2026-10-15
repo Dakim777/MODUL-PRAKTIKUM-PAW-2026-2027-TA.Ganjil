@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { SubTopik } from "@/lib/pertemuan";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export default function TableOfContents({ subTopik }: Props) {
+  const router = useRouter();
   const [activeId, setActiveId] = useState<string>(subTopik[0]?.id || "");
   const [readProgress, setReadProgress] = useState<number>(0);
 
@@ -161,7 +163,7 @@ export default function TableOfContents({ subTopik }: Props) {
     } else if (typeof window !== "undefined") {
       const parts = window.location.pathname.split("/").filter(Boolean);
       if (parts[0] === "pertemuan" && parts[1]) {
-        window.location.href = `/pertemuan/${parts[1]}/${id}`;
+        router.push(`/pertemuan/${parts[1]}/${id}`);
       }
     }
   }

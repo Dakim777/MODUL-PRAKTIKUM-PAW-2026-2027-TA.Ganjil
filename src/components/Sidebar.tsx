@@ -111,6 +111,24 @@ export default function Sidebar() {
 
 
 
+  const [expandedModules, setExpandedModules] = useState<Record<number, boolean>>({});
+
+  // Auto-expand module if current path is inside it
+  useEffect(() => {
+    const match = pathname.match(/^\/pertemuan\/(\d+)/);
+    if (match) {
+      const num = parseInt(match[1], 10);
+      setExpandedModules((prev) => ({ ...prev, [num]: true }));
+    }
+  }, [pathname]);
+
+  const toggleModule = (nomor: number) => {
+    setExpandedModules((prev) => ({
+      ...prev,
+      [nomor]: !(prev[nomor] ?? (pathname === `/pertemuan/${nomor}` || pathname.startsWith(`/pertemuan/${nomor}/`))),
+    }));
+  };
+
   return (
     <>
       {/* Overlay for mobile */}
@@ -165,83 +183,133 @@ export default function Sidebar() {
             {daftarPertemuan.map((p) => {
               const href = `/pertemuan/${p.nomor}`;
               const isActive = pathname === href || pathname.startsWith(`${href}/`);
+              const isExpanded = expandedModules[p.nomor] ?? isActive;
+              const hasSubtopics = p.tersedia && p.subTopik && p.subTopik.length > 0;
 
               return (
                 <div key={p.nomor} className="sidebar-pertemuan-group">
-                  <Link
-                    href={p.tersedia ? href : "#"}
-                    className={`sidebar-nav-item${isActive ? " active" : ""}${!p.tersedia ? " coming-soon" : ""}`}
-                    style={!p.tersedia ? { opacity: 0.5, cursor: "default" } : {}}
-                    tabIndex={!p.tersedia ? -1 : undefined}
-                    aria-current={isActive ? "page" : undefined}
-                  >
-                    <span className="sidebar-badge">
-                      {String(p.nomor).padStart(2, "0")}
-                    </span>
-                    <span style={{ flex: 1, lineHeight: 1.35 }}>
-                      {p.judul}
-                      {!p.tersedia && (
-                        <span
+                  <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
+                    <Link
+                      href={p.tersedia ? href : "#"}
+                      className={`sidebar-nav-item${isActive ? " active" : ""}${!p.tersedia ? " coming-soon" : ""}`}
+                      style={{
+                        flex: 1,
+                        ...(!p.tersedia ? { opacity: 0.5, cursor: "default" } : {}),
+                      }}
+                      tabIndex={!p.tersedia ? -1 : undefined}
+                      aria-current={isActive ? "page" : undefined}
+                      onClick={() => {
+                        if (p.tersedia) {
+                          setExpandedModules((prev) => ({ ...prev, [p.nomor]: true }));
+                        }
+                      }}
+                    >
+                      <span className="sidebar-badge">
+                        {String(p.nomor).padStart(2, "0")}
+                      </span>
+                      <span style={{ flex: 1, lineHeight: 1.35 }}>
+                        {p.judul}
+                        {!p.tersedia && (
+                          <span
+                            style={{
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "0.25rem",
+                              fontSize: "0.65rem",
+                              letterSpacing: "0.04em",
+                              textTransform: "uppercase",
+                              fontWeight: 600,
+                              marginTop: "2px",
+                              color: "var(--color-text-muted)",
+                            }}
+                          >
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                            Terkunci
+                          </span>
+                        )}
+                      </span>
+                    </Link>
+
+                    {/* Tombol Toggle Accordion Submodul */}
+                    {hasSubtopics && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleModule(p.nomor);
+                        }}
+                        aria-label={isExpanded ? `Tutup subtopik Modul ${p.nomor}` : `Buka subtopik Modul ${p.nomor}`}
+                        title={isExpanded ? "Tutup subtopik" : "Lihat subtopik"}
+                        style={{
+                          background: "transparent",
+                          border: "none",
+                          padding: "0.55rem 0.65rem",
+                          cursor: "pointer",
+                          color: isExpanded ? "var(--color-accent)" : "var(--color-text-muted)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          borderRadius: "var(--radius-sm)",
+                          marginRight: "0.5rem",
+                          transition: "all 0.15s ease",
+                        }}
+                      >
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "0.25rem",
-                            fontSize: "0.65rem",
-                            letterSpacing: "0.04em",
-                            textTransform: "uppercase",
-                            fontWeight: 600,
-                            marginTop: "2px",
-                            color: "var(--color-text-muted)",
+                            transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                            transition: "transform 0.15s ease",
                           }}
                         >
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                          </svg>
-                          Terkunci
-                        </span>
-                      )}
-                    </span>
-                  </Link>
+                          <path d="M6 3l5 5-5 5" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
 
-                  {/* Subtopik headline utama (terbuka jika pertemuan aktif) */}
-                  {isActive && p.subTopik && p.subTopik.length > 0 && (
+                  {/* Daftar Subtopik (dapat dibuka kapan saja tanpa harus navigasi dulu) */}
+                  {isExpanded && p.subTopik && p.subTopik.length > 0 && (
                     <div
                       className="sidebar-subtopics"
                       aria-label={`Sub-topik Pertemuan ${p.nomor}`}
                     >
                       <div className="sidebar-subtopics-list">
                         {p.subTopik.map((sub) => {
-                          const isModuleSubpage = p.nomor === 2; // Pilot testing for Module 2
-                          const subHref = isModuleSubpage ? `/pertemuan/${p.nomor}/${sub.id}` : `#${sub.id}`;
-                          const isSubActive = isModuleSubpage ? pathname === subHref : activeHeadingId === sub.id;
-
-                          if (isModuleSubpage) {
-                            return (
-                              <Link
-                                key={sub.id}
-                                href={subHref}
-                                onClick={() => { if (window.innerWidth < 1024) setOpen(false); }}
-                                className={`sidebar-subtopic-link${isSubActive ? " active" : ""}`}
-                                title={sub.judul}
-                              >
-                                <span className="sidebar-subtopic-text">{sub.judul}</span>
-                              </Link>
-                            );
-                          }
+                          const isModuleSubpage = p.nomor === 2 || p.nomor === 3;
+                          const subHref = isModuleSubpage
+                            ? `/pertemuan/${p.nomor}/${sub.id}`
+                            : `/pertemuan/${p.nomor}#${sub.id}`;
+                          const isSubActive = isModuleSubpage
+                            ? pathname === subHref
+                            : (pathname === `/pertemuan/${p.nomor}` && activeHeadingId === sub.id);
 
                           return (
-                            <a
+                            <Link
                               key={sub.id}
                               href={subHref}
-                              onClick={(e) => handleSubtopicClick(e, sub.id)}
+                              onClick={(e) => {
+                                if (!isModuleSubpage && pathname === `/pertemuan/${p.nomor}`) {
+                                  handleSubtopicClick(e, sub.id);
+                                } else if (window.innerWidth < 1024) {
+                                  setOpen(false);
+                                }
+                              }}
                               className={`sidebar-subtopic-link${isSubActive ? " active" : ""}`}
                               title={sub.judul}
                             >
-                              <span className="sidebar-subtopic-text">
-                                {sub.judul}
-                              </span>
-                            </a>
+                              <span className="sidebar-subtopic-text">{sub.judul}</span>
+                            </Link>
                           );
                         })}
                       </div>
