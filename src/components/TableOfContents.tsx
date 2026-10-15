@@ -12,6 +12,15 @@ export default function TableOfContents({ subTopik }: Props) {
   const [readProgress, setReadProgress] = useState<number>(0);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const parts = window.location.pathname.split("/").filter(Boolean);
+      if (parts[0] === "pertemuan" && parts[2]) {
+        setActiveId(parts[2]);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     // 1. Ensure all target heading elements have their IDs
     const headings = Array.from(
       document.querySelectorAll(
@@ -149,6 +158,11 @@ export default function TableOfContents({ subTopik }: Props) {
       window.dispatchEvent(
         new CustomEvent("activeHeadingChanged", { detail: { id } })
       );
+    } else if (typeof window !== "undefined") {
+      const parts = window.location.pathname.split("/").filter(Boolean);
+      if (parts[0] === "pertemuan" && parts[1]) {
+        window.location.href = `/pertemuan/${parts[1]}/${id}`;
+      }
     }
   }
 

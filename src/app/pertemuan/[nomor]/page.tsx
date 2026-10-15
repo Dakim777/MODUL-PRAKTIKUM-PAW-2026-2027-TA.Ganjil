@@ -81,7 +81,7 @@ export default async function PertemuanPage({ params }: Props) {
           </section>
 
           {/* Konten utama modul */}
-          {nomorInt === 2 ? (
+          {nomorInt === 2 || nomorInt === 3 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
               {pertemuan.subTopik.map((sub) => (
                 <Link
