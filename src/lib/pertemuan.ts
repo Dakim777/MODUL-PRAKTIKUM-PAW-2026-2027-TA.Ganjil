@@ -94,8 +94,11 @@ export const daftarPertemuan: Pertemuan[] = [
       "Mengelola daftar data dengan keys dan rendering lists",
       "Memahami lifecycle components melalui useEffect",
       "Mengimplementasikan routing dasar dengan React Router",
+      "Membuat custom hooks untuk logika yang reusable",
+      "Menggunakan Context API untuk state management",
+      "Menulis test unit untuk komponen React",
     ],
-    tersedia: false,
+    tersedia: true,
     subTopik: [
       { id: "dasar-teori", judul: "Konsep Dasar React" },
       { id: "setup-react", judul: "1. Setup Project React" },
