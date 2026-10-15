@@ -696,49 +696,70 @@ export default App;`}</CodeBlock>
           <h3>Sintaks Dasar useState</h3>
           <CodeBlock language="jsx">{`const [state, setState] = useState(initialValue);`}</CodeBlock>
 
-          <h3>Contoh State Berdasarkan Ragam Tipe Data</h3>
-          <p><strong>1. Number State (Counter Sederhana):</strong></p>
-          <CodeBlock language="jsx">{`import React, { useState } from 'react';
+          <h3>Eksplorasi Konsep State (Uji Coba Langsung di App.jsx)</h3>
+          <p>
+            Sebelum merakit halaman aplikasi penuh (<code>Home.jsx</code>), Anda dapat mempelajari dan menguji reaktivitas <code>useState</code> secara langsung dengan mengganti sementara isi file <code>src/App.jsx</code>:
+          </p>
 
-function Counter() {
+          <p><strong>Uji Coba 1: Number State (Counter Sederhana)</strong></p>
+          <p>Buka file <code>src/App.jsx</code> dan ganti isinya dengan kode berikut untuk melihat perubahan angka secara instan:</p>
+          <CodeBlock language="jsx">{`import React, { useState } from 'react';
+import './App.css';
+
+function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div>
-      <p>Total Hitungan: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Tambah (+1)</button>
-      <button onClick={() => setCount(count - 1)}>Kurang (-1)</button>
+    <div className="App" style={{ textAlign: 'center', padding: '3rem' }}>
+      <h2>Eksplorasi State: Counter Sederhana</h2>
+      <p style={{ fontSize: '1.5rem', margin: '1rem 0' }}>Total Hitungan: {count}</p>
+      <button
+        onClick={() => setCount(count + 1)}
+        style={{ padding: '0.6rem 1.2rem', marginRight: '0.5rem', cursor: 'pointer' }}
+      >
+        Tambah (+1)
+      </button>
+      <button
+        onClick={() => setCount(count - 1)}
+        style={{ padding: '0.6rem 1.2rem', cursor: 'pointer' }}
+      >
+        Kurang (-1)
+      </button>
     </div>
   );
-}`}</CodeBlock>
+}
+
+export default App;`}</CodeBlock>
 
           {codeHint(
             <div>
               <p><strong>Penjelasan Kode Per Baris:</strong></p>
               <ul style={{ margin: "0.25rem 0 0 1rem" }}>
-                <li><strong>Baris 1:</strong> Mengimpor fungsi hook <code>useState</code> dari React.</li>
-                <li><strong>Baris 4:</strong> Mendeklarasikan variabel state <code>count</code> dengan nilai awal <code>0</code> dan fungsi updater <code>setCount</code>.</li>
-                <li><strong>Baris 7:</strong> Menampilkan nilai dinamis <code>{`{count}`}</code> ke dalam teks paragraf.</li>
-                <li><strong>Baris 8:</strong> Tombol Tambah memicu handler inline <code>setCount(count + 1)</code> untuk menaikkan hitungan.</li>
-                <li><strong>Baris 9:</strong> Tombol Kurang memicu handler inline <code>setCount(count - 1)</code> untuk menurunkan hitungan.</li>
+                <li><strong>Baris 1:</strong> Mengimpor hook <code>useState</code> dari React.</li>
+                <li><strong>Baris 5:</strong> Mendeklarasikan variabel state <code>count</code> (nilai awal 0) dan fungsi updater <code>setCount</code>.</li>
+                <li><strong>Baris 10:</strong> Menampilkan nilai dinamis <code>{`{count}`}</code> ke dalam teks paragraf.</li>
+                <li><strong>Baris 12 &amp; 18:</strong> Tombol Tambah memanggil <code>setCount(count + 1)</code> dan tombol Kurang memanggil <code>setCount(count - 1)</code> untuk memperbarui nilai state.</li>
               </ul>
             </div>
           )}
 
           {codeOutput(
             <div>
-              <p><strong>Output Tampilan:</strong> Di layar muncul teks <em>\"Total Hitungan: 0\"</em> diapit dua tombol. Setiap klik pada tombol Tambah langsung menaikkan nilai (0 &rarr; 1 &rarr; 2), dan klik pada Kurang menurunkannya.</p>
+              <p><strong>Lokasi File:</strong> Diuji langsung pada file <code>src/App.jsx</code>.</p>
+              <p><strong>Output Tampilan:</strong> Di browser muncul teks <em>\"Total Hitungan: 0\"</em> diapit dua tombol. Setiap klik pada tombol Tambah langsung menaikkan nilai (0 &rarr; 1 &rarr; 2), dan klik pada Kurang menurunkannya secara reaktif tanpa reload halaman.</p>
             </div>
           )}
 
-          <p><strong>2. Array State (Penambahan &amp; Penghapusan Item):</strong></p>
+          <p><strong>Uji Coba 2: Array State (Penambahan &amp; Penghapusan Item)</strong></p>
+          <p>Selanjutnya, ganti isi <code>src/App.jsx</code> dengan kode berikut untuk memahami prinsip <em>immutability</em> pada state bertipe array:</p>
           <CodeBlock language="jsx">{`import React, { useState } from 'react';
+import './App.css';
 
-function SimpleList() {
+function App() {
   const [items, setItems] = useState([]);
 
   const addItem = (name) => {
-    // Immutability: Buat array baru dengan spread operator
+    // Immutability: buat array baru dengan spread operator
     setItems([...items, { id: Date.now(), name }]);
   };
 
@@ -747,35 +768,57 @@ function SimpleList() {
   };
 
   return (
-    <div>
-      <button onClick={() => addItem("Tugas Baru")}>Tambah Item</button>
-      <ul>
+    <div className="App" style={{ maxWidth: '480px', margin: '2rem auto', padding: '1rem' }}>
+      <h2>Eksplorasi State: Array State</h2>
+      <button
+        onClick={() => addItem(\`Tugas Baru ke-\${items.length + 1}\`)}
+        style={{ padding: '0.6rem 1.2rem', margin: '1rem 0', cursor: 'pointer' }}
+      >
+        Tambah Item
+      </button>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
         {items.map(item => (
-          <li key={item.id}>
-            {item.name} <button onClick={() => removeItem(item.id)}>Hapus</button>
+          <li
+            key={item.id}
+            style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid #e2e8f0' }}
+          >
+            <span>{item.name}</span>
+            <button
+              onClick={() => removeItem(item.id)}
+              style={{ color: '#ef4444', border: 'none', background: 'none', cursor: 'pointer', fontWeight: 600 }}
+            >
+              Hapus
+            </button>
           </li>
         ))}
       </ul>
     </div>
   );
-}`}</CodeBlock>
+}
+
+export default App;`}</CodeBlock>
 
           {codeHint(
             <div>
               <p><strong>Penjelasan Kode Per Baris:</strong></p>
               <ul style={{ margin: "0.25rem 0 0 1rem" }}>
-                <li><strong>Baris 4:</strong> Inisialisasi state <code>items</code> bertipe array kosong <code>[]</code>.</li>
-                <li><strong>Baris 6-9:</strong> Fungsi <code>addItem</code> menambahkan objek baru ke array menggunakan spread operator <code>[...items, newItem]</code> tanpa memutasi array asli.</li>
-                <li><strong>Baris 11-13:</strong> Fungsi <code>removeItem</code> memfilter array untuk membuang elemen dengan id yang cocok, menghasilkan array baru.</li>
-                <li><strong>Baris 19-23:</strong> Perulangan <code>items.map()</code> merender tiap item ke tag <code>&lt;li&gt;</code> dengan properti wajib <code>key={'{item.id}'}</code>.</li>
+                <li><strong>Baris 5:</strong> Inisialisasi state <code>items</code> bertipe array kosong <code>[]</code>.</li>
+                <li><strong>Baris 7-10:</strong> Fungsi <code>addItem</code> menambahkan objek baru ke array menggunakan spread operator <code>[...items, newItem]</code> tanpa memutasi array asli.</li>
+                <li><strong>Baris 12-14:</strong> Fungsi <code>removeItem</code> memfilter array untuk membuang elemen dengan id yang cocok, menghasilkan salinan array baru.</li>
+                <li><strong>Baris 24-38:</strong> Perulangan <code>items.map()</code> merender tiap item ke tag <code>&lt;li&gt;</code> dengan atribut wajib <code>key={'{item.id}'}</code>.</li>
               </ul>
             </div>
           )}
 
           {codeOutput(
             <div>
-              <p><strong>Output Tampilan:</strong> Daftar berpoin (bullet points). Mengklik tombol <em>\"Tambah Item\"</em> menambahkan baris baru dengan nama tugas, dan tombol Hapus pada tiap baris akan melenyapkan baris tersebut seketika.</p>
+              <p><strong>Lokasi File:</strong> Diuji langsung pada file <code>src/App.jsx</code>.</p>
+              <p><strong>Output Tampilan:</strong> Mengklik tombol <em>\"Tambah Item\"</em> menambahkan baris baru dengan nama tugas, dan tombol Hapus pada tiap baris akan melenyapkan baris tersebut seketika.</p>
             </div>
+          )}
+
+          {calloutInfo(
+            "Lanjut ke Halaman Utama: Setelah memahami reaktivitas useState lewat dua uji coba di atas, kini kita masuk ke inti aplikasi: merakit Header, TaskForm, dan TaskItem ke dalam halaman Home."
           )}
 
           <h3>Membuat Halaman Home Lengkap</h3>
@@ -929,7 +972,7 @@ export default App;`}</CodeBlock>
 
           {calloutExercise(
             "Tombol Bersihkan Semua",
-            "Tambahkan tombol \"Hapus Semua Tugas\" di samping panel statistik. Ketika diklik, panggil setTasks([]) setelah memunculkan konfirmasi window.confirm()."
+            "Buka file src/pages/Home/Home.jsx, lalu tambahkan tombol \"Hapus Semua Tugas\" di samping panel statistik. Ketika tombol diklik, panggil setTasks([]) setelah memunculkan dialog konfirmasi window.confirm()."
           )}
         </section>
       )}
