@@ -149,10 +149,10 @@ function SubmissionCard({ kelas, pertemuan, cfg }: SubmissionCardProps) {
   );
 
   return (
-    <div className={`submission-box-card kelas-${kelas}${!open ? " locked" : ""}`}>
+    <div className={`submission-box-card kelas-${kelas}${!open || !cfg.url ? " locked" : ""}`}>
       <div className="submission-box-header">
         <div className="submission-badge-icon">
-          {open ? DocIcon : LockIcon}
+          {open && cfg.url ? DocIcon : LockIcon}
         </div>
         <div className="submission-box-info">
           <span className={`submission-class-badge ${kelas}`}>{kelasLabel}</span>
@@ -166,7 +166,7 @@ function SubmissionCard({ kelas, pertemuan, cfg }: SubmissionCardProps) {
 
       {/* Deadline info */}
       <div className={`submission-deadline-row ${expired ? "expired" : open ? "active" : "upcoming"}`}>
-        {!open ? (
+        {!open || !cfg.url ? (
           <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", flexWrap: "wrap" }}>
             {clockSvg}
             Info: <strong>Hubungi asprak bersangkutan</strong>
@@ -174,7 +174,8 @@ function SubmissionCard({ kelas, pertemuan, cfg }: SubmissionCardProps) {
         ) : expired ? (
           <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", flexWrap: "wrap" }}>
             {clockSvg}
-            Deadline telah berakhir: <strong>{formatDeadline(cfg.deadline)}</strong>
+            Deadline: <strong>{formatDeadline(cfg.deadline)}</strong>
+            <span style={{ fontSize: "0.75rem", opacity: 0.9 }}>(Telah lewat · Pengumpulan tetap dibuka)</span>
           </span>
         ) : (
           <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", flexWrap: "wrap" }}>
@@ -186,8 +187,8 @@ function SubmissionCard({ kelas, pertemuan, cfg }: SubmissionCardProps) {
 
 
       <div className="submission-card-action">
-        {!open ? (
-          /* Locked state */
+        {!open || !cfg.url ? (
+          /* Locked state (hanya jika belum dibuka / URL belum tersedia) */
           <div className="submission-locked-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
@@ -197,20 +198,8 @@ function SubmissionCard({ kelas, pertemuan, cfg }: SubmissionCardProps) {
             </svg>
             <span>Belum Terbuka</span>
           </div>
-        ) : expired ? (
-          /* Expired state */
-          <div className="submission-expired-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-              style={{ flexShrink: 0 }}>
-              <circle cx="12" cy="12" r="10" />
-              <line x1="15" y1="9" x2="9" y2="15" />
-              <line x1="9" y1="9" x2="15" y2="15" />
-            </svg>
-            <span>Deadline Telah Berakhir</span>
-          </div>
         ) : (
-          /* Open & active state */
+          /* Open state — tombol pengumpulan tetap aktif dan dapat diakses meski lewat deadline */
           <a
             href={cfg.url}
             target="_blank"
