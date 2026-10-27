@@ -158,8 +158,8 @@ export default function HomePage() {
           </svg>
           <div className="callout-body">
             <p>
-              Modul Pertemuan 1 dan 2 sudah tersedia dan siap dipelajari. Modul
-              pertemuan berikutnya (Pertemuan 3–7) saat ini masih dikunci dan
+              Modul Pertemuan 1 sampai 4 sudah tersedia dan siap dipelajari. Modul
+              pertemuan berikutnya (Pertemuan 5–7) saat ini masih dikunci dan
               akan dibuka bertahap sesuai jadwal praktikum. Klik kartu pertemuan
               atau gunakan menu sidebar untuk mulai belajar.
             </p>
