@@ -126,7 +126,7 @@ export const daftarPertemuan: Pertemuan[] = [
       "Membuat dan menggunakan fungsi dalam Python",
       "Bekerja dengan koleksi data seperti list, dictionary, dan set",
     ],
-    tersedia: false,
+    tersedia: true,
     subTopik: [
       { id: "dasar-teori", judul: "Dasar Teori Python" },
       { id: "pengenalan-python", judul: "1. Pengenalan & Eksekusi Python" },
