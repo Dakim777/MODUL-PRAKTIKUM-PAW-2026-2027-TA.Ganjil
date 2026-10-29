@@ -1502,6 +1502,13 @@ pip freeze > requirements.txt`}</CodeBlock>
             <li>Format Folder Pertemuan: <code>[NAMA]_[NIM]_pertemuan4</code></li>
             <li>Sertakan file <code>README.md</code> yang menjelaskan langkah menjalankan skrip program di VS Code (<code>python tugas1_bmi.py</code>, <code>python tugas2_nilai_mahasiswa.py</code>, dan <code>python main.py</code>).</li>
             <li>Pastikan folder virtual environment (<code>venv/</code>) dan direktori cache (<code>__pycache__/</code>) tidak diunggah ke repositori Git (terdaftar di file <code>.gitignore</code>).</li>
+            <li>
+              <strong>Batas Waktu Pengumpulan (Deadline):</strong>
+              <ul>
+                <li><strong>Kelas RB:</strong> <strong>Rabu, 04 November 2026, pukul 23:59 WIB</strong></li>
+                <li><strong>Kelas RA:</strong> <strong>Sabtu, 07 November 2026, pukul 23:59 WIB</strong></li>
+              </ul>
+            </li>
           </ul>
 
           <SubmissionBox pertemuan={4} />
