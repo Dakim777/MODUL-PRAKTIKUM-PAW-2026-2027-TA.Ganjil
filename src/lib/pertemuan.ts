@@ -156,7 +156,7 @@ export const daftarPertemuan: Pertemuan[] = [
       "Memahami Polymorphism dan Method Overriding",
       "Implementasi Abstract Class dan Interface",
     ],
-    tersedia: false,
+    tersedia: true,
     subTopik: [
       { id: "dasar-teori", judul: "Pilar Utama OOP Python" },
       { id: "pengenalan-oop", judul: "1. Pengenalan Konsep OOP" },

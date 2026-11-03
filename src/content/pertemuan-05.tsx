@@ -2,2877 +2,1531 @@ import CodeBlock from "@/components/CodeBlock";
 import SubmissionBox from "@/components/SubmissionBox";
 
 // Pertemuan 5: Python OOP
-export default function Pertemuan5() {
-  const calloutInfo = (text: string) => (
+export default function Pertemuan5({ subId }: { subId?: string }) {
+  const calloutInfo = (text: React.ReactNode) => (
     <div className="callout callout-info">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
-        <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" /><path d="M10 9v5M10 6.5v.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fill="none"
+        style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}
+      >
+        <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M10 9v5M10 6.5v.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
-      <div className="callout-body"><p>{text}</p></div>
+      <div className="callout-body">{typeof text === "string" ? <p>{text}</p> : text}</div>
     </div>
   );
-  const calloutExercise = (title: string, text: string) => (
+
+  const calloutExercise = (title: string, text: React.ReactNode) => (
     <div className="callout callout-warning">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-amber-500)" }}>
-        <path d="M10 3L18 17H2L10 3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /><path d="M10 9v4M10 14.5v.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fill="none"
+        style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-amber-500)" }}
+      >
+        <path d="M10 3L18 17H2L10 3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M10 9v4M10 14.5v.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
-      <div className="callout-body"><p><strong>Latihan Mandiri: {title}</strong><br />{text}</p></div>
+      <div className="callout-body">
+        <p><strong>Latihan Mandiri: {title}</strong></p>
+        {typeof text === "string" ? <p>{text}</p> : text}
+      </div>
+    </div>
+  );
+
+  const codeHint = (text: React.ReactNode) => (
+    <div className="callout callout-info" style={{ marginTop: "0.5rem", marginBottom: "0.75rem" }}>
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fill="none"
+        style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}
+      >
+        <path
+          d="M10 2a6 6 0 00-6 6c0 2.2 1.2 4.1 3 5.1V15a1 1 0 001 1h4a1 1 0 001-1v-1.9c1.8-1 3-2.9 3-5.1a6 6 0 00-6-6z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <path d="M8 18h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+      <div className="callout-body">
+        <p style={{ fontWeight: 600, marginBottom: "0.35rem", color: "var(--color-accent)" }}>
+          Penjelasan Logika Kode (Per Baris):
+        </p>
+        <div style={{ fontSize: "0.875rem", color: "var(--color-text-secondary)", lineHeight: 1.65 }}>
+          {text}
+        </div>
+      </div>
+    </div>
+  );
+
+  const codeOutput = (text: React.ReactNode) => (
+    <div
+      style={{
+        marginTop: "0.5rem",
+        marginBottom: "1.5rem",
+        padding: "0.85rem 1rem",
+        borderRadius: "8px",
+        border: "1px solid rgba(16, 185, 129, 0.25)",
+        backgroundColor: "rgba(16, 185, 129, 0.05)",
+        display: "flex",
+        gap: "0.75rem",
+        alignItems: "flex-start",
+      }}
+    >
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fill="none"
+        style={{ flexShrink: 0, marginTop: "2px", color: "#10b981" }}
+      >
+        <rect x="2" y="3" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M6 8l3 2-3 2M11 12h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <div style={{ fontSize: "0.875rem", color: "var(--color-text-primary)", lineHeight: 1.6 }}>
+        <strong style={{ color: "#10b981", display: "block", marginBottom: "0.25rem" }}>
+          Hasil Eksekusi &amp; Output Program:
+        </strong>
+        {text}
+      </div>
     </div>
   );
 
   return (
     <>
-      <h2 id="dasar-teori">Python OOP</h2>
+      {/* ========================================================================= */}
+      {/* 0. PILAR UTAMA OOP PYTHON (DASAR TEORI)                                    */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "dasar-teori") && (
+        <section id="dasar-teori">
+          <h2>Pilar Utama OOP Python</h2>
+          <p>
+            <strong>Object-Oriented Programming (OOP)</strong> adalah paradigma pemrograman fundamental dalam rekayasa perangkat lunak modern yang mengorganisir desain program di sekitar <em>objek</em>, bukan semata-mata fungsi atau logika sekuensial. Objek memadukan <strong>state</strong> (data yang disimpan dalam bentuk field/atribut) dan <strong>behavior</strong> (kode/fungsi yang beroperasi pada data tersebut, disebut metode).
+          </p>
+          <p>
+            Python mengadopsi prinsip <em>multi-paradigm</em> dengan dukungan OOP tingkat pertama (<em>first-class OOP support</em>). Dalam ekosistem pengembangan web sisi server (<em>backend</em>), konsep OOP menjadi pilar utama arsitektur framework modern seperti model ORM pada <strong>SQLAlchemy</strong> di Pyramid, <strong>Django ORM</strong>, hingga validasi schema pada <strong>Pydantic</strong> di FastAPI.
+          </p>
 
-<h3 id="pengenalan-oop">Pengenalan OOP</h3>
-<p>Memahami konsep dasar dan filosofi Object-Oriented Programming</p>
+          <h3>Analogi Dunia Nyata: Memahami Esensi OOP</h3>
+          <p>
+            Untuk memahami OOP secara intuitif, bayangkan <strong>Class</strong> sebagai sebuah <em>cetakan kue (blueprint)</em> arsitektur, sedangkan <strong>Object</strong> adalah <em>kue nyata</em> yang dihasilkan dari cetakan tersebut:
+          </p>
+          <ul>
+            <li><strong>Class (Cetakan Kue)</strong>: Menentukan bentuk, ukuran, ornamen dasar, dan fitur yang harus dimiliki setiap kue.</li>
+            <li><strong>Object (Kue Nyata)</strong>: Masing-masing kue memiliki wujud fisik yang mandiri. Satu kue bisa memiliki isian selai stroberi (state/atribut), kue lain memiliki isian cokelat, namun keduanya sama-sama memiliki metode untuk dipotong atau disajikan.</li>
+            <li><strong>Smartphone</strong>: Tombol volume dan layar sentuh adalah antarmuka publik yang Anda gunakan (Abstraction), sementara sirkuit rumit di dalam casing terlindung rapat dari sentuhan sembarangan (Encapsulation).</li>
+          </ul>
 
+          <h3>Empat Pilar Utama Pemrograman Berorientasi Objek</h3>
+          <div className="table-wrapper" style={{ overflowX: "auto", margin: "1rem 0" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <thead>
+                <tr style={{ borderBottom: "2px solid var(--color-border)", textAlign: "left" }}>
+                  <th style={{ padding: "0.75rem" }}>Pilar OOP</th>
+                  <th style={{ padding: "0.75rem" }}>Prinsip Kerja</th>
+                  <th style={{ padding: "0.75rem" }}>Manfaat Nyata dalam Rekayasa Software</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>1. Encapsulation (Enkapsulasi)</td>
+                  <td style={{ padding: "0.75rem" }}>Membungkus data dan metode ke dalam satu unit class serta membatasi akses langsung ke komponen internal objek (<em>data hiding</em>).</td>
+                  <td style={{ padding: "0.75rem" }}>Mencegah modifikasi data yang tidak valid secara sengaja maupun tidak sengaja, menjaga integritas status sistem.</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>2. Inheritance (Pewarisan)</td>
+                  <td style={{ padding: "0.75rem" }}>Mekanisme di mana sebuah class anak (<em>subclass</em>) mewarisi atribut dan metode dari class induk (<em>superclass</em>).</td>
+                  <td style={{ padding: "0.75rem" }}>Mendukung prinsip DRY (<em>Don&#39;t Repeat Yourself</em>) dan reusability kode; mempercepat penambahan modul baru.</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>3. Polymorphism (Polimorfisme)</td>
+                  <td style={{ padding: "0.75rem" }}>Kemampuan berbagai objek dari class berbeda untuk merespons pemanggilan metode dengan nama yang sama sesuai perilakunya masing-masing.</td>
+                  <td style={{ padding: "0.75rem" }}>Fleksibilitas kode; memungkinkan pemrosesan kumpulan objek heterogen melalui satu antarmuka yang seragam.</td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>4. Abstraction (Abstraksi)</td>
+                  <td style={{ padding: "0.75rem" }}>Menyembunyikan detail implementasi teknis yang rumit dan hanya menyajikan antarmuka esensial/kontrak yang dibutuhkan pengguna.</td>
+                  <td style={{ padding: "0.75rem" }}>Mengurangi beban kognitif pengembang dan memudahkan pemisahan kontrak desain (<em>interface</em>) dari implementasi nyata.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-<h3 id="apa-itu-object-oriented-programming">Apa itu Object-Oriented Programming?</h3>
-<p>Object-Oriented Programming (OOP) adalah paradigma pemrograman yang didasarkan pada konsep "objek", yang dapat berisi data dalam bentuk field (disebut juga atribut atau properti) dan kode dalam bentuk prosedur (disebut juga metode).</p>
+          <h3>Matriks Perbandingan: Konsep Kunci dalam Ekosistem OOP</h3>
+          <div className="table-wrapper" style={{ overflowX: "auto", margin: "1rem 0" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <thead>
+                <tr style={{ borderBottom: "2px solid var(--color-border)", textAlign: "left" }}>
+                  <th style={{ padding: "0.75rem" }}>Konsep</th>
+                  <th style={{ padding: "0.75rem" }}>Definisi &amp; Peran Teknis</th>
+                  <th style={{ padding: "0.75rem" }}>Sintaks / Elemen Khas Python</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Class</td>
+                  <td style={{ padding: "0.75rem" }}>Cetak biru (template) pendefinisi struktur atribut dan fungsionalitas metode.</td>
+                  <td style={{ padding: "0.75rem" }}><code>class NamaClass:</code> (PascalCase)</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Object (Instance)</td>
+                  <td style={{ padding: "0.75rem" }}>Entitas nyata di memori yang dibuat berdasarkan cetak biru class.</td>
+                  <td style={{ padding: "0.75rem" }}><code>obj = NamaClass(argumen)</code></td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Constructor</td>
+                  <td style={{ padding: "0.75rem" }}>Metode inisialisasi bawaan yang dieksekusi otomatis saat objek baru dibuat.</td>
+                  <td style={{ padding: "0.75rem" }}><code>def __init__(self, ...):</code></td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Self Parameter</td>
+                  <td style={{ padding: "0.75rem" }}>Referensi eksplisit yang merujuk pada objek instance yang sedang memanggil metode.</td>
+                  <td style={{ padding: "0.75rem" }}>Wajib sebagai parameter pertama di setiap method instance.</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Access Modifiers</td>
+                  <td style={{ padding: "0.75rem" }}>Tingkat proteksi variabel (Public, Protected, Private melalui name mangling).</td>
+                  <td style={{ padding: "0.75rem" }}><code>variabel</code>, <code>_protected</code>, <code>__private</code></td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Abstract Class</td>
+                  <td style={{ padding: "0.75rem" }}>Class acuan kontrak yang tidak dapat diinstansiasi secara langsung.</td>
+                  <td style={{ padding: "0.75rem" }}><code>from abc import ABC, abstractmethod</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-<p>Definisi OOP</p>
+          {calloutInfo(
+            "Mindset Pemrograman Berorientasi Objek: Jangan hanya memandang kode sebagai kumpulan instruksi baris per baris. Pandanglah sistem Anda sebagai miniatur dunia nyata tempat objek-objek mandiri saling berkomunikasi dan bertukar pesan untuk menyelesaikan tugas komputasi."
+          )}
 
-<p>OOP adalah cara mengorganisir program dengan menggunakan objek yang merepresentasikan entitas di dunia nyata. Setiap objek memiliki karakteristik (atribut) dan kemampuan (metode).</p>
+          <h3 id="alat-bahan">Alat dan Bahan Praktikum</h3>
+          <ul>
+            <li><strong>Python 3.10+</strong>: Runtime environment resmi Python (<a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">python.org</a>).</li>
+            <li><strong>Visual Studio Code</strong>: Editor kode utama yang dipasangi ekstensi resmi <em>Python</em> dan <em>Pylance</em>.</li>
+            <li><strong>Terminal Terintegrasi</strong>: Terminal bawaan VS Code untuk mengeksekusi skrip Python.</li>
+            <li><strong>Git &amp; GitHub</strong>: Untuk pengelolaan repositori dan riwayat commit praktikum.</li>
+          </ul>
+        </section>
+      )}
 
+      {/* ========================================================================= */}
+      {/* 1. PENGENALAN KONSEP OOP                                                  */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "pengenalan-oop") && (
+        <section id="pengenalan-oop">
+          <h2>1. Pengenalan Konsep OOP</h2>
+          <p>
+            Sebelum mulai menulis arsitektur class yang rumit, kita perlu membiasakan diri dengan filosofi mendasar Python: <strong>&quot;Everything in Python is an Object&quot;</strong>. Setiap tipe data yang pernah Anda gunakan—mulai dari integer, string, list, dictionary, hingga sebuah fungsi—pada hakikatnya adalah objek yang diciptakan dari sebuah class bawaan Python.
+          </p>
 
-<h3 id="empat-pilar-oop">Empat Pilar OOP</h3>
+          <h3>Langkah 1: Mempersiapkan Workspace di VS Code</h3>
+          <p>
+            Buka VS Code, buat folder baru bernama <code>latihan_oop</code>, lalu buka folder tersebut (<em>File &rarr; Open Folder...</em>). Buka terminal terintegrasi dengan menekan <kbd>Ctrl</kbd> + <kbd>`</kbd> (atau <kbd>Cmd</kbd> + <kbd>`</kbd> di macOS).
+          </p>
 
-<h3 id="1-encapsulation-enkapsulasi">1. Encapsulation (Enkapsulasi)</h3>
-<p>Encapsulation adalah prinsip menyembunyikan detail implementasi internal dari pengguna eksternal. Ini memungkinkan kita untuk:</p>
+          <h3>Hands-on 1: Membuktikan Filosofi &#39;Everything is an Object&#39;</h3>
+          <p>
+            Buat file baru <code>01_everything_is_object.py</code>, lalu ketikkan kode berikut untuk membuktikan identitas objek internal pada tipe-tipe data dasar:
+          </p>
 
-<ul>
-  <li>Melindungi data dari akses yang tidak sah</li>
-  <li>Mengontrol bagaimana data diakses dan dimodifikasi</li>
-  <li>Mengurangi kompleksitas sistem</li>
-</ul>
+          <CodeBlock language="python">{`# ==============================================================================
+# Berkas: 01_everything_is_object.py
+# Deskripsi: Eksplorasi objek bawaan Python menggunakan type(), id(), dan dunder class
+# ==============================================================================
 
-<p>Contoh Analogi:
-Ketika Kalian menggunakan smartphone, Kalian tidak perlu tahu bagaimana prosesor bekerja atau bagaimana data disimpan. Kalian hanya perlu tahu cara menggunakan tombol dan interface yang tersedia.</p>
+# 1. Nilai primitif sesungguhnya adalah instance dari class bawaan
+angka = 42
+pesan = "Praktikum Pemrograman Web ITERA"
+daftar_nilai = [85, 90, 78]
 
+print("Tipe objek 'angka'        :", type(angka), "| Class:", angka.__class__)
+print("Tipe objek 'pesan'        :", type(pesan), "| Class:", pesan.__class__)
+print("Tipe objek 'daftar_nilai' :", type(daftar_nilai), "| Class:", daftar_nilai.__class__)
 
-<h3 id="2-inheritance-pewarisan">2. Inheritance (Pewarisan)</h3>
-<p>Inheritance memungkinkan kita membuat class baru berdasarkan class yang sudah ada. Class baru akan mewarisi atribut dan metode dari class induk.</p>
+# 2. Objek memiliki metode bawaan yang melekat pada dirinya
+print("\nManipulasi string via method class str:")
+print("Versi Huruf Besar :", pesan.upper())
+print("Pecah Kata        :", pesan.split(" "))
 
-<p>Manfaat:</p>
+# 3. Bahkan fungsi juga merupakan objek tingkat pertama (first-class object)!
+def salam():
+    return "Halo dari fungsi!"
 
-<ul>
-  <li>Reusability: Mengurangi duplikasi kode</li>
-  <li>Extensibility: Mudah menambahkan fitur baru</li>
-  <li>Maintainability: Perubahan di class induk berlaku untuk semua turunannya</li>
-</ul>
+print("\nTipe objek fungsi 'salam' :", type(salam))
+print("Identitas memori (id)     :", hex(id(salam)))`}</CodeBlock>
 
-<p>Contoh Analogi:
-Seperti hubungan orang tua dan anak. Anak mewarisi ciri-ciri dari orang tua (seperti warna mata, tinggi badan), tetapi juga memiliki karakteristik unik mereka sendiri.</p>
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Logika Kode (Per Baris):</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 7-9:</strong> Mendefinisikan variabel biasa. Di balik layar, Python menginstansiasi objek dari class <code>int</code>, <code>str</code>, dan <code>list</code>.</li>
+                <li><strong>Baris 11-13:</strong> Fungsi <code>type()</code> dan atribut internal <code>__class__</code> memperlihatkan cetak biru class asal tempat objek tersebut diciptakan.</li>
+                <li><strong>Baris 16-18:</strong> Fungsi seperti <code>.upper()</code> dan <code>.split()</code> bukan fungsi global terpisah, melainkan <em>metode</em> yang didefinisikan di dalam class <code>str</code>.</li>
+                <li><strong>Baris 21-26:</strong> Mendefinisikan fungsi <code>salam</code>. Di Python, fungsi adalah <em>first-class citizen</em> yang juga berupa objek dari class <code>function</code> dan memiliki alamat memori unik (<code>id()</code>).</li>
+              </ul>
+            </div>
+          )}
 
+          {codeOutput(
+            <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`Tipe objek 'angka'        : <class 'int'> | Class: <class 'int'>
+Tipe objek 'pesan'        : <class 'str'> | Class: <class 'str'>
+Tipe objek 'daftar_nilai' : <class 'list'> | Class: <class 'list'>
 
-<h3 id="3-polymorphism-polimorfisme">3. Polymorphism (Polimorfisme)</h3>
-<p>Polymorphism memungkinkan objek dari berbagai class untuk merespons method yang sama dengan cara yang berbeda.</p>
+Manipulasi string via method class str:
+Versi Huruf Besar : PRAKTIKUM PEMROGRAMAN WEB ITERA
+Pecah Kata        : ['Praktikum', 'Pemrograman', 'Web', 'ITERA']
 
-<p>Jenis-jenis Polymorphism:</p>
+Tipe objek fungsi 'salam' : <class 'function'>
+Identitas memori (id)     : 0x104b2a8c0`}
+            </pre>
+          )}
 
-<ul>
-  <li>Method Overriding: Subclass memberikan implementasi spesifik untuk method yang sudah didefinisikan di superclass</li>
-  <li>Method Overloading: Beberapa method dengan nama sama tapi parameter berbeda (Python tidak support overloading secara native)</li>
-</ul>
+          <h3>Hands-on 2: Studi Komparasi Procedural vs Object-Oriented</h3>
+          <p>
+            Untuk memahami mengapa OOP sangat dibutuhkan dalam aplikasi berskala besar, perhatikan perbandingan antara pendekatan prosedural (data terpisah dari fungsi) dengan pendekatan OOP (data dan fungsi menyatu di dalam class) pada berkas <code>01_procedural_vs_oop.py</code>:
+          </p>
 
-<p>Contoh Analogi:
-Tombol "Start" bisa berarti berbeda untuk berbagai perangkat. Di mobil, tombol start menghidupkan mesin. Di komputer, tombol start membuka menu. Namanya sama, tapi perilakunya berbeda.</p>
+          <CodeBlock language="python">{`# ==============================================================================
+# Berkas: 01_procedural_vs_oop.py
+# Deskripsi: Perbandingan praktis penanganan data mahasiswa via Prosedural vs OOP
+# ==============================================================================
 
+# ------------------------------------------------------------------------------
+# PENDEKATAN 1: PROSEDURAL (Data dan Fungsi Terpisah)
+# Masalah: Jika struktur dictionary berubah, semua fungsi yang bergantung bisa rusak.
+# ------------------------------------------------------------------------------
+mahasiswa_proc = {
+    "nama": "Budi Santoso",
+    "nim": "121140001",
+    "jurusan": "Teknik Informatika",
+    "ipk": 3.45
+}
 
-<h3 id="4-abstraction-abstraksi">4. Abstraction (Abstraksi)</h3>
-<p>Abstraction adalah proses menyembunyikan detail kompleks dan hanya menampilkan fitur yang penting. Ini membantu mengurangi kompleksitas program.</p>
+def cetak_profil_prosedural(mhs):
+    print(f"[Prosedural] {mhs['nama']} ({mhs['nim']}) - {mhs['jurusan']} | IPK: {mhs['ipk']}")
 
-<p>Contoh Analogi:
-Ketika Kalian menyetir mobil, Kalian hanya perlu tahu cara menggunakan setir, pedal gas, dan rem. Kalian tidak perlu memahami bagaimana mesin pembakaran internal bekerja atau bagaimana transmisi mengubah gigi.</p>
+def perbarui_ipk_prosedural(mhs, ipk_baru):
+    if 0.0 <= ipk_baru <= 4.0:
+        mhs['ipk'] = ipk_baru
+    else:
+        print("Nilai IPK tidak valid!")
 
+cetak_profil_prosedural(mahasiswa_proc)
+perbarui_ipk_prosedural(mahasiswa_proc, 3.75)
+cetak_profil_prosedural(mahasiswa_proc)
 
-<h3 id="keuntungan-menggunakan-oop">Keuntungan Menggunakan OOP</h3>
-
-<h3 id="1-modular">1. Modular</h3>
-<p>Program dibagi menjadi objek-objek yang mandiri. Setiap objek memiliki tanggung jawab spesifik, membuat kode lebih terorganisir.</p>
-
-
-<h3 id="2-reusability">2. Reusability</h3>
-<p>Class yang sudah dibuat dapat digunakan kembali dalam program yang berbeda atau diwariskan untuk membuat class baru.</p>
-
-
-<h3 id="3-maintainability">3. Maintainability</h3>
-<p>Lebih mudah untuk memelihara dan mengupdate kode. Perubahan pada satu class tidak akan mempengaruhi class lain (jika dirancang dengan baik).</p>
-
-
-<h3 id="4-scalability">4. Scalability</h3>
-<p>Mudah untuk menambahkan fitur baru tanpa mengubah kode yang sudah ada.</p>
-
-
-<h3 id="5-data-security">5. Data Security</h3>
-<p>Dengan encapsulation, data dapat dilindungi dari akses eksternal yang tidak diinginkan.</p>
-
-
-<h3 id="kapan-menggunakan-oop">Kapan Menggunakan OOP?</h3>
-<p>OOP sangat cocok untuk:</p>
-
-<ul>
-  <li>Aplikasi besar dan kompleks: Ketika program memiliki banyak komponen yang saling berinteraksi</li>
-  <li>Proyek tim: Memudahkan kolaborasi karena setiap anggota dapat bekerja pada class yang berbeda</li>
-  <li>Program yang memerlukan maintainability: Ketika kode perlu diupdate atau diperbaiki secara berkala</li>
-  <li>Sistem yang memodelkan dunia nyata: Ketika program merepresentasikan entitas nyata (misalnya: sistem perpustakaan, e-commerce)</li>
-</ul>
-
-<p>OOP vs Procedural</p>
-
-<p>Procedural Programming fokus pada fungsi dan urutan eksekusi. Cocok untuk program kecil dan sederhana.</p>
-
-<p>Object-Oriented Programming fokus pada objek dan interaksi antar objek. Cocok untuk program besar dan kompleks.</p>
-
-<p>Keduanya memiliki tempat masing-masing. Pilih paradigma yang sesuai dengan kebutuhan proyek Kalian.</p>
-
-
-<h3 id="python-dan-oop">Python dan OOP</h3>
-<p>Python adalah bahasa yang mendukung multiple paradigm:</p>
-
-<ul>
-  <li>Procedural</li>
-  <li>Object-Oriented</li>
-  <li>Functional</li>
-</ul>
-
-<p>Everything is an Object</p>
-
-<p>Di Python, segalanya adalah objek! Integer, string, list, bahkan function adalah objek. Ini membuat Python sangat fleksibel dan powerful untuk OOP.</p>
-
-
-<h3 id="contoh-sederhana">Contoh Sederhana</h3>
-<p>Bahkan ketika Kalian menulis kode Python sederhana, Kalian sebenarnya sudah menggunakan OOP:</p>
-
-<CodeBlock language="">{`# String adalah objek dari class str
-text = "Hello World"
-print(text.upper())  # Memanggil method upper() dari class str
-print(text.split())  # Memanggil method split() dari class str
-
-# List adalah objek dari class list
-numbers = [1, 2, 3]
-numbers.append(4)    # Memanggil method append() dari class list
-print(numbers.count(2))  # Memanggil method count() dari class list`}</CodeBlock>
-
-<p>Pada contoh di atas, text dan numbers adalah objek, dan upper(), split(), append(), count() adalah metode yang dimiliki oleh objek tersebut.</p>
-
-
-<h3 id="perbandingan-procedural-vs-oop">Perbandingan: Procedural vs OOP</h3>
-
-<h3 id="pendekatan-procedural">Pendekatan Procedural</h3>
-<CodeBlock language="">{`# Data terpisah dari fungsi
-mahasiswa_nama = "Budi"
-mahasiswa_nim = "TI12345"
-mahasiswa_jurusan = "Teknik Informatika"
-
-def display_mahasiswa(nama, nim, jurusan):
-    print(f"Nama: {nama}")
-    print(f"NIM: {nim}")
-    print(f"Jurusan: {jurusan}")
-
-display_mahasiswa(mahasiswa_nama, mahasiswa_nim, mahasiswa_jurusan)`}</CodeBlock>
-
-
-<h3 id="pendekatan-oop">Pendekatan OOP</h3>
-<CodeBlock language="">{`# Data dan fungsi tergabung dalam class
+# ------------------------------------------------------------------------------
+# PENDEKATAN 2: OBJECT-ORIENTED (Data dan Perilaku Terbungkus Rapi dalam Class)
+# Keunggulan: Validasi state dan fungsionalitas terlindungi di dalam satu entitas.
+# ------------------------------------------------------------------------------
 class Mahasiswa:
-    def __init__(self, nama, nim, jurusan):
+    def __init__(self, nama: str, nim: str, jurusan: str, ipk: float):
         self.nama = nama
         self.nim = nim
         self.jurusan = jurusan
+        self.ipk = ipk
 
-    def display_info(self):
-        print(f"Nama: {self.nama}")
-        print(f"NIM: {self.nim}")
-        print(f"Jurusan: {self.jurusan}")
+    def cetak_profil(self):
+        print(f"[OOP] {self.nama} ({self.nim}) - {self.jurusan} | IPK: {self.ipk}")
 
-# Membuat objek
-mhs = Mahasiswa("Budi", "TI12345", "Teknik Informatika")
-mhs.display_info()`}</CodeBlock>
-
-<p>Keuntungan Pendekatan OOP</p>
-
-<p>Pada pendekatan OOP, data dan fungsi yang berkaitan digabungkan dalam satu unit (class). Ini membuat kode lebih terorganisir, mudah dipahami, dan mudah dipelihara, terutama ketika program menjadi lebih kompleks.</p>
-
-
-<h3 id="kesimpulan">Kesimpulan</h3>
-<p>Object-Oriented Programming adalah paradigma yang powerful untuk membangun aplikasi yang kompleks, scalable, dan maintainable. Dengan memahami empat pilar OOP (Encapsulation, Inheritance, Polymorphism, Abstraction), Kalian dapat menulis kode yang lebih terstruktur dan efisien.</p>
-
-<p>Langkah Selanjutnya</p>
-
-<p>Sekarang setelah memahami konsep dasar OOP, mari kita mulai implementasinya dengan mempelajari cara membuat class dan object di Python.</p>
-
-<p>Praktikum Python OOP</p>
-
-<p>Pemrograman Berorientasi Objek dengan Python</p>
-
-<p>Class dan Object</p>
-
-<p>Membuat class, object, atribut, dan method dalam Python</p>
-
-
-<h3 id="class-dan-object">Class dan Object</h3>
-<p>Membuat class, object, atribut, dan method dalam Python</p>
-
-
-<h3 id="apa-itu-class">Apa itu Class?</h3>
-<p>Class adalah blueprint atau template untuk membuat objek. Class mendefinisikan atribut (data) dan metode (fungsi) yang akan dimiliki oleh objek.</p>
-
-<p>Analogi</p>
-
-<p>Class seperti blueprint rumah. Blueprint mendefinisikan struktur rumah: berapa kamar, di mana pintu, dll. Dari satu blueprint, Kalian bisa membangun banyak rumah (objek) dengan struktur yang sama tapi mungkin warna atau furnitur berbeda.</p>
-
-
-<h3 id="apa-itu-object">Apa itu Object?</h3>
-<p>Object adalah instance dari sebuah class. Ketika Kalian membuat objek dari class, Kalian membuat sebuah entitas konkret berdasarkan blueprint yang didefinisikan oleh class.</p>
-
-
-<h3 id="membuat-class-sederhana">Membuat Class Sederhana</h3>
-
-<h3 id="sintaks-dasar-class">Sintaks Dasar Class</h3>
-<p>Class didefinisikan menggunakan keyword class diikuti nama class (biasanya menggunakan PascalCase):</p>
-
-<CodeBlock language="">{`class Mahasiswa:
-    pass  # Class kosong untuk sementara`}</CodeBlock>
-
-<p>Naming Convention</p>
-
-<p>Nama class menggunakan PascalCase (huruf pertama setiap kata kapital tanpa underscore). Contoh: Mahasiswa, KaryawanTetap, UserProfile.</p>
-
-
-<h3 id="menambahkan-atribut-class">Menambahkan Atribut Class</h3>
-<p>Atribut class adalah variabel yang dimiliki bersama oleh semua instance dari class:</p>
-
-<CodeBlock language="">{`class Mahasiswa:
-    # Atribut class (shared by all instances)
-    jurusan = "Teknik Informatika"
-    universitas = "Institut Teknologi Sumatera"`}</CodeBlock>
-
-<p>Atribut class dapat diakses tanpa membuat instance:</p>
-
-<CodeBlock language="">{`print(Mahasiswa.jurusan)  # Output: Teknik Informatika
-print(Mahasiswa.universitas)  # Output: Institut Teknologi Sumatera`}</CodeBlock>
-
-
-<h3 id="constructor-method-init">Constructor: Method __init__</h3>
-<p>Constructor adalah method khusus yang dipanggil otomatis ketika objek dibuat. Di Python, constructor didefinisikan dengan method __init__:</p>
-
-<CodeBlock language="">{`class Mahasiswa:
-    # Atribut class
-    jurusan = "Teknik Informatika"
-
-    # Constructor
-    def __init__(self, nama, nim):
-        # Atribut instance
-        self.nama = nama
-        self.nim = nim
-        self.aktif = True  # Nilai default`}</CodeBlock>
-
-<p>Parameter self</p>
-
-<p>self adalah referensi ke instance objek yang sedang dibuat. Ini HARUS menjadi parameter pertama di setiap instance method. Python akan otomatis mengisi parameter ini, jadi Kalian tidak perlu menyediakannya saat memanggil method.</p>
-
-
-<h3 id="membuat-object-instance">Membuat Object (Instance)</h3>
-<p>Untuk membuat object dari class, panggil class seperti memanggil function:</p>
-
-<CodeBlock language="">{`# Membuat object
-mhs1 = Mahasiswa("Budi Santoso", "TI12345")
-mhs2 = Mahasiswa("Ani Wijaya", "TI67890")
-
-# Mengakses atribut
-print(mhs1.nama)  # Output: Budi Santoso
-print(mhs1.nim)   # Output: TI12345
-print(mhs1.jurusan)  # Output: Teknik Informatika
-
-print(mhs2.nama)  # Output: Ani Wijaya
-print(mhs2.nim)   # Output: TI67890`}</CodeBlock>
-
-<p>Instance vs Class Attribute</p>
-
-<p>Instance attribute (self.nama, self.nim): Unik untuk setiap object.
-Class attribute (jurusan): Dibagikan oleh semua object dari class yang sama.</p>
-
-
-<h3 id="menambahkan-method">Menambahkan Method</h3>
-<p>Method adalah fungsi yang didefinisikan di dalam class dan dapat dipanggil oleh objek:</p>
-
-<CodeBlock language="">{`class Mahasiswa:
-    jurusan = "Teknik Informatika"
-
-    def __init__(self, nama, nim):
-        self.nama = nama
-        self.nim = nim
-        self.ipk = 0.0
-
-    # Method untuk menampilkan informasi
-    def display_info(self):
-        print(f"Nama: {self.nama}")
-        print(f"NIM: {self.nim}")
-        print(f"Jurusan: {self.jurusan}")
-        print(f"IPK: {self.ipk}")
-
-    # Method untuk mengubah IPK
-    def set_ipk(self, ipk_baru):
+    def update_ipk(self, ipk_baru: float):
         if 0.0 <= ipk_baru <= 4.0:
             self.ipk = ipk_baru
-            print(f"IPK berhasil diubah menjadi {ipk_baru}")
+            print(f"IPK {self.nama} berhasil diperbarui menjadi {self.ipk}")
         else:
-            print("IPK harus antara 0.0 dan 4.0")
+            print("Peringatan: Nilai IPK harus berada pada rentang 0.0 s.d 4.0!")
 
-    # Method untuk cek status kelulusan
-    def is_lulus(self):
-        return self.ipk >= 2.75
+print("\n--- Eksekusi Paradigma OOP ---")
+mhs_oop = Mahasiswa("Siti Rahma", "121140002", "Teknik Informatika", 3.80)
+mhs_oop.cetak_profil()
+mhs_oop.update_ipk(3.92)
+mhs_oop.cetak_profil()`}</CodeBlock>
 
-# Menggunakan method
-mhs1 = Mahasiswa("Budi Santoso", "TI12345")
-mhs1.display_info()
-mhs1.set_ipk(3.5)
-print(f"Status kelulusan: {'Lulus' if mhs1.is_lulus() else 'Tidak Lulus'}")`}</CodeBlock>
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Logika Kode (Per Baris):</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 10-23 (Pendekatan Prosedural):</strong> Data disimpan dalam variabel dictionary bebas. Fungsi <code>cetak_profil_prosedural</code> dan <code>perbarui_ipk_prosedural</code> berada di luar data. Siapa pun dapat mengubah <code>mahasiswa_proc['ipk'] = 99</code> secara langsung tanpa melewati validasi.</li>
+                <li><strong>Baris 33-38 (Pendekatan OOP):</strong> Class <code>Mahasiswa</code> membungkus 4 atribut (<code>nama</code>, <code>nim</code>, <code>jurusan</code>, <code>ipk</code>) melalui constructor <code>__init__</code>.</li>
+                <li><strong>Baris 40-49:</strong> Logika validasi dan presentasi disatukan langsung menjadi method objek. Akses dan modifikasi state menjadi terkontrol, aman, dan reusable di berbagai modul aplikasi web.</li>
+              </ul>
+            </div>
+          )}
 
+          {codeOutput(
+            <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`[Prosedural] Budi Santoso (121140001) - Teknik Informatika | IPK: 3.45
+[Prosedural] Budi Santoso (121140001) - Teknik Informatika | IPK: 3.75
 
-<h3 id="contoh-lengkap">Contoh Lengkap</h3>
-<p>Mari kita lihat contoh lengkap implementasi class dan object:</p>
+--- Eksekusi Paradigma OOP ---
+[OOP] Siti Rahma (121140002) - Teknik Informatika | IPK: 3.8
+IPK Siti Rahma berhasil diperbarui menjadi 3.92
+[OOP] Siti Rahma (121140002) - Teknik Informatika | IPK: 3.92`}
+            </pre>
+          )}
 
-<CodeBlock language="">{`class Mahasiswa:
-    # Atribut Class (shared by all instances)
-    jurusan = "Teknik Informatika"
+          {calloutExercise(
+            "Pemodelan Entitas Sistem Kasir Toko",
+            "Identifikasi entitas nyata untuk sebuah toko online (misalnya: Produk, Keranjang, dan Pengguna). Tuliskan daftar minimal 3 atribut data dan 2 metode perilaku yang tepat untuk masing-masing entitas tersebut dalam selembar catatan/komentar kode!"
+          )}
+        </section>
+      )}
 
-    # Constructor/initializer
-    def __init__(self, nama, nim):
-        # Atribut Instance (unique for each instance)
-        self.nama = nama
-        self.nim = nim
-        self.ipk = 0.0
-        self.mata_kuliah = []
+      {/* ========================================================================= */}
+      {/* 2. CLASS & OBJECT                                                         */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "class-dan-object") && (
+        <section id="class-dan-object">
+          <h2>2. Class &amp; Object</h2>
+          <p>
+            Setelah memahami esensi OOP, kini kita akan mendalami mekanisme pembuatan class, perbedaan penting antara <strong>Atribut Class</strong> dan <strong>Atribut Instance</strong>, peran parameter <code>self</code>, serta implementasi <strong>Dunder Methods</strong> (<em>double underscore / magic methods</em>) seperti <code>__str__</code> dan <code>__repr__</code>.
+          </p>
 
-    # Method untuk menampilkan info
-    def display_info(self):
-        print(f"\n{'='*40}")
-        print(f"Nama: {self.nama}")
-        print(f"NIM: {self.nim}")
-        print(f"Jurusan: {self.jurusan}")
-        print(f"IPK: {self.ipk}")
-        if self.mata_kuliah:
-            print(f"Mata Kuliah: {', '.join(self.mata_kuliah)}")
-        print(f"{'='*40}")
+          <h3>Konsep Anatomi Class di Python</h3>
+          <ul>
+            <li><strong>Atribut Class (Class Attribute)</strong>: Variabel yang dideklarasikan langsung di dalam tubuh class di luar method apa pun. Nilai ini dibagi bersama (<em>shared</em>) oleh seluruh objek yang diciptakan dari class tersebut.</li>
+            <li><strong>Atribut Instance (Instance Attribute)</strong>: Variabel yang diinisialisasi melalui <code>self.nama_variabel</code> di dalam constructor <code>__init__</code>. Setiap objek memiliki salinan nilai mandiri yang terisolasi dari objek lain.</li>
+            <li><strong>Parameter <code>self</code></strong>: Penunjuk eksplisit ke objek spesifik yang sedang dieksekusi. Tanpa <code>self</code>, Python tidak akan tahu atribut milik objek mana yang sedang dibaca atau diubah.</li>
+            <li><strong>Dunder <code>__str__</code> vs <code>__repr__</code></strong>: <code>__str__</code> menghasilkan representasi teks ramah pembaca ketika objek dicetak via <code>print()</code>, sedangkan <code>__repr__</code> menghasilkan representasi teknis dan detail yang berguna saat debugging.</li>
+          </ul>
 
-    # Method untuk mengubah nama
-    def update_nama(self, nama_baru):
-        self.nama = nama_baru
-        print(f"Nama berhasil diubah menjadi {nama_baru}")
+          <h3>Hands-on 3: Membangun Class Mahasiswa Lengkap (02_class_object.py)</h3>
+          <p>
+            Buat file baru bernama <code>02_class_object.py</code>, lalu tuliskan kode berikut:
+          </p>
 
-    # Method untuk set IPK dengan validasi
-    def set_ipk(self, ipk_baru):
-        if 0.0 <= ipk_baru <= 4.0:
-            self.ipk = ipk_baru
-            print(f"IPK berhasil diset: {ipk_baru}")
-        else:
-            print("Error: IPK harus antara 0.0 dan 4.0")
+          <CodeBlock language="python">{`# ==============================================================================
+# Berkas: 02_class_object.py
+# Deskripsi: Implementasi Class Mahasiswa dengan Atribut Class, Instance & Dunder
+# ==============================================================================
 
-    # Method untuk menambah mata kuliah
-    def tambah_matkul(self, nama_matkul):
-        self.mata_kuliah.append(nama_matkul)
-        print(f"Mata kuliah '{nama_matkul}' ditambahkan")
-
-    # Method untuk cek status
-    def get_status(self):
-        if self.ipk >= 3.5:
-            return "Cum Laude"
-        elif self.ipk >= 2.75:
-            return "Lulus"
-        else:
-            return "Belum Lulus"
-
-# Membuat beberapa object
-print("Membuat mahasiswa...")
-mhs1 = Mahasiswa("Budi Santoso", "TI12345")
-mhs2 = Mahasiswa("Ani Wijaya", "TI67890")
-
-# Menggunakan method
-mhs1.set_ipk(3.8)
-mhs1.tambah_matkul("Pemrograman Web")
-mhs1.tambah_matkul("Basis Data")
-mhs1.display_info()
-print(f"Status: {mhs1.get_status()}")
-
-mhs2.set_ipk(3.2)
-mhs2.tambah_matkul("Algoritma")
-mhs2.display_info()
-print(f"Status: {mhs2.get_status()}")
-
-# Mengubah class attribute (berlaku untuk semua instance)
-print("\nMengubah jurusan...")
-Mahasiswa.jurusan = "Informatika"
-mhs1.display_info()
-mhs2.display_info()`}</CodeBlock>
-
-
-<h3 id="perbedaan-class-attribute-vs-instance-attribute">Perbedaan Class Attribute vs Instance Attribute</h3>
-<CodeBlock language="">{`class Mahasiswa:
-    # Class attribute - shared by all instances
-    jurusan = "Teknik Informatika"
-    total_mahasiswa = 0
-
-    def __init__(self, nama):
-        self.nama = nama
-        Mahasiswa.total_mahasiswa += 1
-
-# Semua instance berbagi class attribute yang sama
-mhs1 = Mahasiswa("Budi")
-mhs2 = Mahasiswa("Ani")
-
-print(mhs1.jurusan)  # Teknik Informatika
-print(mhs2.jurusan)  # Teknik Informatika
-print(Mahasiswa.total_mahasiswa)  # 2
-
-# Mengubah class attribute mempengaruhi semua instance
-Mahasiswa.jurusan = "Informatika"
-print(mhs1.jurusan)  # Informatika
-print(mhs2.jurusan)  # Informatika`}</CodeBlock>
-
-<CodeBlock language="">{`class Mahasiswa:
-    def __init__(self, nama, nim):
-        # Instance attributes - unique to each instance
-        self.nama = nama
-        self.nim = nim
-
-# Setiap instance memiliki nilai yang berbeda
-mhs1 = Mahasiswa("Budi", "TI123")
-mhs2 = Mahasiswa("Ani", "TI456")
-
-print(mhs1.nama)  # Budi
-print(mhs2.nama)  # Ani
-
-# Mengubah instance attribute hanya mempengaruhi instance tersebut
-mhs1.nama = "Budi Santoso"
-print(mhs1.nama)  # Budi Santoso
-print(mhs2.nama)  # Ani (tidak berubah)`}</CodeBlock>
-
-
-<h3 id="special-methods-dunder-methods">Special Methods (Dunder Methods)</h3>
-<p>Python memiliki special methods yang diawali dan diakhiri dengan double underscore (__). Method ini memiliki perilaku khusus:</p>
-
-<CodeBlock language="">{`class Mahasiswa:
-    def __init__(self, nama, nim):
-        self.nama = nama
-        self.nim = nim
-
-    # Method untuk representasi string (debugging)
-    def __repr__(self):
-        return f"Mahasiswa(nama='{self.nama}', nim='{self.nim}')"
-
-    # Method untuk string yang user-friendly
-    def __str__(self):
-        return f"{self.nama} ({self.nim})"
-
-    # Method untuk perbandingan
-    def __eq__(self, other):
-        if isinstance(other, Mahasiswa):
-            return self.nim == other.nim
-        return False
-
-# Penggunaan
-mhs1 = Mahasiswa("Budi", "TI123")
-mhs2 = Mahasiswa("Ani", "TI456")
-mhs3 = Mahasiswa("Budi Copy", "TI123")
-
-print(str(mhs1))   # Budi (TI123)
-print(repr(mhs1))  # Mahasiswa(nama='Budi', nim='TI123')
-
-print(mhs1 == mhs2)  # False
-print(mhs1 == mhs3)  # True (NIM sama)`}</CodeBlock>
-
-
-<h3 id="praktik-terbaik">Praktik Terbaik</h3>
-
-<h3 id="1-naming-conventions">1. Naming Conventions</h3>
-<CodeBlock language="">{`# Good - PascalCase for class names
-class UserProfile:
-    pass
-
-class OrderManager:
-    pass
-
-# Avoid - lowercase or snake_case for class names
-class user_profile:  # Avoid
-    pass`}</CodeBlock>
-
-
-<h3 id="2-single-responsibility-principle">2. Single Responsibility Principle</h3>
-<p>Setiap class harus memiliki satu tanggung jawab utama:</p>
-
-<CodeBlock language="">{`# Good - Each class has single responsibility
 class Mahasiswa:
-    def __init__(self, nama, nim):
+    # 1. ATRIBUT CLASS (Milik bersama seluruh instance)
+    universitas = "Institut Teknologi Sumatera"
+    prodi = "Teknik Informatika"
+    total_mahasiswa_terdaftar = 0
+
+    # 2. CONSTRUCTOR / INITIALIZER
+    def __init__(self, nama: str, nim: str, ipk: float = 0.0):
+        # ATRIBUT INSTANCE (Unik milik setiap objek masing-masing)
         self.nama = nama
         self.nim = nim
+        self.ipk = ipk
+        self.daftar_matkul = []
+        
+        # Setiap kali objek baru diciptakan, hitung total mahasiswa
+        Mahasiswa.total_mahasiswa_terdaftar += 1
 
-class NilaiManager:
-    def hitung_ipk(self, nilai_list):
-        return sum(nilai_list) / len(nilai_list)
+    # 3. INSTANCE METHODS
+    def tambah_matkul(self, mata_kuliah: str):
+        self.daftar_matkul.append(mata_kuliah)
+        print(f"[{self.nama}] Berhasil mengambil mata kuliah: {mata_kuliah}")
 
-# Avoid - Class doing too many things
-class Mahasiswa:
-    def __init__(self, nama, nim):
-        self.nama = nama
-        self.nim = nim
-
-    def hitung_ipk(self):
-        pass
-
-    def cetak_transkrip(self):
-        pass
-
-    def kelola_pembayaran(self):  # Not mahasiswa's responsibility
-        pass`}</CodeBlock>
-
-
-<h3 id="3-documentation">3. Documentation</h3>
-<p>Gunakan docstring untuk mendokumentasikan class dan method:</p>
-
-<CodeBlock language="">{`class Mahasiswa:
-    """
-    Class untuk merepresentasikan data mahasiswa.
-
-    Attributes:
-        nama (str): Nama lengkap mahasiswa
-        nim (str): Nomor Induk Mahasiswa
-        ipk (float): Indeks Prestasi Kumulatif
-    """
-
-    def __init__(self, nama, nim):
-        """
-        Inisialisasi objek Mahasiswa.
-
-        Args:
-            nama (str): Nama lengkap mahasiswa
-            nim (str): Nomor Induk Mahasiswa
-        """
-        self.nama = nama
-        self.nim = nim
-        self.ipk = 0.0
-
-    def set_ipk(self, ipk_baru):
-        """
-        Set IPK mahasiswa dengan validasi.
-
-        Args:
-            ipk_baru (float): Nilai IPK baru (0.0 - 4.0)
-
-        Raises:
-            ValueError: Jika IPK di luar range 0.0 - 4.0
-        """
+    def update_ipk(self, ipk_baru: float):
         if 0.0 <= ipk_baru <= 4.0:
             self.ipk = ipk_baru
         else:
-            raise ValueError("IPK harus antara 0.0 dan 4.0")`}</CodeBlock>
+            print(f"Nilai IPK {ipk_baru} tidak valid!")
 
-
-<h3 id="latihan">Latihan</h3>
-<ul>
-  <li>Buat class Buku dengan atribut judul, penulis, tahun_terbit, dan harga</li>
-  <li>Tambahkan method untuk menampilkan informasi buku</li>
-  <li>Tambahkan method untuk memberikan diskon pada harga</li>
-  <li>Buat beberapa object dari class Buku dan test method-nya</li>
-  <li>Implementasikan __str__ dan __repr__ method</li>
-</ul>
-
-<p>Langkah Selanjutnya</p>
-
-<p>Setelah memahami class dan object dasar, kita akan mempelajari Inheritance untuk membuat class yang mewarisi atribut dan method dari class lain.</p>
-
-<p>Pengenalan OOP</p>
-
-<p>Memahami konsep dasar dan filosofi Object-Oriented Programming</p>
-
-<p>Inheritance (Pewarisan)</p>
-
-<p>Memahami konsep pewarisan class dan method overriding</p>
-
-
-<h3 id="inheritance-pewarisan">Inheritance (Pewarisan)</h3>
-<p>Memahami konsep pewarisan class dan method overriding</p>
-
-
-<h3 id="apa-itu-inheritance">Apa itu Inheritance?</h3>
-<p>Inheritance (pewarisan) adalah mekanisme di mana sebuah class baru dapat mewarisi atribut dan method dari class yang sudah ada. Class yang diwarisi disebut parent class (superclass), dan class yang mewarisi disebut child class (subclass).</p>
-
-<p>Keuntungan Inheritance</p>
-
-<ul>
-  <li>Code Reusability: Menghindari duplikasi kode</li>
-  <li>Extensibility: Mudah menambahkan fitur baru tanpa mengubah class yang ada</li>
-  <li>Maintainability: Perubahan di parent class otomatis berlaku untuk child class</li>
-  <li>Logical Hierarchy: Merepresentasikan hubungan "is-a" (adalah)</li>
-</ul>
-
-
-<h3 id="konsep-dasar-inheritance">Konsep Dasar Inheritance</h3>
-
-<h3 id="terminologi">Terminologi</h3>
-<ul>
-  <li>Parent Class / Superclass / Base Class: Class yang diwarisi</li>
-  <li>Child Class / Subclass / Derived Class: Class yang mewarisi</li>
-  <li>Method Overriding: Mengubah implementasi method dari parent class</li>
-</ul>
-
-
-<h3 id="hubungan-is-a">Hubungan "is-a"</h3>
-<p>Inheritance merepresentasikan hubungan "is-a":</p>
-
-<ul>
-  <li>Mobil is-a Kendaraan</li>
-  <li>Motor is-a Kendaraan</li>
-  <li>Admin is-a User</li>
-  <li>Mahasiswa is-a Person</li>
-</ul>
-
-
-<h3 id="implementasi-inheritance">Implementasi Inheritance</h3>
-
-<h3 id="membuat-parent-class">Membuat Parent Class</h3>
-<p>Pertama, buat class dasar yang akan diwarisi:</p>
-
-<CodeBlock language="">{`class Kendaraan:
-    """Parent class untuk semua kendaraan"""
-
-    def __init__(self, merek, tahun):
-        self.merek = merek
-        self.tahun = tahun
-        self.odometer = 0
-
-    def deskripsi(self):
-        return f"{self.merek} ({self.tahun})"
-
-    def baca_odometer(self):
-        return f"Kendaraan ini telah berjalan sejauh {self.odometer} kilometer"
-
-    def update_odometer(self, km):
-        if km >= self.odometer:
-            self.odometer = km
-            print(f"Odometer diupdate ke {km} km")
+    def evaluasi_status(self) -> str:
+        if self.ipk >= 3.50:
+            return "Cumlaude / Sangat Memuaskan"
+        elif self.ipk >= 3.00:
+            return "Memuaskan"
+        elif self.ipk >= 2.00:
+            return "Cukup"
         else:
-            print("Tidak dapat menurunkan odometer!")`}</CodeBlock>
+            return "Perlu Bimbingan Khusus"
+
+    # 4. SPECIAL (DUNDER) METHODS
+    def __str__(self) -> str:
+        """Representasi string yang dibaca pengguna akhir saat print(objek)"""
+        return f"Mahasiswa: {self.nama} (NIM: {self.nim}) | IPK: {self.ipk:.2f} | Kampus: {self.universitas}"
+
+    def __repr__(self) -> str:
+        """Representasi teknis untuk keperluan logging dan debugging developer"""
+        return f"Mahasiswa(nama='{self.nama}', nim='{self.nim}', ipk={self.ipk})"
 
 
-<h3 id="membuat-child-class">Membuat Child Class</h3>
-<p>Buat child class yang mewarisi dari parent class menggunakan sintaks class ChildClass(ParentClass):</p>
+# --- PROGRAM UTAMA (INSTANSIASI & UJI COBA) ---
+if __name__ == "__main__":
+    print("Total mahasiswa awal:", Mahasiswa.total_mahasiswa_terdaftar)
 
-<CodeBlock language="">{`class Mobil(Kendaraan):
-    """Child class yang mewarisi dari Kendaraan"""
+    # Instansiasi 2 objek mahasiswa berbeda
+    mhs1 = Mahasiswa("Ahmad Fadhil", "121140001", 3.72)
+    mhs2 = Mahasiswa("Nabila Putri", "121140002", 3.40)
 
-    def __init__(self, merek, tahun, tipe):
-        # Memanggil constructor parent class
-        super().__init__(merek, tahun)
-        # Atribut tambahan khusus untuk Mobil
-        self.tipe = tipe
-        self.bensin = 100
+    print("Total mahasiswa sekarang:", Mahasiswa.total_mahasiswa_terdaftar)
 
-    # Method tambahan khusus untuk Mobil
-    def isi_bensin(self, liter):
-        self.bensin += liter
-        return f"Bensin diisi {liter} liter. Total: {self.bensin} liter"`}</CodeBlock>
+    # Uji coba penambahan mata kuliah (instance attribute terisolasi)
+    mhs1.tambah_matkul("Pemrograman Web")
+    mhs1.tambah_matkul("Basis Data")
+    mhs2.tambah_matkul("Kecerdasan Buatan")
 
-<p>super() Function</p>
+    print(f"\nMatkul {mhs1.nama}: {mhs1.daftar_matkul}")
+    print(f"Matkul {mhs2.nama}: {mhs2.daftar_matkul}")
 
-<p>super() digunakan untuk memanggil method dari parent class. Paling sering digunakan untuk memanggil __init__ parent class agar atribut parent dapat diinisialisasi.</p>
+    # Uji evaluasi status akademik
+    print(f"Predikat {mhs1.nama}: {mhs1.evaluasi_status()}")
+    print(f"Predikat {mhs2.nama}: {mhs2.evaluasi_status()}")
 
+    # Uji representasi dunder method __str__ dan __repr__
+    print("\nCetak objek mhs1 langsung (memanggil __str__):")
+    print(mhs1)
 
-<h3 id="menggunakan-child-class">Menggunakan Child Class</h3>
-<p>Child class memiliki akses ke semua atribut dan method dari parent class:</p>
+    print("Representasi teknis mhs2 (memanggil __repr__):")
+    print(repr(mhs2))
 
-<CodeBlock language="">{`# Membuat instance Mobil
-mobil1 = Mobil("Toyota", 2022, "SUV")
+    # Bukti perubahan atribut class berdampak ke seluruh instance
+    print("\n--- Modifikasi Atribut Class ---")
+    Mahasiswa.universitas = "ITERA Kampus Mandiri"
+    print("Kampus mhs1 setelah modifikasi:", mhs1.universitas)
+    print("Kampus mhs2 setelah modifikasi:", mhs2.universitas)`}</CodeBlock>
 
-# Menggunakan method dari parent class
-print(mobil1.deskripsi())  # Toyota (2022)
-mobil1.update_odometer(1500)
-print(mobil1.baca_odometer())  # Kendaraan ini telah berjalan sejauh 1500 kilometer
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Logika Kode (Per Baris):</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 8-10:</strong> Variabel <code>universitas</code>, <code>prodi</code>, dan <code>total_mahasiswa_terdaftar</code> berada di tingkat class. Seluruh objek memiliki referensi yang sama ke variabel ini.</li>
+                <li><strong>Baris 13-20:</strong> Constructor <code>__init__</code> menerima argumen dan menyimpannya ke <code>self.nama</code>, <code>self.nim</code>, <code>self.ipk</code>, serta <code>self.daftar_matkul</code>. Di baris 20, kita menaikkan counter class <code>Mahasiswa.total_mahasiswa_terdaftar += 1</code>.</li>
+                <li><strong>Baris 23-40:</strong> Method instance <code>tambah_matkul</code>, <code>update_ipk</code>, dan <code>evaluasi_status</code> memanipulasi data objek spesifik yang ditunjuk oleh <code>self</code>.</li>
+                <li><strong>Baris 43-49:</strong> Implementasi method ajaib <code>__str__</code> dan <code>__repr__</code> mengubah cara objek ditampilkan di konsol terminal menjadi format teks yang rapi dan elegan.</li>
+                <li><strong>Baris 78-81:</strong> Ketika <code>Mahasiswa.universitas</code> diubah, seluruh objek (<code>mhs1</code> dan <code>mhs2</code>) otomatis merefleksikan nilai baru tersebut.</li>
+              </ul>
+            </div>
+          )}
 
-# Menggunakan method khusus Mobil
-print(mobil1.isi_bensin(20))  # Bensin diisi 20 liter. Total: 120 liter`}</CodeBlock>
+          {codeOutput(
+            <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`Total mahasiswa awal: 0
+Total mahasiswa sekarang: 2
+[Ahmad Fadhil] Berhasil mengambil mata kuliah: Pemrograman Web
+[Ahmad Fadhil] Berhasil mengambil mata kuliah: Basis Data
+[Nabila Putri] Berhasil mengambil mata kuliah: Kecerdasan Buatan
 
+Matkul Ahmad Fadhil: ['Pemrograman Web', 'Basis Data']
+Matkul Nabila Putri: ['Kecerdasan Buatan']
+Predikat Ahmad Fadhil: Cumlaude / Sangat Memuaskan
+Predikat Nabila Putri: Memuaskan
 
-<h3 id="method-overriding">Method Overriding</h3>
-<p>Child class dapat mengganti (override) method dari parent class:</p>
+Cetak objek mhs1 langsung (memanggil __str__):
+Mahasiswa: Ahmad Fadhil (NIM: 121140001) | IPK: 3.72 | Kampus: Institut Teknologi Sumatera
+Representasi teknis mhs2 (memanggil __repr__):
+Mahasiswa(nama='Nabila Putri', nim='121140002', ipk=3.4)
 
-<CodeBlock language="">{`class Mobil(Kendaraan):
-    def __init__(self, merek, tahun, tipe):
-        super().__init__(merek, tahun)
-        self.tipe = tipe
-        self.bensin = 100
+--- Modifikasi Atribut Class ---
+Kampus mhs1 setelah modifikasi: ITERA Kampus Mandiri
+Kampus mhs2 setelah modifikasi: ITERA Kampus Mandiri`}
+            </pre>
+          )}
 
-    # Override method deskripsi
-    def deskripsi(self):
-        # Memanggil method parent dengan super()
-        base_desc = super().deskripsi()
-        # Menambahkan informasi tambahan
-        return f"{base_desc} - {self.tipe}"
+          {calloutExercise(
+            "Class Buku dengan Diskon & Dunder Length",
+            "Buat file latihan_buku.py. Buat class Buku dengan atribut judul, penulis, harga_asli, dan jumlah_halaman. Tambahkan method hitung_harga_diskon(persen) yang mengembalikan harga setelah potongan, method __str__ untuk mencetak kartu buku, serta dunder method __len__(self) yang mengembalikan jumlah_halaman ketika fungsi len(buku) dipanggil!"
+          )}
+        </section>
+      )}
 
-    def isi_bensin(self, liter):
-        self.bensin += liter
-        return f"Bensin diisi {liter} liter. Total: {self.bensin} liter"
+      {/* ========================================================================= */}
+      {/* 3. INHERITANCE (PEWARISAN)                                                */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "inheritance-pewarisan") && (
+        <section id="inheritance-pewarisan">
+          <h2>3. Inheritance (Pewarisan)</h2>
+          <p>
+            <strong>Inheritance (Pewarisan)</strong> adalah mekanisme di mana sebuah class baru (disebut <em>child class</em>, <em>subclass</em>, atau <em>derived class</em>) mewarisi seluruh atribut dan metode dari class yang sudah ada (disebut <em>parent class</em>, <em>superclass</em>, atau <em>base class</em>).
+          </p>
+          <p>
+            Inheritance memodelkan relasi <strong>&quot;is-a&quot;</strong> (merupakan sebuah). Contoh: <em>Mobil adalah sebuah Kendaraan</em>, <em>Dosen adalah seorang Pegawai</em>.
+          </p>
 
-# Test method overriding
-mobil1 = Mobil("Toyota", 2022, "SUV")
-print(mobil1.deskripsi())  # Toyota (2022) - SUV`}</CodeBlock>
+          <h3>Konsep Kunci Inheritance di Python</h3>
+          <ul>
+            <li><strong>Sintaks Pewarisan</strong>: <code>class SubClass(SuperClass):</code></li>
+            <li><strong>Fungsi <code>super()</code></strong>: Mengakses dan memanggil constructor atau metode milik parent class secara dinamis tanpa perlu menuliskan nama parent class secara manual.</li>
+            <li><strong>Method Overriding</strong>: Kemampuan subclass untuk mendefinisikan ulang implementasi metode yang sudah diwarisi dari parent class agar perilakunya lebih spesifik sesuai kebutuhan subclass.</li>
+            <li><strong>Multiple Inheritance &amp; MRO</strong>: Python mendukung pewarisan dari lebih dari satu class induk sekaligus (<code>class Hybrid(ClassA, ClassB):</code>). Urutan eksekusi method dipandu oleh algoritma <strong>C3 Linearization / MRO (Method Resolution Order)</strong>.</li>
+            <li><strong>Fungsi <code>isinstance()</code> &amp; <code>issubclass()</code></strong>: Fungsi inspeksi runtime untuk memastikan tipe objek dan relasi silsilah antar class.</li>
+          </ul>
 
+          <h3>Hands-on 4: Hirarki Kendaraan &amp; Method Overriding (03_inheritance.py)</h3>
+          <p>
+            Buat file baru <code>03_inheritance.py</code>, lalu salin dan jalankan kode hierarki kendaraan berikut:
+          </p>
 
-<h3 id="contoh-lengkap">Contoh Lengkap</h3>
-<p>Mari lihat contoh lengkap dengan multiple child classes:</p>
+          <CodeBlock language="python">{`# ==============================================================================
+# Berkas: 03_inheritance.py
+# Deskripsi: Implementasi Superclass, Subclass, super(), Overriding & MRO
+# ==============================================================================
 
-<CodeBlock language="">{`# Parent Class
+# ------------------------------------------------------------------------------
+# 1. SUPERCLASS (BASE CLASS)
+# ------------------------------------------------------------------------------
 class Kendaraan:
-    def __init__(self, merek, tahun):
+    def __init__(self, merek: str, model: str, tahun: int):
         self.merek = merek
+        self.model = model
         self.tahun = tahun
-        self.odometer = 0
+        self.odometer = 0  # Kilometer tempuh awal
 
-    def deskripsi(self):
-        return f"{self.merek} ({self.tahun})"
+    def deskripsi(self) -> str:
+        return f"{self.merek} {self.model} ({self.tahun})"
 
-    def baca_odometer(self):
-        return f"Kendaraan ini telah berjalan sejauh {self.odometer} kilometer"
-
-    def update_odometer(self, km):
-        if km >= self.odometer:
-            self.odometer = km
+    def tambah_jarak(self, km: float):
+        if km > 0:
+            self.odometer += km
+            print(f"[{self.merek}] Menempuh perjalanan +{km} km. Total Odo: {self.odometer} km")
         else:
-            print("Anda tidak dapat mengubah odometer!")
+            print("Nilai kilometer tambahan tidak valid!")
 
-    def jalan(self, km):
-        self.odometer += km
-        print(f"Kendaraan berjalan {km} km")
+    def klakson(self) -> str:
+        return "Tin tin!"
 
-# Child Class 1: Mobil
+
+# ------------------------------------------------------------------------------
+# 2. SUBCLASS MOBIL (Single Inheritance dari Kendaraan)
+# ------------------------------------------------------------------------------
 class Mobil(Kendaraan):
-    def __init__(self, merek, tahun, tipe):
-        super().__init__(merek, tahun)
-        self.tipe = tipe
-        self.bensin = 100
+    def __init__(self, merek: str, model: str, tahun: int, jumlah_pintu: int, kapasitas_tangki: float):
+        # Memanggil constructor parent class Kendaraan via super()
+        super().__init__(merek, model, tahun)
+        # Atribut spesifik Mobil
+        self.jumlah_pintu = jumlah_pintu
+        self.kapasitas_tangki = kapasitas_tangki
+        self.sisa_bensin = kapasitas_tangki
 
-    def deskripsi(self):
-        base_desc = super().deskripsi()
-        return f"{base_desc} - {self.tipe}"
+    # METHOD OVERRIDING: Memperluas deskripsi milik Kendaraan
+    def deskripsi(self) -> str:
+        deskripsi_dasar = super().deskripsi()
+        return f"{deskripsi_dasar} [Mobil {self.jumlah_pintu} Pintu, Tangki: {self.kapasitas_tangki}L]"
 
-    def isi_bensin(self, liter):
-        self.bensin += liter
-        return f"Bensin diisi {liter} liter. Total: {self.bensin} liter"
+    # OVERRIDING KLAKSON
+    def klakson(self) -> str:
+        return "Telolet! Telolet! (Klakson Mobil)"
 
-    def jalan(self, km):
-        # Override dengan konsumsi bensin
-        super().jalan(km)
-        konsumsi = km / 10  # 10 km per liter
-        self.bensin -= konsumsi
-        print(f"Bensin tersisa: {self.bensin:.1f} liter")
+    def isi_bensin(self, liter: float):
+        if self.sisa_bensin + liter <= self.kapasitas_tangki:
+            self.sisa_bensin += liter
+            print(f"[{self.merek} {self.model}] Diisi bensin {liter}L. Sisa bahan bakar: {self.sisa_bensin}L")
+        else:
+            print("Kapasitas tangki bensin akan meluap!")
 
-# Child Class 2: Motor
+
+# ------------------------------------------------------------------------------
+# 3. SUBCLASS MOTOR (Mewarisi Kendaraan)
+# ------------------------------------------------------------------------------
 class Motor(Kendaraan):
-    def __init__(self, merek, tahun, cc):
-        super().__init__(merek, tahun)
-        self.cc = cc
+    def __init__(self, merek: str, model: str, tahun: int, kapasitas_cc: int):
+        super().__init__(merek, model, tahun)
+        self.kapasitas_cc = kapasitas_cc
 
-    def deskripsi(self):
-        return f"{self.merek} ({self.tahun}) - {self.cc}cc"
+    def deskripsi(self) -> str:
+        return f"{super().deskripsi()} [Motor Sport {self.kapasitas_cc}cc]"
+
+    def klakson(self) -> str:
+        return "Bip bip! (Klakson Motor)"
 
     def wheelie(self):
-        return f"{self.merek} melakukan wheelie!"
+        print(f"[{self.merek} {self.model}] Melakukan atraksi wheelie satu roda!")
 
-# Child Class 3: Truk (warisan dari Mobil)
-class Truk(Mobil):
-    def __init__(self, merek, tahun, kapasitas):
-        # Truk adalah SUV dalam konteks ini
-        super().__init__(merek, tahun, "Truck")
-        self.kapasitas = kapasitas
-        self.muatan = 0
 
-    def muat_barang(self, berat):
-        if self.muatan + berat <= self.kapasitas:
-            self.muatan += berat
-            print(f"Barang seberat {berat} kg dimuat")
-            print(f"Total muatan: {self.muatan}/{self.kapasitas} kg")
+# ------------------------------------------------------------------------------
+# 4. MULTIPLE INHERITANCE: KENDARAAN LISTRIK & MOBIL LISTRIK
+# ------------------------------------------------------------------------------
+class KomponenBaterai:
+    def __init__(self, kapasitas_kwh: float):
+        self.kapasitas_kwh = kapasitas_kwh
+        self.daya_tersisa = 100.0  # Persen baterai
+
+    def isi_daya(self, persen: float):
+        self.daya_tersisa = min(100.0, self.daya_tersisa + persen)
+        print(f"Baterai diisi ulang. Kapasitas daya: {self.daya_tersisa}%")
+
+
+class MobilListrik(Mobil, KomponenBaterai):
+    """Mewarisi Mobil (yang mewarisi Kendaraan) dan KomponenBaterai"""
+    def __init__(self, merek: str, model: str, tahun: int, kapasitas_kwh: float):
+        Mobil.__init__(self, merek, model, tahun, jumlah_pintu=4, kapasitas_tangki=0.0)
+        KomponenBaterai.__init__(self, kapasitas_kwh)
+
+    def deskripsi(self) -> str:
+        return f"{self.merek} {self.model} ({self.tahun}) [EV Baterai {self.kapasitas_kwh} kWh, Daya: {self.daya_tersisa}%]"
+
+
+# --- PROGRAM UTAMA ---
+if __name__ == "__main__":
+    avanza = Mobil("Toyota", "Avanza Veloz", 2023, jumlah_pintu=5, kapasitas_tangki=45.0)
+    cbr = Motor("Honda", "CBR250RR", 2022, kapasitas_cc=250)
+    ioniq = MobilListrik("Hyundai", "Ioniq 5", 2024, kapasitas_kwh=72.6)
+
+    print("--- Deskripsi Kendaraan ---")
+    print(avanza.deskripsi())
+    print(cbr.deskripsi())
+    print(ioniq.deskripsi())
+
+    print("\n--- Uji Coba Suara Klakson (Polymorphic Overriding) ---")
+    print(f"{avanza.model} : {avanza.klakson()}")
+    print(f"{cbr.model}    : {cbr.klakson()}")
+
+    print("\n--- Perjalanan & Konsumsi Energi ---")
+    avanza.tambah_jarak(120.5)
+    avanza.isi_bensin(15)
+    cbr.wheelie()
+    ioniq.isi_daya(30)
+
+    print("\n--- Pemeriksaan Relasi Pewarisan (isinstance & issubclass) ---")
+    print("Apakah avanza adalah instance dari Mobil?    :", isinstance(avanza, Mobil))
+    print("Apakah avanza adalah instance dari Kendaraan?:", isinstance(avanza, Kendaraan))
+    print("Apakah cbr adalah instance dari Mobil?       :", isinstance(cbr, Mobil))
+    print("Apakah Mobil subclass dari Kendaraan?        :", issubclass(Mobil, Kendaraan))
+    print("\nMRO MobilListrik:", [c.__name__ for c in MobilListrik.__mro__])`}</CodeBlock>
+
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Logika Kode (Per Baris):</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 7-23 (Superclass Kendaraan):</strong> Mendefinisikan fondasi dasar yang dimiliki seluruh jenis kendaraan (merek, model, tahun, odometer, method <code>tambah_jarak</code>).</li>
+                <li><strong>Baris 29-37 (Subclass Mobil):</strong> Deklarasi <code>class Mobil(Kendaraan)</code> mewarisi seluruh kemampuan <code>Kendaraan</code>. Pemanggilan <code>super().__init__(merek, model, tahun)</code> menyalurkan parameter inisialisasi ke constructor parent secara elegan.</li>
+                <li><strong>Baris 40-47 (Method Overriding):</strong> Method <code>deskripsi()</code> dan <code>klakson()</code> di-override dengan menambahkan logika khusus mobil (jumlah pintu dan bunyi klakson khas).</li>
+                <li><strong>Baris 71-87 (Multiple Inheritance):</strong> <code>MobilListrik</code> mewarisi dua silsilah sekaligus: class <code>Mobil</code> dan class <code>KomponenBaterai</code>.</li>
+                <li><strong>Baris 118-124 (Pemeriksaan Tipe &amp; MRO):</strong> <code>isinstance(avanza, Kendaraan)</code> bernilai <code>True</code> karena <code>Mobil</code> adalah turunan sah dari <code>Kendaraan</code>. <code>MobilListrik.__mro__</code> memperlihatkan urutan resolusi pencarian method (MobilListrik &rarr; Mobil &rarr; Kendaraan &rarr; KomponenBaterai &rarr; object).</li>
+              </ul>
+            </div>
+          )}
+
+          {codeOutput(
+            <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`--- Deskripsi Kendaraan ---
+Toyota Avanza Veloz (2023) [Mobil 5 Pintu, Tangki: 45.0L]
+Honda CBR250RR (2022) [Motor Sport 250cc]
+Hyundai Ioniq 5 (2024) [EV Baterai 72.6 kWh, Daya: 100.0%]
+
+--- Uji Coba Suara Klakson (Polymorphic Overriding) ---
+Avanza Veloz : Telolet! Telolet! (Klakson Mobil)
+CBR250RR     : Bip bip! (Klakson Motor)
+
+--- Perjalanan & Konsumsi Energi ---
+[Toyota] Menempuh perjalanan +120.5 km. Total Odo: 120.5 km
+[Toyota Avanza Veloz] Diisi bensin 15L. Sisa bahan bakar: 60.0L
+[Honda CBR250RR] Melakukan atraksi wheelie satu roda!
+Baterai diisi ulang. Kapasitas daya: 100.0%
+
+--- Pemeriksaan Relasi Pewarisan (isinstance & issubclass) ---
+Apakah avanza adalah instance dari Mobil?    : True
+Apakah avanza adalah instance dari Kendaraan?: True
+Apakah cbr adalah instance dari Mobil?       : False
+Apakah Mobil subclass dari Kendaraan?        : True
+
+MRO MobilListrik: ['MobilListrik', 'Mobil', 'Kendaraan', 'KomponenBaterai', 'object']`}
+            </pre>
+          )}
+
+          {calloutExercise(
+            "Armada Truk Ekspedisi Kargo",
+            "Buatlah subclass Truk(Kendaraan) di dalam file latihan_truk.py. Tambahkan atribut kapasitas_maksimal_ton dan muatan_saat_ini. Buat method muat_barang(berat_ton) yang memvalidasi agar muatan tidak melampaui kapasitas maksimal truk, serta override method deskripsi() untuk menampilkan beban muatan saat ini!"
+          )}
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 4. ENCAPSULATION & PROPERTIES                                             */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "encapsulation") && (
+        <section id="encapsulation">
+          <h2>4. Encapsulation &amp; Properties</h2>
+          <p>
+            <strong>Encapsulation (Enkapsulasi)</strong> adalah prinsip menyembunyikan detail implementasi internal dan melindungi keadaan internal objek (<em>state</em>) dari manipulasi luar secara langsung yang berpotensi merusak integritas sistem.
+          </p>
+
+          <h3>Konvensi Tingkat Akses (Access Modifiers) di Python</h3>
+          <p>
+            Berbeda dengan Java atau C++ yang memiliki keyword ketat <code>private</code> atau <code>protected</code>, Python menerapkan konvensi penamaan karakter garis bawah (<em>underscore</em>):
+          </p>
+          <div className="table-wrapper" style={{ overflowX: "auto", margin: "1rem 0" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <thead>
+                <tr style={{ borderBottom: "2px solid var(--color-border)", textAlign: "left" }}>
+                  <th style={{ padding: "0.75rem" }}>Tingkat Akses</th>
+                  <th style={{ padding: "0.75rem" }}>Format Penulisan</th>
+                  <th style={{ padding: "0.75rem" }}>Aturan Akses &amp; Mekanisme Python</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Public</td>
+                  <td style={{ padding: "0.75rem" }}><code>self.nama</code></td>
+                  <td style={{ padding: "0.75rem" }}>Dapat dibaca dan diubah secara bebas langsung dari luar maupun dalam class.</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Protected</td>
+                  <td style={{ padding: "0.75rem" }}><code>self._nama</code> (1 underscore)</td>
+                  <td style={{ padding: "0.75rem" }}>Konvensi kesepakatan pengembang: hanya boleh diakses dari dalam class dan subclass turunannya. Secara teknis masih bisa diakses dari luar, namun sangat tidak disarankan.</td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Private</td>
+                  <td style={{ padding: "0.75rem" }}><code>self.__nama</code> (2 underscore)</td>
+                  <td style={{ padding: "0.75rem" }}>Memicu mekanisme <strong>Name Mangling</strong>: interpreter mengubah nama variabel internal menjadi <code>_NamaClass__nama</code> sehingga akses langsung dari luar akan memicu <code>AttributeError</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Getter dan Setter Modern via Dekorator @property</h3>
+          <p>
+            Di masa lalu, pengembang sering membuat fungsi manual seperti <code>get_saldo()</code> dan <code>set_saldo(nilai)</code>. Gaya tersebut dianggap <em>non-pythonic</em>. Python menyediakan dekorator elegan:
+          </p>
+          <ul>
+            <li><code>@property</code>: Mengubah sebuah method fungsi menjadi seolah-olah atribut biasa yang dapat dibaca (<em>getter</em>).</li>
+            <li><code>@&#123;properti&#125;.setter</code>: Menyediakan jalur pengisian nilai baru dengan penyisipan validasi bisnis secara ketat sebelum data disimpan ke atribut private.</li>
+            <li><code>@&#123;properti&#125;.deleter</code>: Mengontrol aksi pembersihan saat atribut dihapus menggunakan perintah <code>del objek.properti</code>.</li>
+          </ul>
+
+          <h3>Hands-on 5: Sistem Keamanan Rekening Bank (04_encapsulation.py)</h3>
+          <p>
+            Buat file baru <code>04_encapsulation.py</code>, lalu tuliskan kode sistem perbankan berikut:
+          </p>
+
+          <CodeBlock language="python">{`# ==============================================================================
+# Berkas: 04_encapsulation.py
+# Deskripsi: Penerapan Public, Protected, Private, Name Mangling & @property
+# ==============================================================================
+
+class RekeningBank:
+    def __init__(self, nomor_rekening: str, nama_pemilik: str, saldo_awal: float, pin: str):
+        # 1. Public Attribute: Siapa pun boleh melihat nomor rekening
+        self.nomor_rekening = nomor_rekening
+        
+        # 2. Protected Attribute: Hanya untuk class ini dan subclass internal perbankan
+        self._pemilik = nama_pemilik
+        
+        # 3. Private Attributes: Terlindungi Name Mangling, tidak boleh disentuh langsung
+        self.__saldo = max(0.0, float(saldo_awal))
+        self.__pin = str(pin)
+        self._riwayat_transaksi = []
+
+    # --------------------------------------------------------------------------
+    # PROPERTY GETTER (Membaca saldo secara aman)
+    # --------------------------------------------------------------------------
+    @property
+    def saldo(self) -> float:
+        """Mengembalikan nilai saldo sebagai atribut read-accessible"""
+        return self.__saldo
+
+    # --------------------------------------------------------------------------
+    # PROPERTY SETTER (Mengontrol pengubahan saldo dengan validasi ketat)
+    # --------------------------------------------------------------------------
+    @saldo.setter
+    def saldo(self, jumlah_baru: float):
+        if not isinstance(jumlah_baru, (int, float)):
+            raise TypeError("Nilai saldo harus berupa angka numerik!")
+        if jumlah_baru < 0:
+            raise ValueError("Saldo rekening tidak boleh bernilai negatif!")
+        self.__saldo = float(jumlah_baru)
+        print(f"[AUDIT] Saldo {self.nomor_rekening} disesuaikan langsung menjadi: Rp {self.__saldo:,.2f}")
+
+    # --------------------------------------------------------------------------
+    # METODE BISNIS (Transaksi Keuangan)
+    # --------------------------------------------------------------------------
+    def setor(self, nominal: float):
+        if nominal <= 0:
+            print("Gagal: Nominal setor harus lebih besar dari Rp 0!")
+            return
+        self.__saldo += nominal
+        self._riwayat_transaksi.append(f"Setor Tunai: +Rp {nominal:,.2f}")
+        print(f"Setor tunai Rp {nominal:,.2f} sukses. Saldo saat ini: Rp {self.__saldo:,.2f}")
+
+    def tarik(self, nominal: float, pin_input: str) -> bool:
+        # Validasi keamanan PIN
+        if pin_input != self.__pin:
+            print("Gagal: PIN Transaksi yang Anda masukkan salah!")
+            return False
+
+        if nominal <= 0:
+            print("Gagal: Nominal penarikan harus lebih dari Rp 0!")
+            return False
+
+        if nominal > self.__saldo:
+            print(f"Gagal: Saldo tidak mencukupi! (Saldo: Rp {self.__saldo:,.2f}, Tarik: Rp {nominal:,.2f})")
+            return False
+
+        self.__saldo -= nominal
+        self._riwayat_transaksi.append(f"Tarik Tunai: -Rp {nominal:,.2f}")
+        print(f"Tarik tunai Rp {nominal:,.2f} berhasil. Sisa saldo: Rp {self.__saldo:,.2f}")
+        return True
+
+    def cetak_mutasi(self):
+        print(f"\n=== MUTASI REKENING {self.nomor_rekening} ({self._pemilik}) ===")
+        for log in self._riwayat_transaksi:
+            print(f" - {log}")
+        print(f"Saldo Akhir Terverifikasi: Rp {self.__saldo:,.2f}\n")
+
+
+# --- PROGRAM UTAMA ---
+if __name__ == "__main__":
+    rek = RekeningBank("121-009-8871", "Ahmad Fadhilah", 500000, "123456")
+
+    # 1. Mengakses atribut public dan property getter
+    print("Nomor Rekening (Public) :", rek.nomor_rekening)
+    print("Pemilik Rekening (Prot) :", rek._pemilik)
+    print("Saldo Rekening (@prop)  : Rp", rek.saldo)
+
+    # 2. Menguji transaksi bisnis
+    rek.setor(250000)
+    rek.tarik(100000, "999999")  # PIN salah
+    rek.tarik(100000, "123456")  # PIN benar
+    rek.tarik(1000000, "123456") # Saldo kurang
+
+    # 3. Menguji setter validation
+    try:
+        rek.saldo = -50000  # Memancing ValueError
+    except ValueError as err:
+        print(f"\nValidasi Tertangkap: {err}")
+
+    # 4. Membuktikan perlindungan atribut Private (Name Mangling)
+    print("\n--- Uji Proteksi Private Attribute ---")
+    try:
+        # Akses langsung akan gagal
+        print(rek.__saldo)
+    except AttributeError:
+        print("Akses langsung rek.__saldo GAGAL karena terlindungi (AttributeError)!")
+
+    # Pembuktian Name Mangling Python di balik layar:
+    print("Nilai via Name Mangling (rek._RekeningBank__saldo): Rp", rek._RekeningBank__saldo)
+
+    rek.cetak_mutasi()`}</CodeBlock>
+
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Logika Kode (Per Baris):</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 13-15:</strong> Variabel <code>__saldo</code> dan <code>__pin</code> diberi prefiks dua garis bawah (<em>double underscore</em>). Python secara internal mengubah namanya menjadi <code>_RekeningBank__saldo</code>.</li>
+                <li><strong>Baris 21-25 (@property saldo):</strong> Berfungsi sebagai <em>getter</em>. Mahasiswa dapat memanggil <code>rek.saldo</code> tanpa tanda kurung seolah-olah membaca atribut biasa.</li>
+                <li><strong>Baris 30-38 (@saldo.setter):</strong> Berfungsi sebagai <em>setter</em>. Setiap kali ada perintah pengisian nilai seperti <code>rek.saldo = 500000</code>, fungsi ini memvalidasi tipe data dan memastikan saldo tidak boleh bernilai negatif.</li>
+                <li><strong>Baris 48-67:</strong> Method <code>tarik()</code> mewajibkan verifikasi PIN dan memastikan nominal tidak melebihi sisa saldo sebelum operasi pengurangan terjadi.</li>
+                <li><strong>Baris 102-108:</strong> Membuktikan bahwa pemanggilan <code>rek.__saldo</code> memicu <code>AttributeError</code>, namun data tetap ada di memori melalui name mangling <code>rek._RekeningBank__saldo</code>.</li>
+              </ul>
+            </div>
+          )}
+
+          {codeOutput(
+            <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`Nomor Rekening (Public) : 121-009-8871
+Pemilik Rekening (Prot) : Ahmad Fadhilah
+Saldo Rekening (@prop)  : Rp 500000.0
+Setor tunai Rp 250,000.00 sukses. Saldo saat ini: Rp 750,000.00
+Gagal: PIN Transaksi yang Anda masukkan salah!
+Tarik tunai Rp 100,000.00 berhasil. Sisa saldo: Rp 650,000.00
+Gagal: Saldo tidak mencukupi! (Saldo: Rp 650,000.00, Tarik: Rp 1,000,000.00)
+
+Validasi Tertangkap: Saldo rekening tidak boleh bernilai negatif!
+
+--- Uji Proteksi Private Attribute ---
+Akses langsung rek.__saldo GAGAL karena terlindungi (AttributeError)!
+Nilai via Name Mangling (rek._RekeningBank__saldo): Rp 650000.0
+
+=== MUTASI REKENING 121-009-8871 (Ahmad Fadhilah) ===
+ - Setor Tunai: +Rp 250,000.00
+ - Tarik Tunai: -Rp 100,000.00
+Saldo Akhir Terverifikasi: Rp 650,000.00`}
+            </pre>
+          )}
+
+          {calloutExercise(
+            "Enkapsulasi Penggajian Karyawan",
+            "Buat file latihan_karyawan.py. Buat class Karyawan dengan atribut publik nama, jabatan, serta atribut private __gaji_pokok. Gunakan decorator @property dan setter untuk memastikan gaji pokok tidak boleh diatur di bawah Upah Minimum Regional (misal minimal Rp 3.200.000). Tambahkan method hitung_gaji_bersih(pajak_persen)!"
+          )}
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 5. POLYMORPHISM & OVERRIDING                                              */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "polymorphism") && (
+        <section id="polymorphism">
+          <h2>5. Polymorphism &amp; Overriding</h2>
+          <p>
+            Kata <strong>Polymorphism</strong> berasal dari bahasa Yunani yang berarti <em>&quot;mempunyai banyak bentuk&quot;</em>. Dalam pemrograman, polimorfisme adalah kemampuan objek-objek dari berbagai class yang berbeda untuk merespons pemanggilan antarmuka/metode yang sama dengan cara spesifik mereka masing-masing.
+          </p>
+
+          <h3>Bentuk-Bentuk Polimorfisme di Python</h3>
+          <ul>
+            <li><strong>Polymorphism via Method Overriding</strong>: Subclass mengimplementasikan kembali metode milik superclass dengan perilaku yang berbeda.</li>
+            <li><strong>Duck Typing (Dynamic Typing)</strong>: Filosofi khas Python yang dipopulerkan oleh ungkapan <em>&quot;If it walks like a duck and quacks like a duck, it&#39;s a duck&quot;</em>. Python tidak peduli apakah objek diturunkan dari class tertentu atau tidak; selama objek memiliki method <code>bayar()</code>, Python akan memanggilnya tanpa komplain.</li>
+            <li><strong>Polymorphism dalam Collection</strong>: Menyimpan berbagai objek berbeda ke dalam satu <code>list</code>, lalu mengiterasinya dengan loop sederhana tanpa percabangan <code>if-elif-else</code> manual.</li>
+            <li><strong>Operator Overloading</strong>: Menentukan bagaimana operator standar Python seperti <code>+</code>, <code>==</code>, <code>&gt;</code> merespons objek buatan kita melalui dunder method <code>__add__</code>, <code>__eq__</code>, dan <code>__gt__</code>.</li>
+          </ul>
+
+          <h3>Hands-on 6: Gateway Pembayaran E-Commerce Multi-Metode (05_polymorphism.py)</h3>
+          <p>
+            Buat file baru bernama <code>05_polymorphism.py</code>, lalu tuliskan kode sistem checkout e-commerce berikut:
+          </p>
+
+          <CodeBlock language="python">{`# ==============================================================================
+# Berkas: 05_polymorphism.py
+# Deskripsi: Penerapan Polymorphism, Duck Typing, Dispatch Loop & Operator Overloading
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. HIERARKI CLASS PEMBAYARAN (Polymorphism via Inheritance)
+# ------------------------------------------------------------------------------
+class MetodePembayaran:
+    def __init__(self, nama_metode: str):
+        self.nama_metode = nama_metode
+
+    def bayar(self, tagihan: float) -> bool:
+        """Metode dasar yang akan dioverride oleh seluruh subclass"""
+        raise NotImplementedError("Subclass wajib mengimplementasikan method bayar()!")
+
+
+class TransferBank(MetodePembayaran):
+    def __init__(self, nama_bank: str, nomor_va: str):
+        super().__init__(f"Transfer Bank {nama_bank}")
+        self.nomor_va = nomor_va
+
+    def bayar(self, tagihan: float) -> bool:
+        biaya_admin = 4000
+        total = tagihan + biaya_admin
+        print(f"[{self.nama_metode}] Tagihan: Rp {tagihan:,.2f} + Admin: Rp {biaya_admin:,} = Total: Rp {total:,.2f}")
+        print(f" -> Silakan transfer tepat ke Virtual Account: {self.nomor_va}")
+        return True
+
+
+class EWallet(MetodePembayaran):
+    def __init__(self, nama_provider: str, nomor_hp: str, saldo_wallet: float):
+        super().__init__(f"E-Wallet {nama_provider}")
+        self.nomor_hp = nomor_hp
+        self.saldo_wallet = saldo_wallet
+
+    def bayar(self, tagihan: float) -> bool:
+        cashback = tagihan * 0.05  # Promo cashback 5%
+        if self.saldo_wallet >= tagihan:
+            self.saldo_wallet -= tagihan
+            print(f"[{self.nama_metode}] Pembayaran Rp {tagihan:,.2f} BERHASIL via akun {self.nomor_hp}.")
+            print(f" -> Selamat! Anda mendapatkan cashback Rp {cashback:,.2f}. Sisa saldo: Rp {self.saldo_wallet:,.2f}")
+            return True
         else:
-            print(f"Kapasitas tidak cukup! Maksimal {self.kapasitas} kg")
-
-# Penggunaan
-print("=== Membuat Kendaraan ===")
-kendaraan1 = Kendaraan("Generic", 2020)
-mobil1 = Mobil("Toyota", 2022, "SUV")
-motor1 = Motor("Honda", 2021, 150)
-truk1 = Truk("Isuzu", 2023, 5000)
-
-print("\n=== Deskripsi ===")
-print(kendaraan1.deskripsi())
-print(mobil1.deskripsi())
-print(motor1.deskripsi())
-print(truk1.deskripsi())
-
-print("\n=== Method Parent Class ===")
-mobil1.update_odometer(1500)
-print(mobil1.baca_odometer())
-
-print("\n=== Method Child Class ===")
-print(mobil1.isi_bensin(20))
-print(motor1.wheelie())
-
-print("\n=== Method Override ===")
-mobil1.jalan(50)
-motor1.jalan(30)
-
-print("\n=== Multi-level Inheritance ===")
-truk1.muat_barang(3000)
-truk1.muat_barang(2500)
-print(truk1.isi_bensin(50))`}</CodeBlock>
-
-
-<h3 id="multiple-inheritance">Multiple Inheritance</h3>
-<p>Python mendukung multiple inheritance, di mana sebuah class dapat mewarisi dari beberapa parent class:</p>
-
-<CodeBlock language="">{`class Elektronik:
-    def __init__(self, daya):
-        self.daya = daya
-
-    def nyalakan(self):
-        return f"Perangkat menyala dengan daya {self.daya}W"
-
-class Portable:
-    def __init__(self, berat):
-        self.berat = berat
-
-    def bawa(self):
-        return f"Membawa perangkat dengan berat {self.berat} kg"
-
-# Multiple inheritance
-class Laptop(Elektronik, Portable):
-    def __init__(self, merek, daya, berat):
-        Elektronik.__init__(self, daya)
-        Portable.__init__(self, berat)
-        self.merek = merek
-
-    def info(self):
-        return f"Laptop {self.merek}"
-
-# Penggunaan
-laptop1 = Laptop("Dell", 65, 2.5)
-print(laptop1.info())
-print(laptop1.nyalakan())
-print(laptop1.bawa())`}</CodeBlock>
-
-<p>Method Resolution Order (MRO)</p>
-
-<p>Ketika menggunakan multiple inheritance, Python menggunakan MRO untuk menentukan urutan pencarian method. Gunakan ClassName.__mro__ atau ClassName.mro() untuk melihat urutan.</p>
-
-
-<h3 id="mengecek-inheritance">Mengecek Inheritance</h3>
-<p>Python menyediakan beberapa built-in function untuk mengecek inheritance:</p>
-
-<CodeBlock language="">{`class Kendaraan:
-    pass
-
-class Mobil(Kendaraan):
-    pass
-
-mobil1 = Mobil()
-
-# isinstance() - cek apakah object adalah instance dari class
-print(isinstance(mobil1, Mobil))      # True
-print(isinstance(mobil1, Kendaraan))  # True (karena Mobil mewarisi Kendaraan)
-print(isinstance(mobil1, str))        # False
-
-# issubclass() - cek apakah class adalah subclass dari class lain
-print(issubclass(Mobil, Kendaraan))   # True
-print(issubclass(Kendaraan, Mobil))   # False
-print(issubclass(Mobil, object))      # True (semua class mewarisi dari object)
-
-# type() - mendapatkan tipe dari object
-print(type(mobil1))                   # <class '__main__.Mobil'>
-print(type(mobil1) == Mobil)          # True
-print(type(mobil1) == Kendaraan)      # False`}</CodeBlock>
-
-<p>isinstance vs type</p>
-
-<p>Gunakan isinstance() daripada type() untuk mengecek tipe object karena isinstance() memperhitungkan inheritance, sedangkan type() hanya mengecek tipe exact.</p>
-
-
-<h3 id="praktik-terbaik">Praktik Terbaik</h3>
-
-<h3 id="1-gunakan-super">1. Gunakan super()</h3>
-<CodeBlock language="">{`# Good - menggunakan super()
-class Mobil(Kendaraan):
-    def __init__(self, merek, tahun, tipe):
-        super().__init__(merek, tahun)
-        self.tipe = tipe
-
-# Avoid - memanggil parent class secara eksplisit
-class Mobil(Kendaraan):
-    def __init__(self, merek, tahun, tipe):
-        Kendaraan.__init__(self, merek, tahun)
-        self.tipe = tipe`}</CodeBlock>
-
-
-<h3 id="2-liskov-substitution-principle">2. Liskov Substitution Principle</h3>
-<p>Child class harus dapat menggantikan parent class tanpa merusak program:</p>
-
-<CodeBlock language="">{`# Good - child class extends parent
-class Rectangle:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-
-    def area(self):
-        return self.width * self.height
-
-class Square(Rectangle):
-    def __init__(self, size):
-        super().__init__(size, size)
-
-# Avoid - child class breaks parent's contract
-class Square(Rectangle):
-    def set_width(self, width):
-        self.width = width
-        self.height = width  # Breaks rectangle behavior`}</CodeBlock>
-
-
-<h3 id="3-favor-composition-over-inheritance">3. Favor Composition Over Inheritance</h3>
-<p>Kadang composition (has-a) lebih baik daripada inheritance (is-a):</p>
-
-<CodeBlock language="">{`# Inheritance (is-a)
-class Engine:
-    def start(self):
-        return "Engine started"
-
-class Car(Engine):  # Car is-a Engine? Not really!
-    pass
-
-# Composition (has-a) - Better!
-class Engine:
-    def start(self):
-        return "Engine started"
-
-class Car:
-    def __init__(self):
-        self.engine = Engine()  # Car has-a Engine
-
-    def start(self):
-        return self.engine.start()`}</CodeBlock>
-
-
-<h3 id="design-patterns-dengan-inheritance">Design Patterns dengan Inheritance</h3>
-
-<h3 id="template-method-pattern">Template Method Pattern</h3>
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-
-class DataProcessor(ABC):
-    """Template method pattern"""
-
-    def process(self):
-        """Template method"""
-        self.read_data()
-        self.process_data()
-        self.save_data()
-
-    @abstractmethod
-    def read_data(self):
-        pass
-
-    @abstractmethod
-    def process_data(self):
-        pass
-
-    @abstractmethod
-    def save_data(self):
-        pass
-
-class CSVProcessor(DataProcessor):
-    def read_data(self):
-        print("Reading from CSV...")
-
-    def process_data(self):
-        print("Processing CSV data...")
-
-    def save_data(self):
-        print("Saving to database...")
-
-class JSONProcessor(DataProcessor):
-    def read_data(self):
-        print("Reading from JSON...")
-
-    def process_data(self):
-        print("Processing JSON data...")
-
-    def save_data(self):
-        print("Saving to file...")
-
-# Penggunaan
-csv_proc = CSVProcessor()
-csv_proc.process()
-
-json_proc = JSONProcessor()
-json_proc.process()`}</CodeBlock>
-
-
-<h3 id="latihan">Latihan</h3>
-<ul>
-  <li>
-Buat class hierarchy untuk sistem e-commerce:
-
-Product (parent)
-PhysicalProduct (child dengan atribut weight, dimensions)
-DigitalProduct (child dengan atribut file_size, download_link)
-
-</li>
-  <li>Product (parent)</li>
-  <li>PhysicalProduct (child dengan atribut weight, dimensions)</li>
-  <li>DigitalProduct (child dengan atribut file_size, download_link)</li>
-  <li>
-Implementasikan method overriding untuk calculate_shipping_cost() yang berbeda untuk physical dan digital product
-</li>
-  <li>
-Tambahkan class User dan PremiumUser dengan method untuk menghitung diskon
-</li>
-  <li>
-Gunakan isinstance() untuk memberikan diskon berbeda berdasarkan tipe user
-</li>
-</ul>
-
-<p>Buat class hierarchy untuk sistem e-commerce:</p>
-
-<ul>
-  <li>Product (parent)</li>
-  <li>PhysicalProduct (child dengan atribut weight, dimensions)</li>
-  <li>DigitalProduct (child dengan atribut file_size, download_link)</li>
-</ul>
-
-<p>Implementasikan method overriding untuk calculate_shipping_cost() yang berbeda untuk physical dan digital product</p>
-
-<p>Tambahkan class User dan PremiumUser dengan method untuk menghitung diskon</p>
-
-<p>Gunakan isinstance() untuk memberikan diskon berbeda berdasarkan tipe user</p>
-
-<p>Langkah Selanjutnya</p>
-
-<p>Setelah memahami inheritance, kita akan mempelajari Encapsulation untuk melindungi data dalam class dengan access modifiers.</p>
-
-<p>Class dan Object</p>
-
-<p>Membuat class, object, atribut, dan method dalam Python</p>
-
-<p>Encapsulation</p>
-
-<p>Melindungi data dengan access modifiers dan property decorators</p>
-
-
-<h3 id="encapsulation">Encapsulation</h3>
-<p>Melindungi data dengan access modifiers dan property decorators</p>
-
-
-<h3 id="apa-itu-encapsulation">Apa itu Encapsulation?</h3>
-<p>Encapsulation adalah prinsip OOP yang menyembunyikan detail implementasi internal dari pengguna eksternal. Dengan encapsulation, kita dapat:</p>
-
-<ul>
-  <li>Melindungi data dari akses atau modifikasi yang tidak sah</li>
-  <li>Mengontrol bagaimana data diakses dan dimodifikasi</li>
-  <li>Menyediakan interface yang bersih untuk berinteraksi dengan object</li>
-  <li>Mengurangi coupling antar komponen</li>
-</ul>
-
-<p>Analogi</p>
-
-<p>Encapsulation seperti ATM. Kalian tidak perlu tahu bagaimana ATM bekerja secara internal (koneksi database, mekanisme pengeluaran uang, dll). Kalian hanya berinteraksi melalui interface yang disediakan (tombol dan layar).</p>
-
-
-<h3 id="access-modifiers-di-python">Access Modifiers di Python</h3>
-<p>Python tidak memiliki access modifiers strict seperti Java (public, private, protected). Sebaliknya, Python menggunakan naming conventions untuk mengindikasikan tingkat akses:</p>
-
-<p>Python Philosophy</p>
-
-<p>Python mengikuti prinsip "We are all consenting adults here". Access modifiers lebih merupakan konvensi daripada enforcement. Developer dipercaya untuk mengikuti konvensi yang ada.</p>
-
-
-<h3 id="public-attributes">Public Attributes</h3>
-<p>Atribut public dapat diakses dan dimodifikasi dari mana saja:</p>
-
-<CodeBlock language="">{`class Student:
-    def __init__(self, name, nim):
-        self.name = name  # Public attribute
-        self.nim = nim    # Public attribute
-
-student = Student("Budi", "TI12345")
-
-# Akses public attribute
-print(student.name)  # Budi
-
-# Modifikasi public attribute
-student.name = "Budi Santoso"
-print(student.name)  # Budi Santoso`}</CodeBlock>
-
-
-<h3 id="protected-attributes">Protected Attributes</h3>
-<p>Atribut protected ditandai dengan single underscore _. Ini adalah konvensi yang menandakan atribut untuk internal use, tapi masih bisa diakses:</p>
-
-<CodeBlock language="">{`class Student:
-    def __init__(self, name, nim):
-        self.name = name
-        self._program = "Teknik"  # Protected attribute
-
-    def get_program(self):
-        return self._program
-
-student = Student("Budi", "TI12345")
-
-# Bisa diakses tapi tidak disarankan
-print(student._program)  # Teknik
-
-# Cara yang disarankan
-print(student.get_program())  # Teknik`}</CodeBlock>
-
-<p>Konvensi Protected</p>
-
-<p>Protected attributes dapat diakses, tetapi dengan konvensi single underscore, developer lain tahu bahwa ini untuk internal use dan tidak seharusnya diakses langsung dari luar class.</p>
-
-
-<h3 id="private-attributes">Private Attributes</h3>
-<p>Atribut private ditandai dengan double underscore __. Python melakukan "name mangling" sehingga atribut ini sulit diakses dari luar class:</p>
-
-<CodeBlock language="">{`class Student:
-    def __init__(self, name, nim):
-        self.name = name
-        self.__id = "2023-" + nim  # Private attribute
-
-    def get_id(self):
-        return self.__id
-
-student = Student("Budi", "12345")
-
-# Akses melalui method public
-print(student.get_id())  # 2023-12345
-
-# Akses langsung akan error
-try:
-    print(student.__id)
-except AttributeError as e:
-    print(f"Error: {e}")
-
-# Name mangling - bisa diakses tapi tidak disarankan
-print(student._Student__id)  # 2023-12345`}</CodeBlock>
-
-
-<h3 id="property-decorators">Property Decorators</h3>
-<p>Property decorators menyediakan cara Pythonic untuk membuat getter dan setter:</p>
-
-
-<h3 id="getter-dengan-property">Getter dengan @property</h3>
-<p>Property decorator mengubah method menjadi attribute yang dapat dibaca:</p>
-
-<CodeBlock language="">{`class Student:
-    def __init__(self, name, birth_year):
-        self.name = name
-        self._birth_year = birth_year
-
-    @property
-    def age(self):
-        from datetime import datetime
-        current_year = datetime.now().year
-        return current_year - self._birth_year
-
-    @property
-    def birth_year(self):
-        return self._birth_year
-
-student = Student("Budi", 2000)
-
-# Memanggil seperti attribute, bukan method
-print(student.age)  # 25 (tergantung tahun saat ini)
-print(student.birth_year)  # 2000`}</CodeBlock>
-
-
-<h3 id="setter-dengan-propertysetter">Setter dengan @property.setter</h3>
-<p>Setter memungkinkan kita mengontrol bagaimana attribute dimodifikasi:</p>
-
-<CodeBlock language="">{`class Student:
-    def __init__(self, name, nim):
-        self.name = name
-        self._nim = nim
-        self._program = "Teknik"
-
-    @property
-    def program(self):
-        return self._program
-
-    @program.setter
-    def program(self, value):
-        valid_programs = ["Teknik", "Sains", "Bisnis"]
-        if value in valid_programs:
-            self._program = value
-        else:
-            raise ValueError(f"Program harus salah satu dari {valid_programs}")
-
-student = Student("Budi", "12345")
-
-# Menggunakan setter
-student.program = "Sains"  # OK
-print(student.program)  # Sains
-
-try:
-    student.program = "Hukum"  # Error
-except ValueError as e:
-    print(f"Error: {e}")`}</CodeBlock>
-
-
-<h3 id="deleter-dengan-propertydeleter">Deleter dengan @property.deleter</h3>
-<p>Deleter mengontrol perilaku ketika attribute dihapus:</p>
-
-<CodeBlock language="">{`class Student:
-    def __init__(self, name):
-        self._name = name
-
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        if not value:
-            raise ValueError("Name cannot be empty")
-        self._name = value
-
-    @name.deleter
-    def name(self):
-        print("Deleting name...")
-        self._name = None
-
-student = Student("Budi")
-print(student.name)  # Budi
-
-del student.name  # Deleting name...
-print(student.name)  # None`}</CodeBlock>
-
-
-<h3 id="contoh-lengkap-bank-account">Contoh Lengkap: Bank Account</h3>
-<p>Mari lihat contoh lengkap encapsulation pada class BankAccount:</p>
-
-<CodeBlock language="">{`class BankAccount:
-    """Class untuk merepresentasikan akun bank dengan encapsulation"""
-
-    def __init__(self, account_number, owner, initial_balance=0):
-        self.account_number = account_number  # Public
-        self._owner = owner  # Protected
-        self.__balance = initial_balance  # Private
-        self.__transaction_history = []  # Private
-
-    # Property untuk balance (read-only)
-    @property
-    def balance(self):
-        """Getter untuk balance - read only"""
-        return self.__balance
-
-    # Property untuk owner
-    @property
-    def owner(self):
-        return self._owner
-
-    @owner.setter
-    def owner(self, new_owner):
-        if not new_owner or len(new_owner) < 3:
-            raise ValueError("Owner name must be at least 3 characters")
-        self._owner = new_owner
-
-    # Method untuk deposit
-    def deposit(self, amount):
-        """Public method untuk deposit uang"""
-        if amount <= 0:
-            raise ValueError("Deposit amount must be positive")
-
-        self.__balance += amount
-        self.__add_transaction("Deposit", amount)
-        return f"Deposit successful. New balance: Rp{self.__balance:,.0f}"
-
-    # Method untuk withdraw
-    def withdraw(self, amount):
-        """Public method untuk withdraw uang"""
-        if amount <= 0:
-            raise ValueError("Withdraw amount must be positive")
-
-        if amount > self.__balance:
-            raise ValueError("Insufficient balance")
-
-        self.__balance -= amount
-        self.__add_transaction("Withdraw", amount)
-        return f"Withdraw successful. New balance: Rp{self.__balance:,.0f}"
-
-    # Method untuk transfer
-    def transfer(self, target_account, amount):
-        """Public method untuk transfer ke akun lain"""
-        if amount <= 0:
-            raise ValueError("Transfer amount must be positive")
-
-        if amount > self.__balance:
-            raise ValueError("Insufficient balance")
-
-        self.__balance -= amount
-        target_account.__balance += amount
-
-        self.__add_transaction(f"Transfer to {target_account.account_number}", amount)
-        target_account.__add_transaction(f"Transfer from {self.account_number}", amount)
-
-        return f"Transfer successful. New balance: Rp{self.__balance:,.0f}"
-
-    # Private method untuk menambah transaksi
-    def __add_transaction(self, type, amount):
-        """Private method - hanya untuk internal use"""
-        from datetime import datetime
-        transaction = {
-            'type': type,
-            'amount': amount,
-            'timestamp': datetime.now(),
-            'balance_after': self.__balance
-        }
-        self.__transaction_history.append(transaction)
-
-    # Public method untuk melihat history
-    def get_transaction_history(self, last_n=5):
-        """Public method untuk mendapatkan transaction history"""
-        return self.__transaction_history[-last_n:]
-
-    # Method untuk display info
-    def display_info(self):
-        print(f"\n{'='*50}")
-        print(f"Account Number: {self.account_number}")
-        print(f"Owner: {self._owner}")
-        print(f"Balance: Rp{self.__balance:,.0f}")
-        print(f"{'='*50}")
-
-# Penggunaan
-print("=== Creating Bank Accounts ===")
-acc1 = BankAccount("001", "Budi Santoso", 1000000)
-acc2 = BankAccount("002", "Ani Wijaya", 500000)
-
-print("\n=== Account Info ===")
-acc1.display_info()
-
-print("\n=== Deposit ===")
-print(acc1.deposit(500000))
-
-print("\n=== Withdraw ===")
-print(acc1.withdraw(200000))
-
-print("\n=== Transfer ===")
-print(acc1.transfer(acc2, 300000))
-
-print("\n=== Check Balance (using property) ===")
-print(f"Acc1 Balance: Rp{acc1.balance:,.0f}")
-print(f"Acc2 Balance: Rp{acc2.balance:,.0f}")
-
-print("\n=== Transaction History ===")
-for trans in acc1.get_transaction_history():
-    print(f"{trans['type']}: Rp{trans['amount']:,.0f} "
-          f"- Balance: Rp{trans['balance_after']:,.0f}")
-
-print("\n=== Try to access private attribute (will error) ===")
-try:
-    print(acc1.__balance)
-except AttributeError as e:
-    print(f"Error: {e}")
-
-print("\n=== Access via name mangling (not recommended) ===")
-print(f"Balance via name mangling: Rp{acc1._BankAccount__balance:,.0f}")
-
-print("\n=== Try invalid withdraw ===")
-try:
-    acc1.withdraw(10000000)
-except ValueError as e:
-    print(f"Error: {e}")`}</CodeBlock>
-
-
-<h3 id="kapan-menggunakan-access-modifiers">Kapan Menggunakan Access Modifiers</h3>
-
-<h3 id="gunakan-public">Gunakan Public</h3>
-<CodeBlock language="">{`class Product:
-    def __init__(self, name, price):
-        self.name = name  # Public - data yang umum diakses
-        self.price = price  # Public`}</CodeBlock>
-
-
-<h3 id="gunakan-protected">Gunakan Protected</h3>
-<CodeBlock language="">{`class DatabaseConnection:
-    def __init__(self, host):
-        self._host = host  # Protected - untuk subclass
-        self._connection = None  # Protected
-
-    def _connect(self):  # Protected method
-        # Internal implementation
-        pass`}</CodeBlock>
-
-
-<h3 id="gunakan-private">Gunakan Private</h3>
-<CodeBlock language="">{`class PasswordManager:
-    def __init__(self, password):
-        self.__password = password  # Private - data sensitif
-
-    def verify(self, input_password):
-        return input_password == self.__password`}</CodeBlock>
-
-
-<h3 id="praktik-terbaik">Praktik Terbaik</h3>
-
-<h3 id="1-gunakan-properties-untuk-validasi">1. Gunakan Properties untuk Validasi</h3>
-<CodeBlock language="">{`class Student:
-    def __init__(self, name, gpa):
-        self.name = name
-        self._gpa = None
-        self.gpa = gpa  # Using setter for validation
-
-    @property
-    def gpa(self):
-        return self._gpa
-
-    @gpa.setter
-    def gpa(self, value):
-        if not 0.0 <= value <= 4.0:
-            raise ValueError("GPA must be between 0.0 and 4.0")
-        self._gpa = value`}</CodeBlock>
-
-
-<h3 id="2-encapsulate-complex-logic">2. Encapsulate Complex Logic</h3>
-<CodeBlock language="">{`class Circle:
-    def __init__(self, radius):
-        self._radius = radius
-
-    @property
-    def radius(self):
-        return self._radius
-
-    @property
-    def diameter(self):
-        return self._radius * 2
-
-    @property
-    def area(self):
-        import math
-        return math.pi * self._radius ** 2
-
-    @property
-    def circumference(self):
-        import math
-        return 2 * math.pi * self._radius`}</CodeBlock>
-
-
-<h3 id="3-dont-expose-mutable-collections">3. Don't Expose Mutable Collections</h3>
-<CodeBlock language="">{`# Bad - exposes internal list
-class Classroom:
-    def __init__(self):
-        self.students = []
-
-# Good - provides controlled access
-class Classroom:
-    def __init__(self):
-        self.__students = []
-
-    def add_student(self, student):
-        self.__students.append(student)
-
-    def get_students(self):
-        return self.__students.copy()  # Return copy`}</CodeBlock>
-
-
-<h3 id="latihan">Latihan</h3>
-<ul>
-  <li>
-Buat class Employee dengan:
-
-Private attribute untuk salary
-Property untuk membaca salary
-Method untuk menaikkan salary dengan validasi
-
-</li>
-  <li>Private attribute untuk salary</li>
-  <li>Property untuk membaca salary</li>
-  <li>Method untuk menaikkan salary dengan validasi</li>
-  <li>
-Buat class ShoppingCart dengan:
-
-Private list untuk items
-Methods untuk add_item, remove_item, get_total
-Property untuk item_count
-
-</li>
-  <li>Private list untuk items</li>
-  <li>Methods untuk add_item, remove_item, get_total</li>
-  <li>Property untuk item_count</li>
-  <li>
-Implementasikan class User dengan:
-
-Private password
-Method untuk verify_password
-Property untuk email dengan validasi format
-
-</li>
-  <li>Private password</li>
-  <li>Method untuk verify_password</li>
-  <li>Property untuk email dengan validasi format</li>
-</ul>
-
-<p>Buat class Employee dengan:</p>
-
-<ul>
-  <li>Private attribute untuk salary</li>
-  <li>Property untuk membaca salary</li>
-  <li>Method untuk menaikkan salary dengan validasi</li>
-</ul>
-
-<p>Buat class ShoppingCart dengan:</p>
-
-<ul>
-  <li>Private list untuk items</li>
-  <li>Methods untuk add_item, remove_item, get_total</li>
-  <li>Property untuk item_count</li>
-</ul>
-
-<p>Implementasikan class User dengan:</p>
-
-<ul>
-  <li>Private password</li>
-  <li>Method untuk verify_password</li>
-  <li>Property untuk email dengan validasi format</li>
-</ul>
-
-<p>Langkah Selanjutnya</p>
-
-<p>Setelah memahami encapsulation, kita akan mempelajari Polymorphism untuk membuat objek yang berbeda merespons method yang sama dengan cara berbeda.</p>
-
-<p>Inheritance (Pewarisan)</p>
-
-<p>Memahami konsep pewarisan class dan method overriding</p>
-
-<p>Polymorphism</p>
-
-<p>Memahami polymorphism, method overriding, dan duck typing</p>
-
-
-<h3 id="polymorphism">Polymorphism</h3>
-<p>Memahami polymorphism, method overriding, dan duck typing</p>
-
-
-<h3 id="apa-itu-polymorphism">Apa itu Polymorphism?</h3>
-<p>Polymorphism (dari bahasa Yunani: "poly" = banyak, "morph" = bentuk) adalah kemampuan objek dari class yang berbeda untuk merespons method dengan nama yang sama dengan cara yang berbeda.</p>
-
-<p>Analogi</p>
-
-<p>Bayangkan tombol "Play" pada remote control. Untuk TV, tombol play menyalakan acara. Untuk AC, play menyalakan pendingin. Untuk stereo, play memutar musik. Tombol yang sama, tapi perilaku berbeda tergantung perangkat.</p>
-
-
-<h3 id="jenis-jenis-polymorphism">Jenis-jenis Polymorphism</h3>
-
-<h3 id="1-method-overriding">1. Method Overriding</h3>
-<p>Method overriding terjadi ketika subclass memberikan implementasi spesifik untuk method yang sudah didefinisikan di superclass:</p>
-
-<CodeBlock language="">{`class Animal:
-    def __init__(self, name):
-        self.name = name
-
-    def speak(self):
-        pass  # Method yang akan di-override
-
-class Dog(Animal):
-    def speak(self):
-        return f"{self.name} says Woof!"
-
-class Cat(Animal):
-    def speak(self):
-        return f"{self.name} says Meow!"
-
-class Cow(Animal):
-    def speak(self):
-        return f"{self.name} says Moo!"
-
-# Polymorphism dalam aksi
-animals = [
-    Dog("Buddy"),
-    Cat("Whiskers"),
-    Cow("Milly")
-]
-
-for animal in animals:
-    print(animal.speak())
-# Output:
-# Buddy says Woof!
-# Whiskers says Meow!
-# Milly says Moo!`}</CodeBlock>
-
-
-<h3 id="2-duck-typing">2. Duck Typing</h3>
-<p>Python menggunakan "duck typing": "If it walks like a duck and quacks like a duck, it must be a duck."</p>
-
-<p>Python tidak peduli tipe object apa yang diberikan, selama object tersebut memiliki method yang dipanggil:</p>
-
-<CodeBlock language="">{`class Dog:
-    def speak(self):
-        return "Woof!"
-
-class Cat:
-    def speak(self):
-        return "Meow!"
-
-class Robot:
-    def speak(self):
-        return "Beep boop!"
-
-# Fungsi yang menerima object apa pun dengan method speak()
-def make_sound(entity):
-    return entity.speak()
-
-# Semua bisa dipanggil, tidak peduli class-nya
-print(make_sound(Dog()))    # Woof!
-print(make_sound(Cat()))    # Meow!
-print(make_sound(Robot()))  # Beep boop!`}</CodeBlock>
-
-<p>Duck Typing vs Static Typing</p>
-
-<p>Dalam bahasa dengan static typing (Java, C++), Kalian harus mendefinisikan interface atau parent class yang sama. Python lebih fleksibel dengan duck typing - yang penting memiliki method yang dibutuhkan.</p>
-
-
-<h3 id="polymorphism-dengan-function">Polymorphism dengan Function</h3>
-
-<h3 id="function-yang-polymorphic">Function yang Polymorphic</h3>
-<p>Buat function yang dapat bekerja dengan berbagai tipe object:</p>
-
-<CodeBlock language="">{`class Circle:
-    def __init__(self, radius):
-        self.radius = radius
-
-    def area(self):
-        import math
-        return math.pi * self.radius ** 2
-
-class Rectangle:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-
-    def area(self):
-        return self.width * self.height
-
-class Triangle:
-    def __init__(self, base, height):
-        self.base = base
-        self.height = height
-
-    def area(self):
-        return 0.5 * self.base * self.height
-
-# Function polymorphic
-def print_area(shape):
-    """Function ini bekerja dengan object apa pun yang memiliki method area()"""
-    print(f"Area: {shape.area():.2f}")
-
-# Penggunaan
-shapes = [
-    Circle(5),
-    Rectangle(4, 6),
-    Triangle(3, 8)
-]
-
-for shape in shapes:
-    print_area(shape)`}</CodeBlock>
-
-
-<h3 id="method-chaining-dengan-polymorphism">Method Chaining dengan Polymorphism</h3>
-<CodeBlock language="">{`class Shape:
-    def __init__(self):
-        self.color = "black"
-
-    def set_color(self, color):
-        self.color = color
-        return self  # Return self untuk chaining
-
-    def draw(self):
-        pass  # Override di subclass
-
-class Circle(Shape):
-    def __init__(self, radius):
-        super().__init__()
-        self.radius = radius
-
-    def draw(self):
-        return f"Drawing {self.color} circle with radius {self.radius}"
-
-class Square(Shape):
-    def __init__(self, side):
-        super().__init__()
-        self.side = side
-
-    def draw(self):
-        return f"Drawing {self.color} square with side {self.side}"
-
-# Method chaining
-circle = Circle(5).set_color("red")
-print(circle.draw())  # Drawing red circle with radius 5
-
-square = Square(10).set_color("blue")
-print(square.draw())  # Drawing blue square with side 10`}</CodeBlock>
-
-
-<h3 id="operator-overloading">Operator Overloading</h3>
-<p>Python memungkinkan kita untuk mendefinisikan perilaku operator (+, -, *, ==, dll) untuk class kita sendiri:</p>
-
-<CodeBlock language="">{`class Vector:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def __str__(self):
-        return f"Vector({self.x}, {self.y})"
-
-    def __repr__(self):
-        return f"Vector({self.x}, {self.y})"
-
-    # Operator + (addition)
+            print(f"[{self.nama_metode}] Gagal: Saldo e-wallet tidak cukup! (Saldo: Rp {self.saldo_wallet:,.2f})")
+            return False
+
+
+# ------------------------------------------------------------------------------
+# 2. DUCK TYPING: Class Bebas Tanpa Inheritance dari MetodePembayaran
+# Tetap valid secara polimorfik karena memiliki method bayar(tagihan)
+# ------------------------------------------------------------------------------
+class CryptoPayment:
+    def __init__(self, wallet_address: str, crypto_symbol: str = "USDT"):
+        self.wallet_address = wallet_address
+        self.crypto_symbol = crypto_symbol
+
+    def bayar(self, tagihan: float) -> bool:
+        # Konversi kurs asumsi 1 USDT = Rp 16.000
+        total_crypto = tagihan / 16000
+        print(f"[Crypto Gateway] Mengonversi Rp {tagihan:,.2f} -> {total_crypto:.2f} {self.crypto_symbol}")
+        print(f" -> Transaksi tercatat di blockchain untuk wallet {self.wallet_address[:10]}... Success!")
+        return True
+
+
+# ------------------------------------------------------------------------------
+# 3. FUNGSI POLIMORFIK (Menerima Koleksi Objek Heterogen)
+# ------------------------------------------------------------------------------
+def proses_checkout_pesanan(daftar_opsi_bayar: list, total_belanja: float):
+    print(f"\n================ PROSES CHECKOUT TAGIHAN Rp {total_belanja:,.2f} ================")
+    for opsi in daftar_opsi_bayar:
+        print(f"\nMemproses opsi: {getattr(opsi, 'nama_metode', type(opsi).__name__)}...")
+        opsi.bayar(total_belanja)
+
+
+# ------------------------------------------------------------------------------
+# 4. OPERATOR OVERLOADING: Class Nilai Uang
+# ------------------------------------------------------------------------------
+class Dompet:
+    def __init__(self, pemilik: str, saldo: float):
+        self.pemilik = pemilik
+        self.saldo = saldo
+
+    # Operator Overloading '+': Menggabungkan dua objek Dompet
     def __add__(self, other):
-        return Vector(self.x + other.x, self.y + other.y)
+        if isinstance(other, Dompet):
+            return Dompet(f"{self.pemilik} & {other.pemilik}", self.saldo + other.saldo)
+        elif isinstance(other, (int, float)):
+            return Dompet(self.pemilik, self.saldo + other)
+        return NotImplemented
 
-    # Operator - (subtraction)
-    def __sub__(self, other):
-        return Vector(self.x - other.x, self.y - other.y)
-
-    # Operator * (scalar multiplication)
-    def __mul__(self, scalar):
-        return Vector(self.x * scalar, self.y * scalar)
-
-    # Operator == (equality)
     def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
-
-    # Operator < (less than)
-    def __lt__(self, other):
-        # Compare by magnitude
-        return (self.x**2 + self.y**2) < (other.x**2 + other.y**2)
-
-    # len() function
-    def __len__(self):
-        import math
-        return int(math.sqrt(self.x**2 + self.y**2))
-
-# Penggunaan
-v1 = Vector(2, 3)
-v2 = Vector(4, 5)
-
-print(v1 + v2)      # Vector(6, 8)
-print(v1 - v2)      # Vector(-2, -2)
-print(v1 * 3)       # Vector(6, 9)
-print(v1 == v2)     # False
-print(v1 < v2)      # True
-print(len(v1))      # 3`}</CodeBlock>
-
-
-<h3 id="common-operator-overloading-methods">Common Operator Overloading Methods</h3>
-
-<h3 id="contoh-lengkap-payment-system">Contoh Lengkap: Payment System</h3>
-<p>Mari lihat contoh lengkap polymorphism pada sistem pembayaran:</p>
-
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-from datetime import datetime
-
-# Base class
-class Payment(ABC):
-    """Abstract base class untuk semua jenis payment"""
-
-    def __init__(self, amount):
-        self.amount = amount
-        self.timestamp = datetime.now()
-        self.status = "pending"
-
-    @abstractmethod
-    def process_payment(self):
-        """Method yang harus diimplementasikan oleh subclass"""
-        pass
-
-    @abstractmethod
-    def get_payment_info(self):
-        """Method yang harus diimplementasikan oleh subclass"""
-        pass
-
-    def __str__(self):
-        return f"{self.__class__.__name__}: Rp{self.amount:,.0f}"
-
-# Concrete implementations
-class CreditCardPayment(Payment):
-    def __init__(self, amount, card_number, cvv):
-        super().__init__(amount)
-        self.card_number = self._mask_card_number(card_number)
-        self._cvv = cvv  # Private
-
-    def _mask_card_number(self, card_number):
-        """Private method untuk mask card number"""
-        return f"****-****-****-{card_number[-4:]}"
-
-    def process_payment(self):
-        # Simulasi proses pembayaran
-        print(f"Processing credit card payment...")
-        print(f"Card: {self.card_number}")
-        self.status = "completed"
-        return True
-
-    def get_payment_info(self):
-        return {
-            'type': 'Credit Card',
-            'card': self.card_number,
-            'amount': self.amount,
-            'status': self.status
-        }
-
-class BankTransferPayment(Payment):
-    def __init__(self, amount, bank_name, account_number):
-        super().__init__(amount)
-        self.bank_name = bank_name
-        self.account_number = account_number
-
-    def process_payment(self):
-        print(f"Processing bank transfer...")
-        print(f"Bank: {self.bank_name}")
-        print(f"Account: {self.account_number}")
-        self.status = "completed"
-        return True
-
-    def get_payment_info(self):
-        return {
-            'type': 'Bank Transfer',
-            'bank': self.bank_name,
-            'account': self.account_number,
-            'amount': self.amount,
-            'status': self.status
-        }
-
-class EWalletPayment(Payment):
-    def __init__(self, amount, wallet_type, phone_number):
-        super().__init__(amount)
-        self.wallet_type = wallet_type
-        self.phone_number = phone_number
-
-    def process_payment(self):
-        print(f"Processing e-wallet payment...")
-        print(f"Wallet: {self.wallet_type}")
-        print(f"Phone: {self.phone_number}")
-        self.status = "completed"
-        return True
-
-    def get_payment_info(self):
-        return {
-            'type': 'E-Wallet',
-            'wallet': self.wallet_type,
-            'phone': self.phone_number,
-            'amount': self.amount,
-            'status': self.status
-        }
-
-# Payment Processor - menggunakan polymorphism
-class PaymentProcessor:
-    """Class yang memproses berbagai jenis payment"""
-
-    def __init__(self):
-        self.payments = []
-
-    def process(self, payment):
-        """
-        Method polymorphic - bekerja dengan semua jenis Payment
-        tanpa perlu tahu tipe spesifiknya
-        """
-        print(f"\n{'='*50}")
-        print(f"Processing payment: {payment}")
-        print(f"{'='*50}")
-
-        if payment.process_payment():
-            self.payments.append(payment)
-            print(f"Payment successful!")
-            return True
-        else:
-            print(f"Payment failed!")
-            return False
-
-    def get_total_payments(self):
-        return sum(p.amount for p in self.payments)
-
-    def print_summary(self):
-        print(f"\n{'='*50}")
-        print(f"Payment Summary")
-        print(f"{'='*50}")
-        for i, payment in enumerate(self.payments, 1):
-            info = payment.get_payment_info()
-            print(f"\n{i}. {info['type']}")
-            for key, value in info.items():
-                if key != 'type':
-                    print(f"   {key.capitalize()}: {value}")
-        print(f"\nTotal: Rp{self.get_total_payments():,.0f}")
-        print(f"{'='*50}")
-
-# Penggunaan
-processor = PaymentProcessor()
-
-# Berbagai jenis payment
-payments = [
-    CreditCardPayment(500000, "1234567890123456", "123"),
-    BankTransferPayment(750000, "BCA", "1234567890"),
-    EWalletPayment(250000, "GoPay", "081234567890"),
-    CreditCardPayment(1000000, "9876543210987654", "456")
-]
-
-# Process semua payment dengan method yang sama
-for payment in payments:
-    processor.process(payment)
-
-# Print summary
-processor.print_summary()`}</CodeBlock>
-
-
-<h3 id="polymorphism-dengan-built-in-functions">Polymorphism dengan Built-in Functions</h3>
-<p>Python built-in functions menggunakan polymorphism:</p>
-
-<CodeBlock language="">{`# len() works with different types
-print(len("Hello"))        # 5 (string)
-print(len([1, 2, 3]))      # 3 (list)
-print(len({'a': 1, 'b': 2}))  # 2 (dict)
-
-# Custom class dengan __len__
-class Playlist:
-    def __init__(self, name):
-        self.name = name
-        self.songs = []
-
-    def add_song(self, song):
-        self.songs.append(song)
-
-    def __len__(self):
-        return len(self.songs)
-
-playlist = Playlist("My Favorites")
-playlist.add_song("Song 1")
-playlist.add_song("Song 2")
-print(len(playlist))  # 2
-
-# sum() works with different iterables
-print(sum([1, 2, 3]))           # 6
-print(sum((1, 2, 3)))           # 6
-print(sum({1, 2, 3}))           # 6`}</CodeBlock>
-
-
-<h3 id="praktik-terbaik">Praktik Terbaik</h3>
-
-<h3 id="1-design-for-polymorphism">1. Design for Polymorphism</h3>
-<CodeBlock language="">{`# Good - design dengan interface yang konsisten
-class Shape:
-    def area(self):
-        pass
-
-    def perimeter(self):
-        pass
-
-class Circle(Shape):
-    def area(self):
-        # Implementation
-        pass
-
-    def perimeter(self):
-        # Implementation
-        pass
-
-# Avoid - interface yang tidak konsisten
-class Circle:
-    def calculate_area(self):
-        pass
-
-class Square:
-    def get_area(self):  # Different method name
-        pass`}</CodeBlock>
-
-
-<h3 id="2-use-abstract-base-classes">2. Use Abstract Base Classes</h3>
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-
-class Vehicle(ABC):
-    @abstractmethod
-    def start(self):
-        """All vehicles must implement start"""
-        pass
-
-    @abstractmethod
-    def stop(self):
-        """All vehicles must implement stop"""
-        pass`}</CodeBlock>
-
-
-<h3 id="3-follow-liskov-substitution-principle">3. Follow Liskov Substitution Principle</h3>
-<CodeBlock language="">{`# Good - subclass can replace parent without breaking
-class Bird:
-    def move(self):
-        return "Flying"
-
-class Sparrow(Bird):
-    def move(self):
-        return "Flying fast"
-
-# Avoid - subclass breaks parent's contract
-class Bird:
-    def fly(self):
-        return "Flying"
-
-class Penguin(Bird):
-    def fly(self):
-        raise Exception("Penguins can't fly!")  # Breaks contract`}</CodeBlock>
-
-
-<h3 id="latihan">Latihan</h3>
-<ul>
-  <li>
-Buat hierarchy untuk sistem notifikasi:
-
-Base class Notification dengan method send()
-Subclass: EmailNotification, SMSNotification, PushNotification
-Implementasikan polymorphism untuk mengirim berbagai jenis notifikasi
-
-</li>
-  <li>Base class Notification dengan method send()</li>
-  <li>Subclass: EmailNotification, SMSNotification, PushNotification</li>
-  <li>Implementasikan polymorphism untuk mengirim berbagai jenis notifikasi</li>
-  <li>
-Buat class Money dengan operator overloading untuk:
-
-Addition (+)
-Subtraction (-)
-Comparison (==, &lt;, &gt;)
-String representation
-
-</li>
-  <li>Addition (+)</li>
-  <li>Subtraction (-)</li>
-  <li>Comparison (==, &lt;, &gt;)</li>
-  <li>String representation</li>
-  <li>
-Implementasikan payment gateway dengan:
-
-Multiple payment methods
-Unified processing interface
-Transaction logging
-
-</li>
-  <li>Multiple payment methods</li>
-  <li>Unified processing interface</li>
-  <li>Transaction logging</li>
-</ul>
-
-<p>Buat hierarchy untuk sistem notifikasi:</p>
-
-<ul>
-  <li>Base class Notification dengan method send()</li>
-  <li>Subclass: EmailNotification, SMSNotification, PushNotification</li>
-  <li>Implementasikan polymorphism untuk mengirim berbagai jenis notifikasi</li>
-</ul>
-
-<p>Buat class Money dengan operator overloading untuk:</p>
-
-<ul>
-  <li>Addition (+)</li>
-  <li>Subtraction (-)</li>
-  <li>Comparison (==, &lt;, &gt;)</li>
-  <li>String representation</li>
-</ul>
-
-<p>Implementasikan payment gateway dengan:</p>
-
-<ul>
-  <li>Multiple payment methods</li>
-  <li>Unified processing interface</li>
-  <li>Transaction logging</li>
-</ul>
-
-<p>Langkah Selanjutnya</p>
-
-<p>Setelah memahami polymorphism, kita akan mempelajari Abstract Classes untuk membuat blueprint yang lebih formal untuk inheritance.</p>
-
-<p>Encapsulation</p>
-
-<p>Melindungi data dengan access modifiers dan property decorators</p>
-
-<p>Abstract Class</p>
-
-<p>Memahami abstract classes, abstract methods, dan interface di Python</p>
-
-
-<h3 id="abstract-class">Abstract Class</h3>
-<p>Memahami abstract classes, abstract methods, dan interface di Python</p>
-
-
-<h3 id="apa-itu-abstract-class">Apa itu Abstract Class?</h3>
-<p>Abstract class adalah class yang tidak dapat diinstansiasi secara langsung dan berfungsi sebagai blueprint atau template untuk class lain. Abstract class dapat berisi abstract methods (method tanpa implementasi) yang harus diimplementasikan oleh subclass.</p>
-
-<p>Analogi</p>
-
-<p>Bayangkan blueprint rumah. Kalian tidak bisa tinggal di dalam blueprint, tapi Kalian bisa menggunakan blueprint tersebut untuk membangun rumah yang sebenarnya. Abstract class adalah blueprint, dan concrete class adalah rumah yang dibangun dari blueprint tersebut.</p>
-
-
-<h3 id="module-abc-abstract-base-classes">Module ABC (Abstract Base Classes)</h3>
-<p>Python menyediakan module abc (Abstract Base Classes) untuk membuat abstract class:</p>
-
-<CodeBlock language="">{`from abc import ABC, abstractmethod`}</CodeBlock>
-
-
-<h3 id="komponen-utama">Komponen Utama</h3>
-<ul>
-  <li>ABC: Base class untuk membuat abstract class</li>
-  <li>@abstractmethod: Decorator untuk menandai method sebagai abstract</li>
-</ul>
-
-
-<h3 id="membuat-abstract-class">Membuat Abstract Class</h3>
-
-<h3 id="basic-abstract-class">Basic Abstract Class</h3>
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-
-class Shape(ABC):
-    """Abstract base class untuk bentuk geometris"""
-
-    @abstractmethod
-    def area(self):
-        """Method abstract untuk menghitung luas"""
-        pass
-
-    @abstractmethod
-    def perimeter(self):
-        """Method abstract untuk menghitung keliling"""
-        pass
-
-    def describe(self):
-        """Method concrete (non-abstract)"""
-        return "Ini adalah bentuk geometris"
-
-# Error - tidak bisa membuat instance dari abstract class
-try:
-    shape = Shape()
-except TypeError as e:
-    print(f"Error: {e}")
-    # Output: Can't instantiate abstract class Shape with abstract methods area, perimeter`}</CodeBlock>
-
-
-<h3 id="concrete-implementation">Concrete Implementation</h3>
-<p>Subclass harus mengimplementasikan semua abstract methods:</p>
-
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-
-class Shape(ABC):
-    @abstractmethod
-    def area(self):
-        pass
-
-    @abstractmethod
-    def perimeter(self):
-        pass
-
-class Rectangle(Shape):
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-
-    def area(self):
-        return self.width * self.height
-
-    def perimeter(self):
-        return 2 * (self.width + self.height)
-
-    def describe(self):
-        return f"Rectangle {self.width}x{self.height}"
-
-class Circle(Shape):
-    def __init__(self, radius):
-        self.radius = radius
-
-    def area(self):
-        import math
-        return math.pi * self.radius ** 2
-
-    def perimeter(self):
-        import math
-        return 2 * math.pi * self.radius
-
-# Sekarang bisa membuat instance
-rect = Rectangle(5, 4)
-circle = Circle(3)
-
-print(f"Rectangle area: {rect.area()}")           # 20
-print(f"Rectangle perimeter: {rect.perimeter()}")  # 18
-print(f"Circle area: {circle.area():.2f}")         # 28.27
-print(f"Circle perimeter: {circle.perimeter():.2f}") # 18.85`}</CodeBlock>
-
-
-<h3 id="partial-implementation">Partial Implementation</h3>
-<p>Jika subclass tidak mengimplementasikan semua abstract methods, subclass tersebut juga harus abstract:</p>
-
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-
-class Animal(ABC):
-    @abstractmethod
-    def speak(self):
-        pass
-
-    @abstractmethod
-    def move(self):
-        pass
-
-# Partial implementation - masih abstract
-class Mammal(Animal):
-    def speak(self):
-        return "Some sound"
-    # move() belum diimplementasikan, jadi Mammal masih abstract
-
-# Error - tidak bisa instantiate Mammal
-try:
-    m = Mammal()
-except TypeError as e:
-    print(f"Error: {e}")
-
-# Concrete implementation
-class Dog(Mammal):
-    def move(self):
-        return "Walking on four legs"
-
-# Sekarang bisa instantiate
-dog = Dog()
-print(dog.speak())  # Some sound
-print(dog.move())   # Walking on four legs`}</CodeBlock>
-
-
-<h3 id="abstract-properties">Abstract Properties</h3>
-<p>Kalian juga bisa membuat abstract properties menggunakan @property dan @abstractmethod:</p>
-
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-
-class Vehicle(ABC):
-    @property
-    @abstractmethod
-    def max_speed(self):
-        """Abstract property untuk kecepatan maksimum"""
-        pass
-
-    @property
-    @abstractmethod
-    def fuel_type(self):
-        """Abstract property untuk jenis bahan bakar"""
-        pass
-
-    @abstractmethod
-    def start_engine(self):
-        pass
-
-class Car(Vehicle):
-    def __init__(self, brand, model):
-        self.brand = brand
-        self.model = model
-        self._max_speed = 200
-        self._fuel_type = "Gasoline"
-
-    @property
-    def max_speed(self):
-        return self._max_speed
-
-    @property
-    def fuel_type(self):
-        return self._fuel_type
-
-    def start_engine(self):
-        return f"{self.brand} {self.model} engine started"
-
-class ElectricCar(Vehicle):
-    def __init__(self, brand, model):
-        self.brand = brand
-        self.model = model
-        self._max_speed = 180
-        self._fuel_type = "Electric"
-
-    @property
-    def max_speed(self):
-        return self._max_speed
-
-    @property
-    def fuel_type(self):
-        return self._fuel_type
-
-    def start_engine(self):
-        return f"{self.brand} {self.model} motor started silently"
-
-# Penggunaan
-car = Car("Toyota", "Camry")
-electric = ElectricCar("Tesla", "Model 3")
-
-print(f"{car.brand}: Max speed {car.max_speed} km/h, Fuel: {car.fuel_type}")
-print(f"{electric.brand}: Max speed {electric.max_speed} km/h, Fuel: {electric.fuel_type}")`}</CodeBlock>
-
-
-<h3 id="interface-pattern">Interface Pattern</h3>
-<p>Python tidak memiliki keyword "interface" seperti Java, tetapi kita bisa membuat interface menggunakan abstract class di mana semua method adalah abstract:</p>
-
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-
-class Drawable(ABC):
-    """Interface untuk object yang bisa digambar"""
-
-    @abstractmethod
-    def draw(self):
-        pass
-
-    @abstractmethod
-    def resize(self, scale):
-        pass
-
-class Clickable(ABC):
-    """Interface untuk object yang bisa diklik"""
-
-    @abstractmethod
-    def on_click(self):
-        pass
-
-# Multiple interface implementation
-class Button(Drawable, Clickable):
-    def __init__(self, text, x, y):
-        self.text = text
-        self.x = x
-        self.y = y
-        self.scale = 1.0
-
-    def draw(self):
-        return f"Drawing button '{self.text}' at ({self.x}, {self.y}), scale: {self.scale}"
-
-    def resize(self, scale):
-        self.scale = scale
-        return f"Button resized to {scale}x"
-
-    def on_click(self):
-        return f"Button '{self.text}' clicked!"
-
-class Image(Drawable):
-    def __init__(self, src, x, y):
-        self.src = src
-        self.x = x
-        self.y = y
-        self.scale = 1.0
-
-    def draw(self):
-        return f"Drawing image '{self.src}' at ({self.x}, {self.y})"
-
-    def resize(self, scale):
-        self.scale = scale
-        return f"Image resized to {scale}x"
-
-# Penggunaan
-button = Button("Submit", 100, 200)
-image = Image("logo.png", 50, 50)
-
-print(button.draw())
-print(button.resize(1.5))
-print(button.on_click())
-
-print(image.draw())
-print(image.resize(2.0))`}</CodeBlock>
-
-<p>Multiple Inheritance</p>
-
-<p>Python mendukung multiple inheritance, sehingga sebuah class bisa mengimplementasikan multiple interfaces (abstract classes). Ini sangat berguna untuk membuat sistem yang modular dan fleksibel.</p>
-
-
-<h3 id="contoh-lengkap-database-connection">Contoh Lengkap: Database Connection</h3>
-<p>Mari lihat contoh lengkap abstract class untuk database connection:</p>
-
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-from datetime import datetime
-
-class DatabaseConnection(ABC):
-    """Abstract base class untuk database connection"""
-
-    def __init__(self, host, port, database):
-        self.host = host
-        self.port = port
-        self.database = database
-        self.connected = False
-        self.connection_time = None
-
-    @abstractmethod
-    def connect(self):
-        """Connect to database"""
-        pass
-
-    @abstractmethod
-    def disconnect(self):
-        """Disconnect from database"""
-        pass
-
-    @abstractmethod
-    def execute_query(self, query):
-        """Execute a query"""
-        pass
-
-    @abstractmethod
-    def fetch_results(self):
-        """Fetch query results"""
-        pass
-
-    def get_connection_info(self):
-        """Concrete method - available to all subclasses"""
-        return {
-            'host': self.host,
-            'port': self.port,
-            'database': self.database,
-            'connected': self.connected,
-            'connection_time': self.connection_time
-        }
-
-    def __str__(self):
-        return f"{self.__class__.__name__}({self.host}:{self.port}/{self.database})"
-
-class MySQLConnection(DatabaseConnection):
-    """MySQL database connection implementation"""
-
-    def __init__(self, host, port, database, username, password):
-        super().__init__(host, port, database)
-        self.username = username
-        self._password = password  # Private
-        self.last_query = None
-        self.results = []
-
-    def connect(self):
-        """Simulate MySQL connection"""
-        print(f"Connecting to MySQL: {self.host}:{self.port}/{self.database}")
-        print(f"Username: {self.username}")
-        # Simulate connection
-        self.connected = True
-        self.connection_time = datetime.now()
-        print("MySQL connection established!")
-        return True
-
-    def disconnect(self):
-        """Disconnect from MySQL"""
-        if self.connected:
-            print("Disconnecting from MySQL...")
-            self.connected = False
-            self.connection_time = None
-            print("Disconnected successfully!")
-            return True
-        else:
-            print("Already disconnected")
-            return False
-
-    def execute_query(self, query):
-        """Execute MySQL query"""
-        if not self.connected:
-            raise Exception("Not connected to database")
-
-        print(f"Executing MySQL query: {query}")
-        self.last_query = query
-
-        # Simulate query execution
-        if "SELECT" in query.upper():
-            self.results = [
-                {'id': 1, 'name': 'John Doe', 'email': 'john@example.com'},
-                {'id': 2, 'name': 'Jane Smith', 'email': 'jane@example.com'}
-            ]
-        else:
-            self.results = []
-
-        return True
-
-    def fetch_results(self):
-        """Fetch MySQL results"""
-        return self.results
-
-class PostgreSQLConnection(DatabaseConnection):
-    """PostgreSQL database connection implementation"""
-
-    def __init__(self, host, port, database, username, password):
-        super().__init__(host, port, database)
-        self.username = username
-        self._password = password
-        self.last_query = None
-        self.results = []
-
-    def connect(self):
-        """Simulate PostgreSQL connection"""
-        print(f"Connecting to PostgreSQL: {self.host}:{self.port}/{self.database}")
-        print(f"Username: {self.username}")
-        # Simulate connection
-        self.connected = True
-        self.connection_time = datetime.now()
-        print("PostgreSQL connection established!")
-        return True
-
-    def disconnect(self):
-        """Disconnect from PostgreSQL"""
-        if self.connected:
-            print("Disconnecting from PostgreSQL...")
-            self.connected = False
-            self.connection_time = None
-            print("Disconnected successfully!")
-            return True
-        else:
-            print("Already disconnected")
-            return False
-
-    def execute_query(self, query):
-        """Execute PostgreSQL query"""
-        if not self.connected:
-            raise Exception("Not connected to database")
-
-        print(f"Executing PostgreSQL query: {query}")
-        self.last_query = query
-
-        # Simulate query execution
-        if "SELECT" in query.upper():
-            self.results = [
-                {'id': 1, 'product': 'Laptop', 'price': 15000000},
-                {'id': 2, 'product': 'Mouse', 'price': 150000}
-            ]
-        else:
-            self.results = []
-
-        return True
-
-    def fetch_results(self):
-        """Fetch PostgreSQL results"""
-        return self.results
-
-class MongoDBConnection(DatabaseConnection):
-    """MongoDB connection implementation"""
-
-    def __init__(self, host, port, database):
-        super().__init__(host, port, database)
-        self.collections = {}
-
-    def connect(self):
-        print(f"Connecting to MongoDB: {self.host}:{self.port}/{self.database}")
-        self.connected = True
-        self.connection_time = datetime.now()
-        print("MongoDB connection established!")
-        return True
-
-    def disconnect(self):
-        if self.connected:
-            print("Disconnecting from MongoDB...")
-            self.connected = False
-            print("Disconnected successfully!")
-            return True
+        if isinstance(other, Dompet):
+            return self.saldo == other.saldo
         return False
 
-    def execute_query(self, query):
-        """Execute MongoDB query (simplified)"""
-        if not self.connected:
-            raise Exception("Not connected to database")
+    def __str__(self):
+        return f"Dompet({self.pemilik}): Rp {self.saldo:,.2f}"
 
-        print(f"Executing MongoDB query: {query}")
-        # Simulate MongoDB query
+
+# --- PROGRAM UTAMA ---
+if __name__ == "__main__":
+    # Inisialisasi berbagai objek metode pembayaran
+    va_bca = TransferBank("BCA", "880121140001")
+    gopay = EWallet("GoPay", "081234567890", saldo_wallet=500000)
+    crypto = CryptoPayment("0x71C...b89A", "USDT")
+
+    # Seluruh objek dimasukkan ke satu list heterogen
+    channel_pembayaran = [va_bca, gopay, crypto]
+
+    # Eksekusi fungsi polymorphic seragam
+    proses_checkout_pesanan(channel_pembayaran, 320000)
+
+    # Uji Operator Overloading
+    print("\n--- Uji Operator Overloading Dompet ---")
+    d1 = Dompet("Andi", 150000)
+    d2 = Dompet("Budi", 250000)
+    d_gabungan = d1 + d2  # Memanggil __add__
+    print("Dompet 1 :", d1)
+    print("Dompet 2 :", d2)
+    print("Hasil d1 + d2 :", d_gabungan)
+    print("Apakah saldo d1 == d2? :", d1 == d2)`}</CodeBlock>
+
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Logika Kode (Per Baris):</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 8-15:</strong> <code>MetodePembayaran</code> menetapkan antarmuka umum melalui method <code>bayar()</code>. Jika dipanggil tanpa implementasi, method melempar <code>NotImplementedError</code>.</li>
+                <li><strong>Baris 18-44:</strong> Subclass <code>TransferBank</code> dan <code>EWallet</code> memberikan implementasi unik masing-masing (biaya admin vs cashback).</li>
+                <li><strong>Baris 50-60 (Duck Typing):</strong> <code>CryptoPayment</code> sama sekali tidak mewarisi <code>MetodePembayaran</code>. Namun karena ia memiliki fungsi <code>bayar(self, tagihan)</code> dengan nama dan tanda tangan yang cocok, sistem tetap dapat menjalankannya dengan mulus.</li>
+                <li><strong>Baris 66-70:</strong> Fungsi <code>proses_checkout_pesanan</code> tidak memerlukan rantai <code>if-elif-else</code> untuk memeriksa apakah objek bertipe bank, e-wallet, atau crypto. Cukup panggil <code>opsi.bayar(total_belanja)</code>.</li>
+                <li><strong>Baris 76-96 (Operator Overloading):</strong> Dunder method <code>__add__</code> memungkinkan operasi penjumlahan ekspresif antar dua objek <code>d1 + d2</code>.</li>
+              </ul>
+            </div>
+          )}
+
+          {codeOutput(
+            <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`================ PROSES CHECKOUT TAGIHAN Rp 320,000.00 ================
+
+Memproses opsi: Transfer Bank BCA...
+[Transfer Bank BCA] Tagihan: Rp 320,000.00 + Admin: Rp 4,000 = Total: Rp 324,000.00
+ -> Silakan transfer tepat ke Virtual Account: 880121140001
+
+Memproses opsi: E-Wallet GoPay...
+[E-Wallet GoPay] Pembayaran Rp 320,000.00 BERHASIL via akun 081234567890.
+ -> Selamat! Anda mendapatkan cashback Rp 16,000.00. Sisa saldo: Rp 180,000.00
+
+Memproses opsi: CryptoPayment...
+[Crypto Gateway] Mengonversi Rp 320,000.00 -> 20.00 USDT
+ -> Transaksi tercatat di blockchain untuk wallet 0x71C...b8... Success!
+
+--- Uji Operator Overloading Dompet ---
+Dompet 1 : Dompet(Andi): Rp 150,000.00
+Dompet 2 : Dompet(Budi): Rp 250,000.00
+Hasil d1 + d2 : Dompet(Andi & Budi): Rp 400,000.00
+Apakah saldo d1 == d2? : False`}
+            </pre>
+          )}
+
+          {calloutExercise(
+            "Engine Dispatcher Multi-Saluran Notifikasi",
+            "Buat file latihan_notifikasi.py. Buat 3 class berbeda: NotifikasiEmail, NotifikasiSMS, dan NotifikasiWhatsApp yang masing-masing memiliki method kirim(pesan, penerima). Terapkan fungsi broadcast_pengumuman(daftar_channel, pesan) untuk mengirim pesan siaran darurat ke seluruh kanal sekaligus!"
+          )}
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 6. ABSTRACT CLASS & INTERFACE                                             */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "abstract-class") && (
+        <section id="abstract-class">
+          <h2>6. Abstract Class &amp; Interface</h2>
+          <p>
+            Dalam pengembangan perangkat lunak berskala besar yang dikerjakan oleh tim, kita sering kali membutuhkan sebuah <strong>kontrak desain arsitektur</strong> yang kaku. Kontrak ini menjamin bahwa seluruh komponen turunan wajib mengimplementasikan fungsi-fungsi tertentu dengan nama dan spesifikasi yang seragam.
+          </p>
+          <p>
+            Di Python, kontrak ini diwujudkan melalui <strong>Abstract Base Class (ABC)</strong> yang disediakan oleh modul bawaan <code>abc</code>.
+          </p>
+
+          <h3>Karakteristik Utama Abstract Class di Python</h3>
+          <ul>
+            <li><strong>Tidak Dapat Diinstansiasi Langsung</strong>: Jika Anda mencoba membuat objek langsung dari class abstract yang memiliki method abstract, Python akan melempar <code>TypeError: Can&#39;t instantiate abstract class with abstract method...</code>.</li>
+            <li><strong>Dekorator <code>@abstractmethod</code></strong>: Menandai metode yang <strong>wajib</strong> dioverride oleh semua subclass konkrit. Jika ada subclass yang lupa mengimplementasikannya, subclass tersebut juga akan otomatis dianggap abstract dan tidak dapat digunakan.</li>
+            <li><strong>Boleh Memiliki Concrete Method</strong>: Berbeda dengan pure interface di beberapa bahasa lain, Abstract Class di Python dapat menyediakan metode reguler dengan logika bawaan yang siap dibagikan ke seluruh subclass.</li>
+            <li><strong>Abstract Property</strong>: Menggabungkan <code>@property</code> dan <code>@abstractmethod</code> untuk mewajibkan subclass menyediakan getter properti tertentu.</li>
+            <li><strong>Interface Pattern di Python</strong>: Sebuah class murni abstract di mana 100% metodenya adalah <code>@abstractmethod</code> tanpa body implementasi (hanya <code>pass</code>).</li>
+          </ul>
+
+          <h3>Hands-on 7: Arsitektur Konektor Database &amp; Shape Geometri (06_abstract_class.py)</h3>
+          <p>
+            Buat file baru <code>06_abstract_class.py</code>, lalu salin dan jalankan kode berikut:
+          </p>
+
+          <CodeBlock language="python">{`# ==============================================================================
+# Berkas: 06_abstract_class.py
+# Deskripsi: Penerapan modul abc, ABC, @abstractmethod, Interface & Enforcement
+# ==============================================================================
+
+from abc import ABC, abstractmethod
+import math
+
+# ------------------------------------------------------------------------------
+# 1. ABSTRACT BASE CLASS: SHAPE GEOMETRI
+# ------------------------------------------------------------------------------
+class Shape(ABC):
+    def __init__(self, nama: str):
+        self.nama = nama
+
+    # ABSTRACT METHOD 1: Wajib diimplementasikan subclass
+    @abstractmethod
+    def luas(self) -> float:
+        """Menghitung luas area bangun datar"""
+        pass
+
+    # ABSTRACT METHOD 2: Wajib diimplementasikan subclass
+    @abstractmethod
+    def keliling(self) -> float:
+        """Menghitung keliling bangun datar"""
+        pass
+
+    # CONCRETE METHOD: Berbagi logika umum ke seluruh subclass
+    def cetak_laporan(self):
+        print(f"[{self.nama}] Luas: {self.luas():.2f} unit persegi | Keliling: {self.keliling():.2f} unit")
+
+
+class PersegiPanjang(Shape):
+    def __init__(self, panjang: float, lebar: float):
+        super().__init__("Persegi Panjang")
+        self.panjang = panjang
+        self.lebar = lebar
+
+    # Mengimplementasikan seluruh abstract method
+    def luas(self) -> float:
+        return self.panjang * self.lebar
+
+    def keliling(self) -> float:
+        return 2 * (self.panjang + self.lebar)
+
+
+class Lingkaran(Shape):
+    def __init__(self, radius: float):
+        super().__init__("Lingkaran")
+        self.radius = radius
+
+    def luas(self) -> float:
+        return math.pi * (self.radius ** 2)
+
+    def keliling(self) -> float:
+        return 2 * math.pi * self.radius
+
+
+# ------------------------------------------------------------------------------
+# 2. INTERFACE PATTERN: KONEKTOR DATABASE UNTUK WEB BACKEND
+# ------------------------------------------------------------------------------
+class DatabaseConnector(ABC):
+    @property
+    @abstractmethod
+    def driver_name(self) -> str:
+        """Abstract property: nama mesin database"""
+        pass
+
+    @abstractmethod
+    def connect(self, host: str, port: int, database: str) -> bool:
+        pass
+
+    @abstractmethod
+    def execute_query(self, sql: str) -> list:
+        pass
+
+    @abstractmethod
+    def disconnect(self):
+        pass
+
+
+class PostgreSQLConnector(DatabaseConnector):
+    @property
+    def driver_name(self) -> str:
+        return "PostgreSQL (psycopg2)"
+
+    def connect(self, host: str, port: int, database: str) -> bool:
+        print(f"[{self.driver_name}] Terhubung ke postgresql://{host}:{port}/{database} [OK]")
         return True
 
-    def fetch_results(self):
-        """Fetch MongoDB results"""
-        return [
-            {'_id': '507f1f77bcf86cd799439011', 'name': 'Document 1'},
-            {'_id': '507f1f77bcf86cd799439012', 'name': 'Document 2'}
-        ]
-
-# Database Manager - polymorphic usage
-class DatabaseManager:
-    """Manager untuk mengelola berbagai jenis database connections"""
-
-    def __init__(self):
-        self.connections = []
-
-    def add_connection(self, connection):
-        """Add a database connection (polymorphic parameter)"""
-        if isinstance(connection, DatabaseConnection):
-            self.connections.append(connection)
-            print(f"Added connection: {connection}")
-        else:
-            raise TypeError("Connection must be a DatabaseConnection instance")
-
-    def connect_all(self):
-        """Connect to all databases"""
-        print("\n" + "="*60)
-        print("Connecting to all databases...")
-        print("="*60)
-        for conn in self.connections:
-            conn.connect()
-            print()
-
-    def execute_on_all(self, query):
-        """Execute query on all connected databases"""
-        print("\n" + "="*60)
-        print(f"Executing on all databases: {query}")
-        print("="*60)
-        for conn in self.connections:
-            if conn.connected:
-                print(f"\n{conn}:")
-                conn.execute_query(query)
-                results = conn.fetch_results()
-                print(f"Results: {len(results)} rows")
-                for row in results:
-                    print(f"  {row}")
-
-    def disconnect_all(self):
-        """Disconnect from all databases"""
-        print("\n" + "="*60)
-        print("Disconnecting from all databases...")
-        print("="*60)
-        for conn in self.connections:
-            conn.disconnect()
-            print()
-
-# Penggunaan
-manager = DatabaseManager()
-
-# Add different types of database connections
-mysql_conn = MySQLConnection("localhost", 3306, "users_db", "root", "password123")
-postgres_conn = PostgreSQLConnection("localhost", 5432, "products_db", "admin", "pass456")
-mongo_conn = MongoDBConnection("localhost", 27017, "documents_db")
-
-manager.add_connection(mysql_conn)
-manager.add_connection(postgres_conn)
-manager.add_connection(mongo_conn)
-
-# Connect to all
-manager.connect_all()
-
-# Execute queries on all
-manager.execute_on_all("SELECT * FROM table")
-
-# Disconnect from all
-manager.disconnect_all()`}</CodeBlock>
-
-
-<h3 id="abstract-static-methods-class-methods">Abstract Static Methods & Class Methods</h3>
-<p>Kalian juga bisa membuat abstract static methods dan class methods:</p>
-
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-
-class DataParser(ABC):
-    """Abstract base class untuk data parser"""
-
-    @abstractmethod
-    def parse(self, data):
-        """Instance method - parse data"""
-        pass
-
-    @staticmethod
-    @abstractmethod
-    def validate_format(data):
-        """Static method - validate data format"""
-        pass
-
-    @classmethod
-    @abstractmethod
-    def from_file(cls, filename):
-        """Class method - create parser from file"""
-        pass
-
-class JSONParser(DataParser):
-    def __init__(self):
-        self.parsed_data = None
-
-    def parse(self, data):
-        """Parse JSON data"""
-        import json
-        self.parsed_data = json.loads(data)
-        return self.parsed_data
-
-    @staticmethod
-    def validate_format(data):
-        """Validate JSON format"""
-        import json
-        try:
-            json.loads(data)
-            return True
-        except json.JSONDecodeError:
-            return False
-
-    @classmethod
-    def from_file(cls, filename):
-        """Create JSONParser from file"""
-        with open(filename, 'r') as f:
-            data = f.read()
-        parser = cls()
-        parser.parse(data)
-        return parser
-
-class XMLParser(DataParser):
-    def __init__(self):
-        self.parsed_data = None
-
-    def parse(self, data):
-        """Parse XML data"""
-        # Simplified - in reality would use xml.etree
-        self.parsed_data = data
-        return self.parsed_data
-
-    @staticmethod
-    def validate_format(data):
-        """Validate XML format"""
-        return data.strip().startswith('<') and data.strip().endswith('>')
-
-    @classmethod
-    def from_file(cls, filename):
-        """Create XMLParser from file"""
-        with open(filename, 'r') as f:
-            data = f.read()
-        parser = cls()
-        parser.parse(data)
-        return parser
-
-# Penggunaan
-json_data = '{"name": "John", "age": 30}'
-xml_data = '<person><name>John</name><age>30</age></person>'
-
-print("JSON valid:", JSONParser.validate_format(json_data))
-print("XML valid:", XMLParser.validate_format(xml_data))
-
-json_parser = JSONParser()
-print("Parsed JSON:", json_parser.parse(json_data))`}</CodeBlock>
-
-
-<h3 id="praktik-terbaik">Praktik Terbaik</h3>
-
-<h3 id="1-use-abstract-classes-untuk-shared-behavior">1. Use Abstract Classes untuk Shared Behavior</h3>
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-
-class Report(ABC):
-    """Base class untuk semua report"""
-
-    def __init__(self, title):
-        self.title = title
-        self.data = []
-
-    def add_data(self, item):
-        """Concrete method - shared behavior"""
-        self.data.append(item)
-
-    @abstractmethod
-    def generate(self):
-        """Abstract method - must be implemented by subclass"""
-        pass
-
-    def export(self, filename):
-        """Template method pattern"""
-        content = self.generate()
-        with open(filename, 'w') as f:
-            f.write(content)
-        return f"Report exported to {filename}"`}</CodeBlock>
-
-
-<h3 id="2-keep-abstract-classes-focused">2. Keep Abstract Classes Focused</h3>
-<CodeBlock language="">{`# Good - focused interface
-class Sortable(ABC):
-    @abstractmethod
-    def sort(self):
-        pass
-
-class Searchable(ABC):
-    @abstractmethod
-    def search(self, query):
-        pass
-
-# Better than one large abstract class with many methods`}</CodeBlock>
-
-
-<h3 id="3-document-abstract-methods">3. Document Abstract Methods</h3>
-<CodeBlock language="">{`from abc import ABC, abstractmethod
-
-class Plugin(ABC):
-    @abstractmethod
-    def initialize(self):
-        """
-        Initialize the plugin.
-
-        This method should set up any necessary resources
-        and prepare the plugin for use.
-
-        Returns:
-            bool: True if initialization successful
-        """
-        pass`}</CodeBlock>
-
-
-<h3 id="kapan-menggunakan-abstract-class">Kapan Menggunakan Abstract Class?</h3>
-
-<h3 id="latihan">Latihan</h3>
-<ul>
-  <li>
-Buat abstract class FileHandler dengan methods:
-
-read() - abstract
-write() - abstract
-close() - concrete
-Implementasikan TextFileHandler dan BinaryFileHandler
-
-</li>
-  <li>read() - abstract</li>
-  <li>write() - abstract</li>
-  <li>close() - concrete</li>
-  <li>Implementasikan TextFileHandler dan BinaryFileHandler</li>
-  <li>
-Buat interface Serializable dengan methods:
-
-to_json() - abstract
-from_json() - abstract class method
-Implementasikan untuk minimal 2 class berbeda
-
-</li>
-  <li>to_json() - abstract</li>
-  <li>from_json() - abstract class method</li>
-  <li>Implementasikan untuk minimal 2 class berbeda</li>
-  <li>
-Buat abstract class GameCharacter dengan:
-
-Abstract properties: health, attack_power
-Abstract methods: attack(), defend()
-Concrete method: is_alive()
-Implementasikan Warrior, Mage, Archer
-
-</li>
-  <li>Abstract properties: health, attack_power</li>
-  <li>Abstract methods: attack(), defend()</li>
-  <li>Concrete method: is_alive()</li>
-  <li>Implementasikan Warrior, Mage, Archer</li>
-</ul>
-
-<p>Buat abstract class FileHandler dengan methods:</p>
-
-<ul>
-  <li>read() - abstract</li>
-  <li>write() - abstract</li>
-  <li>close() - concrete</li>
-  <li>Implementasikan TextFileHandler dan BinaryFileHandler</li>
-</ul>
-
-<p>Buat interface Serializable dengan methods:</p>
-
-<ul>
-  <li>to_json() - abstract</li>
-  <li>from_json() - abstract class method</li>
-  <li>Implementasikan untuk minimal 2 class berbeda</li>
-</ul>
-
-<p>Buat abstract class GameCharacter dengan:</p>
-
-<ul>
-  <li>Abstract properties: health, attack_power</li>
-  <li>Abstract methods: attack(), defend()</li>
-  <li>Concrete method: is_alive()</li>
-  <li>Implementasikan Warrior, Mage, Archer</li>
-</ul>
-
-      <h2 id="tugas-praktikum">Tugas: Sistem Perpustakaan Berbasis OOP</h2>
-      <p>Bangun sistem manajemen perpustakaan yang mengimplementasikan class, inheritance, encapsulation dengan property getter/setter, polymorphism, dan abstract base class.</p>
-
-      <h2 id="format-pengumpulan">Format Pengumpulan</h2>
-      <ul>
-        <li>Folder: <code>[NAMA]_[NIM]_pertemuan5</code></li>
-        <li><strong>Deadline:</strong> Mengikuti instruksi asisten praktikum.</li>
-      </ul>
-
-      <SubmissionBox pertemuan={5} />
+    def execute_query(self, sql: str) -> list:
+        print(f"[{self.driver_name}] Menjalankan SQL: '{sql}'")
+        return [{"id": 1, "nama": "Ahmad"}, {"id": 2, "nama": "Nabila"}]
+
+    def disconnect(self):
+        print(f"[{self.driver_name}] Koneksi database ditutup dengan aman.")
+
+
+# --- PROGRAM UTAMA ---
+if __name__ == "__main__":
+    print("--- 1. Uji Coba Kepatuhan Implementasi Shape ---")
+    pp = PersegiPanjang(10, 5)
+    ling = Lingkaran(7)
+
+    pp.cetak_laporan()
+    ling.cetak_laporan()
+
+    print("\n--- 2. Pembuktian Enforcement Abstract Class ---")
+    try:
+        # Coba instansiasi langsung dari abstract class Shape
+        bentuk_gaib = Shape("Bentuk Abstrak")
+    except TypeError as err:
+        print(f"Penolakan Python Terbukti: {err}")
+
+    # Kelas yang 'lupa' mengimplementasikan salah satu abstract method
+    class SegitigaCacat(Shape):
+        def __init__(self, alas, tinggi):
+            super().__init__("Segitiga Cacat")
+            self.alas = alas
+            self.tinggi = tinggi
+        
+        def luas(self):
+            return 0.5 * self.alas * self.tinggi
+        # Lupa mengimplementasikan keliling()!
+
+    try:
+        s = SegitigaCacat(6, 8)
+    except TypeError as err:
+        print(f"Penolakan Subclass Cacat: {err}")
+
+    print("\n--- 3. Uji Coba Interface Database Backend ---")
+    db = PostgreSQLConnector()
+    db.connect("localhost", 5432, "paw_praktikum_db")
+    hasil = db.execute_query("SELECT id, nama FROM mahasiswa;")
+    print("Hasil Query Data:", hasil)
+    db.disconnect()`}</CodeBlock>
+
+          {codeHint(
+            <div>
+              <p><strong>Penjelasan Logika Kode (Per Baris):</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><strong>Baris 6:</strong> Mengimpor class <code>ABC</code> (Abstract Base Class) dan dekorator <code>@abstractmethod</code> dari modul standar <code>abc</code>.</li>
+                <li><strong>Baris 11-26 (Class Shape):</strong> Mewarisi <code>ABC</code>. Method <code>luas()</code> dan <code>keliling()</code> didekorasi dengan <code>@abstractmethod</code> sehingga tidak boleh memiliki instansiasi nyata tanpa dioverride. Method <code>cetak_laporan()</code> adalah concrete method yang memanggil fungsi abstract tersebut secara polimorfik.</li>
+                <li><strong>Baris 29-53:</strong> <code>PersegiPanjang</code> dan <code>Lingkaran</code> mengoverride kedua method abstract dengan rumus matematika masing-masing.</li>
+                <li><strong>Baris 58-74 (DatabaseConnector):</strong> Pola interface murni untuk backend database, lengkap dengan <em>abstract property</em> <code>driver_name</code>.</li>
+                <li><strong>Baris 97-120:</strong> Membuktikan bahwa instansiasi langsung <code>Shape()</code> atau instansiasi subclass yang tidak lengkap seperti <code>SegitigaCacat</code> (lupa override <code>keliling</code>) secara tegas digagalkan oleh Python runtime dengan melempar <code>TypeError</code>.</li>
+              </ul>
+            </div>
+          )}
+
+          {codeOutput(
+            <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`--- 1. Uji Coba Kepatuhan Implementasi Shape ---
+[Persegi Panjang] Luas: 50.00 unit persegi | Keliling: 30.00 unit
+[Lingkaran] Luas: 153.94 unit persegi | Keliling: 43.98 unit
+
+--- 2. Pembuktian Enforcement Abstract Class ---
+Penolakan Python Terbukti: Can't instantiate abstract class Shape with abstract methods keliling, luas
+Penolakan Subclass Cacat: Can't instantiate abstract class SegitigaCacat with abstract method keliling
+
+--- 3. Uji Coba Interface Database Backend ---
+[PostgreSQL (psycopg2)] Terhubung ke postgresql://localhost:5432/paw_praktikum_db [OK]
+[PostgreSQL (psycopg2)] Menjalankan SQL: 'SELECT id, nama FROM mahasiswa;'
+Hasil Query Data: [{'id': 1, 'nama': 'Ahmad'}, {'id': 2, 'nama': 'Nabila'}]
+[PostgreSQL (psycopg2)] Koneksi database ditutup dengan aman.`}
+            </pre>
+          )}
+
+          {calloutExercise(
+            "Interface File Storage Service",
+            "Buat file latihan_storage.py. Buat abstract class FileStorage(ABC) dengan abstract method upload_file(nama_file, data_bytes) dan download_file(nama_file). Implementasikan dua class konkrit: LocalDiskStorage (simulasi simpan di folder lokal) dan CloudStorage (simulasi simpan ke server cloud)!"
+          )}
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 7. TUGAS PRAKTIKUM                                                        */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "tugas-praktikum") && (
+        <section id="tugas-praktikum">
+          <h2>Tugas: Sistem Perpustakaan</h2>
+          <p>
+            Pada tugas praktikum Pertemuan 5 ini, Anda diminta untuk merancang dan mengimplementasikan sebuah sistem nyata terpadu: <strong>Sistem Manajemen Perpustakaan Terpadu Berbasis OOP (Library Management System)</strong>.
+          </p>
+          <p>
+            Tugas ini menguji pemahaman komprehensif Anda dalam menyatukan seluruh pilar OOP: <strong>Abstract Class &amp; Interface</strong>, <strong>Inheritance</strong>, <strong>Encapsulation (Access Modifiers &amp; Property)</strong>, serta <strong>Polymorphism (Overriding &amp; Loop Koleksi)</strong>.
+          </p>
+
+          <h3>Spesifikasi Arsitektur Class yang Wajib Dibuat</h3>
+          <ol style={{ lineHeight: 1.8 }}>
+            <li>
+              <strong>Abstract Class <code>LibraryItem(ABC)</code> (Berkas: <code>library_item.py</code>)</strong>:
+              <ul>
+                <li>Atribut: <code>item_id</code> (str), <code>judul</code> (str), <code>tahun_terbit</code> (int), protected <code>_kategori</code> (str), dan private <code>__is_dipinjam</code> (bool, default <code>False</code>).</li>
+                <li>Constructor <code>__init__(self, item_id, judul, tahun_terbit, kategori)</code>.</li>
+                <li>Property Decorator: <code>@property def is_dipinjam(self) -&gt; bool</code> (getter) dan method <code>pinjam()</code> serta <code>kembalikan()</code> untuk mengubah status peminjaman secara aman.</li>
+                <li>Abstract Method 1: <code>@abstractmethod def hitung_denda(self, hari_terlambat: int) -&gt; float</code></li>
+                <li>Abstract Method 2: <code>@abstractmethod def get_detail(self) -&gt; str</code></li>
+              </ul>
+            </li>
+            <li>
+              <strong>Subclass <code>Book</code> (Mewarisi <code>LibraryItem</code>)</strong>:
+              <ul>
+                <li>Atribut tambahan: <code>penulis</code> (str), <code>jumlah_halaman</code> (int), <code>genre</code> (str).</li>
+                <li>Implementasi <code>hitung_denda</code>: Tarif denda buku adalah <strong>Rp 2.000,- per hari</strong> keterlambatan.</li>
+                <li>Override <code>get_detail()</code> dan dunder method <code>__str__()</code> untuk menampilkan informasi buku secara lengkap.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Subclass <code>Magazine</code> (Mewarisi <code>LibraryItem</code>)</strong>:
+              <ul>
+                <li>Atribut tambahan: <code>edisi</code> (int), <code>bulan_terbit</code> (str).</li>
+                <li>Implementasi <code>hitung_denda</code>: Tarif denda majalah adalah <strong>Rp 1.000,- per hari</strong> keterlambatan.</li>
+                <li>Override <code>get_detail()</code> dan dunder method <code>__str__()</code>.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Class <code>Member</code> (Anggota Perpustakaan)</strong>:
+              <ul>
+                <li>Atribut: <code>member_id</code> (str), <code>nama</code> (str), private <code>__daftar_pinjaman</code> (list item yang sedang dipinjam).</li>
+                <li>Method <code>pinjam_item(item: LibraryItem)</code>: Menambahkan item ke daftar pinjaman dan menandai status item menjadi dipinjam.</li>
+                <li>Method <code>kembalikan_item(item: LibraryItem, hari_terlambat: int = 0)</code>: Menghapus item dari daftar pinjaman, mengembalikan status item, dan mencetak denda jika ada keterlambatan.</li>
+                <li>Method <code>tampilkan_pinjaman()</code>: Menampilkan daftar seluruh buku/majalah yang sedang dipinjam anggota.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Class <code>Library</code> (Pusat Pengelolaan Perpustakaan)</strong>:
+              <ul>
+                <li>Atribut: <code>nama_perpustakaan</code> (str), private <code>__koleksi_item</code> (list), dan private <code>__daftar_member</code> (list).</li>
+                <li>Method <code>tambah_item(item: LibraryItem)</code>: Menambahkan buku atau majalah ke katalog perpustakaan.</li>
+                <li>Method <code>registrasi_member(member: Member)</code>: Mendaftarkan anggota baru.</li>
+                <li>Method <code>cari_item(keyword: str) -&gt; list</code>: Mencari item berdasarkan kecocokan judul atau ID item.</li>
+                <li>Method <code>tampilkan_katalog(hanya_tersedia: bool = False)</code>: Menampilkan daftar seluruh koleksi atau hanya item yang siap dipinjam.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Berkas Driver Pengujian (<code>main.py</code>)</strong>:
+              <ul>
+                <li>Mengimpor seluruh class yang telah dibuat.</li>
+                <li>Membuat minimal 2 objek <code>Book</code> dan 2 objek <code>Magazine</code>.</li>
+                <li>Membuat minimal 2 objek <code>Member</code>.</li>
+                <li>Mendemonstrasikan skenario operasional: registrasi, peminjaman sukses, percobaan meminjam item yang sudah dipinjam, pencarian item, pengembalian tepat waktu, dan pengembalian terlambat (pembuktian kalkulasi denda polimorfik).</li>
+              </ul>
+            </li>
+          </ol>
+
+          <h3>Rubrik &amp; Kriteria Penilaian Tugas (Total 100%)</h3>
+          <div className="table-wrapper" style={{ overflowX: "auto", margin: "1rem 0" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <thead>
+                <tr style={{ borderBottom: "2px solid var(--color-border)", textAlign: "left" }}>
+                  <th style={{ padding: "0.75rem 1rem" }}>Komponen Penilaian</th>
+                  <th style={{ padding: "0.75rem 1rem", textAlign: "right" }}>Bobot</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
+                    <strong>1. Penerapan Abstract Class &amp; Pewarisan (Inheritance)</strong>
+                    <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
+                      Pembuatan <code>LibraryItem(ABC)</code> dengan <code>@abstractmethod</code>, subclass <code>Book</code> dan <code>Magazine</code> yang mewarisi parent menggunakan <code>super().__init__()</code> secara benar.
+                    </div>
+                  </td>
+                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>30%</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
+                    <strong>2. Implementasi Encapsulation &amp; Properties</strong>
+                    <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
+                      Penerapan access modifier (private <code>__is_dipinjam</code>, <code>__daftar_pinjaman</code>, <code>__koleksi_item</code>), proteksi state, dan dekorator <code>@property</code>.
+                    </div>
+                  </td>
+                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>25%</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
+                    <strong>3. Penerapan Polymorphism &amp; Method Overriding</strong>
+                    <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
+                      Override method <code>hitung_denda()</code>, <code>get_detail()</code>, serta pemrosesan koleksi heterogen item dalam katalog perpustakaan tanpa percabangan tipe manual.
+                    </div>
+                  </td>
+                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>20%</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
+                    <strong>4. Fungsionalitas &amp; Logika Bisnis Perpustakaan</strong>
+                    <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
+                      Seluruh alur peminjaman, pengembalian, pencarian, dan penanganan kondisi error berjalan tanpa crash saat dieksekusi di <code>main.py</code>.
+                    </div>
+                  </td>
+                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>15%</td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
+                    <strong>5. Standar Kode PEP 8 &amp; Dokumentasi README.md</strong>
+                    <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
+                      Docstrings pada setiap class dan method, penamaan <em>snake_case</em> konsisten, serta kelengkapan file <code>README.md</code> beserta diagram kelas dan bukti tangkapan layar.
+                    </div>
+                  </td>
+                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>10%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Kelengkapan Berkas README.md:</h3>
+          <ul>
+            <li><strong>Identitas Mahasiswa</strong>: Nama Lengkap, NIM, Kelas Praktikum, dan Dosen Pengampu / Asisten Praktikum.</li>
+            <li><strong>Deskripsi Arsitektur OOP</strong>: Penjelasan singkat fungsi masing-masing class dan bagaimana 4 pilar OOP diimplementasikan.</li>
+            <li><strong>Diagram Kelas (Class Diagram)</strong>: Bagan relasi inheritance dan komposisi class (dapat berupa teks ASCII, mermaid diagram, atau gambar sketsa).</li>
+            <li><strong>Petunjuk Eksekusi</strong>: Langkah menjalankan program dari terminal (contoh: <code>python main.py</code>).</li>
+            <li><strong>Screenshot Output</strong>: Bukti tangkapan layar terminal saat program <code>main.py</code> berhasil dijalankan secara lengkap.</li>
+          </ul>
+
+          <div style={{ marginTop: "2rem" }}>
+            <SubmissionBox pertemuan={5} />
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 8. FORMAT PENGUMPULAN                                                     */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "format-pengumpulan") && (
+        <section id="format-pengumpulan">
+          <h2>Format Pengumpulan</h2>
+          <p>Ketentuan pengumpulan tugas dan laporan praktikum:</p>
+          <ul>
+            <li>
+              <strong>Format Repositori GitHub</strong>: Gunakan repositori yang sudah dibuat sebelumnya dengan nama:
+              <br />
+              <code>pemrograman_web_itera_[NIM]</code> (Contoh: <code>pemrograman_web_itera_121140001</code>).
+            </li>
+            <li>
+              <strong>Format Folder Pertemuan</strong>: Buat folder khusus di dalam repositori dengan struktur nama:
+              <br />
+              <code>[NAMA]_[NIM]_pertemuan5</code> (Contoh: <code>ahmadfadhil_121140001_pertemuan5</code>).
+            </li>
+            <li>
+              <strong>Struktur Berkas yang Diharapkan:</strong>
+              <CodeBlock language="bash">{`ahmadfadhil_121140001_pertemuan5/
+├── latihan/
+│   ├── 01_everything_is_object.py
+│   ├── 01_procedural_vs_oop.py
+│   ├── 02_class_object.py
+│   ├── 03_inheritance.py
+│   ├── 04_encapsulation.py
+│   ├── 05_polymorphism.py
+│   └── 06_abstract_class.py
+├── tugas_perpustakaan/
+│   ├── library_item.py
+│   ├── member.py
+│   ├── library.py
+│   └── main.py
+├── README.md
+└── .gitignore`}</CodeBlock>
+            </li>
+            <li>Pastikan direktori cache Python (<code>__pycache__/</code>) dan virtual environment (<code>venv/</code>) <strong>tidak diunggah</strong> ke Git (tambahkan ke dalam berkas <code>.gitignore</code>).</li>
+          </ul>
+
+          <SubmissionBox pertemuan={5} />
+        </section>
+      )}
     </>
   );
 }
