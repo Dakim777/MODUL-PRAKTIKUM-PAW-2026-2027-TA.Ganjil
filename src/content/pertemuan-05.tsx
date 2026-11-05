@@ -1562,6 +1562,13 @@ Hasil Query Data: [{'id': 1, 'nama': 'Ahmad'}, {'id': 2, 'nama': 'Nabila'}]
 └── .gitignore`}</CodeBlock>
             </li>
             <li>Pastikan direktori cache Python (<code>__pycache__/</code>) dan virtual environment (<code>venv/</code>) <strong>tidak diunggah</strong> ke Git (tambahkan ke dalam berkas <code>.gitignore</code>).</li>
+            <li>
+              <strong>Batas Waktu Pengumpulan (Deadline):</strong>
+              <ul>
+                <li><strong>Kelas RA:</strong> <strong>Senin, 16 November 2026, pukul 23:59 WIB</strong></li>
+                <li><strong>Kelas RB:</strong> <strong>Senin, 16 November 2026, pukul 23:59 WIB</strong></li>
+              </ul>
+            </li>
           </ul>
 
           <SubmissionBox pertemuan={5} />
