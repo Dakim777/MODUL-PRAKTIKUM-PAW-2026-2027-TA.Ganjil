@@ -1344,138 +1344,178 @@ Hasil Query Data: [{'id': 1, 'nama': 'Ahmad'}, {'id': 2, 'nama': 'Nabila'}]
       {/* ========================================================================= */}
       {(!subId || subId === "tugas-praktikum") && (
         <section id="tugas-praktikum">
-          <h2>Tugas: Sistem Perpustakaan</h2>
-          <p>
-            Pada tugas praktikum Pertemuan 5 ini, Anda diminta untuk merancang dan mengimplementasikan sebuah sistem nyata terpadu: <strong>Sistem Manajemen Perpustakaan Terpadu Berbasis OOP (Library Management System)</strong>.
-          </p>
-          <p>
-            Tugas ini menguji pemahaman komprehensif Anda dalam menyatukan seluruh pilar OOP: <strong>Abstract Class &amp; Interface</strong>, <strong>Inheritance</strong>, <strong>Encapsulation (Access Modifiers &amp; Property)</strong>, serta <strong>Polymorphism (Overriding &amp; Loop Koleksi)</strong>.
-          </p>
-
-          <h3>Spesifikasi Arsitektur Class yang Wajib Dibuat</h3>
-          <ol style={{ lineHeight: 1.8 }}>
-            <li>
-              <strong>Abstract Class <code>LibraryItem(ABC)</code> (Berkas: <code>library_item.py</code>)</strong>:
-              <ul>
-                <li>Atribut: <code>item_id</code> (str), <code>judul</code> (str), <code>tahun_terbit</code> (int), protected <code>_kategori</code> (str), dan private <code>__is_dipinjam</code> (bool, default <code>False</code>).</li>
-                <li>Constructor <code>__init__(self, item_id, judul, tahun_terbit, kategori)</code>.</li>
-                <li>Property Decorator: <code>@property def is_dipinjam(self) -&gt; bool</code> (getter) dan method <code>pinjam()</code> serta <code>kembalikan()</code> untuk mengubah status peminjaman secara aman.</li>
-                <li>Abstract Method 1: <code>@abstractmethod def hitung_denda(self, hari_terlambat: int) -&gt; float</code></li>
-                <li>Abstract Method 2: <code>@abstractmethod def get_detail(self) -&gt; str</code></li>
-              </ul>
-            </li>
-            <li>
-              <strong>Subclass <code>Book</code> (Mewarisi <code>LibraryItem</code>)</strong>:
-              <ul>
-                <li>Atribut tambahan: <code>penulis</code> (str), <code>jumlah_halaman</code> (int), <code>genre</code> (str).</li>
-                <li>Implementasi <code>hitung_denda</code>: Tarif denda buku adalah <strong>Rp 2.000,- per hari</strong> keterlambatan.</li>
-                <li>Override <code>get_detail()</code> dan dunder method <code>__str__()</code> untuk menampilkan informasi buku secara lengkap.</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Subclass <code>Magazine</code> (Mewarisi <code>LibraryItem</code>)</strong>:
-              <ul>
-                <li>Atribut tambahan: <code>edisi</code> (int), <code>bulan_terbit</code> (str).</li>
-                <li>Implementasi <code>hitung_denda</code>: Tarif denda majalah adalah <strong>Rp 1.000,- per hari</strong> keterlambatan.</li>
-                <li>Override <code>get_detail()</code> dan dunder method <code>__str__()</code>.</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Class <code>Member</code> (Anggota Perpustakaan)</strong>:
-              <ul>
-                <li>Atribut: <code>member_id</code> (str), <code>nama</code> (str), private <code>__daftar_pinjaman</code> (list item yang sedang dipinjam).</li>
-                <li>Method <code>pinjam_item(item: LibraryItem)</code>: Menambahkan item ke daftar pinjaman dan menandai status item menjadi dipinjam.</li>
-                <li>Method <code>kembalikan_item(item: LibraryItem, hari_terlambat: int = 0)</code>: Menghapus item dari daftar pinjaman, mengembalikan status item, dan mencetak denda jika ada keterlambatan.</li>
-                <li>Method <code>tampilkan_pinjaman()</code>: Menampilkan daftar seluruh buku/majalah yang sedang dipinjam anggota.</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Class <code>Library</code> (Pusat Pengelolaan Perpustakaan)</strong>:
-              <ul>
-                <li>Atribut: <code>nama_perpustakaan</code> (str), private <code>__koleksi_item</code> (list), dan private <code>__daftar_member</code> (list).</li>
-                <li>Method <code>tambah_item(item: LibraryItem)</code>: Menambahkan buku atau majalah ke katalog perpustakaan.</li>
-                <li>Method <code>registrasi_member(member: Member)</code>: Mendaftarkan anggota baru.</li>
-                <li>Method <code>cari_item(keyword: str) -&gt; list</code>: Mencari item berdasarkan kecocokan judul atau ID item.</li>
-                <li>Method <code>tampilkan_katalog(hanya_tersedia: bool = False)</code>: Menampilkan daftar seluruh koleksi atau hanya item yang siap dipinjam.</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Berkas Driver Pengujian (<code>main.py</code>)</strong>:
-              <ul>
-                <li>Mengimpor seluruh class yang telah dibuat.</li>
-                <li>Membuat minimal 2 objek <code>Book</code> dan 2 objek <code>Magazine</code>.</li>
-                <li>Membuat minimal 2 objek <code>Member</code>.</li>
-                <li>Mendemonstrasikan skenario operasional: registrasi, peminjaman sukses, percobaan meminjam item yang sudah dipinjam, pencarian item, pengembalian tepat waktu, dan pengembalian terlambat (pembuktian kalkulasi denda polimorfik).</li>
-              </ul>
-            </li>
-          </ol>
-
-          <h3>Rubrik &amp; Kriteria Penilaian Tugas (Total 100%)</h3>
-          <div className="table-wrapper" style={{ overflowX: "auto", margin: "1rem 0" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
-              <thead>
-                <tr style={{ borderBottom: "2px solid var(--color-border)", textAlign: "left" }}>
-                  <th style={{ padding: "0.75rem 1rem" }}>Komponen Penilaian</th>
-                  <th style={{ padding: "0.75rem 1rem", textAlign: "right" }}>Bobot</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
-                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
-                    <strong>1. Penerapan Abstract Class &amp; Pewarisan (Inheritance)</strong>
-                    <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
-                      Pembuatan <code>LibraryItem(ABC)</code> dengan <code>@abstractmethod</code>, subclass <code>Book</code> dan <code>Magazine</code> yang mewarisi parent menggunakan <code>super().__init__()</code> secara benar.
-                    </div>
-                  </td>
-                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>30%</td>
-                </tr>
-                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
-                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
-                    <strong>2. Implementasi Encapsulation &amp; Properties</strong>
-                    <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
-                      Penerapan access modifier (private <code>__is_dipinjam</code>, <code>__daftar_pinjaman</code>, <code>__koleksi_item</code>), proteksi state, dan dekorator <code>@property</code>.
-                    </div>
-                  </td>
-                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>25%</td>
-                </tr>
-                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
-                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
-                    <strong>3. Penerapan Polymorphism &amp; Method Overriding</strong>
-                    <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
-                      Override method <code>hitung_denda()</code>, <code>get_detail()</code>, serta pemrosesan koleksi heterogen item dalam katalog perpustakaan tanpa percabangan tipe manual.
-                    </div>
-                  </td>
-                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>20%</td>
-                </tr>
-                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
-                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
-                    <strong>4. Fungsionalitas &amp; Logika Bisnis Perpustakaan</strong>
-                    <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
-                      Seluruh alur peminjaman, pengembalian, pencarian, dan penanganan kondisi error berjalan tanpa crash saat dieksekusi di <code>main.py</code>.
-                    </div>
-                  </td>
-                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>15%</td>
-                </tr>
-                <tr>
-                  <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
-                    <strong>5. Standar Kode PEP 8 &amp; Dokumentasi README.md</strong>
-                    <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
-                      Docstrings pada setiap class dan method, penamaan <em>snake_case</em> konsisten, serta kelengkapan file <code>README.md</code> beserta diagram kelas dan bukti tangkapan layar.
-                    </div>
-                  </td>
-                  <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>10%</td>
-                </tr>
-              </tbody>
-            </table>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1rem" }}>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--color-accent, #3b82f6)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <h2 style={{ margin: 0 }}>Tugas Praktikum</h2>
           </div>
 
-          <h3>Kelengkapan Berkas README.md:</h3>
+          {/* Kartu Utama Tugas Sesuai Silabus Resmi */}
+          <div
+            style={{
+              border: "1px solid var(--color-border)",
+              borderRadius: "12px",
+              padding: "1.75rem",
+              backgroundColor: "var(--color-bg-card, rgba(255, 255, 255, 0.02))",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.04)",
+              marginBottom: "2rem",
+            }}
+          >
+            <h3
+              style={{
+                color: "var(--color-accent, #2563eb)",
+                marginTop: 0,
+                marginBottom: "0.85rem",
+                fontSize: "1.25rem",
+                fontWeight: 600,
+              }}
+            >
+              Tugas: Sistem Manajemen Perpustakaan Sederhana
+            </h3>
+            <p style={{ lineHeight: 1.7, marginBottom: "1.25rem", color: "var(--color-text-primary)" }}>
+              Buatlah sistem manajemen perpustakaan sederhana menggunakan konsep OOP Python yang telah dipelajari. Fokus pada implementasi konsep class, inheritance, encapsulation, dan polymorphism.
+            </p>
+
+            <h4 style={{ marginBottom: "0.5rem", fontSize: "1rem", fontWeight: 600 }}>Persyaratan:</h4>
+            <ul style={{ lineHeight: 1.8, marginBottom: "1.5rem", color: "var(--color-text-primary)" }}>
+              <li>
+                Buatlah abstract class <code>LibraryItem</code> yang menjadi dasar untuk semua item di perpustakaan
+              </li>
+              <li>
+                Implementasikan minimal 2 subclass (contoh: <code>Book</code> dan <code>Magazine</code>) yang mewarisi dari <code>LibraryItem</code>
+              </li>
+              <li>
+                Setiap subclass harus mengimplementasikan minimal satu method abstract dari parent class
+              </li>
+              <li>
+                Buatlah class <code>Library</code> untuk menyimpan dan mengelola koleksi item perpustakaan
+              </li>
+              <li>
+                Terapkan encapsulation menggunakan access modifiers (protected/private) untuk melindungi data penting
+              </li>
+              <li>
+                Gunakan property decorator untuk minimal satu atribut di salah satu class
+              </li>
+              <li>
+                Sistem minimal harus dapat:
+                <ul style={{ marginTop: "0.35rem", marginBottom: "0.35rem", paddingLeft: "1.5rem" }}>
+                  <li>Menambahkan item ke perpustakaan</li>
+                  <li>Menampilkan daftar item yang tersedia</li>
+                  <li>Mencari item berdasarkan judul atau id</li>
+                </ul>
+              </li>
+            </ul>
+
+            {/* Tips Pengerjaan Callout Box */}
+            <div
+              style={{
+                borderRadius: "10px",
+                padding: "1rem 1.25rem",
+                backgroundColor: "rgba(168, 85, 247, 0.08)",
+                border: "1px solid rgba(168, 85, 247, 0.25)",
+                display: "flex",
+                gap: "0.85rem",
+                alignItems: "flex-start",
+                marginBottom: "1.75rem",
+              }}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#a855f7"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ flexShrink: 0, marginTop: "2px" }}
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <div>
+                <strong style={{ color: "#a855f7", display: "block", marginBottom: "0.25rem", fontSize: "0.95rem" }}>
+                  Tips Pengerjaan
+                </strong>
+                <p style={{ margin: 0, fontSize: "0.9rem", lineHeight: 1.6, color: "var(--color-text-secondary)" }}>
+                  Buatlah struktur program yang sederhana namun menerapkan konsep OOP dengan benar. Pastikan untuk membuat dokumentasi berupa komentar di setiap class dan method penting untuk menjelaskan fungsinya.
+                </p>
+              </div>
+            </div>
+
+            <h4 style={{ marginBottom: "0.75rem", fontSize: "1rem", fontWeight: 600 }}>Kriteria Penilaian:</h4>
+            <div className="table-wrapper" style={{ overflowX: "auto", margin: "0.5rem 0" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ borderBottom: "2px solid var(--color-border)", textAlign: "left" }}>
+                    <th style={{ padding: "0.75rem 1rem", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--color-text-secondary)" }}>
+                      ASPEK
+                    </th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "right", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--color-text-secondary)" }}>
+                      BOBOT
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                    <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>Penggunaan Abstract Class dan Inheritance</td>
+                    <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>30%</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                    <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>Implementasi Encapsulation</td>
+                    <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>25%</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                    <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>Penerapan Polymorphism</td>
+                    <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>20%</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                    <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>Fungsionalitas Program</td>
+                    <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>15%</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>Dokumentasi Kode</td>
+                    <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>10%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <h3>Petunjuk Implementasi Arsitektur Berkas Tugas</h3>
+          <p>
+            Untuk mempermudah pengorganisasian kode, Anda disarankan membagi sistem menjadi berkas modul yang rapi:
+          </p>
           <ul>
-            <li><strong>Identitas Mahasiswa</strong>: Nama Lengkap, NIM, Kelas Praktikum, dan Dosen Pengampu / Asisten Praktikum.</li>
-            <li><strong>Deskripsi Arsitektur OOP</strong>: Penjelasan singkat fungsi masing-masing class dan bagaimana 4 pilar OOP diimplementasikan.</li>
-            <li><strong>Diagram Kelas (Class Diagram)</strong>: Bagan relasi inheritance dan komposisi class (dapat berupa teks ASCII, mermaid diagram, atau gambar sketsa).</li>
-            <li><strong>Petunjuk Eksekusi</strong>: Langkah menjalankan program dari terminal (contoh: <code>python main.py</code>).</li>
-            <li><strong>Screenshot Output</strong>: Bukti tangkapan layar terminal saat program <code>main.py</code> berhasil dijalankan secara lengkap.</li>
+            <li>
+              <strong><code>library_item.py</code></strong>: Berisi abstract class <code>LibraryItem(ABC)</code> beserta subclass <code>Book</code> dan <code>Magazine</code>. Terapkan abstract method (misal <code>hitung_denda()</code> atau <code>get_detail()</code>) serta property decorator (misal <code>@property def is_dipinjam(self)</code>).
+            </li>
+            <li>
+              <strong><code>library.py</code></strong>: Berisi class <code>Library</code> yang menyimpan koleksi item dalam atribut private <code>__koleksi</code>, dengan method untuk menambah item, menampilkan katalog item yang tersedia, dan mencari item berdasarkan judul atau id.
+            </li>
+            <li>
+              <strong><code>main.py</code></strong>: Skrip eksekusi untuk menguji seluruh fungsionalitas sistem perpustakaan (menambahkan beberapa buku dan majalah, menampilkan katalog, mencari item, serta mendemonstrasikan status ketersediaan item).
+            </li>
+          </ul>
+
+          <h3>Dokumentasi yang Diperlukan di README.md:</h3>
+          <ul>
+            <li><strong>Identitas Mahasiswa</strong>: Nama Lengkap, NIM, dan Kelas Praktikum.</li>
+            <li><strong>Deskripsi Program</strong>: Penjelasan singkat alur program serta bagaimana 4 pilar OOP (Class, Inheritance, Encapsulation, Polymorphism) diterapkan.</li>
+            <li><strong>Panduan Menjalankan Program</strong>: Perintah terminal untuk mengeksekusi program (<code>python main.py</code>).</li>
+            <li><strong>Screenshot Output</strong>: Bukti tangkapan layar terminal saat program dijalankan dan mendemonstrasikan fitur penambahan, pencarian, dan penampilan katalog.</li>
           </ul>
 
           <div style={{ marginTop: "2rem" }}>

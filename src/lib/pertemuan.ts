@@ -165,7 +165,7 @@ export const daftarPertemuan: Pertemuan[] = [
       { id: "encapsulation", judul: "4. Encapsulation & Properties" },
       { id: "polymorphism", judul: "5. Polymorphism & Overriding" },
       { id: "abstract-class", judul: "6. Abstract Class & Interface" },
-      { id: "tugas-praktikum", judul: "Tugas: Sistem Perpustakaan" },
+      { id: "tugas-praktikum", judul: "Tugas: Sistem Manajemen Perpustakaan" },
       { id: "format-pengumpulan", judul: "Format Pengumpulan" },
     ],
   },
