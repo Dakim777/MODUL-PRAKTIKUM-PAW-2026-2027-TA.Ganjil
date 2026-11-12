@@ -185,7 +185,7 @@ export const daftarPertemuan: Pertemuan[] = [
       "Membuat view dan route untuk operasi CRUD sederhana",
       "Mengembangkan aplikasi web CRUD pengelolaan data Mahasiswa",
     ],
-    tersedia: false,
+    tersedia: true,
     subTopik: [
       { id: "dasar-teori", judul: "Arsitektur Pyramid Framework" },
       { id: "setup-environment", judul: "1. Setup Environment & Cookiecutter" },

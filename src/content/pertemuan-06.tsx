@@ -1,307 +1,463 @@
 import CodeBlock from "@/components/CodeBlock";
 import SubmissionBox from "@/components/SubmissionBox";
 
-// Pertemuan 6: Python Pyramid
-export default function Pertemuan6() {
-  const calloutInfo = (text: string) => (
+// Pertemuan 6: Python Pyramid Framework
+export default function Pertemuan6({ subId }: { subId?: string }) {
+  const calloutInfo = (text: React.ReactNode) => (
     <div className="callout callout-info">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}>
-        <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" /><path d="M10 9v5M10 6.5v.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fill="none"
+        style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}
+      >
+        <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M10 9v5M10 6.5v.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
-      <div className="callout-body"><p>{text}</p></div>
+      <div className="callout-body">{typeof text === "string" ? <p>{text}</p> : text}</div>
     </div>
   );
-  const calloutExercise = (title: string, text: string) => (
+
+  const calloutExercise = (title: string, text: React.ReactNode) => (
     <div className="callout callout-warning">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-amber-500)" }}>
-        <path d="M10 3L18 17H2L10 3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /><path d="M10 9v4M10 14.5v.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fill="none"
+        style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-amber-500)" }}
+      >
+        <path d="M10 3L18 17H2L10 3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M10 9v4M10 14.5v.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
-      <div className="callout-body"><p><strong>Latihan Mandiri: {title}</strong><br />{text}</p></div>
+      <div className="callout-body">
+        <p><strong>Latihan Mandiri: {title}</strong></p>
+        {typeof text === "string" ? <p>{text}</p> : text}
+      </div>
+    </div>
+  );
+
+  const calloutCheckpoint = (tahap: string, title: string, text: React.ReactNode) => (
+    <div
+      style={{
+        marginTop: "1.25rem",
+        marginBottom: "1.75rem",
+        padding: "1rem 1.25rem",
+        borderRadius: "10px",
+        border: "1px solid rgba(59, 130, 246, 0.3)",
+        backgroundColor: "rgba(59, 130, 246, 0.05)",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#3b82f6"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+          <polyline points="22 4 12 14.01 9 11.01" />
+        </svg>
+        <strong style={{ color: "#2563eb", fontSize: "0.95rem" }}>
+          Hands-On Practice / Checkpoint Verifikasi: {tahap} &mdash; {title}
+        </strong>
+      </div>
+      <div style={{ fontSize: "0.9rem", color: "var(--color-text-primary)", lineHeight: 1.65 }}>
+        {text}
+      </div>
+    </div>
+  );
+
+  const codeHint = (text: React.ReactNode) => (
+    <div className="callout callout-info" style={{ marginTop: "0.5rem", marginBottom: "0.75rem" }}>
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fill="none"
+        style={{ flexShrink: 0, marginTop: "2px", color: "var(--color-accent)" }}
+      >
+        <path
+          d="M10 2a6 6 0 00-6 6c0 2.2 1.2 4.1 3 5.1V15a1 1 0 001 1h4a1 1 0 001-1v-1.9c1.8-1 3-2.9 3-5.1a6 6 0 00-6-6z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <path d="M8 18h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+      <div className="callout-body">
+        <p style={{ fontWeight: 600, marginBottom: "0.35rem", color: "var(--color-accent)" }}>
+          Penjelasan Logika Kode:
+        </p>
+        <div style={{ fontSize: "0.875rem", color: "var(--color-text-secondary)", lineHeight: 1.65 }}>
+          {text}
+        </div>
+      </div>
+    </div>
+  );
+
+  const codeOutput = (text: React.ReactNode) => (
+    <div
+      style={{
+        marginTop: "0.5rem",
+        marginBottom: "1.5rem",
+        padding: "0.85rem 1rem",
+        borderRadius: "8px",
+        border: "1px solid rgba(16, 185, 129, 0.25)",
+        backgroundColor: "rgba(16, 185, 129, 0.05)",
+        display: "flex",
+        gap: "0.75rem",
+        alignItems: "flex-start",
+      }}
+    >
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fill="none"
+        style={{ flexShrink: 0, marginTop: "2px", color: "#10b981" }}
+      >
+        <rect x="2" y="3" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M6 8l3 2-3 2M11 12h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <div style={{ fontSize: "0.875rem", color: "var(--color-text-primary)", lineHeight: 1.6 }}>
+        <strong style={{ color: "#10b981", display: "block", marginBottom: "0.25rem" }}>
+          Hasil Eksekusi &amp; Output Terminal:
+        </strong>
+        {text}
+      </div>
     </div>
   );
 
   return (
     <>
-      <h2 id="dasar-teori">Python Pyramid</h2>
+      {/* ========================================================================= */}
+      {/* 0. ARSITEKTUR PYRAMID FRAMEWORK (DASAR TEORI)                             */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "dasar-teori") && (
+        <section id="dasar-teori">
+          <h2>Arsitektur Pyramid Framework</h2>
+          <p>
+            <strong>Pyramid</strong> adalah web application framework berbasis Python tingkat tinggi yang dirancang dengan prinsip keterbukaan, skalabilitas tinggi, serta fleksibilitas arsitektur. Dikelola oleh <strong>Pylons Project</strong>, Pyramid mengusung filosofi utama: <em>&quot;Pay only for what you eat&quot;</em>.
+          </p>
+          <p>
+            Artinya, Pyramid tidak memaksa pengembang menggunakan ORM tertentu, template engine tertentu, atau skema otentikasi bawaan yang kaku. Anda bebas memulai dari aplikasi mikro 1-file sederhana, lalu bertransisi secara mulus menjadi aplikasi enterprise skala besar tanpa perlu merombak ulang fondasi framework.
+          </p>
 
-<h3 id="setup-environment">Setup Environment</h3>
-<p>Persiapan lingkungan pengembangan dan membuat proyek Pyramid dengan Cookiecutter</p>
+          <h3>Pyramid di Antara Spektrum Framework Python</h3>
+          <p>
+            Dalam ekosistem pengembangan web Python, framework terbagi ke dalam spektrum fleksibilitas vs kelengkapan bawaan (<em>batteries-included</em>):
+          </p>
+          <div className="table-wrapper" style={{ overflowX: "auto", margin: "1rem 0" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <thead>
+                <tr style={{ borderBottom: "2px solid var(--color-border)", textAlign: "left" }}>
+                  <th style={{ padding: "0.75rem" }}>Kategori Framework</th>
+                  <th style={{ padding: "0.75rem" }}>Contoh Framework</th>
+                  <th style={{ padding: "0.75rem" }}>Karakteristik &amp; Trade-off</th>
+                  <th style={{ padding: "0.75rem" }}>Kesesuaian Penggunaan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Micro-framework</td>
+                  <td style={{ padding: "0.75rem" }}>Flask, Bottle</td>
+                  <td style={{ padding: "0.75rem" }}>Minimalis, cepat dimulai. Namun, butuh banyak plugin pihak ketiga saat proyek tumbuh besar, rawan inkonsistensi struktur.</td>
+                  <td style={{ padding: "0.75rem" }}>Microservices sederhana, prototipe cepat.</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--color-border)", backgroundColor: "rgba(59, 130, 246, 0.05)" }}>
+                  <td style={{ padding: "0.75rem", fontWeight: 600, color: "var(--color-accent)" }}>Mid-sized Modular</td>
+                  <td style={{ padding: "0.75rem", fontWeight: 600, color: "var(--color-accent)" }}>Pyramid</td>
+                  <td style={{ padding: "0.75rem" }}>Sangat fleksibel, konfigurasi eksplisit, router (URL dispatch) sangat bertenaga, transparan, dan modular tanpa membatasi pilihan library.</td>
+                  <td style={{ padding: "0.75rem" }}>Aplikasi REST API jangka panjang, arsitektur database kompleks, sistem modular.</td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "0.75rem", fontWeight: 600 }}>Full-stack Framework</td>
+                  <td style={{ padding: "0.75rem" }}>Django</td>
+                  <td style={{ padding: "0.75rem" }}>Segala hal disediakan bawaan (ORM, Admin Panel, Auth). Namun, sulit mengganti komponen internal jika ingin memakai tool di luar standar Django.</td>
+                  <td style={{ padding: "0.75rem" }}>Monolithic web app standar, CMS, platform berbasis admin instan.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
+          <h3>Fitur dan Keunggulan Utama Pyramid</h3>
+          <ul>
+            <li>
+              <strong>Database Agnostic &amp; SQLAlchemy Native</strong>: Pyramid tidak memiliki ORM bawaan yang terkunci, melainkan terintegrasi sempurna dengan <strong>SQLAlchemy</strong>&mdash;standar industri ORM paling matang di ekosistem Python.
+            </li>
+            <li>
+              <strong>URL Dispatch &amp; Predicate Matching</strong>: Mekanisme routing Pyramid memungkinkan pembedaan view tidak hanya berdasarkan URL path, melainkan juga parameter HTTP (misalnya <code>request_method=&#39;POST&#39;</code> atau header tertentu) pada rute yang sama.
+            </li>
+            <li>
+              <strong>Konfigurasi Terpisah via File INI</strong>: Pengaturan environment tersimpan rapi dalam file konfigurasi seperti <code>development.ini</code> dan <code>production.ini</code> menggunakan standar PasteDeploy.
+            </li>
+            <li>
+              <strong>Transaction Management Otomatis</strong>: Melalui <code>zope.sqlalchemy</code> dan <code>pyramid_tm</code>, session database terikat dengan lifecycle HTTP request. Transaksi otomatis di-commit saat response sukses (2xx/3xx) dan di-rollback otomatis jika terjadi error tak tertangani (5xx).
+            </li>
+            <li>
+              <strong>Schema Migration dengan Alembic</strong>: Perubahan struktur tabel basis data terlacak dengan aman melalui versi migrasi otomatis tanpa manipulasi DDL manual.
+            </li>
+          </ul>
 
-<h3 id="persiapan-lingkungan-pengembangan">Persiapan Lingkungan Pengembangan</h3>
-<p>Sebelum mulai membuat aplikasi dengan Pyramid, kita perlu menyiapkan lingkungan pengembangan yang sesuai.</p>
+          {calloutInfo(
+            "Mengapa Belajar Pyramid? Di industri teknologi, memahami Pyramid melatih pengembang memahami arsitektur web dari fondasi: bagaimana router bekerja, bagaimana session database diikat ke lifecycle request HTTP, serta bagaimana memisahkan view logika dari konfigurasi server."
+          )}
 
+          <h3 id="alat-bahan">Alat dan Bahan Praktikum</h3>
+          <ul>
+            <li><strong>Python 3.7+ (disarankan Python 3.10 atau 3.11)</strong>: Runtime engine bahasa Python.</li>
+            <li><strong>PostgreSQL</strong>: Database server relasional (via PostgreSQL lokal, Postgres.app di macOS, Docker, atau DBeaver/pgAdmin).</li>
+            <li><strong>Code Editor / IDE</strong>: Visual Studio Code (ekstensi Python &amp; Pylance) atau PyCharm.</li>
+            <li><strong>Terminal / CLI</strong>: Command Prompt/PowerShell di Windows, atau Bash/Zsh di macOS &amp; Linux.</li>
+            <li><strong>cURL / HTTP Client</strong>: Tool CLI cURL atau tool visual seperti Postman / Insomnia / VS Code REST Client extension untuk pengujian endpoint RESTful API.</li>
+          </ul>
 
-<h3 id="membuat-virtual-environment">Membuat Virtual Environment</h3>
-<p>Virtual environment membantu mengisolasi dependensi proyek dari instalasi Python global:</p>
+          {calloutCheckpoint(
+            "Tahap 0",
+            "Verifikasi Perangkat Lunak Inti",
+            <div>
+              <p>Pastikan Python dan PostgreSQL sudah terpasang dan dikenali di sistem Anda:</p>
+              <CodeBlock language="bash">{`python3 --version
+# atau di Windows:
+python --version
 
-<CodeBlock language="">{`# Buat folder untuk proyek
+# Verifikasi client PostgreSQL:
+psql --version`}</CodeBlock>
+            </div>
+          )}
+        </section>
+      )}
+      {/* ========================================================================= */}
+      {/* 1. SETUP ENVIRONMENT & COOKIECUTTER                                       */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "setup-environment") && (
+        <section id="setup-environment">
+          <h2>1. Setup Environment &amp; Cookiecutter</h2>
+          <p>
+            Pada bagian ini, kita akan mengisolasi lingkungan pengembangan menggunakan Python Virtual Environment, memasang generator proyek scaffolding <strong>Cookiecutter</strong>, serta menciptakan proyek Pyramid berbasis template resmi SQLAlchemy.
+          </p>
+
+          <h3>Tahap 1: Persiapan Lingkungan Pengembangan</h3>
+          <p>
+            Virtual environment menjamin paket dan pustaka yang kita pasang tidak bertabrakan dengan sistem operasi atau proyek lain di komputer Anda.
+          </p>
+
+          <h4>Langkah 1: Membuat Direktori &amp; Virtual Environment</h4>
+          <p>Buka terminal Anda, lalu ketik perintah berikut:</p>
+          <CodeBlock language="bash">{`# Buat folder induk untuk workspace praktikum
 mkdir pyramid_mahasiswa
 cd pyramid_mahasiswa
 
-# Buat virtual environment
-python -m venv venv
+# Buat virtual environment dengan nama 'venv'
+python3 -m venv venv
+# Catatan Windows jika python3 tidak dikenali: python -m venv venv`}</CodeBlock>
 
-# Aktifkan virtual environment
-# Untuk Windows
-venv\Scripts\activate
-# Untuk macOS/Linux
-source venv/bin/activate`}</CodeBlock>
+          <h4>Langkah 2: Mengaktifkan Virtual Environment</h4>
+          <p>Aktivasi virtual environment sesuai sistem operasi Anda:</p>
+          <CodeBlock language="bash">{`# Untuk pengguna macOS dan Linux:
+source venv/bin/activate
 
-<p>Verifikasi Virtual Environment</p>
+# Untuk pengguna Windows (Command Prompt):
+venv\\Scripts\\activate.bat
 
-<p>Pastikan virtual environment telah aktif. Terminal Kalian seharusnya menampilkan prefix (venv) di awal baris prompt.</p>
+# Untuk pengguna Windows (PowerShell):
+venv\\Scripts\\Activate.ps1`}</CodeBlock>
 
-<CodeBlock language="">{`(venv) $`}</CodeBlock>
+          {codeHint(
+            "Troubleshooting PowerShell Windows: Jika muncul error 'Execution of scripts is disabled on this system', buka PowerShell as Administrator dan jalankan: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser lalu coba aktivasi kembali."
+          )}
 
-
-<h3 id="instalasi-pyramid-dan-dependensi">Instalasi Pyramid dan Dependensi</h3>
-<p>Setelah virtual environment aktif, install Pyramid dan dependensi yang diperlukan:</p>
-
-<CodeBlock language="">{`# Upgrade pip
-pip install --upgrade pip setuptools
-
-# Install cookiecutter untuk template proyek
+          <h4>Langkah 3: Memperbarui pip &amp; Memasang Paket Dasar</h4>
+          <p>Setelah venv aktif, tingkatkan versi pip dan instal dependensi scaffolding:</p>
+          <CodeBlock language="bash">{`pip install --upgrade pip setuptools
 pip install cookiecutter
-
-# Install pyramid dan dependensi dasar
 pip install pyramid pyramid_debugtoolbar waitress pyramid_jinja2`}</CodeBlock>
 
-<p>Troubleshooting Virtual Environment</p>
+          {calloutCheckpoint(
+            "Tahap 1",
+            "Verifikasi Virtual Environment & Paket",
+            <div>
+              <p>Periksa prompt terminal Anda. Pastikan terdapat awalan <code>(venv)</code> sebelum nama pengguna atau path folder. Jalankan perintah verifikasi:</p>
+              <CodeBlock language="bash">{`pip list`}</CodeBlock>
+              <p style={{ marginTop: "0.5rem" }}>
+                Pastikan paket <code>pyramid</code>, <code>cookiecutter</code>, dan <code>waitress</code> tercantum dalam output daftar paket.
+              </p>
+            </div>
+          )}
 
-<p>Jika Kalian mengalami masalah dengan virtual environment:</p>
+          <h3>Tahap 2: Membuat Proyek Pyramid dengan Cookiecutter</h3>
+          <p>
+            Membuat struktur proyek web lengkap dari nol rawan kesalahan konfigurasi. Komunitas resmi Pyramid menyediakan template Cookiecutter yang sudah mengonfigurasi SQLAlchemy ORM, Alembic, file konfigurasi INI, runner testing, dan struktur folder modular.
+          </p>
 
-<ul>
-  <li>Di Windows: Pastikan kebijakan eksekusi script PowerShell mengizinkan aktivasi dengan menjalankan Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</li>
-  <li>Di macOS/Linux: Pastikan venv/bin/activate memiliki izin eksekusi dengan chmod +x venv/bin/activate</li>
-  <li>Jika perintah python tidak ditemukan, coba gunakan python3 sebagai gantinya</li>
-</ul>
+          <h4>Langkah 1: Menjalankan Template Cookiecutter</h4>
+          <p>Jalankan perintah berikut di dalam folder <code>pyramid_mahasiswa</code> dengan venv aktif:</p>
+          <CodeBlock language="bash">{`cookiecutter gh:Pylons/pyramid-cookiecutter-alchemy`}</CodeBlock>
 
-
-<h3 id="membuat-proyek-pyramid-dengan-cookiecutter">Membuat Proyek Pyramid dengan Cookiecutter</h3>
-<p>Cookiecutter adalah tool yang membantu membuat struktur proyek berdasarkan template. Pyramid menyediakan template resmi untuk memulai proyek dengan cepat.</p>
-
-
-<h3 id="menjalankan-cookiecutter">Menjalankan Cookiecutter</h3>
-<p>Jalankan cookiecutter dengan template Pyramid resmi:</p>
-
-<CodeBlock language="">{`# Pastikan virtual environment aktif
-# Jalankan cookiecutter dengan template Pyramid
-cookiecutter gh:Pylons/pyramid-cookiecutter-alchemy`}</CodeBlock>
-
-<p>Cookiecutter akan meminta beberapa input, isi seperti berikut:</p>
-
-<CodeBlock language="">{`project_name [Pyramid Scaffold]: pyramid_mahasiswa
-repo_name [pyramid_mahasiswa]:
+          <p>Cookiecutter akan mengunduh template dan meminta input konfigurasi di terminal. Masukkan nilai berikut secara teliti:</p>
+          <CodeBlock language="text">{`project_name [My Project]: pyramid_mahasiswa
+repo_name [pyramid_mahasiswa]: pyramid_mahasiswa
 Select template_language:
 1 - jinja2
-2 - chameleon
-3 - mako
+2 - mako
+3 - chameleon
 Choose from 1, 2, 3 [1]: 1`}</CodeBlock>
 
-<p>Template Language</p>
-
-<p>Kita memilih Jinja2 sebagai template engine karena sintaksnya yang familiar dan banyak digunakan di berbagai framework Python seperti Flask dan Django.</p>
-
-
-<h3 id="instalasi-dependensi-proyek">Instalasi Dependensi Proyek</h3>
-<p>Setelah template dibuat, pindah ke direktori proyek dan install dependensi:</p>
-
-<CodeBlock language="">{`# Masuk ke direktori proyek
-cd pyramid_mahasiswa
-
-# Install dependensi proyek (development mode)
+          <h4>Langkah 2: Memasang Proyek dalam Mode Development (Editable Install)</h4>
+          <p>
+            Masuk ke subfolder proyek baru dan pasang paket aplikasi dalam mode pengembang (<em>editable mode</em> menggunakan flag <code>-e</code>):
+          </p>
+          <CodeBlock language="bash">{`cd pyramid_mahasiswa
 pip install -e ".[testing]"`}</CodeBlock>
 
-<p>Development Mode</p>
+          {codeHint(
+            "Mengapa 'pip install -e' penting? Flag -e (editable) mendaftarkan package lokal pyramid_mahasiswa ke dalam virtual environment. Setiap perubahan kode Python di dalam folder proyek akan langsung terbaca tanpa perlu menginstal ulang paket setiap kali mengedit file."
+          )}
 
-<p>Flag -e menginstall package dalam editable mode, yang berarti perubahan kode langsung tercermin tanpa perlu reinstall package.</p>
+          <h4>Langkah 3: Memahami Struktur Pohon Direktori Proyek</h4>
+          <p>
+            Buka folder proyek di VS Code (<code>code .</code>). Anda akan melihat struktur berkas modular berikut:
+          </p>
+          <CodeBlock language="text">{`pyramid_mahasiswa/               # Root folder proyek
+├── .coveragerc
+├── .gitignore
+├── CHANGES.txt
+├── MANIFEST.in
+├── README.txt
+├── development.ini              # Konfigurasi server lokal & database dev
+├── production.ini               # Konfigurasi deployment server production
+├── pytest.ini                   # Konfigurasi unit testing
+├── setup.py                     # Metadata dependensi package Python
+└── pyramid_mahasiswa/           # Python package aplikasi utama
+    ├── __init__.py              # Entry point aplikasi WSGI & konfigurasi router
+    ├── alembic/                 # Skrip migrasi schema database Alembic
+    │   ├── env.py               # Runner environment Alembic
+    │   ├── script.py.mako       # Template file migrasi
+    │   └── versions/            # Direktori histori berkas revisi migrasi
+    ├── models/                  # Lapisan ORM (Object Relational Mapping)
+    │   ├── __init__.py          # Engine SQLAlchemy & Session Factory
+    │   ├── meta.py              # Declarative Base metadata
+    │   └── mymodel.py           # Contoh model bawaan template
+    ├── routes.py                # Peta URL Dispatch (routing REST API)
+    ├── scripts/                 # CLI utility scripts
+    │   ├── __init__.py
+    │   └── initialize_db.py     # Script inisialisasi & seeding data awal
+    ├── static/                  # File statis (CSS, JS, Gambar)
+    ├── templates/               # Berkas HTML template (Jinja2)
+    ├── tests/                   # Kumpulan unit test
+    └── views/                   # Lapisan View Controller logika bisnis
+        ├── __init__.py
+        ├── default.py           # Handler view bawaan
+        └── notfound.py          # Custom handler untuk HTTP 404`}</CodeBlock>
 
+          {calloutCheckpoint(
+            "Tahap 2",
+            "Eksplorasi Struktur Proyek di Code Editor",
+            <div>
+              <p>
+                Buka sidebar file explorer di VS Code Anda. Pastikan folder <code>pyramid_mahasiswa/pyramid_mahasiswa/models</code>, <code>views</code>, dan file <code>development.ini</code> terlihat jelas. Periksa terminal: perintah <code>pip list</code> kini harus menampilkan baris:
+              </p>
+              <pre style={{ margin: "0.25rem 0", color: "#10b981", fontFamily: "monospace" }}>
+{`pyramid-mahasiswa 0.0 /path/to/pyramid_mahasiswa/pyramid_mahasiswa (editable)`}
+              </pre>
+            </div>
+          )}
+        </section>
+      )}
+      {/* ========================================================================= */}
+      {/* 2. DATABASE POSTGRESQL & SQLALCHEMY                                       */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "database-models") && (
+        <section id="database-models">
+          <h2>2. Database PostgreSQL &amp; SQLAlchemy</h2>
+          <p>
+            Secara default, template Pyramid menggunakan database berbasis file SQLite. Untuk aplikasi web modern yang andal, kita akan beralih ke <strong>PostgreSQL</strong>, mendefinisikan model data dengan <strong>SQLAlchemy ORM</strong>, dan menerapkan migrasi skema menggunakan <strong>Alembic</strong>.
+          </p>
 
-<h3 id="struktur-direktori-proyek">Struktur Direktori Proyek</h3>
-<p>Setelah setup selesai, struktur direktori proyek akan terlihat seperti ini:</p>
+          <h3>Tahap 3: Konfigurasi Database PostgreSQL</h3>
+          <p>
+            Sebelum menghubungkan Pyramid ke database, kita harus membuat basis data dan user khusus di server PostgreSQL lokal.
+          </p>
 
+          <h4>Langkah 1: Membuat Database &amp; User di PostgreSQL</h4>
+          <p>Buka shell psql di terminal baru:</p>
+          <CodeBlock language="bash">{`psql -U postgres`}</CodeBlock>
 
-<h3 id="penjelasan-struktur-proyek">Penjelasan Struktur Proyek</h3>
-
-<h3 id="file-konfigurasi-utama">File Konfigurasi Utama</h3>
-
-<h3 id="direktori-penting">Direktori Penting</h3>
-<p>Tentang Struktur Pyramid</p>
-
-<p>Struktur direktori Pyramid mengikuti konvensi Python package. Folder utama pyramid_mahasiswa/pyramid_mahasiswa adalah package Python yang berisi kode aplikasi. File development.ini dan production.ini berisi konfigurasi untuk mode development dan production.</p>
-
-
-<h3 id="verifikasi-setup">Verifikasi Setup</h3>
-<p>Untuk memverifikasi bahwa setup berhasil, coba jalankan aplikasi:</p>
-
-<CodeBlock language="">{`# Pastikan berada di direktori root proyek
-# dan virtual environment aktif
-pserve development.ini`}</CodeBlock>
-
-<p>Jika berhasil, Kalian akan melihat output seperti ini:</p>
-
-<CodeBlock language="">{`Starting server in PID 12345.
-Serving on http://localhost:6543`}</CodeBlock>
-
-<p>Buka browser dan akses http://localhost:6543. Kalian seharusnya melihat halaman default Pyramid.</p>
-
-<p>Troubleshooting Instalasi</p>
-
-<p>Jika menemui masalah saat instalasi dependensi:</p>
-
-<ul>
-  <li>Pastikan Python development headers terinstal (python-dev/python-devel)</li>
-  <li>Di Windows, mungkin perlu Visual C++ Build Tools</li>
-  <li>Jika ada package yang gagal diinstal, coba install satu persatu</li>
-  <li>Periksa versi Python dengan python --version, pastikan minimal 3.7</li>
-</ul>
-
-
-<h3 id="langkah-selanjutnya">Langkah Selanjutnya</h3>
-<p>Setelah environment setup selesai dan proyek Pyramid berhasil dibuat, kita akan melanjutkan ke konfigurasi database PostgreSQL dan membuat model data pada bagian selanjutnya.</p>
-
-<p>Praktikum Pyramid Framework</p>
-
-<p>Membuat aplikasi CRUD sederhana dengan Pyramid Framework dan PostgreSQL</p>
-
-<p>Database & Models</p>
-
-<p>Konfigurasi PostgreSQL, membuat model Mahasiswa, dan menjalankan migrasi database</p>
-
-
-<h3 id="database-models">Database & Models</h3>
-<p>Konfigurasi PostgreSQL, membuat model Mahasiswa, dan menjalankan migrasi database</p>
-
-
-<h3 id="konfigurasi-database-postgresql">Konfigurasi Database PostgreSQL</h3>
-<p>Secara default, template Pyramid menggunakan SQLite. Kita akan mengubahnya untuk menggunakan PostgreSQL, yang lebih cocok untuk aplikasi production.</p>
-
-
-<h3 id="pastikan-postgresql-sudah-terpasang">Pastikan PostgreSQL Sudah Terpasang</h3>
-<p>Sebelum melanjutkan, pastikan PostgreSQL sudah terinstal dan berjalan di komputer Kalian:</p>
-
-<CodeBlock language="">{`# Login ke PostgreSQL
-psql -U postgres -c "SELECT version();"
-
-# Jika berhasil, akan menampilkan versi PostgreSQL`}</CodeBlock>
-
-<p>Install PostgreSQL</p>
-
-<p>Jika PostgreSQL belum terinstal:</p>
-
-<ul>
-  <li>Windows: Download installer dari postgresql.org</li>
-  <li>macOS: Gunakan Homebrew brew install postgresql atau PostgreSQL.app</li>
-  <li>Linux: sudo apt-get install postgresql postgresql-contrib (Ubuntu/Debian)</li>
-</ul>
-
-
-<h3 id="membuat-database-postgresql">Membuat Database PostgreSQL</h3>
-<p>Buat database baru di PostgreSQL untuk aplikasi kita dengan izin yang lengkap:</p>
-
-<CodeBlock language="">{`# Login ke PostgreSQL sebagai superuser
-# Ganti username dengan user PostgreSQL Kalian
-psql -U postgres`}</CodeBlock>
-
-<CodeBlock language="">{`-- 1. Buat database
+          <p>Jalankan perintah SQL berikut di dalam prompt psql:</p>
+          <CodeBlock language="sql">{`-- 1. Buat database baru khusus praktikum
 CREATE DATABASE pyramid_mahasiswa;
 
--- 2. Buat user baru
+-- 2. Buat user database dengan password terenkripsi
 CREATE USER pyramid_user WITH ENCRYPTED PASSWORD 'pyramid_pass';
 
--- 3. Beri user izin ke database
+-- 3. Berikan hak akses penuh pada database ke user tersebut
 GRANT ALL PRIVILEGES ON DATABASE pyramid_mahasiswa TO pyramid_user;
 
--- 4. Pindah ke database pyramid_mahasiswa
-\c pyramid_mahasiswa
+-- Catatan untuk PostgreSQL 15 ke atas:
+-- Hubungkan ke database pyramid_mahasiswa dan beri izin skema public
+\\c pyramid_mahasiswa
+GRANT ALL ON SCHEMA public TO pyramid_user;
 
--- 5. Beri izin schema public ke user
-GRANT USAGE, CREATE ON SCHEMA public TO pyramid_user;
+-- Keluar dari prompt psql
+\\q`}</CodeBlock>
 
--- 6. Ubah owner schema public (opsional tapi paling aman)
-ALTER SCHEMA public OWNER TO pyramid_user;
+          <h4>Langkah 2: Memasang Driver PostgreSQL untuk Python</h4>
+          <p>Di terminal proyek dengan venv aktif, pasang package <code>psycopg2-binary</code>:</p>
+          <CodeBlock language="bash">{`pip install psycopg2-binary`}</CodeBlock>
 
--- 7. Pastikan owner default table/sequence future
-ALTER DEFAULT PRIVILEGES IN SCHEMA public
-GRANT ALL ON TABLES TO pyramid_user;
+          <h4>Langkah 3: Memperbarui Koneksi di development.ini</h4>
+          <p>
+            Buka file <code>development.ini</code> yang terletak di root folder proyek. Temukan baris konfigurasi <code>sqlalchemy.url</code>, lalu ganti baris SQLite menjadi koneksi PostgreSQL:
+          </p>
+          <CodeBlock language="ini">{`# Matikan baris SQLite bawaan:
+# sqlalchemy.url = sqlite:///%(here)s/pyramid_mahasiswa.sqlite
 
-ALTER DEFAULT PRIVILEGES IN SCHEMA public
-GRANT ALL ON SEQUENCES TO pyramid_user;
-
--- 8. Keluar dari psql
-\q`}</CodeBlock>
-
-<p>Penjelasan Perintah SQL</p>
-
-<ul>
-  <li>GRANT USAGE, CREATE: Memberikan izin untuk menggunakan dan membuat objek di schema public</li>
-  <li>ALTER SCHEMA OWNER: Menjadikan pyramid_user sebagai pemilik schema, memberikan kontrol penuh</li>
-  <li>ALTER DEFAULT PRIVILEGES: Memastikan objek yang dibuat di masa depan otomatis dimiliki pyramid_user</li>
-</ul>
-
-<p>Password Database</p>
-
-<p>Untuk production, gunakan password yang lebih kuat dan simpan dalam environment variables atau secret management system.</p>
-
-
-<h3 id="install-dependensi-postgresql">Install Dependensi PostgreSQL</h3>
-<p>Install psycopg2 untuk menghubungkan Python dengan PostgreSQL:</p>
-
-<CodeBlock language="">{`pip install psycopg2-binary`}</CodeBlock>
-
-<p>Alternatif psycopg2</p>
-
-<p>Jika psycopg2-binary gagal diinstal, coba gunakan psycopg2 atau pastikan PostgreSQL development headers sudah terinstal di sistem Kalian.</p>
-
-
-<h3 id="update-konfigurasi-pyramid">Update Konfigurasi Pyramid</h3>
-<p>Ubah file development.ini untuk menggunakan PostgreSQL:</p>
-
-<CodeBlock language="">{`# Cari dan ganti baris sqlalchemy.url
-sqlalchemy.url = sqlite:///%(here)s/pyramid_mahasiswa.sqlite
-
-# Menjadi
+# Ganti dengan URI koneksi PostgreSQL:
 sqlalchemy.url = postgresql://pyramid_user:pyramid_pass@localhost:5432/pyramid_mahasiswa`}</CodeBlock>
 
-<p>Format connection string PostgreSQL:</p>
+          {codeHint(
+            "Format SQLAlchemy Database URI: postgresql://[username]:[password]@[host]:[port]/[database_name]. Jika Anda menggunakan port non-standar atau kredensial berbeda, sesuaikan parameter pada string koneksi di atas."
+          )}
 
-<CodeBlock language="">{`postgresql://[user]:[password]@[host]:[port]/[database]`}</CodeBlock>
+          {calloutCheckpoint(
+            "Tahap 3",
+            "Uji Koneksi User PostgreSQL",
+            <div>
+              <p>Pastikan user <code>pyramid_user</code> dapat masuk ke database dari terminal:</p>
+              <CodeBlock language="bash">{`psql -h localhost -U pyramid_user -d pyramid_mahasiswa`}</CodeBlock>
+              <p style={{ marginTop: "0.5rem" }}>
+                Ketik password <code>pyramid_pass</code> saat diminta. Jika prompt berubah menjadi <code>pyramid_mahasiswa=&gt;</code>, koneksi berhasil! Ketik <code>\\q</code> untuk keluar.
+              </p>
+            </div>
+          )}
 
-<p>Troubleshooting Koneksi Database</p>
+          <h3>Tahap 4: Membuat Model Mahasiswa (SQLAlchemy ORM)</h3>
+          <p>
+            <strong>SQLAlchemy ORM (Object-Relational Mapping)</strong> memetakan tabel basis data menjadi class Python. Setiap baris data di tabel akan direpresentasikan sebagai objek instansiasi class.
+          </p>
 
-<p>Jika mengalami masalah koneksi database, periksa:</p>
-
-<ul>
-  <li>PostgreSQL service/daemon sudah berjalan</li>
-  <li>Username dan password yang digunakan sudah benar</li>
-  <li>Database pyramid_mahasiswa sudah dibuat</li>
-  <li>Port 5432 tidak diblokir oleh firewall</li>
-  <li>PostgreSQL menerima koneksi dari localhost</li>
-  <li>User pyramid_user memiliki izin yang cukup pada schema public</li>
-</ul>
-
-
-<h3 id="membuat-model-mahasiswa">Membuat Model Mahasiswa</h3>
-<p>Sekarang kita akan membuat model untuk data Mahasiswa menggunakan SQLAlchemy ORM.</p>
-
-
-<h3 id="buat-file-model-mahasiswa">Buat File Model Mahasiswa</h3>
-<p>Buat file baru pyramid_mahasiswa/models/mahasiswa.py:</p>
-
-<CodeBlock language="">{`from sqlalchemy import (
+          <h4>Langkah 1: Membuat Berkas Model Mahasiswa</h4>
+          <p>
+            Buat file baru di path: <code>pyramid_mahasiswa/models/mahasiswa.py</code>, lalu ketikkan kode berikut:
+          </p>
+          <CodeBlock language="python">{`from sqlalchemy import (
     Column,
     Integer,
     Text,
     Date,
 )
-
 from .meta import Base
 
 
 class Mahasiswa(Base):
-    """ Model untuk tabel mahasiswa """
+    """Model ORM untuk tabel data mahasiswa"""
     __tablename__ = 'mahasiswa'
+
     id = Column(Integer, primary_key=True)
     nim = Column(Text, unique=True, nullable=False)
     nama = Column(Text, nullable=False)
@@ -310,6 +466,7 @@ class Mahasiswa(Base):
     alamat = Column(Text)
 
     def to_dict(self):
+        """Serialisasi objek model menjadi dictionary agar siap dirender sebagai JSON"""
         return {
             'id': self.id,
             'nim': self.nim,
@@ -319,32 +476,31 @@ class Mahasiswa(Base):
             'alamat': self.alamat,
         }`}</CodeBlock>
 
-<p>SQLAlchemy Column Types</p>
+          {codeHint(
+            <div>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><code>__tablename__ = &#39;mahasiswa&#39;</code>: Menentukan nama fisik tabel di database PostgreSQL.</li>
+                <li><code>Column(Integer, primary_key=True)</code>: Kolom primary key integer otomatis menjadi serial / autoincrement di PostgreSQL.</li>
+                <li><code>nim = Column(Text, unique=True, nullable=False)</code>: Memastikan NIM tidak boleh kosong dan tidak boleh duplikat.</li>
+                <li><code>to_dict(self)</code>: Mengonversi atribut model menjadi dictionary ramah serialisasi JSON, memformat objek Date menjadi string ISO 8601 (YYYY-MM-DD).</li>
+              </ul>
+            </div>
+          )}
 
-<p>Tipe kolom SQLAlchemy yang umum digunakan:</p>
-
-<ul>
-  <li>Integer: Bilangan bulat</li>
-  <li>Text: String dengan panjang tidak terbatas</li>
-  <li>String(length): String dengan panjang maksimal</li>
-  <li>Date: Tanggal (tanpa waktu)</li>
-  <li>DateTime: Tanggal dan waktu</li>
-  <li>Boolean: True/False</li>
-  <li>Float: Bilangan desimal</li>
-</ul>
-
-
-<h3 id="update-modelsinitpy">Update models/init.py</h3>
-<p>Update file pyramid_mahasiswa/models/__init__.py untuk menambahkan model Mahasiswa:</p>
-
-<CodeBlock language="">{`from sqlalchemy import engine_from_config
+          <h4>Langkah 2: Mendaftarkan Model di models/__init__.py</h4>
+          <p>
+            Buka file <code>pyramid_mahasiswa/models/__init__.py</code>. Tambahkan impor model <code>Mahasiswa</code> agar metadata tabel dikenali oleh engine SQLAlchemy:
+          </p>
+          <CodeBlock language="python">{`from sqlalchemy import engine_from_config
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import configure_mappers
 import zope.sqlalchemy
 
-from .mahasiswa import Mahasiswa
-from .mymodel import MyModel
+# Import model classes untuk memastikan mereka ter-register oleh SQLAlchemy
+from .mahasiswa import Mahasiswa  # Daftarkan model Mahasiswa
+from .mymodel import MyModel      # Model bawaan template
 
+# Jalankan configure_mappers setelah seluruh model diimpor
 configure_mappers()
 
 def get_engine(settings, prefix='sqlalchemy.'):
@@ -356,29 +512,37 @@ def get_session_factory(engine):
     return factory
 
 def get_tm_session(session_factory, transaction_manager):
+    """Mendapatkan SQLAlchemy Session yang terikat otomatis dengan zope.sqlalchemy"""
     dbsession = session_factory()
-    zope.sqlalchemy.register(dbsession, transaction_manager=transaction_manager)
+    zope.sqlalchemy.register(
+        dbsession, transaction_manager=transaction_manager)
     return dbsession
 
 def includeme(config):
+    """Inisialisasi konfigurasi database saat Pyramid startup"""
     settings = config.get_settings()
+    settings['tm.manager_hook'] = 'pyramid_tm.explicit_manager'
 
     engine = get_engine(settings)
     session_factory = get_session_factory(engine)
     config.registry['dbsession_factory'] = session_factory
 
-    # request.tm disediakan oleh pyramid_tm
+    # Menyediakan properti request.dbsession di setiap request HTTP
     config.add_request_method(
-        lambda request: get_tm_session(session_factory, request.tm),
-        "dbsession",
+        lambda r: get_tm_session(session_factory, r.tm),
+        'dbsession',
         reify=True
     )`}</CodeBlock>
 
+          {codeHint(
+            "Fungsi zope.sqlalchemy & request.dbsession: Baris config.add_request_method memungkinkan kita mengakses session database langsung melalui variabel 'request.dbsession' di setiap fungsi view. zope.sqlalchemy otomatis meng-commit transaksi jika fungsi view selesai tanpa error, atau me-rollback transaksi jika terjadi eksepsi."
+          )}
 
-<h3 id="update-script-initialize-db">Update Script Initialize DB</h3>
-<p>Update pyramid_mahasiswa/scripts/initialize_db.py untuk menambahkan data awal:</p>
-
-<CodeBlock language="">{`import argparse
+          <h4>Langkah 3: Menyiapkan Data Awal (Seeding) di scripts/initialize_db.py</h4>
+          <p>
+            Buka file <code>pyramid_mahasiswa/scripts/initialize_db.py</code>. Ubah fungsinya untuk menyisipkan data awal mahasiswa:
+          </p>
+          <CodeBlock language="python">{`import argparse
 import sys
 from datetime import date
 
@@ -387,39 +551,28 @@ from sqlalchemy.exc import OperationalError
 
 from .. import models
 
-def setup_models(dbsession):
-    """
-    Add initial model objects.
-    """
 
-    existing_mahasiswa1 = dbsession.query(models.Mahasiswa).filter_by(nim='12345').first()
-    existing_mahasiswa2 = dbsession.query(models.Mahasiswa).filter_by(nim='54321').first()
-    
-    if not existing_mahasiswa1:
-        mahasiswa1 = models.Mahasiswa(
-            nim='12345',
-            nama='Budi Santoso',
-            jurusan='Teknik Informatika',
-            tanggal_lahir=date(2000, 5, 15),
-            alamat='Jl. Merdeka No. 123, Bandung'
-        )
-        dbsession.add(mahasiswa1)
-        print("Mahasiswa 12345 added.")
-    else:
-        print("Mahasiswa 12345 already exists.")
-    
-    if not existing_mahasiswa2:
-        mahasiswa2 = models.Mahasiswa(
-            nim='54321',
-            nama='Siti Aminah',
-            jurusan='Sistem Informasi',
-            tanggal_lahir=date(2001, 8, 22),
-            alamat='Jl. Mawar No. 45, Jakarta'
-        )
-        dbsession.add(mahasiswa2)
-        print("Mahasiswa 54321 added.")
-    else:
-        print("Mahasiswa 54321 already exists.")
+def setup_models(dbsession):
+    """Menambahkan data awal (seeding) mahasiswa ke database"""
+    mahasiswa1 = models.Mahasiswa(
+        nim='12345',
+        nama='Budi Santoso',
+        jurusan='Teknik Informatika',
+        tanggal_lahir=date(2000, 5, 15),
+        alamat='Jl. Merdeka No. 123, Bandung'
+    )
+
+    mahasiswa2 = models.Mahasiswa(
+        nim='54321',
+        nama='Siti Aminah',
+        jurusan='Sistem Informasi',
+        tanggal_lahir=date(2001, 8, 22),
+        alamat='Jl. Mawar No. 45, Jakarta'
+    )
+
+    dbsession.add(mahasiswa1)
+    dbsession.add(mahasiswa2)
+
 
 def parse_args(argv):
     parser = argparse.ArgumentParser()
@@ -433,147 +586,114 @@ def parse_args(argv):
 def main(argv=sys.argv):
     args = parse_args(argv)
     setup_logging(args.config_uri)
-
-    # bootstrap will return a context with request + closer
     env = bootstrap(args.config_uri)
-    request = env['request']
 
     try:
-        # gunakan request.tm (bukan tm_manager)
-        with request.tm:
-            dbsession = request.dbsession
+        with env['request'].tm:
+            dbsession = env['request'].dbsession
             setup_models(dbsession)
-
-        print("Database initialized successfully.")
-
+            print("Berhasil memasukkan data seeding awal mahasiswa!")
     except OperationalError:
-        print('''
-Pyramid is having a problem using your SQL database.
-
-Your database should be up and running before you
-initialize your project. Make sure your database server
-is running and your connection string in development.ini
-is correctly configured.
-''')
-
-    finally:
-        env['closer']()
+        print("Pyramid gagal terhubung ke database SQL.")
+        print("Pastikan service PostgreSQL berjalan dan connection string di development.ini benar.")
 
 
 if __name__ == '__main__':
     main()`}</CodeBlock>
 
-<p>SQLAlchemy ORM</p>
+          {calloutCheckpoint(
+            "Tahap 4",
+            "Uji Validitas Model Python",
+            <div>
+              <p>Jalankan one-liner Python berikut di terminal dari root folder proyek:</p>
+              <CodeBlock language="bash">{`python -c "from pyramid_mahasiswa.models import Mahasiswa; print('Model terdaftar:', Mahasiswa.__tablename__)"`}</CodeBlock>
+              <p style={{ marginTop: "0.5rem" }}>
+                Jika output menampilkan <code>Model terdaftar: mahasiswa</code> tanpa ImportError, model Anda telah terkonfigurasi dengan sempurna!
+              </p>
+            </div>
+          )}
 
-<p>SQLAlchemy Object-Relational Mapping (ORM) memungkinkan kita mendefinisikan dan bekerja dengan data seperti objek Python biasa, tanpa perlu menulis query SQL secara langsung. Setiap kelas model memetakan ke satu tabel di database.</p>
+          <h3>Tahap 5: Menjalankan Migrasi Database dengan Alembic</h3>
+          <p>
+            <strong>Alembic</strong> adalah alat migrasi database resmi untuk SQLAlchemy. Daripada mengetik perintah <code>CREATE TABLE</code> manual di SQL, Alembic membaca kode model Python kita, membandingkannya dengan database fisik, lalu menghasilkan skrip migrasi revisi yang dapat diterapkan atau dibatalkan kapan saja.
+          </p>
 
+          <h4>Langkah 1: Membuat Berkas Revisi Migrasi Otomatis</h4>
+          <p>Pastikan terminal berada di root proyek (sejajar dengan <code>development.ini</code>), lalu jalankan:</p>
+          <CodeBlock language="bash">{`alembic -c development.ini revision --autogenerate -m "create mahasiswa table"`}</CodeBlock>
 
-<h3 id="menjalankan-migrasi-database-dengan-alembic">Menjalankan Migrasi Database dengan Alembic</h3>
-<p>Alembic adalah tool migrasi database untuk SQLAlchemy. Dengan Alembic, kita dapat melacak perubahan skema database dan menerapkannya dengan mudah.</p>
+          {codeOutput(
+            <div>
+              <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.autogenerate.compare] Detected added table 'mahasiswa'
+  Generating /path/to/pyramid_mahasiswa/alembic/versions/20261112_create_mahasiswa_table.py ...  done`}
+              </pre>
+            </div>
+          )}
 
+          {codeHint(
+            "Inspeksi File Migrasi: Buka folder pyramid_mahasiswa/alembic/versions/. Anda akan menemukan file baru dengan prefix tanggal. Buka file tersebut dan perhatikan fungsi upgrade() berisi perintah op.create_table(...) dan downgrade() berisi op.drop_table(...)."
+          )}
 
-<h3 id="pastikan-alembic-terpasang">Pastikan Alembic Terpasang</h3>
-<p>Alembic sudah termasuk dalam dependensi proyek, tapi pastikan sudah terpasang:</p>
+          <h4>Langkah 2: Menerapkan Migrasi ke Database</h4>
+          <p>Terapkan skema tabel ke PostgreSQL dengan mengeksekusi:</p>
+          <CodeBlock language="bash">{`alembic -c development.ini upgrade head`}</CodeBlock>
 
-<CodeBlock language="">{`# Verifikasi Alembic sudah terpasang
-pip list | grep alembic
+          {codeOutput(
+            <div>
+              <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 4a9f3b8c2d1e, create mahasiswa table`}
+              </pre>
+            </div>
+          )}
 
-# Jika tidak ada, install
-pip install alembic`}</CodeBlock>
+          <h4>Langkah 3: Menjalankan Seeding Data Awal</h4>
+          <p>Sekarang tabel <code>mahasiswa</code> sudah ada di PostgreSQL, jalankan skrip seeding:</p>
+          <CodeBlock language="bash">{`python -m pyramid_mahasiswa.scripts.initialize_db development.ini`}</CodeBlock>
 
+          <h4>Perintah Navigasi Versi Alembic yang Berguna:</h4>
+          <ul>
+            <li><code>alembic -c development.ini current</code>: Menampilkan ID revisi migrasi yang sedang aktif saat ini.</li>
+            <li><code>alembic -c development.ini downgrade -1</code>: Membatalkan 1 langkah revisi (misal saat ingin merevisi struktur tabel).</li>
+            <li><code>alembic -c development.ini upgrade +1</code>: Maju 1 langkah revisi ke depan.</li>
+          </ul>
 
-<h3 id="membuat-migrasi-awal">Membuat Migrasi Awal</h3>
-<p>Template Pyramid sudah menyertakan konfigurasi Alembic. Kita perlu membuat file migrasi:</p>
+          {calloutCheckpoint(
+            "Tahap 5",
+            "Verifikasi Data Fisik di PostgreSQL",
+            <div>
+              <p>Buka psql untuk melihat hasil tabel dan baris data nyata yang telah dibuat oleh Alembic:</p>
+              <CodeBlock language="bash">{`psql -h localhost -U pyramid_user -d pyramid_mahasiswa -c "SELECT id, nim, nama, jurusan FROM mahasiswa;"`}</CodeBlock>
+              <p style={{ marginTop: "0.5rem" }}>
+                Terminal akan menampilkan 2 baris data: <strong>Budi Santoso</strong> dan <strong>Siti Aminah</strong>.
+              </p>
+            </div>
+          )}
+        </section>
+      )}
+      {/* ========================================================================= */}
+      {/* 3. CRUD VIEWS & URL DISPATCH                                              */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "views-routes") && (
+        <section id="views-routes">
+          <h2>3. CRUD Views &amp; URL Dispatch</h2>
+          <p>
+            Setelah lapisan model dan basis data siap, kita akan membangun lapisan Controller (<strong>Views</strong>) untuk memproses permintaan HTTP serta mengonfigurasi <strong>Routes (URL Dispatch)</strong> yang menghubungkan endpoint API ke view handler masing-masing.
+          </p>
 
-<CodeBlock language="">{`# Di root proyek pyramid_mahasiswa
-# Pastikan virtual environment aktif
+          <h3>Tahap 6: Membuat Views untuk CRUD Mahasiswa</h3>
+          <p>
+            Pyramid menyediakan dekorator <code>@view_config</code>. Dengan menetapkan <code>renderer=&#39;json&#39;</code>, Pyramid otomatis mengubah nilai kembalian fungsi (dictionary atau list) menjadi JSON lengkap dengan header <code>Content-Type: application/json</code>.
+          </p>
+          <p>
+            Buat file baru di path: <code>pyramid_mahasiswa/views/mahasiswa.py</code>, lalu salin implementasi lengkap berikut:
+          </p>
 
-# Buat file migrasi
-alembic -c development.ini revision --autogenerate -m "create mahasiswa table"`}</CodeBlock>
-
-<p>Perintah ini akan membuat file migrasi baru di folder pyramid_mahasiswa/alembic/versions/. File ini berisi kode untuk membuat tabel mahasiswa.</p>
-
-<p>Autogenerate Migration</p>
-
-<p>Flag --autogenerate membuat Alembic membandingkan model dengan database dan menghasilkan kode migrasi secara otomatis. Namun, selalu review file migrasi yang dihasilkan untuk memastikan kode sesuai dengan yang diharapkan.</p>
-
-
-<h3 id="menjalankan-migrasi">Menjalankan Migrasi</h3>
-<p>Setelah file migrasi dibuat, kita dapat menjalankan migrasi untuk membuat tabel di database:</p>
-
-<CodeBlock language="">{`# Jalankan migrasi
-alembic -c development.ini upgrade head`}</CodeBlock>
-
-<p>Kalian akan melihat output seperti:</p>
-
-<CodeBlock language="">{`INFO  [alembic.runtime.migration] Running upgrade -> 1234567890ab, create mahasiswa table`}</CodeBlock>
-
-
-<h3 id="inisialisasi-database-dengan-data-awal">Inisialisasi Database dengan Data Awal</h3>
-<p>Sekarang kita dapat menjalankan script initialize_db.py untuk menambahkan data awal:</p>
-
-<CodeBlock language="">{`# Jalankan dari direktori root proyek
-python -m pyramid_mahasiswa.scripts.initialize_db development.ini`}</CodeBlock>
-
-<p>Jika berhasil, data mahasiswa akan ditambahkan ke database.</p>
-
-
-<h3 id="perintah-alembic-yang-berguna">Perintah Alembic yang Berguna</h3>
-<p>Troubleshooting Migrasi</p>
-
-<p>Jika mengalami error saat menjalankan migrasi, periksa:</p>
-
-<ul>
-  <li>Pastikan PostgreSQL berjalan dan dapat diakses</li>
-  <li>Pastikan koneksi string di development.ini sudah benar</li>
-  <li>Jika error menyebutkan "module not found", pastikan Kalian berada di direktori root proyek</li>
-  <li>Jika error terjadi saat generate revision, pastikan model Mahasiswa sudah benar dan ter-import di models/__init__.py</li>
-  <li>Jika terjadi error permission denied, pastikan setup database di Step 2 sudah dijalankan dengan lengkap</li>
-</ul>
-
-
-<h3 id="verifikasi-data-di-database">Verifikasi Data di Database</h3>
-<p>Untuk memverifikasi bahwa tabel dan data berhasil dibuat, Kalian bisa menggunakan psql:</p>
-
-<CodeBlock language="">{`# Login ke database
-psql -U pyramid_user -d pyramid_mahasiswa
-
-# Lihat tabel yang ada
-\dt
-
-# Lihat data mahasiswa
-SELECT * FROM mahasiswa;
-
-# Keluar
-\q`}</CodeBlock>
-
-<p>Kalian seharusnya melihat 2 data mahasiswa yang telah ditambahkan.</p>
-
-
-<h3 id="langkah-selanjutnya">Langkah Selanjutnya</h3>
-<p>Setelah database dikonfigurasi dan model dibuat, kita akan melanjutkan ke pembuatan views dan routes untuk operasi CRUD pada bagian selanjutnya.</p>
-
-<p>Setup Environment</p>
-
-<p>Persiapan lingkungan pengembangan dan membuat proyek Pyramid dengan Cookiecutter</p>
-
-<p>Views & Routes</p>
-
-<p>Implementasi CRUD views dan konfigurasi routing untuk API Mahasiswa</p>
-
-
-<h3 id="views-routes">Views & Routes</h3>
-<p>Implementasi CRUD views dan konfigurasi routing untuk API Mahasiswa</p>
-
-
-<h3 id="membuat-views-untuk-crud-mahasiswa">Membuat Views untuk CRUD Mahasiswa</h3>
-<p>Views adalah fungsi yang menangani request dan mengembalikan response. Kita akan membuat views untuk operasi CRUD (Create, Read, Update, Delete) pada data Mahasiswa.</p>
-
-
-<h3 id="buat-file-views-mahasiswa">Buat File Views Mahasiswa</h3>
-<p>Buat file baru pyramid_mahasiswa/views/mahasiswa.py:</p>
-
-<CodeBlock language="">{`import datetime
+          <CodeBlock language="python">{`import datetime
 from pyramid.view import view_config
 from pyramid.httpexceptions import (
     HTTPFound,
@@ -583,57 +703,50 @@ from pyramid.httpexceptions import (
 from ..models import Mahasiswa
 
 
+# 1. READ ALL: Menampilkan daftar seluruh mahasiswa
 @view_config(route_name='mahasiswa_list', renderer='json')
 def mahasiswa_list(request):
-    """View untuk menampilkan daftar mahasiswa"""
+    """View untuk mengambil semua data mahasiswa"""
     dbsession = request.dbsession
-    mahasiswas = dbsession.query(Mahasiswa).all()
+    mahasiswas = dbsession.query(Mahasiswa).order_by(Mahasiswa.id.asc()).all()
     return {'mahasiswas': [m.to_dict() for m in mahasiswas]}
 
 
+# 2. READ ONE: Menampilkan detail satu mahasiswa berdasarkan ID
 @view_config(route_name='mahasiswa_detail', renderer='json')
 def mahasiswa_detail(request):
-    """View untuk melihat detail satu mahasiswa"""
+    """View untuk melihat detail satu mahasiswa berdasarkan ID di URL"""
     dbsession = request.dbsession
     mahasiswa_id = request.matchdict['id']
     mahasiswa = dbsession.query(Mahasiswa).filter_by(id=mahasiswa_id).first()
 
     if mahasiswa is None:
-        return HTTPNotFound(json_body={'error': 'Mahasiswa tidak ditemukan'})
+        return HTTPNotFound(json_body={'error': f'Mahasiswa dengan ID {mahasiswa_id} tidak ditemukan'})
 
     return {'mahasiswa': mahasiswa.to_dict()}
 
 
+# 3. CREATE: Menambahkan data mahasiswa baru
 @view_config(route_name='mahasiswa_add', request_method='POST', renderer='json')
 def mahasiswa_add(request):
-    """View untuk menambahkan mahasiswa baru"""
+    """View untuk menambahkan mahasiswa baru dari payload JSON"""
     try:
-        # Ambil data dari request JSON
         json_data = request.json_body
 
-        # Validasi data minimal
+        # Validasi field wajib
         required_fields = ['nim', 'nama', 'jurusan']
         for field in required_fields:
-            if field not in json_data:
-                return HTTPBadRequest(
-                    json_body={'error': f'Field {field} wajib diisi'}
-                )
+            if field not in json_data or not json_data[field]:
+                return HTTPBadRequest(json_body={'error': f'Field {field} wajib diisi!'})
 
-        # Parse tanggal lahir jika ada
+        # Validasi dan konversi format tanggal ISO YYYY-MM-DD
         tanggal_lahir = None
         if 'tanggal_lahir' in json_data and json_data['tanggal_lahir']:
             try:
-                tanggal_lahir = datetime.datetime.fromisoformat(
-                    json_data['tanggal_lahir']
-                ).date()
+                tanggal_lahir = datetime.datetime.fromisoformat(json_data['tanggal_lahir']).date()
             except ValueError:
-                return HTTPBadRequest(
-                    json_body={
-                        'error': 'Format tanggal lahir tidak valid. Gunakan YYYY-MM-DD'
-                    }
-                )
+                return HTTPBadRequest(json_body={'error': 'Format tanggal lahir tidak valid. Gunakan format YYYY-MM-DD'})
 
-        # Buat objek Mahasiswa baru
         mahasiswa = Mahasiswa(
             nim=json_data['nim'],
             nama=json_data['nama'],
@@ -642,10 +755,10 @@ def mahasiswa_add(request):
             alamat=json_data.get('alamat')
         )
 
-        # Simpan ke database
         dbsession = request.dbsession
         dbsession.add(mahasiswa)
-        dbsession.flush()  # Untuk mendapatkan ID yang baru dibuat
+        # Flush session untuk mengeksekusi query INSERT dan mendapatkan nilai primary key id yang di-generate PostgreSQL
+        dbsession.flush()
 
         return {'success': True, 'mahasiswa': mahasiswa.to_dict()}
 
@@ -653,22 +766,20 @@ def mahasiswa_add(request):
         return HTTPBadRequest(json_body={'error': str(e)})
 
 
+# 4. UPDATE: Mengubah data mahasiswa yang sudah ada
 @view_config(route_name='mahasiswa_update', request_method='PUT', renderer='json')
 def mahasiswa_update(request):
-    """View untuk mengupdate data mahasiswa"""
+    """View untuk mengupdate data mahasiswa berdasarkan ID"""
     dbsession = request.dbsession
     mahasiswa_id = request.matchdict['id']
 
-    # Cari mahasiswa yang akan diupdate
     mahasiswa = dbsession.query(Mahasiswa).filter_by(id=mahasiswa_id).first()
     if mahasiswa is None:
-        return HTTPNotFound(json_body={'error': 'Mahasiswa tidak ditemukan'})
+        return HTTPNotFound(json_body={'error': f'Mahasiswa dengan ID {mahasiswa_id} tidak ditemukan'})
 
     try:
-        # Ambil data dari request JSON
         json_data = request.json_body
 
-        # Update atribut yang ada di request
         if 'nim' in json_data:
             mahasiswa.nim = json_data['nim']
         if 'nama' in json_data:
@@ -678,19 +789,12 @@ def mahasiswa_update(request):
         if 'alamat' in json_data:
             mahasiswa.alamat = json_data['alamat']
 
-        # Parse tanggal lahir jika ada
         if 'tanggal_lahir' in json_data:
             if json_data['tanggal_lahir']:
                 try:
-                    mahasiswa.tanggal_lahir = datetime.datetime.fromisoformat(
-                        json_data['tanggal_lahir']
-                    ).date()
+                    mahasiswa.tanggal_lahir = datetime.datetime.fromisoformat(json_data['tanggal_lahir']).date()
                 except ValueError:
-                    return HTTPBadRequest(
-                        json_body={
-                            'error': 'Format tanggal lahir tidak valid. Gunakan YYYY-MM-DD'
-                        }
-                    )
+                    return HTTPBadRequest(json_body={'error': 'Format tanggal lahir tidak valid. Gunakan format YYYY-MM-DD'})
             else:
                 mahasiswa.tanggal_lahir = None
 
@@ -700,237 +804,133 @@ def mahasiswa_update(request):
         return HTTPBadRequest(json_body={'error': str(e)})
 
 
+# 5. DELETE: Menghapus data mahasiswa
 @view_config(route_name='mahasiswa_delete', request_method='DELETE', renderer='json')
 def mahasiswa_delete(request):
-    """View untuk menghapus data mahasiswa"""
+    """View untuk menghapus mahasiswa berdasarkan ID"""
     dbsession = request.dbsession
     mahasiswa_id = request.matchdict['id']
 
-    # Cari mahasiswa yang akan dihapus
     mahasiswa = dbsession.query(Mahasiswa).filter_by(id=mahasiswa_id).first()
     if mahasiswa is None:
-        return HTTPNotFound(json_body={'error': 'Mahasiswa tidak ditemukan'})
+        return HTTPNotFound(json_body={'error': f'Mahasiswa dengan ID {mahasiswa_id} tidak ditemukan'})
 
-    # Hapus dari database
     dbsession.delete(mahasiswa)
 
-    return {
-        'success': True,
-        'message': f'Mahasiswa dengan id {mahasiswa_id} berhasil dihapus'
-    }`}</CodeBlock>
+    return {'success': True, 'message': f'Mahasiswa dengan ID {mahasiswa_id} berhasil dihapus'}`}</CodeBlock>
 
-<p>Renderer JSON</p>
+          {codeHint(
+            <div>
+              <p><strong>Poin Kunci Logika Views:</strong></p>
+              <ul style={{ margin: "0.25rem 0 0 1rem" }}>
+                <li><code>request.matchdict[&#39;id&#39;]</code>: Mengekstrak parameter dinamis <code>&#123;id&#125;</code> dari segmen URL request yang cocok dengan pola route.</li>
+                <li><code>request.json_body</code>: Properti bawaan Pyramid yang otomatis mem-parsing payload JSON request menjadi dictionary Python.</li>
+                <li><code>dbsession.flush()</code>: Menyinkronkan objek baru ke database seketika sebelum transaction manager me-release response, sehingga nilai <code>mahasiswa.id</code> langsung terisi dari autoincrement sequence PostgreSQL.</li>
+                <li><code>HTTPNotFound</code> dan <code>HTTPBadRequest</code>: Class exception resmi Pyramid yang langsung menghasilkan HTTP status code yang tepat (404 dan 400) dengan payload pesan kesalahan berformat JSON.</li>
+              </ul>
+            </div>
+          )}
 
-<p>Kita menggunakan renderer='json' pada decorator @view_config untuk mengonversi return value dari function view menjadi JSON response secara otomatis. Ini berguna untuk membuat API web yang mengembalikan data dalam format JSON.</p>
+          {calloutCheckpoint(
+            "Tahap 6",
+            "Pemeriksaan Sintaks Views",
+            <div>
+              <p>Pastikan file <code>views/mahasiswa.py</code> tidak memiliki error penulisan:</p>
+              <CodeBlock language="bash">{`python -c "from pyramid_mahasiswa.views import mahasiswa; print('Views mahasiswa valid!')"`}</CodeBlock>
+            </div>
+          )}
 
+          <h3>Tahap 7: Membuat Routes (pyramid_mahasiswa/routes.py)</h3>
+          <p>
+            File <code>routes.py</code> adalah tabel pengendali lalu lintas URL. Di sinilah nama route dipetakan ke pola URL path.
+          </p>
+          <p>
+            Buka file <code>pyramid_mahasiswa/routes.py</code>, lalu perbarui isinya menjadi:
+          </p>
 
-<h3 id="penjelasan-view-functions">Penjelasan View Functions</h3>
-<p>Mari kita pahami setiap view function yang telah dibuat:</p>
-
-<CodeBlock language="">{`@view_config(route_name='mahasiswa_list', renderer='json')
-def mahasiswa_list(request):
-    dbsession = request.dbsession
-    mahasiswas = dbsession.query(Mahasiswa).all()
-    return {'mahasiswas': [m.to_dict() for m in mahasiswas]}`}</CodeBlock>
-
-<p>View ini:</p>
-
-<ul>
-  <li>Mengambil semua data mahasiswa dari database</li>
-  <li>Mengkonversi setiap objek Mahasiswa ke dictionary dengan to_dict()</li>
-  <li>Mengembalikan list dictionary dalam format JSON</li>
-</ul>
-
-<CodeBlock language="">{`@view_config(route_name='mahasiswa_detail', renderer='json')
-def mahasiswa_detail(request):
-    mahasiswa_id = request.matchdict['id']
-    mahasiswa = dbsession.query(Mahasiswa).filter_by(id=mahasiswa_id).first()`}</CodeBlock>
-
-<p>View ini:</p>
-
-<ul>
-  <li>Mengambil ID dari URL parameter dengan request.matchdict['id']</li>
-  <li>Mencari mahasiswa dengan ID tersebut</li>
-  <li>Mengembalikan 404 jika tidak ditemukan</li>
-</ul>
-
-<CodeBlock language="">{`@view_config(route_name='mahasiswa_add', request_method='POST', renderer='json')
-def mahasiswa_add(request):
-    json_data = request.json_body`}</CodeBlock>
-
-<p>View ini:</p>
-
-<ul>
-  <li>Menerima data JSON dari request body</li>
-  <li>Melakukan validasi field yang wajib diisi</li>
-  <li>Membuat objek Mahasiswa baru dan menyimpannya ke database</li>
-</ul>
-
-<p>View-view ini mengikuti pola yang sama dengan update dan delete operasi pada database.</p>
-
-
-<h3 id="membuat-routes-dan-update-routespy">Membuat Routes dan Update routes.py</h3>
-<p>Sekarang kita perlu mendefinisikan routes untuk endpoints CRUD Mahasiswa.</p>
-
-
-<h3 id="update-file-routespy">Update File routes.py</h3>
-<p>Edit file pyramid_mahasiswa/routes.py:</p>
-
-<CodeBlock language="">{`def includeme(config):
-    """Add routes to the config."""
+          <CodeBlock language="python">{`def includeme(config):
+    """Mendaftarkan seluruh rute routing aplikasi ke konfigurasi Pyramid"""
     config.add_static_view('static', 'static', cache_max_age=3600)
 
-    # Default route
+    # Route default web home
     config.add_route('home', '/')
 
-    # Mahasiswa routes
+    # RESTful API Mahasiswa Routes
+    # Parameter request_method krusial untuk membedakan HTTP Method pada URL path yang sama
     config.add_route('mahasiswa_list', '/api/mahasiswa', request_method='GET')
     config.add_route('mahasiswa_detail', '/api/mahasiswa/{id}', request_method='GET')
     config.add_route('mahasiswa_add', '/api/mahasiswa', request_method='POST')
     config.add_route('mahasiswa_update', '/api/mahasiswa/{id}', request_method='PUT')
     config.add_route('mahasiswa_delete', '/api/mahasiswa/{id}', request_method='DELETE')`}</CodeBlock>
 
-<p>Request Method Parameter</p>
+          {codeHint(
+            <div>
+              <p><strong>MENGAPA PARAMETER request_method SANGAT KRUSIAL?</strong></p>
+              <p>
+                Perhatikan rute <code>mahasiswa_list</code> dan <code>mahasiswa_add</code> yang sama-sama memiliki path <code>/api/mahasiswa</code>. Begitu pula <code>mahasiswa_detail</code>, <code>mahasiswa_update</code>, dan <code>mahasiswa_delete</code> yang sama-sama beralamat di <code>/api/mahasiswa/&#123;id&#125;</code>.
+              </p>
+              <p>
+                Jika Anda tidak menyertakan <code>request_method=&#39;...&#39;</code>, Pyramid mengevaluasi rute secara sekuensial dari atas ke bawah dan akan <strong>selalu mencocokkan rute pertama yang ditemukan</strong>. Akibatnya, request ber-method <code>POST</code> ke <code>/api/mahasiswa</code> akan keliru diarahkan ke <code>mahasiswa_list</code> (GET) dan menyebabkan request gagal dieksekusi!
+              </p>
+            </div>
+          )}
 
-<p>Perhatikan penambahan parameter request_method pada setiap route. Ini sangat penting untuk membedakan endpoint yang memiliki URL sama tetapi method berbeda. Tanpa parameter ini, Pyramid mungkin akan selalu mengarahkan request ke satu view function saja, yang menyebabkan endpoint POST/PUT/DELETE tidak berfungsi.</p>
+          {calloutCheckpoint(
+            "Tahap 7",
+            "Sinkronisasi Antara routes.py dan @view_config",
+            <div>
+              <p>
+                Pastikan nama route pada <code>config.add_route(&#39;nama_route&#39;, ...)</code> di <code>routes.py</code> identik huruf-per-huruf dengan nilai <code>@view_config(route_name=&#39;nama_route&#39;)</code> di <code>views/mahasiswa.py</code>. Ketidakcocokan nama akan menyebabkan error saat startup aplikasi.
+              </p>
+            </div>
+          )}
+        </section>
+      )}
+      {/* ========================================================================= */}
+      {/* 4. PENGUJIAN REST API                                                     */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "testing") && (
+        <section id="testing">
+          <h2>4. Pengujian REST API</h2>
+          <p>
+            Aplikasi kita kini telah lengkap: Model, Koneksi Database, Migrasi Alembic, Views Logika Bisnis, dan URL Routes. Sekarang saatnya menjalankan web server lokal dan menguji kelima operasi CRUD melalui permintaan HTTP nyata.
+          </p>
 
+          <h3>Tahap 8: Menjalankan Server &amp; Pengujian API Menyeluruh</h3>
 
-<h3 id="restful-api-pattern">RESTful API Pattern</h3>
-<p>API yang kita buat mengikuti pola RESTful dengan mapping sebagai berikut:</p>
+          <h4>Langkah 1: Menjalankan Server Development</h4>
+          <p>
+            Pastikan virtual environment aktif dan Anda berada di root folder proyek (sejajar dengan <code>development.ini</code>). Jalankan server web Waitress bawaan Pyramid dengan flag auto-reload:
+          </p>
+          <CodeBlock language="bash">{`pserve development.ini --reload`}</CodeBlock>
 
-<p>RESTful API Best Practices</p>
+          {codeOutput(
+            <div>
+              <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`Starting subprocess with file monitor
+Starting server in PID 65432.
+2026-11-12 15:30:00,123 INFO  [waitress:305][MainThread] Serving on http://localhost:6543
+2026-11-12 15:30:00,124 INFO  [waitress:305][MainThread] Serving on http://127.0.0.1:6543`}
+              </pre>
+            </div>
+          )}
 
-<p>RESTful API menggunakan HTTP methods untuk menentukan jenis operasi:</p>
+          {codeHint(
+            "Keunggulan Flag --reload: Setiap kali Anda menyimpan (save) perubahan pada file Python atau file .ini, server akan me-restart dirinya sendiri secara instan tanpa perlu Anda matikan dan jalankan ulang secara manual."
+          )}
 
-<ul>
-  <li>GET: Mengambil data (read-only)</li>
-  <li>POST: Membuat data baru</li>
-  <li>PUT: Mengupdate data yang ada</li>
-  <li>DELETE: Menghapus data</li>
-</ul>
+          <h4>Langkah 2: Menjalankan Rangkaian Pengujian dengan cURL</h4>
+          <p>
+            Buka jendela terminal kedua (biarkan terminal pertama tetap menjalankan server <code>pserve</code>). Jalankan perintah-perintah uji coba berikut:
+          </p>
 
+          <p><strong>1. READ ALL &mdash; Mengambil Seluruh Daftar Mahasiswa (GET)</strong></p>
+          <CodeBlock language="bash">{`curl -X GET http://localhost:6543/api/mahasiswa`}</CodeBlock>
 
-<h3 id="scan-views-module">Scan Views Module</h3>
-<p>Agar views yang telah kita buat dapat digunakan, kita perlu memastikan Pyramid melakukan scan pada module views.</p>
-
-<p>Edit file pyramid_mahasiswa/__init__.py dan pastikan ada kode berikut:</p>
-
-<CodeBlock language="">{`def main(global_config, **settings):
-    """ This function returns a Pyramid WSGI application.
-    """
-    (...)
-    # Update Scan views module
-    config.scan('.views')
-
-    return config.make_wsgi_app()`}</CodeBlock>
-
-<p>Baris config.scan('.views') membuat Pyramid mencari semua decorator @view_config di dalam module views dan mendaftarkannya.</p>
-
-<p>Config Scan</p>
-
-<p>Pyramid menggunakan config scan untuk menemukan dan mendaftarkan views, routes, dan komponen lainnya secara otomatis. Tanpa config.scan(), decorator @view_config tidak akan berfungsi.</p>
-
-
-<h3 id="sqlalchemy-query-patterns">SQLAlchemy Query Patterns</h3>
-<p>Berikut beberapa pattern query SQLAlchemy yang sering digunakan:</p>
-
-<CodeBlock language="">{`# Mendapatkan semua data
-mahasiswas = dbsession.query(Mahasiswa).all()
-
-# Dengan ordering
-mahasiswas = dbsession.query(Mahasiswa).order_by(Mahasiswa.nama).all()
-
-# Dengan limit
-mahasiswas = dbsession.query(Mahasiswa).limit(10).all()`}</CodeBlock>
-
-<CodeBlock language="">{`# Filter by single field
-mahasiswa = dbsession.query(Mahasiswa).filter_by(nim='12345').first()
-
-# Filter dengan kondisi
-mahasiswas = dbsession.query(Mahasiswa).filter(
-    Mahasiswa.jurusan == 'Teknik Informatika'
-).all()
-
-# Multiple conditions
-mahasiswas = dbsession.query(Mahasiswa).filter(
-    Mahasiswa.jurusan == 'Teknik Informatika',
-    Mahasiswa.nama.like('%budi%')
-).all()`}</CodeBlock>
-
-<CodeBlock language="">{`# Get first result or None
-mahasiswa = dbsession.query(Mahasiswa).first()
-
-# Get one result (raises if not found or multiple found)
-mahasiswa = dbsession.query(Mahasiswa).filter_by(id=1).one()
-
-# Get one or None
-mahasiswa = dbsession.query(Mahasiswa).filter_by(id=1).one_or_none()`}</CodeBlock>
-
-<CodeBlock language="">{`# Add new object
-mahasiswa = Mahasiswa(nim='12345', nama='Budi')
-dbsession.add(mahasiswa)
-
-# Delete object
-mahasiswa = dbsession.query(Mahasiswa).filter_by(id=1).first()
-dbsession.delete(mahasiswa)
-
-# Update object (directly modify attributes)
-mahasiswa = dbsession.query(Mahasiswa).filter_by(id=1).first()
-mahasiswa.nama = 'Budi Updated'
-# No need to call update, SQLAlchemy tracks changes`}</CodeBlock>
-
-
-<h3 id="menjalankan-aplikasi">Menjalankan Aplikasi</h3>
-<p>Setelah semua komponen diimplementasikan, jalankan aplikasi:</p>
-
-<CodeBlock language="">{`# Pastikan virtual environment aktif
-# Di root proyek
-pserve development.ini --reload`}</CodeBlock>
-
-<p>Flag --reload akan menyebabkan server restart secara otomatis saat ada perubahan kode. Server akan berjalan pada port 6543 (http://localhost:6543).</p>
-
-<p>Server Ready</p>
-
-<p>Jika server berhasil dijalankan, Kalian akan melihat output:</p>
-
-<CodeBlock language="">{`Starting server in PID xxxxx.
-Serving on http://localhost:6543`}</CodeBlock>
-
-
-<h3 id="langkah-selanjutnya">Langkah Selanjutnya</h3>
-<p>Setelah views dan routes selesai dibuat, kita akan melanjutkan ke pengujian API dan mengerjakan tugas praktikum pada bagian selanjutnya.</p>
-
-<p>Database & Models</p>
-
-<p>Konfigurasi PostgreSQL, membuat model Mahasiswa, dan menjalankan migrasi database</p>
-
-<p>Testing</p>
-
-<p>Pengujian API Pyramid Framework</p>
-
-
-<h3 id="testing">Testing</h3>
-<p>Pengujian API Pyramid Framework</p>
-
-
-<h3 id="pengujian-api-dengan-curl">Pengujian API dengan curl</h3>
-<p>Sekarang kita akan menguji API yang telah dibuat menggunakan curl. Pastikan server Pyramid sedang berjalan sebelum melakukan pengujian.</p>
-
-<p>Menjalankan Server</p>
-
-<p>Jika server belum berjalan, jalankan dengan perintah:</p>
-
-<CodeBlock language="">{`pserve development.ini --reload`}</CodeBlock>
-
-
-<h3 id="pengujian-dengan-curl-di-linuxmacos">Pengujian dengan curl di Linux/macOS</h3>
-
-<h3 id="mendapatkan-daftar-mahasiswa-get">Mendapatkan Daftar Mahasiswa (GET)</h3>
-<CodeBlock language="">{`curl -X GET http://localhost:6543/api/mahasiswa`}</CodeBlock>
-
-<p>Response yang diharapkan:</p>
-
-<CodeBlock language="">{`{
+          {codeOutput(
+            <div>
+              <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`{
   "mahasiswas": [
     {
       "id": 1,
@@ -949,15 +949,18 @@ Serving on http://localhost:6543`}</CodeBlock>
       "alamat": "Jl. Mawar No. 45, Jakarta"
     }
   ]
-}`}</CodeBlock>
+}`}
+              </pre>
+            </div>
+          )}
 
+          <p><strong>2. READ ONE &mdash; Mengambil Detail Mahasiswa Berdasarkan ID (GET)</strong></p>
+          <CodeBlock language="bash">{`curl -X GET http://localhost:6543/api/mahasiswa/1`}</CodeBlock>
 
-<h3 id="mendapatkan-detail-mahasiswa-get">Mendapatkan Detail Mahasiswa (GET)</h3>
-<CodeBlock language="">{`curl -X GET http://localhost:6543/api/mahasiswa/1`}</CodeBlock>
-
-<p>Response yang diharapkan:</p>
-
-<CodeBlock language="">{`{
+          {codeOutput(
+            <div>
+              <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`{
   "mahasiswa": {
     "id": 1,
     "nim": "12345",
@@ -966,23 +969,30 @@ Serving on http://localhost:6543`}</CodeBlock>
     "tanggal_lahir": "2000-05-15",
     "alamat": "Jl. Merdeka No. 123, Bandung"
   }
-}`}</CodeBlock>
+}`}
+              </pre>
+            </div>
+          )}
 
+          <p><strong>3. CREATE &mdash; Menambahkan Data Mahasiswa Baru (POST)</strong></p>
+          <CodeBlock language="bash">{`# Perintah untuk macOS/Linux (Bash/Zsh):
+curl -X POST http://localhost:6543/api/mahasiswa \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "nim": "67890",
+    "nama": "Ahmad Fadli",
+    "jurusan": "Teknik Elektro",
+    "tanggal_lahir": "2001-11-05",
+    "alamat": "Jl. Mawar No. 10, Surabaya"
+  }'
 
-<h3 id="menambahkan-mahasiswa-baru-post">Menambahkan Mahasiswa Baru (POST)</h3>
-<CodeBlock language="">{`curl -X POST http://localhost:6543/api/mahasiswa \
--H "Content-Type: application/json" \
--d '{
-  "nim": "67890",
-  "nama": "Ahmad Fadli",
-  "jurusan": "Teknik Elektro",
-  "tanggal_lahir": "2001-11-05",
-  "alamat": "Jl. Mawar No. 10, Surabaya"
-}'`}</CodeBlock>
+# Alternatif untuk Windows Command Prompt (cmd.exe dengan escaped quotes):
+# curl -X POST http://localhost:6543/api/mahasiswa -H "Content-Type: application/json" -d "{\\"nim\\":\\"67890\\",\\"nama\\":\\"Ahmad Fadli\\",\\"jurusan\\":\\"Teknik Elektro\\",\\"tanggal_lahir\\":\\"2001-11-05\\",\\"alamat\\":\\"Jl. Mawar No. 10, Surabaya\\"}"`}</CodeBlock>
 
-<p>Response yang diharapkan:</p>
-
-<CodeBlock language="">{`{
+          {codeOutput(
+            <div>
+              <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`{
   "success": true,
   "mahasiswa": {
     "id": 3,
@@ -992,167 +1002,359 @@ Serving on http://localhost:6543`}</CodeBlock>
     "tanggal_lahir": "2001-11-05",
     "alamat": "Jl. Mawar No. 10, Surabaya"
   }
-}`}</CodeBlock>
+}`}
+              </pre>
+            </div>
+          )}
 
+          <p><strong>4. TESTING VALIDATION &mdash; Menguji Error 400 Bad Request</strong></p>
+          <p>Kirimkan data tidak lengkap (misalnya tanpa atribut <code>nim</code>):</p>
+          <CodeBlock language="bash">{`curl -X POST http://localhost:6543/api/mahasiswa \\
+  -H "Content-Type: application/json" \\
+  -d '{"nama": "Mahasiswa Tanpa NIM", "jurusan": "Informatika"}'`}</CodeBlock>
 
-<h3 id="mengupdate-data-mahasiswa-put">Mengupdate Data Mahasiswa (PUT)</h3>
-<CodeBlock language="">{`curl -X PUT http://localhost:6543/api/mahasiswa/1 \
--H "Content-Type: application/json" \
--d '{
-  "jurusan": "Informatika",
-  "alamat": "Jl. Melati No. 5, Bandung"
-}'`}</CodeBlock>
+          {codeOutput(
+            <div>
+              <pre style={{ margin: 0, color: "#ef4444", fontFamily: "monospace" }}>
+{`{"error": "Field nim wajib diisi!"}`}
+              </pre>
+            </div>
+          )}
 
-<p>Response yang diharapkan:</p>
+          <p><strong>5. UPDATE &mdash; Memperbarui Data Mahasiswa (PUT)</strong></p>
+          <CodeBlock language="bash">{`curl -X PUT http://localhost:6543/api/mahasiswa/1 \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "jurusan": "Informatika Medis",
+    "alamat": "Jl. Dipati Ukur No. 88, Bandung"
+  }'`}</CodeBlock>
 
-<CodeBlock language="">{`{
+          {codeOutput(
+            <div>
+              <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`{
   "success": true,
   "mahasiswa": {
     "id": 1,
     "nim": "12345",
     "nama": "Budi Santoso",
-    "jurusan": "Informatika",
+    "jurusan": "Informatika Medis",
     "tanggal_lahir": "2000-05-15",
-    "alamat": "Jl. Melati No. 5, Bandung"
+    "alamat": "Jl. Dipati Ukur No. 88, Bandung"
   }
-}`}</CodeBlock>
+}`}
+              </pre>
+            </div>
+          )}
 
+          <p><strong>6. DELETE &mdash; Menghapus Data Mahasiswa (DELETE)</strong></p>
+          <CodeBlock language="bash">{`curl -X DELETE http://localhost:6543/api/mahasiswa/3`}</CodeBlock>
 
-<h3 id="menghapus-data-mahasiswa-delete">Menghapus Data Mahasiswa (DELETE)</h3>
-<CodeBlock language="">{`curl -X DELETE http://localhost:6543/api/mahasiswa/3`}</CodeBlock>
-
-<p>Response yang diharapkan:</p>
-
-<CodeBlock language="">{`{
+          {codeOutput(
+            <div>
+              <pre style={{ margin: 0, color: "#10b981", fontFamily: "monospace" }}>
+{`{
   "success": true,
-  "message": "Mahasiswa dengan id 3 berhasil dihapus"
-}`}</CodeBlock>
+  "message": "Mahasiswa dengan ID 3 berhasil dihapus"
+}`}
+              </pre>
+            </div>
+          )}
 
+          <p><strong>7. TESTING NOT FOUND &mdash; Menguji Respon 404</strong></p>
+          <p>Coba akses kembali data ID 3 yang telah dihapus:</p>
+          <CodeBlock language="bash">{`curl -X GET http://localhost:6543/api/mahasiswa/3`}</CodeBlock>
 
-<h3 id="pengujian-dengan-curl-di-windows">Pengujian dengan curl di Windows</h3>
-<p>Untuk pengguna Windows, gunakan syntax curl berikut dengan escape character yang berbeda:</p>
+          {codeOutput(
+            <div>
+              <pre style={{ margin: 0, color: "#ef4444", fontFamily: "monospace" }}>
+{`{"error": "Mahasiswa dengan ID 3 tidak ditemukan"}`}
+              </pre>
+            </div>
+          )}
 
-<CodeBlock language="">{`curl -X GET http://localhost:6543/api/mahasiswa`}</CodeBlock>
+          <h3>Alternatif Tool Pengujian API Modern</h3>
+          <p>
+            Selain menggunakan cURL di terminal, Anda dapat menggunakan beberapa tool visual berikut:
+          </p>
+          <ul>
+            <li><strong>Postman / Insomnia</strong>: Aplikasi GUI populer untuk mendokumentasikan dan mengeksekusi request HTTP. Cukup tentukan HTTP Method, masukkan URL (misal <code>http://localhost:6543/api/mahasiswa</code>), dan isi Body bertipe <code>raw JSON</code>.</li>
+            <li><strong>VS Code REST Client Extension</strong>: Ekstensi VS Code ringan. Cukup buat file <code>api_test.http</code> di editor, tuliskan sintaks HTTP request, lalu klik tombol <em>Send Request</em> langsung dari editor.</li>
+            <li><strong>Web Browser</strong>: Untuk endpoint ber-method <code>GET</code>, Anda dapat langsung mengetikkan <code>http://localhost:6543/api/mahasiswa</code> pada address bar Google Chrome/Firefox untuk melihat data JSON.</li>
+          </ul>
 
-<CodeBlock language="">{`curl -X POST http://localhost:6543/api/mahasiswa \`
--H "Content-Type: application/json" \`
--d '{\"nim\": \"67890\", \"nama\": \"Ahmad Fadli\", \"jurusan\": \"Teknik Elektro\", \"tanggal_lahir\": \"2001-11-05\", \"alamat\": \"Jl. Mawar No. 10, Surabaya\"}'`}</CodeBlock>
+          <h3>Ringkasan Arsitektur &amp; Ide Eksplorasi Lanjutan</h3>
+          <p>
+            Selamat! Anda telah berhasil membangun aplikasi RESTful API lengkap menggunakan arsitektur enterprise:
+          </p>
+          <ul>
+            <li><strong>Lapisan Model (SQLAlchemy)</strong>: Menjaga integritas skema data di PostgreSQL.</li>
+            <li><strong>Lapisan Database Versioning (Alembic)</strong>: Memungkinkan pelacakan dan migrasi skema tabel tanpa risiko data loss.</li>
+            <li><strong>Lapisan Controller (Views &amp; Routes)</strong>: Menangani routing, ekstraksi payload JSON, validasi input, serta formatting respons status code HTTP secara terstruktur.</li>
+          </ul>
 
-<CodeBlock language="">{`curl -X PUT http://localhost:6543/api/mahasiswa/1 \`
--H "Content-Type: application/json" \`
--d '{\"jurusan\": \"Informatika\", \"alamat\": \"Jl. Melati No. 5, Bandung\"}'`}</CodeBlock>
+          <p>Untuk pengembangan mandiri tingkat lanjut, pertimbangkan eksplorasi topik berikut:</p>
+          <ul>
+            <li><strong>Autentikasi &amp; Otorisasi JWT</strong>: Mengamankan endpoint POST/PUT/DELETE agar hanya dapat diakses pengguna terotentikasi.</li>
+            <li><strong>Validasi Skema dengan Marshmallow</strong>: Menggunakan library schema serialisasi otomatis agar validasi request body lebih rapi dan deklaratif.</li>
+            <li><strong>Pagination &amp; Search</strong>: Menerapkan parameter query <code>?page=1&amp;limit=10&amp;search=Budi</code> pada query SQLAlchemy.</li>
+          </ul>
 
-<CodeBlock language="">{`curl -X DELETE http://localhost:6543/api/mahasiswa/3`}</CodeBlock>
+          {calloutCheckpoint(
+            "Tahap 8",
+            "Verifikasi Akhir Siklus CRUD",
+            <div>
+              <p>
+                Pastikan kelima operasi (Read All, Read One, Create, Update, Delete) berhasil dieksekusi dengan baik. Amati log terminal <code>pserve</code> Anda: setiap request akan menampilkan log HTTP response code seperti <code>200 OK</code>, <code>400 Bad Request</code>, atau <code>404 Not Found</code>.
+              </p>
+            </div>
+          )}
+        </section>
+      )}
 
-<CodeBlock language="">{`curl -X GET http://localhost:6543/api/mahasiswa`}</CodeBlock>
+      {/* ========================================================================= */}
+      {/* 5. TUGAS PRAKTIKUM                                                        */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "tugas-praktikum") && (
+        <section id="tugas-praktikum">
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1rem" }}>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--color-accent, #3b82f6)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <h2 style={{ margin: 0 }}>Tugas: Manajemen Matakuliah</h2>
+          </div>
 
-<CodeBlock language="">{`curl -X POST http://localhost:6543/api/mahasiswa -H "Content-Type: application/json" -d "{\"nim\": \"67890\", \"nama\": \"Ahmad Fadli\", \"jurusan\": \"Teknik Elektro\", \"tanggal_lahir\": \"2001-11-05\", \"alamat\": \"Jl. Mawar No. 10, Surabaya\"}"`}</CodeBlock>
+          <div
+            style={{
+              border: "1px solid var(--color-border)",
+              borderRadius: "12px",
+              padding: "1.75rem",
+              backgroundColor: "var(--color-bg-card, rgba(255, 255, 255, 0.02))",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.04)",
+              marginBottom: "2rem",
+            }}
+          >
+            <h3
+              style={{
+                color: "var(--color-accent, #2563eb)",
+                marginTop: 0,
+                marginBottom: "0.85rem",
+                fontSize: "1.25rem",
+                fontWeight: 600,
+              }}
+            >
+              Tugas Praktikum: Aplikasi RESTful API Manajemen Matakuliah
+            </h3>
+            <p style={{ lineHeight: 1.7, marginBottom: "1.25rem", color: "var(--color-text-primary)" }}>
+              Kembangkan aplikasi web Pyramid yang telah dibuat pada praktikum ini dengan menambahkan modul baru untuk <strong>Manajemen Data Matakuliah</strong> berbasis PostgreSQL. Aplikasi harus mengimplementasikan seluruh prinsip arsitektur yang telah dipelajari: model data ORM, migrasi Alembic, routing URL Dispatch, dan view controller CRUD.
+            </p>
 
-<CodeBlock language="">{`curl -X PUT http://localhost:6543/api/mahasiswa/1 -H "Content-Type: application/json" -d "{\"jurusan\": \"Informatika\", \"alamat\": \"Jl. Melati No. 5, Bandung\"}"`}</CodeBlock>
+            <h4 style={{ marginBottom: "0.5rem", fontSize: "1rem", fontWeight: 600 }}>Spesifikasi Teknis yang Wajib Dibuat:</h4>
+            <ol style={{ lineHeight: 1.8, marginBottom: "1.5rem", color: "var(--color-text-primary)" }}>
+              <li>
+                <strong>Model Data Matakuliah (<code>pyramid_mahasiswa/models/matakuliah.py</code>)</strong>:
+                <ul>
+                  <li>Nama tabel database: <code>matakuliah</code></li>
+                  <li><code>id</code>: Integer, Primary Key, Autoincrement</li>
+                  <li><code>kode_mk</code>: Text, Unique, Not Null (contoh: <code>IF2110</code>, <code>IF3140</code>)</li>
+                  <li><code>nama_mk</code>: Text, Not Null (contoh: <code>Pemrograman Web</code>, <code>Basis Data</code>)</li>
+                  <li><code>sks</code>: Integer, Not Null (contoh: <code>3</code>, <code>4</code>)</li>
+                  <li><code>semester</code>: Integer, Not Null (contoh: <code>3</code>, <code>5</code>)</li>
+                  <li>Method <code>to_dict(self)</code> untuk serialisasi objek menjadi dictionary JSON</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Registrasi Model &amp; Migrasi Alembic</strong>:
+                <ul>
+                  <li>Daftarkan model <code>Matakuliah</code> pada <code>pyramid_mahasiswa/models/__init__.py</code></li>
+                  <li>Buat file migrasi baru menggunakan Alembic (<code>alembic revision --autogenerate -m &quot;create matakuliah table&quot;</code>)</li>
+                  <li>Terapkan migrasi ke database (<code>alembic upgrade head</code>)</li>
+                  <li>Tambahkan seeding minimal 3 data mata kuliah awal pada <code>scripts/initialize_db.py</code></li>
+                </ul>
+              </li>
+              <li>
+                <strong>Views CRUD Matakuliah (<code>pyramid_mahasiswa/views/matakuliah.py</code>)</strong>:
+                <ul>
+                  <li><code>GET /api/matakuliah</code> &rarr; Menampilkan seluruh daftar mata kuliah</li>
+                  <li><code>GET /api/matakuliah/&#123;id&#125;</code> &rarr; Menampilkan detail mata kuliah berdasarkan ID (kembalikan 404 jika tidak ditemukan)</li>
+                  <li><code>POST /api/matakuliah</code> &rarr; Menambahkan data mata kuliah baru (validasi field wajib: <code>kode_mk</code>, <code>nama_mk</code>, <code>sks</code>, <code>semester</code>; kembalikan 400 jika tidak lengkap)</li>
+                  <li><code>PUT /api/matakuliah/&#123;id&#125;</code> &rarr; Memperbarui data mata kuliah yang ada</li>
+                  <li><code>DELETE /api/matakuliah/&#123;id&#125;</code> &rarr; Menghapus mata kuliah berdasarkan ID</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Konfigurasi Routes (<code>pyramid_mahasiswa/routes.py</code>)</strong>:
+                <ul>
+                  <li>Daftarkan kelima endpoint di atas dengan menyertakan predikat <code>request_method</code> yang sesuai.</li>
+                </ul>
+              </li>
+            </ol>
 
-<CodeBlock language="">{`curl -X DELETE http://localhost:6543/api/mahasiswa/3`}</CodeBlock>
+            {/* Tips Pengerjaan Callout Box */}
+            <div
+              style={{
+                borderRadius: "10px",
+                padding: "1rem 1.25rem",
+                backgroundColor: "rgba(168, 85, 247, 0.08)",
+                border: "1px solid rgba(168, 85, 247, 0.25)",
+                display: "flex",
+                gap: "0.85rem",
+                alignItems: "flex-start",
+                marginBottom: "1.75rem",
+              }}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#a855f7"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ flexShrink: 0, marginTop: "2px" }}
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <div>
+                <strong style={{ color: "#a855f7", display: "block", marginBottom: "0.25rem", fontSize: "0.95rem" }}>
+                  Tips Pengerjaan Tugas
+                </strong>
+                <p style={{ margin: 0, fontSize: "0.9rem", lineHeight: 1.6, color: "var(--color-text-secondary)" }}>
+                  Gunakan model dan view <code>mahasiswa</code> yang telah dipelajari sebagai acuan referensi. Pastikan kolom <code>sks</code> dan <code>semester</code> bertipe integer dan tervalidasi agar tidak menerima nilai negatif atau nol. Selalu uji setiap endpoint menggunakan cURL atau Postman sebelum mengumpulkan.
+                </p>
+              </div>
+            </div>
 
+            <h4 style={{ marginBottom: "0.75rem", fontSize: "1rem", fontWeight: 600 }}>Kriteria Penilaian:</h4>
+            <div className="table-wrapper" style={{ overflowX: "auto", margin: "0.5rem 0" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ borderBottom: "2px solid var(--color-border)", textAlign: "left" }}>
+                    <th style={{ padding: "0.75rem 1rem", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--color-text-secondary)" }}>
+                      ASPEK PENILAIAN
+                    </th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "right", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--color-text-secondary)" }}>
+                      BOBOT
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                    <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
+                      <strong>Model Data &amp; Migrasi Alembic</strong>
+                      <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
+                        Kesesuaian atribut model <code>Matakuliah</code>, method <code>to_dict()</code>, registrasi model, skrip revisi Alembic, dan inisialisasi data seeding.
+                      </div>
+                    </td>
+                    <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>30%</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
+                    <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
+                      <strong>Fungsionalitas API Endpoints &amp; Routes</strong>
+                      <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
+                        Kelengkapan 5 operasi CRUD (GET, POST, PUT, DELETE), penanganan status code yang tepat (200, 400, 404), dan predikat <code>request_method</code> pada <code>routes.py</code>.
+                      </div>
+                    </td>
+                    <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>40%</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
+                      <strong>Dokumentasi README, Pengujian &amp; Kerapian Kode (PEP 8)</strong>
+                      <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.2rem" }}>
+                        Kelengkapan berkas <code>README.md</code> (identitas, petunjuk instalasi/eksekusi, bukti tangkapan layar pengujian cURL/Postman), struktur repositori rapi, dan konvensi penulisan kode bersih.
+                      </div>
+                    </td>
+                    <td style={{ padding: "0.75rem 1rem", textAlign: "right", fontWeight: 600 }}>30%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-<h3 id="alternatif-tools-untuk-pengujian-api">Alternatif Tools untuk Pengujian API</h3>
-<p>Selain curl, Kalian dapat menggunakan tools lain yang lebih mudah untuk pengujian API:</p>
+          <div style={{ marginTop: "2rem" }}>
+            <SubmissionBox pertemuan={6} />
+          </div>
+        </section>
+      )}
 
+      {/* ========================================================================= */}
+      {/* 6. FORMAT PENGUMPULAN                                                     */}
+      {/* ========================================================================= */}
+      {(!subId || subId === "format-pengumpulan") && (
+        <section id="format-pengumpulan">
+          <h2>Format Pengumpulan</h2>
+          <p>Ketentuan pengumpulan repositori tugas dan laporan praktikum:</p>
+          <ul>
+            <li>
+              <strong>Format Repositori GitHub</strong>: Gunakan repositori praktikum yang sama dengan nama:
+              <br />
+              <code>pemrograman_web_itera_[NIM]</code> (Contoh: <code>pemrograman_web_itera_121140001</code>).
+            </li>
+            <li>
+              <strong>Format Folder Pertemuan</strong>: Buat folder khusus di dalam repositori dengan format nama:
+              <br />
+              <code>[NAMA]_[NIM]_pertemuan6</code> (Contoh: <code>ahmadfadhil_121140001_pertemuan6</code>).
+            </li>
+            <li>
+              <strong>Struktur Direktori Repositori yang Diharapkan:</strong>
+              <CodeBlock language="text">{`ahmadfadhil_121140001_pertemuan6/
+├── development.ini
+├── production.ini
+├── setup.py
+├── README.md
+├── .gitignore
+└── pyramid_mahasiswa/
+    ├── __init__.py
+    ├── routes.py
+    ├── alembic/
+    │   ├── env.py
+    │   └── versions/
+    │       ├── 20261112_create_mahasiswa_table.py
+    │       └── 20261112_create_matakuliah_table.py
+    ├── models/
+    │   ├── __init__.py
+    │   ├── meta.py
+    │   ├── mahasiswa.py
+    │   └── matakuliah.py
+    ├── scripts/
+    │   ├── __init__.py
+    │   └── initialize_db.py
+    └── views/
+        ├── __init__.py
+        ├── default.py
+        ├── mahasiswa.py
+        └── matakuliah.py`}</CodeBlock>
+            </li>
+            <li>
+              <strong>Kelengkapan Berkas README.md:</strong>
+              <ul style={{ marginTop: "0.35rem" }}>
+                <li>Identitas praktikan (Nama Lengkap, NIM, Kelas Praktikum).</li>
+                <li>Deskripsi singkat aplikasi RESTful API yang dikembangkan.</li>
+                <li>Langkah-langkah instalasi lingkungan, migrasi database, dan cara menjalankan server <code>pserve</code>.</li>
+                <li>Tangkapan layar (screenshot) bukti hasil eksekusi pengujian cURL atau Postman untuk seluruh endpoint (Mahasiswa dan Matakuliah).</li>
+              </ul>
+            </li>
+            <li>
+              Pastikan direktori virtual environment (<code>venv/</code>), file database SQLite lokal jika ada (<code>*.sqlite</code>), dan cache Python (<code>__pycache__/</code>, <code>*.pyc</code>) <strong>tidak diunggah ke GitHub</strong> (wajib terdaftar di dalam berkas <code>.gitignore</code>).
+            </li>
+          </ul>
 
-<h3 id="1-browser-untuk-get-request">1. Browser (untuk GET Request)</h3>
-<p>Untuk request GET sederhana, Kalian bisa langsung membuka URL di browser:</p>
-
-<ul>
-  <li>http://localhost:6543/api/mahasiswa</li>
-  <li>http://localhost:6543/api/mahasiswa/1</li>
-</ul>
-
-
-<h3 id="2-postman">2. Postman</h3>
-<p>Postman adalah aplikasi desktop dengan antarmuka grafis yang memudahkan pengujian API:</p>
-
-<ul>
-  <li>Download Postman dari https://www.postman.com/downloads/</li>
-  <li>Buat request baru dengan method yang diinginkan (GET, POST, PUT, DELETE)</li>
-  <li>Masukkan URL endpoint</li>
-  <li>Untuk POST/PUT, pilih tab "Body" → "raw" → "JSON" dan masukkan data JSON</li>
-  <li>Klik "Send" untuk mengirim request</li>
-</ul>
-
-
-<h3 id="3-insomnia">3. Insomnia</h3>
-<p>Alternatif Postman yang lebih ringan:</p>
-
-<ul>
-  <li>Download dari https://insomnia.rest/download</li>
-  <li>Interface yang lebih sederhana dan ringan</li>
-  <li>Fitur yang cukup lengkap untuk API testing</li>
-</ul>
-
-
-<h3 id="4-vs-code-rest-client-extension">4. VS Code REST Client Extension</h3>
-<p>Jika menggunakan VS Code, install extension "REST Client":</p>
-
-<ul>
-  <li>Install extension "REST Client" di VS Code</li>
-  <li>Buat file baru dengan ekstensi .http atau .rest</li>
-  <li>Tulis request dalam format:</li>
-</ul>
-
-<CodeBlock language="">{`### Get all mahasiswa
-GET http://localhost:6543/api/mahasiswa
-
-### Get detail mahasiswa
-GET http://localhost:6543/api/mahasiswa/1
-
-### Add new mahasiswa
-POST http://localhost:6543/api/mahasiswa
-Content-Type: application/json
-
-{
-  "nim": "67890",
-  "nama": "Ahmad Fadli",
-  "jurusan": "Teknik Elektro",
-  "tanggal_lahir": "2001-11-05",
-  "alamat": "Jl. Mawar No. 10, Surabaya"
-}
-
-### Update mahasiswa
-PUT http://localhost:6543/api/mahasiswa/1
-Content-Type: application/json
-
-{
-  "jurusan": "Informatika",
-  "alamat": "Jl. Melati No. 5, Bandung"
-}
-
-### Delete mahasiswa
-DELETE http://localhost:6543/api/mahasiswa/3`}</CodeBlock>
-
-<ul>
-  <li>Klik "Send Request" di atas setiap request untuk menjalankannya</li>
-</ul>
-
-<p>Troubleshooting API Testing</p>
-
-<p>Jika mengalami masalah saat mengakses API:</p>
-
-<ul>
-  <li>Pastikan server Pyramid sedang berjalan</li>
-  <li>Periksa port yang digunakan (default: 6543)</li>
-  <li>Periksa log error di terminal tempat server berjalan</li>
-  <li>Gunakan http://127.0.0.1:6543 jika localhost tidak berfungsi</li>
-  <li>Pastikan tidak ada aplikasi lain yang menggunakan port 6543</li>
-</ul>
-
-      <h2 id="tugas-praktikum">Tugas: Manajemen Matakuliah (Pyramid REST API)</h2>
-      <p>Kembangkan REST API untuk entitas Matakuliah dengan Pyramid Framework, SQLAlchemy ORM, dan PostgreSQL yang mendukung operasi CRUD lengkap.</p>
-
-      <h2 id="format-pengumpulan">Format Pengumpulan</h2>
-      <ul>
-        <li>Folder: <code>[NAMA]_[NIM]_pertemuan6</code></li>
-        <li><strong>Deadline:</strong> Mengikuti instruksi asisten praktikum.</li>
-      </ul>
-
-      <SubmissionBox pertemuan={6} />
+          <SubmissionBox pertemuan={6} />
+        </section>
+      )}
     </>
   );
 }
